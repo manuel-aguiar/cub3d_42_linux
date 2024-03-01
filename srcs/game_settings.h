@@ -16,10 +16,6 @@
 
 # include "game.h"
 
-# include <GLFW/glfw3.h>
-
-
-
 /* window settings */
 # define MAX_WIN_WIDTH 1900
 # define MIN_WIN_WIDTH 800

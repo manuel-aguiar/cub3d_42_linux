@@ -12,7 +12,7 @@
 
 #include "game.h"
 
-void	free_game(t_game *game)
+int	free_game(t_game *game)
 {
 	int i;
 
@@ -43,4 +43,5 @@ void	free_game(t_game *game)
 	}
 	if (game->sorted)
 		free(game->sorted);
+	return (1);
 }

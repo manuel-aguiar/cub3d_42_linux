@@ -14,6 +14,8 @@
 
 int    mouse_press(int button, int x, int y, t_win *win)
 {
+	(void)x;
+	(void)y;
 	if (button == BUT_AIM)
 	{
 		if (!((win->mouse.buttons >> BIT_AIM) & 1))
@@ -22,11 +24,14 @@ int    mouse_press(int button, int x, int y, t_win *win)
 			win->mouse.buttons &= ~(1 << BIT_AIM);	
 	}
 	else if (button == BUT_SHOOT)
-		win->mouse.buttons |= (1 << BIT_SHOOT); 
+		win->mouse.buttons |= (1 << BIT_SHOOT);
+	return (1);
 }
 
 int	mouse_release(int button, int x, int y, t_win *win)
 {
+	(void)x;
+	(void)y;
 	if (button == BUT_SHOOT)
 		win->mouse.buttons &= ~(1 << BIT_SHOOT);
 	return (1);

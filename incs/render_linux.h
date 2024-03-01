@@ -35,7 +35,6 @@ typedef struct s_mouse t_mouse;
 
 // GLOBALS NEEDED BY GLFW
 
-extern 	int 		g_keys;
 extern  t_mouse		g_mouse;
 
 struct s_mouse
@@ -171,9 +170,9 @@ int			free_window(t_win *win);
 //win_keys.c
 int		mouse_position(int x, int y, t_win *win);
 int		mouse_release(int button, int x, int y, t_win *win);
-void    mouse_press(int button, int x, int y, t_win *win);
-void	key_press(int keycode, t_win *win);
-void	key_release(int keycode, t_win *win);
+int		mouse_press(int button, int x, int y, t_win *win);
+int		key_press(int keycode, t_win *win);
+int		key_release(int keycode, t_win *win);
 //win_render_loop.c
 
 

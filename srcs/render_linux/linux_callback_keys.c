@@ -32,6 +32,7 @@ int	key_release(int keycode, t_win *win)
 		win->keys &= ~(1 << BIT_CROUCH);
 	else if (keycode == KEY_PRONE)
 		win->keys &= ~(1 << BIT_PRONE);
+	return (1);
 }
 
 int	key_press_toggle(int keycode, t_win *win)
@@ -78,6 +79,7 @@ int	key_press_toggle(int keycode, t_win *win)
 		else
 			win->keys &= ~(1 << BIT_HUD_T);			
 	}
+	return (1);
 }
 
 int	key_press(int keycode, t_win *win)
@@ -100,5 +102,5 @@ int	key_press(int keycode, t_win *win)
 		win->keys |= (1 << BIT_CROUCH);
 	else if (keycode == KEY_PRONE)
 		win->keys |= (1 << BIT_PRONE);
-	key_press_toggle(keycode, win);
+	return (key_press_toggle(keycode, win));
 }

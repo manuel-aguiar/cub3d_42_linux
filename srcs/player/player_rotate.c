@@ -40,8 +40,8 @@ void	player_rotate_and_pitch(t_game *game)
 	rotate_aim_multi = 1;
 	if (game->player.is_aiming)
 		rotate_aim_multi = game->player.aim_rot_multi;
-	rotate = game->win.width / 2 - game->mouse->cur_x;
-	pitch = ((game->mouse->cur_y - game->win.height / 2) \
+	rotate = game->win.width / 2 - game->win.mouse.cur_x;
+	pitch = ((game->win.mouse.cur_y - game->win.height / 2) \
 		* game->player.verti_sense * rotate_aim_multi * game->player.clock->elapsed);
 	player_shot_pitch(game);
 	game->player.verti_angle = float_clamp(game->player.verti_angle \

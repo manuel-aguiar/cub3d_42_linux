@@ -43,7 +43,7 @@ void	wallcast(t_game *game, t_ray *ray, t_dda_hor *hori, int x)
 	t_wall_line	line;
 
 	setup_wall_line(game, ray, hori, &line);
-	if (((*game->keys) >> BIT_FLOOR_REFL_T) & 1)
+	if (((game->win.keys) >> BIT_FLOOR_REFL_T) & 1)
 	{
 		line.tex_exact_y = line.tex_exact_y_save;
 		line.tex_exact_y += line.step * (line.line_start - ray->h - 1) * (line.line_start > ray->h - 1);
@@ -74,7 +74,7 @@ void	wallcast(t_game *game, t_ray *ray, t_dda_hor *hori, int x)
 		game->win.set_pixel(&game->win, x, line.y_start, line.color);
 		line.y_start++;
 	}
-	if (((*game->keys) >> BIT_CEIL_REFL_T) & 1)
+	if (((game->win.keys) >> BIT_CEIL_REFL_T) & 1)
 	{
 		line.tex_exact_y = line.tex_exact_y_save + (-line.line_start + line.line_end) * line.step;
 		line.tex_exact_y -= line.step * (0 - line.line_end) * (line.line_end < 0);

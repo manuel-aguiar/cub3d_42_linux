@@ -165,15 +165,16 @@ void    apply_all_settings(t_game *game);
 
 //game_setup.c
 int		game_start(t_game *game, char *game_config);
-void	free_game(t_game *game);
+int		free_game(t_game *game);
 void	game_setup_keys(t_game *game);
 
 //game_render.c
-void	game_render(t_game *game);
+int		game_render(t_game *game);
 void	game_actions(t_game *game);
 
+void	player_walk_height(t_player *player, t_game *game);
 
-int		win_render(t_game *game, t_win *win, void (*win_key_press)());
+int		rendering_loop(t_game *game);
 
 //handle_collisions.c
 void	handle_collisions(t_game *game, t_vec2d *posi, t_vec2d potencial, float unit_size);

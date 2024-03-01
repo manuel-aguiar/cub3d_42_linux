@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "player.h"
+#include "game.h"
 
-void	player_walk_height(t_player *player)
+void	player_walk_height(t_player *player, t_game *game)
 {
 	float	speed;
 	float	radius;
@@ -21,7 +21,7 @@ void	player_walk_height(t_player *player)
 	{
 		speed = player->cur_move_multi;
 		if (player->is_sprinting && player->hgt_state == HGT_NORMAL \
-		&& (g_keys >> BIT_FRONT) & 1)
+		&& (game->win.keys >> BIT_FRONT) & 1)
 			speed *= player->sprint_move_multi;
 		player->cur_walk_sense += 0.015f * speed * player->clock->elapsed;
 		radius = player->walk_radius;

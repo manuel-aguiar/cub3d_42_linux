@@ -46,7 +46,7 @@ void	dump_blur_to_front_buf(t_win *win, t_pause_blur *blur, char *dump)
 	{
 		index = (blur->kernel_centre + y * win->width) * win->rgb_size;
 		size = (win->width - (int)(blur->kernel_size / 2) * 2) * win->rgb_size;
-		ft_memcpy(&win->front_buf[index], &dump[index], size);
+		ft_memcpy(&win->front_buf.addr[index], &dump[index], size);
 		y++;
 	}
 }
@@ -92,11 +92,10 @@ void	blur_horizontal(t_pause_blur *blur, char *dest, char *src, int width, int h
 
 int	window_update_clock(t_win *win)
 {
-	ftime(&win->blur.clock.end);
-	win->blur.clock.elapsed = (size_t) (1000.0 * (win->blur.clock.end.time - win->blur.clock.start.time)
-	+ (win->blur.clock.end.millitm - win->blur.clock.start.millitm));
-	win->blur.clock.start = win->blur.clock.end;
-	//printf("clock says %u elapsed\n", win->blur.clock.elapsed);
+    gettimeofday(&win->blur.clock.end, NULL);
+    win->blur.clock.elapsed = (size_t)((win->blur.clock.end.tv_sec - win->blur.clock.start.tv_sec) * 1000 +
+                               (win->blur.clock.end.tv_usec - win->blur.clock.start.tv_usec) / 1000);
+    win->blur.clock.start = win->blur.clock.end;
 	return (win->blur.clock.elapsed + 1);
 }
 
@@ -159,7 +158,7 @@ void	window_pause_manager(t_win *win, e_pause_state state, bool blur_on)
 		}
 		if (blur->elapsed <= 0)
 		{
-			ft_memcpy(blur->save_front, win->front_buf, win->height * win->width * win->rgb_size);
+			ft_memcpy(blur->save_front, win->front_buf.addr, win->height * win->width * win->rgb_size);
 			window_update_clock(win);
 			blur->elapsed = 1;
 		}

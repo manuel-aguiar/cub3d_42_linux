@@ -65,7 +65,7 @@ void	game_actions(t_game *game)
 	player_actions(game);
 }
 
-void	game_render(t_game *game)
+int	game_render(t_game *game)
 {
 	game_actions(game);
 	if ((game->win.keys >> BIT_PAUSE_T) & 0xff)
@@ -87,4 +87,5 @@ void	game_render(t_game *game)
 		}
 	}
 	game->win.set_pixel(&game->win, game->win.width / 2, game->win.height / 2, (unsigned int)-1);
+	return (1);
 }

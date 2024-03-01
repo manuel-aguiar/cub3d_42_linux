@@ -155,7 +155,6 @@ void	render_player(t_win *win, t_player *player);
 void	player_change_aim(t_player *player);
 void    player_change_stance(t_player *player);
 void	player_jump_gravity(t_player *player);
-void	player_walk_height(t_player *player);
 void	player_rotate(t_player *player);
 
 t_vec2d	move_player_default(t_player *player);

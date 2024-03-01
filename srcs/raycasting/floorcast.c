@@ -96,7 +96,7 @@ void	floorcast(t_game *game)
 			line.tile_exact_y += line.tile_step_y;
 			line.color = tex->pixels[tex->width * (tex->height - line.tex_pix_y - 1) + line.tex_pix_x];
 			line.color = add_shade(line.color, line.shade_wgt);
-			if (((*game->keys) >> BIT_FLOOR_REFL_T) & 1 && y > game->hori_rays[x].min_y - game->hori_rays[x].line_h)
+			if (((game->win.keys) >> BIT_FLOOR_REFL_T) & 1 && y > game->hori_rays[x].min_y - game->hori_rays[x].line_h)
 			{
 				line.color = avg_colour(game->win.get_pixel(&game->win, x, y), line.color, game->hori_rays[x].reflect_num, game->hori_rays[x].reflect_den);
 			}
@@ -129,7 +129,7 @@ void	floorcast(t_game *game)
 			line.color = tex->pixels[tex->width * line.tex_pix_y + line.tex_pix_x];
 			line.color = add_shade(line.color, line.shade_wgt);
 
-			if (((*game->keys) >> BIT_CEIL_REFL_T) & 1 && y < game->hori_rays[x].max_y + game->hori_rays[x].line_h)
+			if (((game->win.keys) >> BIT_CEIL_REFL_T) & 1 && y < game->hori_rays[x].max_y + game->hori_rays[x].line_h)
 			{
 				line.color = avg_colour(game->win.get_pixel(&game->win, x, y), line.color, game->hori_rays[x].reflect_num, game->hori_rays[x].reflect_den);
 			}

@@ -45,6 +45,6 @@ void	player_actions(t_game *game)
 	player_change_aim(player);
 	player_change_stance(player);
 	player_jump_gravity(player);
-	player_walk_height(player);
+	player_walk_height(player, game);
 	player_rotate_and_pitch(game);
 }

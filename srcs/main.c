@@ -34,7 +34,7 @@ int main(int ac, char **av)
 		return (0 & ft_printf_fd(STDERR_FILENO, "cub3d: invalid number of arguments\n"));
 	if (!game_start(&game, av[1]))
 		return (0);
-	win_render(&game, &game.win, win_key_callback);
+	rendering_loop(&game);
 	free_game(&game);
 	return (0);
 }

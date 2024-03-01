@@ -204,12 +204,12 @@ LIBS		=		$(ADD_LIB) $(LIB_PATH)/$(LIBFT) $(MLX_LIB)
 all: $(NAME)
 
 $(NAME): $(LIBFT) $(MLX) $(OBJS)
-	@$(CC) $(FLAGS) $(OBJS) $(ALL_INCS) -o $(NAME) $(LIBS)
+	$(CC) $(FLAGS) $(OBJS) $(ALL_INCS) -o $(NAME) $(LIBS)
 	@echo Program $(NAME) ready!!
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c $(INCS)
-	@mkdir -p $(dir $@)
-	@$(CC) $(FLAGS) $(ALL_INCS) -c $< -o $@
+	mkdir -p $(dir $@)
+	$(CC) $(FLAGS) $(ALL_INCS) -c $< -o $@
 
 $(LIBFT):
 	@$(MAKE) -C $(LIB_PATH)
