@@ -3,7 +3,7 @@
 
 NAME 		=		cub3d
 
-COMP 		= 		cc -O3
+COMP 		= 		cc -O3 -fsanitize=address
 
 FLAGS 		= 		-Wall -Werror -Wextra
 ADD_LIB 	= 		-L./$(LIB_PATH) -lft
