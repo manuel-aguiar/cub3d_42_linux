@@ -21,11 +21,10 @@
 # include "compass.h"
 # include "drawing_algos.h"
 # include "parsing.h"
-# include "render_windows.h"
+# include "render_linux.h"
 # include "vector.h"
 # include "player.h"
 # include "generic_utils.h"
-# include "user_inputs.h"
 # include "xpm_parser.h"
 # include "sprites.h"
 

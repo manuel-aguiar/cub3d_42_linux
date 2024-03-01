@@ -14,7 +14,7 @@
 
 # define COMPASS_H
 
-# include "render_windows.h"
+# include "render_linux.h"
 # include "vector.h"
 # include "drawing_algos.h"
 # include "pixel_point.h"

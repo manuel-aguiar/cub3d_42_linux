@@ -15,7 +15,7 @@
 # define DRAWING_ALGOS_H
 
 # include "libft.h"
-# include "render_windows.h"
+# include "render_linux.h"
 # include "vector.h"
 # include "pixel_point.h"
 

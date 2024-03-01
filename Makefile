@@ -52,7 +52,6 @@ INC_FILES		=		game.h				\
 						drawing_algos.h		\
 						pixel_point.h		\
 						compass.h			\
-						user_inputs.h		\
 						xpm_parser.h		\
 						generic_utils.h		\
 						hit_detection.h

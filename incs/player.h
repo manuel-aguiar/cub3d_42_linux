@@ -16,7 +16,7 @@
 
 # include "vector.h"
 # include "compass.h"
-# include "render_windows.h"
+# include "render_linux.h"
 # include "drawing_algos.h"
 # include "pixel_point.h"
 

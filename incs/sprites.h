@@ -18,7 +18,7 @@
 # include "libft.h"
 # include "vector.h"
 # include "parsing.h"
-# include "render_windows.h"
+# include "render_linux.h"
 # include "hit_detection.h"
 # include <float.h>
 

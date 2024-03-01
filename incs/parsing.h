@@ -18,7 +18,7 @@
 # include <fcntl.h>
 
 # include "libft.h"
-# include "render_windows.h"
+# include "render_linux.h"
 # include "vector.h"
 # include "pixel_point.h"
 # include "hit_detection.h"
