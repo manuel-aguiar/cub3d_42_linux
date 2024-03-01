@@ -246,7 +246,7 @@ re: fclean all
 run: $(NAME)
 	@./$(NAME)
 
-git:
+git: fclean
 	git add * && git commit -m "commiting" && git push
 
 .PHONY: clean fclean message bonus
