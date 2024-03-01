@@ -14,8 +14,10 @@
 
 NAME 			= 	libft.a
 COMP 			= 	cc -O3
-FLAGS 			= 	
+FLAGS 			= 	-Wall -Wextra -Werror
 LIB 			= 	ar rcs
+RM				=	rm
+MAKE			=	make
 
 ## FOLDER PATH ##
 INC_PATH		=	incs
@@ -210,32 +212,29 @@ SRCS			:=  $(addprefix $(SRC_PATH)/,$(SRCS_MAIN))					\
 
 OBJS 		:=		$(patsubst $(SRC_PATH)/%.c,$(OBJ_PATH)/%.o,$(SRCS))
 
-all: $(NAME)
-
-$(NAME): $(OBJS)
+$(NAME):  message $(OBJS)
 	@echo Compiling Libft, wait a moment....
 	@$(LIB) $@ $(OBJS)
 	@echo Libft is ready!!
 
-$(OBJ_PATH)/%.o: $(SRC_PATH)/%.c $(INCS)
+$(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
 	@mkdir -p $(dir $@)
-	@$(COMP) $(FLAGS) -I$(INC_PATH) -c $< -o $@
+	@$(CC) $(FLAGS) -I$(INC_PATH) -c $< -o $@
+
+message:
+	@echo Creating object files for Libft...
 
 clean:
 	@echo Removing object files.....
 	@if [ -d "$(OBJ_PATH)" ]; then \
         rm -rf $(OBJ_PATH); \
     fi
-	@make clean -C $(LIB_PATH)
 	@echo Objects successfully deleted!
 
 fclean: clean
 	@echo Deleting libft.a...
 	@if [ -n "$(wildcard  $(NAME))" ]; then \
         $(RM) $(NAME); \
-    fi
-	@if [ -n "$(wildcard  $(LIB_PATH)/$(LIBFT))" ]; then \
-        $(RM) $(LIB_PATH)/$(LIBFT); \
     fi
 	@echo Done!!
 

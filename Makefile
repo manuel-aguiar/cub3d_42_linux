@@ -14,6 +14,7 @@ MAKE		=		make
 
 ## FOLDER PATH ##
 INC_MLX 	=		-I/usr/include -Imlx_linux
+MLX_PATH	=		mlx_linux
 INC_PATH	=		incs
 SRC_PATH	=		srcs
 OBJ_PATH	=		objs
@@ -88,7 +89,7 @@ SRC_PLAYER			=	player_setup_and_actions.c	\
 						player_crouch_prone.c		\
 						player_walk_height.c		\
 						player_rotate.c				\
-						player_jump.c				\
+						player_jump.c
 
 SRC_PARSING			=	parsing_main.c						\
 						parsing_textures_get.c				\
@@ -181,14 +182,14 @@ SRC_HIT_DETECTION	=	lb_hit.c					\
 INCS		:=		$(addprefix $(INC_PATH)/, $(INC_FILES))
 
 
-SRCS 		:=		$(addprefix $(SRC_PATH)/, $(SRC_MAIN))									\
-					$(addprefix $(SRC_PATH)/$(DIR_PARSING)/, $(SRC_PARSING)) 				\
-					$(addprefix $(SRC_PATH)/$(DIR_GENERIC_UTILS)/, $(SRC_GENERIC_UTILS))	\
-					$(addprefix $(SRC_PATH)/$(DIR_REN_LINUX)/, $(SRC_REN_LINUX))			\
-					$(addprefix $(SRC_PATH)/$(DIR_COMPASS)/, $(SRC_COMPASS))				\
-					$(addprefix $(SRC_PATH)/$(DIR_DRAWING_ALGOS)/, $(SRC_DRAWING_ALGOS))	\
-					$(addprefix $(SRC_PATH)/$(DIR_GAME)/, $(SRC_GAME))						\
-					$(addprefix $(SRC_PATH)/$(DIR_PLAYER)/, $(SRC_PLAYER))					\
+SRCS 		:=		$(addprefix $(SRC_PATH)/, $(SRC_MAIN))											\
+					$(addprefix $(SRC_PATH)/$(DIR_PARSING)/, $(SRC_PARSING)) 						\
+					$(addprefix $(SRC_PATH)/$(DIR_GENERIC_UTILS)/, $(SRC_GENERIC_UTILS))			\
+					$(addprefix $(SRC_PATH)/$(DIR_REN_LINUX)/, $(SRC_REN_LINUX))					\
+					$(addprefix $(SRC_PATH)/$(DIR_COMPASS)/, $(SRC_COMPASS))						\
+					$(addprefix $(SRC_PATH)/$(DIR_DRAWING_ALGOS)/, $(SRC_DRAWING_ALGOS))			\
+					$(addprefix $(SRC_PATH)/$(DIR_GAME)/, $(SRC_GAME))								\
+					$(addprefix $(SRC_PATH)/$(DIR_PLAYER)/, $(SRC_PLAYER))							\
 					$(addprefix $(SRC_PATH)/$(DIR_RAYCASTING)/, $(SRC_RAYCASTING))					\
 					$(addprefix $(SRC_PATH)/$(DIR_XPM_PARSER)/, $(SRC_XPM_PARSER))					\
 					$(addprefix $(SRC_PATH)/$(DIR_PIXEL_POINT)/, $(SRC_PIXEL_POINT))				\
@@ -203,34 +204,44 @@ LIBS		=		$(ADD_LIB) $(LIB_PATH)/$(LIBFT) $(MLX_LIB)
 
 all: $(NAME)
 
-$(NAME): $(LIBFT) $(OBJS)
-	$(COMP) $(FLAGS) $(OBJS) $(ALL_INCS) -o $(NAME) $(LIBS)
+$(NAME): $(LIBFT) $(MLX) $(OBJS)
+	@$(CC) $(FLAGS) $(OBJS) $(ALL_INCS) -o $(NAME) $(LIBS)
 	@echo Program $(NAME) ready!!
 
-$(OBJ_PATH)/settings.o : $(SRC_PATH)/settings.c $(SRC_PATH)/game_settings.h
-	@mkdir -p $(dir $@)
-	@$(COMP) $(FLAGS) $(INCS) -c $< -o $@
-	
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c $(INCS)
 	@mkdir -p $(dir $@)
-	@$(COMP) $(FLAGS) $(INCS) -c $< -o $@
+	@$(CC) $(FLAGS) $(ALL_INCS) -c $< -o $@
+
+$(LIBFT):
+	@$(MAKE) -C $(LIB_PATH)
+	@$(MAKE) -C $(MLX_PATH)
+
+$(MLX):
+	@$(MAKE) -C $(MLX_PATH)
+
+message:
+	@echo Building program....
 
 clean:
+	@echo Removing object files.....
 	@if [ -d "$(OBJ_PATH)" ]; then \
         rm -rf $(OBJ_PATH); \
     fi
-	@make clean -C $(LIB_PATH)
+	@$(MAKE) clean -C $(LIB_PATH)
+	@$(MAKE) clean -C $(MLX_PATH)
+	@echo Objects successfully deleted!
 
 fclean: clean
+	@echo Deleting libft.a...
 	@if [ -n "$(wildcard  $(NAME))" ]; then \
         $(RM) $(NAME); \
     fi
 	@if [ -n "$(wildcard  $(LIB_PATH)/$(LIBFT))" ]; then \
         $(RM) $(LIB_PATH)/$(LIBFT); \
     fi
+	@echo Done!!
 
-$(LIBFT):
-	@$(MAKE) -C $(LIB_PATH)
+re: fclean all
 
 run: $(NAME)
 	@./$(NAME)
