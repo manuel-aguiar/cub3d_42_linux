@@ -16,7 +16,7 @@ void	free_game(t_game *game)
 {
 	int i;
 
-	free_win_glfw(&game->win);
+	free_window(&game->win);
 	free_compass(&game->compass);
 	free_map(&game->map);
 	if (game->hori_rays)

@@ -14,45 +14,39 @@
 
 int	win_init_window(t_win *win)
 {
-	if (!glfwInit())
-        return (0);      // no free, potencial memleak
-	win->window = glfwCreateWindow(win->width, win->height, win->name, NULL, NULL);
-	if (!win->window)
-	{
-		glfwTerminate();
-		return (0);		// no free, potencial memleak
-	}
-	glfwMakeContextCurrent(win->window);
-	if (glewInit() != GLEW_OK)
-	{
-		glfwTerminate();
-		return (0);		// no free, potencial memleak
-	}
-	win->front_buf = malloc(sizeof(*win->front_buf) * win->width * win->height * win->rgb_size);
+	win->mlx = mlx_init();
+	if (!win->mlx)
+		return (error_msg_int("cub3d: mlx failed to initialize\n", STDERR_FILENO, 0));
+	win->mlx_win = mlx_new_window(win->mlx, win->width, win->width, win->name);
+	win->front_buf.img = mlx_new_image(win->mlx, win->width, win->height);
+	win->front_buf.addr = mlx_get_data_addr(win->front_buf.img, \
+		&(win->front_buf.bpp), &(win->front_buf.line_len), \
+		&(win->front_buf.endian));
 	win->blur.first = malloc(sizeof(*win->blur.first) * win->width * win->height * win->rgb_size);
 	win->blur.second = malloc(sizeof(*win->blur.second) * win->width * win->height * win->rgb_size);
 	win->blur.save_front = malloc(sizeof(*win->blur.save_front) * win->width * win->height * win->rgb_size);
 	win->blur.clock = (t_clock){};
 	ftime(&win->blur.clock.start);
-	if (!win->front_buf || !win->blur.first || !win->blur.second || !win->blur.save_front)
+	if (!win->front_buf.img || !win->blur.first || !win->blur.second || !win->blur.save_front)
 		return (perror_msg_int("malloc", 0));		// no free, potencial memleak
-	win->set_pixel = win_set_pixel;
-	win->get_pixel = win_get_pixel;
-	glfwSetInputMode(win->window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
-	glfwSetInputMode(win->window, GLFW_STICKY_KEYS, GLFW_FALSE);
-	glfwSetInputMode(win->window, GLFW_STICKY_MOUSE_BUTTONS, GLFW_FALSE);
+	win->set_pixel = linux_set_pixel;
+	win->get_pixel = linux_get_pixel;
+	mlx_do_key_autorepeatoff(win->mlx);
 	return (1);	
 }
 
-int	free_win_glfw(t_win *win)
+int	free_window(t_win *win)
 {
-	glfwSetInputMode(win->window, GLFW_STICKY_KEYS, GLFW_TRUE);
-	glfwSetInputMode(win->window, GLFW_STICKY_MOUSE_BUTTONS, GLFW_TRUE);
-	glfwSetInputMode(win->window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
-	glfwDestroyWindow(win->window);
-	glfwTerminate();
-	if (win->front_buf)
-		free(win->front_buf);
+
+	if (win->front_buf.img)
+		mlx_destroy_image(win->mlx, win->front_buf.img);
+	if (win->mlx_win)
+		mlx_destroy_window(win->mlx, win->mlx_win);
+	if (win->mlx)
+	{
+		mlx_destroy_display(win->mlx);
+		mlx_do_key_autorepeaton(win->mlx);
+	}
 	if (win->blur.first)
 		free(win->blur.first);
 	if (win->blur.second)

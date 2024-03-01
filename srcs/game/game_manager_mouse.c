@@ -33,8 +33,8 @@ void	start_new_bullet(t_game *game)
 
 void	game_mouse_manager(t_game *game)
 {
-	game->player.is_aiming = ((game->mouse->buttons >> BIT_AIM) & 1);
-	if (((game->mouse->buttons >> BIT_SHOOT) & 1))
+	game->player.is_aiming = ((game->win.mouse.buttons >> BIT_AIM) & 1);
+	if (((game->win.mouse.buttons >> BIT_SHOOT) & 1))
 	{
 		if (game->player.ammo[CTR_CUR] > 0)
 		{
@@ -43,6 +43,6 @@ void	game_mouse_manager(t_game *game)
 			game->player.ammo[CTR_CUR]--;
 			game->player.cur_shot_sense = game->player.shot_init;
 		}
-		game->mouse->buttons &= ~(1 << BIT_SHOOT);
+		game->win.mouse.buttons &= ~(1 << BIT_SHOOT);
 	}
 }

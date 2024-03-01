@@ -18,7 +18,7 @@ void	game_key_manager(t_game *game)
 	int move;
 	int	new_height_state;
 
-	keys = *game->keys;
+	keys = game->win.keys;
 
 	move = (((keys >> BIT_FRONT) & 1) << 3) | (((keys >> BIT_BACK) & 1) << 2) | (((keys >> BIT_LEFT) & 1) << 1) | (((keys >> BIT_RIGHT) & 1));
 	move_player(game, move);
@@ -32,7 +32,7 @@ void	game_key_manager(t_game *game)
 		else if (((keys >> BIT_PRONE) & 1) || ((keys >> BIT_JUMP) & 1))
 			new_height_state = HGT_NORMAL;
 		if (((keys >> BIT_JUMP) & 1))
-			*game->keys &= ~(1 << BIT_JUMP);
+			game->win.keys &= ~(1 << BIT_JUMP);
 	}
 	else if (game->player.hgt_state == HGT_CROUCH)
 	{
@@ -41,7 +41,7 @@ void	game_key_manager(t_game *game)
 		else if (((keys >> BIT_CROUCH) & 1) || ((keys >> BIT_JUMP) & 1))
 			new_height_state = HGT_NORMAL;
 		if (((keys >> BIT_JUMP) & 1))
-			*game->keys &= ~(1 << BIT_JUMP);
+			game->win.keys &= ~(1 << BIT_JUMP);
 	}
 	else if (game->player.hgt_state == HGT_NORMAL)
 	{
@@ -72,8 +72,8 @@ void	game_key_manager(t_game *game)
 	if (new_height_state != -1)
 		game->player.hgt_state = new_height_state;
 	
-	*game->keys &= ~(1 << BIT_CROUCH);
-	*game->keys &= ~(1 << BIT_PRONE);
+	game->win.keys &= ~(1 << BIT_CROUCH);
+	game->win.keys &= ~(1 << BIT_PRONE);
 	game->player.is_sprinting = ((keys >> BIT_SPRINT) & 1) && !game->player.is_aiming && move == (((keys >> BIT_FRONT) & 1) << 3);
 
 }

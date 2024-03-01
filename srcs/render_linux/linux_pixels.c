@@ -28,25 +28,11 @@ void	linux_set_pixel(t_win *win, int x, int y, int color)
 
 int	linux_get_pixel(t_win *win, int x, int y)
 {
-	/*
-	int new;
+	char		*dst;
 
-	new = *(int *)(win->front_buf + (x + y * win->width) * win->rgb_size);
-	return (argb(new));
-	*/
-	unsigned char r;
-	unsigned char g;
-	unsigned char b;
-	unsigned char a;
-	int 	i;
-
-	i = (x + y * win->width) * win->rgb_size;
-	r = win->front_buf[i++];
-	g = win->front_buf[i++];
-	b = win->front_buf[i++];
-	a = win->front_buf[i++];
-	return (pack_color_channels(r, g, b, a));
-
+	dst = win->front_buf.addr + (y * win->front_buf.line_len + \
+		x * (win->front_buf.bpp / 8));
+	return (*(unsigned int *)dst);
 }
 
 

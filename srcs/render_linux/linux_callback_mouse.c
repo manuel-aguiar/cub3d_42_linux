@@ -12,41 +12,29 @@
 
 # include "render_linux.h"
 
-void win_mouse_scroll_callback(GLFWwindow* window, \
-	double xoffset, double yoffset) 
+int    mouse_press(int button, int x, int y, t_win *win)
 {
-    (void)window;
-	(void)xoffset;
-	(void)yoffset;
-}
-
-void    mouse_release(int keycode)
-{
-	if (keycode == BUT_SHOOT)
-		g_mouse.buttons &= ~(1 << BIT_SHOOT);
-}
-
-void    mouse_press(int keycode)
-{
-	if (keycode == BUT_AIM)
+	if (button == BUT_AIM)
 	{
-		if (!((g_mouse.buttons >> BIT_AIM) & 1))
-			g_mouse.buttons |= (1 << BIT_AIM);
+		if (!((win->mouse.buttons >> BIT_AIM) & 1))
+			win->mouse.buttons |= (1 << BIT_AIM);
 		else
-			g_mouse.buttons &= ~(1 << BIT_AIM);	
+			win->mouse.buttons &= ~(1 << BIT_AIM);	
 	}
-	else if (keycode == BUT_SHOOT)
-		g_mouse.buttons |= (1 << BIT_SHOOT); 
+	else if (button == BUT_SHOOT)
+		win->mouse.buttons |= (1 << BIT_SHOOT); 
 }
 
-void win_mouse_button_callback(GLFWwindow* window, int button, \
-	int action, int mods)
+int	mouse_release(int button, int x, int y, t_win *win)
 {
-    (void)mods;
-	(void)window;
+	if (button == BUT_SHOOT)
+		win->mouse.buttons &= ~(1 << BIT_SHOOT);
+	return (1);
+}
 
-	if (action == GLFW_PRESS)
-		mouse_press(button);
-	else if (action == GLFW_RELEASE)
-        mouse_release(button);
+int	mouse_position(int x, int y, t_win *win)
+{
+	win->mouse.cur_x = x;
+	win->mouse.cur_y = y;
+	return (1);
 }

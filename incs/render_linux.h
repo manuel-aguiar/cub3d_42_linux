@@ -21,6 +21,7 @@
 # define MY_PI 3.14159265f
 
 # include "libft.h"
+# include <stdbool.h>
 # include "vector.h"
 # include "pixel_point.h"
 
@@ -39,11 +40,11 @@ extern  t_mouse		g_mouse;
 
 struct s_mouse
 {
-	double 		cur_x;
-	double 		cur_y;
-	double		prev_x;
-	double		prev_y;
-	int			buttons;
+	int	buttons;
+	int	cur_x;
+	int	cur_y;
+	int	prev_x;
+	int	prev_y;
 };
 
 
@@ -51,23 +52,22 @@ struct s_mouse
 
 enum e_keys_vals
 {
-	KEY_ESC = GLFW_KEY_ESCAPE,
-	KEY_FRONT = GLFW_KEY_W,
-	KEY_BACK = GLFW_KEY_S,
-	KEY_LEFT = GLFW_KEY_A,
-	KEY_RIGHT = GLFW_KEY_D,
-	KEY_JUMP = GLFW_KEY_SPACE,
-	KEY_SPRINT = GLFW_KEY_LEFT_SHIFT,
-	KEY_CROUCH = GLFW_KEY_X,
-	KEY_PRONE = GLFW_KEY_Z,
-	KEY_BLUR_T = GLFW_KEY_1,
-	KEY_FLOOR_REFL_T = GLFW_KEY_2,
-	KEY_CEIL_REFL_T = GLFW_KEY_3,
-	KEY_SHADE_T = GLFW_KEY_4,
-	KEY_HUD_T = GLFW_KEY_5,
-	KEY_PAUSE_T = GLFW_KEY_P,
+	KEY_ESC = 65307,
+	KEY_FRONT = 'w',
+	KEY_BACK = 's',
+	KEY_LEFT = 'a',
+	KEY_RIGHT = 'd',
+	KEY_JUMP = ' ',
+	KEY_SPRINT = 'l',	//change to shift later
+	KEY_CROUCH = 'x',
+	KEY_PRONE = 'z',
+	KEY_BLUR_T = '1',
+	KEY_FLOOR_REFL_T = '2',
+	KEY_CEIL_REFL_T = '3',
+	KEY_SHADE_T = '4',
+	KEY_HUD_T = '5',
+	KEY_PAUSE_T = 'p',
 	KEY_COUNT = 19,
-	
 };
 
 enum e_keys_bits
@@ -91,8 +91,8 @@ enum e_keys_bits
 
 enum e_button_vals
 {
-	BUT_AIM = GLFW_MOUSE_BUTTON_RIGHT,
-	BUT_SHOOT = GLFW_MOUSE_BUTTON_LEFT,
+	BUT_AIM = 1,
+	BUT_SHOOT = 2,
 	BUT_COUNT = 2,
 };
 
@@ -105,9 +105,9 @@ enum e_button_bits
 
 typedef struct s_clock
 {
-    struct timeb  	start;
-    struct timeb  	end;
-    size_t			elapsed;
+    struct timeval  start;
+    struct timeval  end;
+    size_t          elapsed;
 }   t_clock;
 
 typedef struct s_pause_blur
@@ -148,12 +148,15 @@ typedef struct s_mlx_img
 
 struct s_win
 {
-	void			*window;
-	t_mlx_img		*front_buf;
+	void			*mlx;
+	void			*mlx_win;
+	t_mlx_img		front_buf;
 	int				width;
 	int				height;
 	int				rgb_size;
 	char			name[6];
+	t_mouse			mouse;
+	int				keys;
 	t_pause_blur	blur;
 	void			(*set_pixel)(t_win *win, int x, int y, int color);
 	int				(*get_pixel)(t_win *win, int x, int y);
@@ -163,25 +166,26 @@ struct s_win
 
 //win_init_window.c
 int			win_init_window(t_win *win);
-int			free_win_glfw(t_win *win);
+int			free_window(t_win *win);
 
 //win_keys.c
-void	win_key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
-void 	win_mouse_button_callback(GLFWwindow* window, int button, int action, int mods);
-void	win_mouse_scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
-
+int		mouse_position(int x, int y, t_win *win);
+int		mouse_release(int button, int x, int y, t_win *win);
+void    mouse_press(int button, int x, int y, t_win *win);
+void	key_press(int keycode, t_win *win);
+void	key_release(int keycode, t_win *win);
 //win_render_loop.c
 
 
 //win_pixels.c
-void	win_set_pixel(t_win *win, int x, int y, int color);
-int		win_get_pixel(t_win *win, int x, int y);
+void	linux_set_pixel(t_win *win, int x, int y, int color);
+int		linux_get_pixel(t_win *win, int x, int y);
 int		avg_colour(int start, int end, int num, int den);
 void	swap_pixels(t_pixel *start, t_pixel *end);
 
 
 
-void chatgpt_anticircle(t_win *win, t_pixel centre, int radius, int color);
+void 	chatgpt_anticircle(t_win *win, t_pixel centre, int radius, int color);
 
 
 void	window_pause_manager(t_win *win, e_pause_state state, bool blur_on);

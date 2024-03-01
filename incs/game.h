@@ -135,9 +135,7 @@ typedef struct s_game
 	t_map		map;
 	t_compass	compass;
 	t_win		win;
-	t_player	player;
-	t_mouse		*mouse;			//pointers because GLFW requires globals, change to stack with MLX;
-	int			*keys;			//pointers because GLFW requires globals, change to stack with MLX;
+	t_player	player;			//pointers because GLFW requires globals, change to stack with MLX;
 	int			*key_defs;
 	t_dda_hor	*hori_rays;
 	t_dda_ver	*verti_rays;

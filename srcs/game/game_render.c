@@ -47,8 +47,8 @@ void		update_sprites(t_game *game)
 
 int	game_is_paused(t_game *game)
 {
-	if ((*(game->keys) >> BIT_PAUSE_T) & 1 \
-	|| (!((*(game->keys) >> BIT_PAUSE_T) & 1) \
+	if ((game->win.keys >> BIT_PAUSE_T) & 1 \
+	|| (!((game->win.keys >> BIT_PAUSE_T) & 1) \
 	&& game->win.blur.elapsed > 0))
 		return (1);
 	return (0);
@@ -67,17 +67,18 @@ void	game_actions(t_game *game)
 
 void	game_render(t_game *game)
 {
-	if ((*(game->keys) >> BIT_PAUSE_T) & 0xff)
-		window_pause_manager(&game->win, PAUSE_ON, (*(game->keys) >> BIT_BLUR_T) & 1);
+	game_actions(game);
+	if ((game->win.keys >> BIT_PAUSE_T) & 0xff)
+		window_pause_manager(&game->win, PAUSE_ON, (game->win.keys >> BIT_BLUR_T) & 1);
 	else if (game->win.blur.elapsed > 0)
-		window_pause_manager(&game->win, PAUSE_OFF, (*(game->keys) >> BIT_BLUR_T) & 1);
+		window_pause_manager(&game->win, PAUSE_OFF, (game->win.keys >> BIT_BLUR_T) & 1);
 	else
 	{
 		hori_raycasting(game);
 		floorcast(game);
 		sprite_cast(game);
-		game->compass.blur_on = (*(game->keys) >> BIT_BLUR_T) & 1;
-		if (((*game->keys) >> BIT_HUD_T) & 1)
+		game->compass.blur_on = (game->win.keys >> BIT_BLUR_T) & 1;
+		if (((game->win.keys) >> BIT_HUD_T) & 1)
 		{
 			render_compass(&game->win, &game->compass);
 			render_map_inside_compass(game);
