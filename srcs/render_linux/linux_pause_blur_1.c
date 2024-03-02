@@ -158,7 +158,7 @@ void	window_pause_manager(t_win *win, e_pause_state state, bool blur_on)
 		}
 		if (blur->elapsed <= 0)
 		{
-			ft_memcpy(blur->save_front, win->front_buf.addr, win->height * win->width * win->rgb_size);
+			ft_memcpy(blur->save_front, win->front_buf.addr, win->height * win->width * win->front_buf.bpp);
 			window_update_clock(win);
 			blur->elapsed = 1;
 		}
