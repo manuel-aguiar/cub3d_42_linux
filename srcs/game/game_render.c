@@ -68,6 +68,7 @@ void	game_actions(t_game *game)
 int	game_render(t_game *game)
 {
 	game_actions(game);
+	
 	if ((game->win.keys >> BIT_PAUSE_T) & 0xff)
 		window_pause_manager(&game->win, PAUSE_ON, (game->win.keys >> BIT_BLUR_T) & 1);
 	else if (game->win.blur.elapsed > 0)
@@ -78,15 +79,15 @@ int	game_render(t_game *game)
 		floorcast(game);
 		sprite_cast(game);
 		game->compass.blur_on = (game->win.keys >> BIT_BLUR_T) & 1;
-		//if (((game->win.keys) >> BIT_HUD_T) & 1)
-		//{
-		//	render_compass(&game->win, &game->compass);
-		//	render_map_inside_compass(game);
-		//	render_player_inside_compass(game);
-		//	render_stats_bars(game);
-		//}
+		if (((game->win.keys) >> BIT_HUD_T) & 1)
+		{
+			render_compass(&game->win, &game->compass);
+			render_map_inside_compass(game);
+			render_player_inside_compass(game);
+			render_stats_bars(game);
+		}
 	}
 	game->win.set_pixel(&game->win, game->win.width / 2, game->win.height / 2, (unsigned int)-1);
-	mlx_put_image_to_window(game->win.mlx, game->win.mlx_win, game->win.front_buf.addr, 0, 0);
+	mlx_put_image_to_window(game->win.mlx, game->win.mlx_win, game->win.front_buf.img, 0, 0);
 	return (1);
 }
