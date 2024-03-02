@@ -88,7 +88,7 @@ typedef struct s_parsing
 	char		*file;
 	int			file_len;
 	int			fd;
-	t_gnl_len	*gnl;
+	char		*gnl;
 	int			nbr_tex;
 	int			index_tex;
 	char		**split;

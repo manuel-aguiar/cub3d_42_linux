@@ -70,7 +70,7 @@ int	separate_textures(t_parsing *parsing)
 		if (!parsing->list->head)
 			return (error_msg_int("cub3d: bad input textures\n", 2, 0));
 		parsing->split = ft_split_count(\
-			((t_gnl_len *)(parsing->list->head->data))->line, \
+			(char *)(parsing->list->head->data), \
 			"\t\v\n\r ", &parsing->split_count);
 		if (!parsing->split)
 			return (perror_msg_int("malloc", 0));
@@ -82,7 +82,7 @@ int	separate_textures(t_parsing *parsing)
 				return (error_msg_int("cub3d: bad input textures\n", 2, 0));
 			parsing->nbr_tex++;
 		}
-		vdmlist_del_head(parsing->list, free_gnl_len);
+		vdmlist_del_head(parsing->list, free);
 	}
 	return (1);
 }

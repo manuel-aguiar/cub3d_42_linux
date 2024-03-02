@@ -34,19 +34,11 @@ int	file_to_list(t_parsing *parsing)
 		return (0);
 	while (1)
 	{
-		parsing->gnl = get_next_line_len(parsing->fd);
-		if (!parsing->gnl)
-		{
-			close(parsing->fd);
-			return (0);
-		}
-		if (parsing->gnl->line)
+		parsing->gnl = get_next_line(parsing->fd);
+		if (parsing->gnl)
 			vdmlist_in_tail(parsing->list, parsing->gnl);
 		else
-		{
-			free_gnl_len(parsing->gnl);
 			break ;
-		}
 	}
 	close(parsing->fd);
 	return (1);
@@ -55,7 +47,8 @@ int	file_to_list(t_parsing *parsing)
 int	list_to_map(t_parsing *parsing)
 {
 	int			i;
-	t_gnl_len	*gnl;
+	char		*gnl;
+	int			gnl_len;
 
 	parsing->map = malloc(sizeof(*(parsing->map)) \
 		* parsing->map_height * parsing->map_width);
@@ -64,13 +57,14 @@ int	list_to_map(t_parsing *parsing)
 	i = 0;
 	while (parsing->list->tail)
 	{
-		gnl = (t_gnl_len *)parsing->list->tail->data;
-		ft_memcpy(&parsing->map[i * parsing->map_width], gnl->line, gnl->len);
-		ft_memset(&parsing->map[i * parsing->map_width + gnl->len], \
-			' ', parsing->map_width - gnl->len);
-		vdmlist_del_tail(parsing->list, free_gnl_len);
+		gnl = (char *)parsing->list->tail->data;
+		gnl_len = ft_strlen(gnl);
+		ft_memcpy(&parsing->map[i * parsing->map_width], gnl, gnl_len);
+		ft_memset(&parsing->map[i * parsing->map_width + gnl_len], \
+			' ', parsing->map_width - gnl_len);
+		vdmlist_del_tail(parsing->list, free);
 		i++;
 	}
-	vdmlist_destroy(&parsing->list, free_gnl_len);
+	vdmlist_destroy(&parsing->list, free);
 	return (1);
 }
