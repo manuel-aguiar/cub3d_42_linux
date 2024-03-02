@@ -17,7 +17,7 @@ int	win_init_window(t_win *win)
 	win->mlx = mlx_init();
 	if (!win->mlx)
 		return (error_msg_int("cub3d: mlx failed to initialize\n", STDERR_FILENO, 0));
-	win->mlx_win = mlx_new_window(win->mlx, win->width, win->width, win->name);
+	win->mlx_win = mlx_new_window(win->mlx, win->width, win->height, win->name);
 	win->front_buf.img = mlx_new_image(win->mlx, win->width, win->height);
 	win->front_buf.addr = mlx_get_data_addr(win->front_buf.img, \
 		&(win->front_buf.bpp), &(win->front_buf.line_len), \
@@ -28,7 +28,7 @@ int	win_init_window(t_win *win)
 	win->blur.clock = (t_clock){};
 	gettimeofday(&win->blur.clock.start, NULL);
 	if (!win->front_buf.img || !win->blur.first || !win->blur.second || !win->blur.save_front)
-		return (perror_msg_int("malloc", 0));		// no free, potencial memleak
+		return (perror_msg_int("malloc", 0));
 	win->set_pixel = linux_set_pixel;
 	win->get_pixel = linux_get_pixel;
 	mlx_do_key_autorepeatoff(win->mlx);
