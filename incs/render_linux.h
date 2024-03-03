@@ -57,7 +57,7 @@ enum e_keys_vals
 	KEY_LEFT = 'a',
 	KEY_RIGHT = 'd',
 	KEY_JUMP = ' ',
-	KEY_SPRINT = 'l',	//change to shift later
+	KEY_SPRINT = 65505,
 	KEY_CROUCH = 'x',
 	KEY_PRONE = 'z',
 	KEY_BLUR_T = '1',

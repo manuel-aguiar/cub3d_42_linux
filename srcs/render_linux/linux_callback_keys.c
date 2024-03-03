@@ -84,6 +84,7 @@ int	key_press_toggle(int keycode, t_win *win)
 
 int	key_press(int keycode, t_win *win)
 {
+	printf("keycode ESC: %d\n", keycode);
 	if (keycode == KEY_ESC)
 		win->keys |= (1 << BIT_ESC);
 	else if (keycode == KEY_FRONT)
