@@ -52,7 +52,7 @@ int		argb(int color);
 
 int		pack_color_channels(int fst, int snd, int trd, int fth);
 
-int gamma_average(int start, int end, int num, int den);
+int gamma_average(int start, int end, float perc_start);
 int	avg_colour(int start, int end, int num, int den);
 
 //translate_rotate.c

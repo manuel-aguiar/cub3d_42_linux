@@ -99,11 +99,12 @@ static int		color_at_target(t_xpm_pair *id_color, int color_count, char *target,
 	}
 	return (-1);
 }
-
+/*
 static int	rgb_to_rgba(int rgb)
 {
 	return ((rgb << 8) | 0xFF);
 }
+*/
 
 void	tex_int_swap(int *a, int *b)
 {
@@ -176,7 +177,7 @@ void	*xpm_set_pixel_transposed(t_xpm_parser *parse)
 				return (free_xpm_tex(&parse->tex));
 			}
 			//printf(" rgb %d ", tex->pixels[index]);
-			parse->tex->pixels[index] = rgb_to_rgba(parse->tex->pixels[index]);
+			//parse->tex->pixels[index] = rgb_to_rgba(parse->tex->pixels[index]);
 			//printf(" rgb   A   %d ", tex->pixels[index]);
 			col++;
 		}
@@ -222,7 +223,7 @@ void	*xpm_set_pixel_regular(t_xpm_parser *parse)
 				return (free_xpm_tex(&parse->tex));
 			}
 			//printf(" rgb %d ", tex->pixels[index]);
-			parse->tex->pixels[index] = rgb_to_rgba(parse->tex->pixels[index]);
+			//parse->tex->pixels[index] = rgb_to_rgba(parse->tex->pixels[index]);
 			//printf(" rgb   A   %d ", tex->pixels[index]);
 			index++;
 			j += parse->id_len;

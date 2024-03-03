@@ -37,12 +37,12 @@ float inverse_gamma22_pow(float x)
 	return ((1.138f / sqrt(x) - 0.138f) * x);
 }
 
-int gamma_average(int start, int end, int num, int den)
+int gamma_average(int start, int end, float perc_start)
 {
 	t_gamma_avg	g;
 
-	g.start_weight = (float)num / (float)den;
-	g.end_weight = 1.0f - g.start_weight;
+	g.start_weight = perc_start;
+	g.end_weight = 1.0f - perc_start;
 	g.r_blend = inverse_gamma22_pow(gamma22_pow(rgb_r(start) / 255.0f) \
 		* g.start_weight + gamma22_pow(rgb_r(end) / 255.0f) * g.end_weight);
 	g.g_blend = inverse_gamma22_pow(gamma22_pow(rgb_g(start) / 255.0f) \

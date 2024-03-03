@@ -37,13 +37,13 @@ each scanline and print only what is needed
 //quake fast inverse square root of doom
 
 
-void setPixel4(t_win *win, int centreX, int centreY, int deltaX, int deltaY, int color, int num, int den, bool line)
+void setPixel4(t_win *win, int centreX, int centreY, int deltaX, int deltaY, int color, float perc_start, bool line)
 {
-    win->set_pixel(win, centreX + deltaX, centreY + deltaY, gamma_average(win->get_pixel(win, centreX + deltaX, centreY + deltaY), color, num, den));
-    win->set_pixel(win, centreX - deltaX, centreY + deltaY, gamma_average(win->get_pixel(win, centreX - deltaX, centreY + deltaY), color, num, den));
+    win->set_pixel(win, centreX + deltaX, centreY + deltaY, gamma_average(win->get_pixel(win, centreX + deltaX, centreY + deltaY), color, perc_start));
+    win->set_pixel(win, centreX - deltaX, centreY + deltaY, gamma_average(win->get_pixel(win, centreX - deltaX, centreY + deltaY), color, perc_start));
 	
-    win->set_pixel(win, centreX + deltaX, centreY - deltaY, gamma_average(win->get_pixel(win, centreX + deltaX, centreY - deltaY), color, num, den));
-    win->set_pixel(win, centreX - deltaX, centreY - deltaY, gamma_average(win->get_pixel(win, centreX - deltaX, centreY - deltaY), color, num, den));
+    win->set_pixel(win, centreX + deltaX, centreY - deltaY, gamma_average(win->get_pixel(win, centreX + deltaX, centreY - deltaY), color, perc_start));
+    win->set_pixel(win, centreX - deltaX, centreY - deltaY, gamma_average(win->get_pixel(win, centreX - deltaX, centreY - deltaY), color, perc_start));
 
 	if (line)
 	{
@@ -58,19 +58,17 @@ void render_full_circle_with_aa(t_win *win, t_pixel centre, int radius, int colo
 	int centreX = centre.x;
 	int centreY = centre.y;
     int radius2 = radius * radius;
-    static const int maxTransparency = 127;
 
     // Upper and lower halves
     int quarter = round(radius2 / sqrt(radius2 + radius2));
     for (int x = 0; x <= quarter; x++) {
         float y = radius * sqrt(1 - x * x / (float)radius2);
         float error = y - (int)(y);
-        int transparency = (int)(error * maxTransparency);
 
-        setPixel4(win, centreX, centreY, x, (int)(y), color, transparency, maxTransparency, true);
-		setPixel4(win, centreX, centreY, (int)(y), x, color, transparency, maxTransparency, true);
-        setPixel4(win, centreX, centreY, x, (int)(y) + 1, color, (maxTransparency - transparency), maxTransparency, false);
-		setPixel4(win, centreX, centreY, (int)(y) + 1, x, color, (maxTransparency - transparency), maxTransparency, false);
+        setPixel4(win, centreX, centreY, x, (int)(y), color, error, true);
+		setPixel4(win, centreX, centreY, (int)(y), x, color, error, true);
+        setPixel4(win, centreX, centreY, x, (int)(y) + 1, color, 1.0f - error, false);
+		setPixel4(win, centreX, centreY, (int)(y) + 1, x, color, 1.0f - error, false);
     }
 }
 
@@ -79,19 +77,17 @@ void render_empty_circle_with_aa(t_win *win, t_pixel centre, int radius, int col
 	int centreX = centre.x;
 	int centreY = centre.y;
     int radius2 = radius * radius;
-    static const int maxTransparency = 127;
 
     // Upper and lower halves
     int quarter = round(radius2 / sqrt(radius2 + radius2));
     for (int x = 0; x <= quarter; x++) {
         float y = radius * sqrt(1 - x * x / (float)radius2);
         float error = y - (int)(y);
-        int transparency = (int)(error * maxTransparency);
 
-        setPixel4(win, centreX, centreY, x, (int)(y), color, transparency, maxTransparency, false);  //lol
-		setPixel4(win, centreX, centreY, (int)(y), x, color, transparency, maxTransparency, false);	 //lol
-        setPixel4(win, centreX, centreY, x, (int)(y) + 1, color, (maxTransparency - transparency), maxTransparency, false);
-		setPixel4(win, centreX, centreY, (int)(y) + 1, x, color, (maxTransparency - transparency), maxTransparency, false);
+        setPixel4(win, centreX, centreY, x, (int)(y), color, error, false);  //lol
+		setPixel4(win, centreX, centreY, (int)(y), x, color, error, false);	 //lol
+        setPixel4(win, centreX, centreY, x, (int)(y) + 1, color, 1.0f - error, false);
+		setPixel4(win, centreX, centreY, (int)(y) + 1, x, color, 1.0f - error, false);
     }
 }
 
@@ -136,14 +132,14 @@ void	drop_the_blur(t_win *win, t_compass *comp, int min_x, int max_x, int y)
 
 
 void setpixel_inner(t_win *win, t_compass *comp, int c_min_max[MM_SIZE], \
-int centreX, int centreY, int deltaX, int deltaY, int color, int num, int den, bool line)
+int centreX, int centreY, int deltaX, int deltaY, int color, float perc_start, bool line)
 {
 
-    win->set_pixel(win, centreX + deltaX, centreY + deltaY, gamma_average(win->get_pixel(win, centreX + deltaX, centreY + deltaY), color, num, den));
-    win->set_pixel(win, centreX - deltaX, centreY + deltaY, gamma_average(win->get_pixel(win, centreX - deltaX, centreY + deltaY), color, num, den));
+    win->set_pixel(win, centreX + deltaX, centreY + deltaY, gamma_average(win->get_pixel(win, centreX + deltaX, centreY + deltaY), color, perc_start));
+    win->set_pixel(win, centreX - deltaX, centreY + deltaY, gamma_average(win->get_pixel(win, centreX - deltaX, centreY + deltaY), color, perc_start));
 	
-    win->set_pixel(win, centreX + deltaX, centreY - deltaY, gamma_average(win->get_pixel(win, centreX + deltaX, centreY - deltaY), color, num, den));
-    win->set_pixel(win, centreX - deltaX, centreY - deltaY, gamma_average(win->get_pixel(win, centreX - deltaX, centreY - deltaY), color, num, den));
+    win->set_pixel(win, centreX + deltaX, centreY - deltaY, gamma_average(win->get_pixel(win, centreX + deltaX, centreY - deltaY), color, perc_start));
+    win->set_pixel(win, centreX - deltaX, centreY - deltaY, gamma_average(win->get_pixel(win, centreX - deltaX, centreY - deltaY), color, perc_start));
 
 	if (line)
 	{
@@ -192,19 +188,17 @@ void draw_ring_to_inner_circle(t_win *win, t_compass *comp)
 	int centreX = centre.x;
 	int centreY = centre.y;
     int radius2 = radius * radius;
-    static const int maxTransparency = 127;
 
     // Upper and lower halves
     int quarter = round(radius2 / sqrt(radius2 + radius2));
     for (int x = 0; x <= quarter; x++) {
         float y = radius * sqrt(1 - x * x / (float)radius2);
         float error = y - (int)(y);
-        int transparency = (int)(error * maxTransparency);
 
-        setpixel_inner(win, comp, c_min_max, centreX, centreY, x, (int)(y), color, transparency, maxTransparency, true);
-		setpixel_inner(win, comp, c_min_max, centreX, centreY, (int)(y), x, color, transparency, maxTransparency, true);
-        setpixel_inner(win, comp, c_min_max, centreX, centreY, x, (int)(y) + 1, color, (maxTransparency - transparency), maxTransparency, false);
-		setpixel_inner(win, comp, c_min_max, centreX, centreY, (int)(y) + 1, x, color, (maxTransparency - transparency), maxTransparency, false);
+        setpixel_inner(win, comp, c_min_max, centreX, centreY, x, (int)(y), color, error, true);
+		setpixel_inner(win, comp, c_min_max, centreX, centreY, (int)(y), x, color, error, true);
+        setpixel_inner(win, comp, c_min_max, centreX, centreY, x, (int)(y) + 1, color, 1 - error, false);
+		setpixel_inner(win, comp, c_min_max, centreX, centreY, (int)(y) + 1, x, color, 1 - error, false);
     }
 	
 }

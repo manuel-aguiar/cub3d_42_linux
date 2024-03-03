@@ -27,11 +27,10 @@ int	xiaolin_x_major(t_win *win, t_pixel *start, t_pixel *end, t_xldata *data)
 					data->dx, data->save);
 		win->set_pixel(win, start->x, start->y, \
 			gamma_average(win->get_pixel(win, start->x, \
-			start->y), data->colour, data->err_acc, USHRT_MAX));
+			start->y), data->colour, (float)data->err_acc / (float)USHRT_MAX));
 		win->set_pixel(win, start->x, start->y + 1, \
 			gamma_average(win->get_pixel(win, \
-			start->x, start->y + 1), data->colour, USHRT_MAX \
-			- data->err_acc, USHRT_MAX));
+			start->x, start->y + 1), data->colour,  (float)(USHRT_MAX - data->err_acc) / (float)USHRT_MAX));
 	}
 	win->set_pixel(win, end->x, end->y, end->colour);
 	return (1);
@@ -52,10 +51,10 @@ int	xiaolin_y_major(t_win *win, t_pixel *start, t_pixel *end, t_xldata *data)
 					data->dy, data->save);
 		win->set_pixel(win, start->x, start->y, \
 			gamma_average(win->get_pixel(win, start->x, \
-			start->y), data->colour, data->err_acc, USHRT_MAX));
+			start->y), data->colour, (float)data->err_acc / (float)USHRT_MAX));
 		win->set_pixel(win, start->x + data->slope, start->y, gamma_average \
 					(win->get_pixel(win, start->x + data->slope, start->y), \
-					data->colour, USHRT_MAX - data->err_acc, USHRT_MAX));
+					data->colour, (float)(USHRT_MAX - data->err_acc) / (float)USHRT_MAX));
 	}
 	win->set_pixel(win, end->x, end->y, end->colour);
 	return (1);

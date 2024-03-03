@@ -38,8 +38,9 @@ int	mouse_release(int button, int x, int y, t_win *win)
 }
 
 int	mouse_position(int x, int y, t_win *win)
-{
+{	
 	win->mouse.cur_x = x;
 	win->mouse.cur_y = y;
+	mlx_mouse_move(win->mlx, win->mlx_win, win->width / 2, win->height / 2);
 	return (1);
 }

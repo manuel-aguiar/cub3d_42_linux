@@ -32,7 +32,7 @@
 # define WIN_MAX_SIGMA 50
 # define WIN_PAUSE_TIME 500
 
-# define RGBA(r, g, b, a) (((r) << 24) | ((g) << 16) | ((b) << 8) | (a))
+# define RGBA(r, g, b, a) (((a) << 24) | ((r) << 16) | ((g) << 8) | (b))
 
 /* compass settings */
 # define COMP_CENTRE_X WIN_WIDTH / 6 

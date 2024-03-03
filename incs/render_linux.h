@@ -97,9 +97,9 @@ enum e_button_vals
 
 enum e_button_bits
 {
-	BIT_AIM = 1,
-	BIT_SHOOT,
-	BIT_COUNT,
+	BIT_SHOOT = 1,
+	BIT_AIM = 2,
+	BIT_COUNT = 2,
 };
 
 typedef struct s_clock
