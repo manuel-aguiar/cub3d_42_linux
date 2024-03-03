@@ -102,9 +102,8 @@ static int		color_at_target(t_xpm_pair *id_color, int color_count, char *target,
 /*
 static int	rgb_to_rgba(int rgb)
 {
-	return ((rgb << 8) | 0xFF);
-}
-*/
+	return ((0xff << 24) | rgb);
+}*/
 
 void	tex_int_swap(int *a, int *b)
 {
@@ -113,9 +112,6 @@ void	tex_int_swap(int *a, int *b)
 	temp = *a;
 	*a = *b;
 	*b = temp;
-	//*a = *a ^ *b;
-	//*b = *a ^ *b;
-	//*a = *a ^ *b;
 }
 
 void	transposed_swap_coords(t_xpm_parser *parse)

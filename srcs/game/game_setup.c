@@ -35,6 +35,7 @@ void		game_starting_angle(t_game *game, char direction)
 		setup_all_angles(game, 0);
 	if (direction == MAP_WEST)
 		setup_all_angles(game, P_MY_PI);
+	printf("starting angle called\n");
 }
 
 

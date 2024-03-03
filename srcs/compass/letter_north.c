@@ -38,7 +38,7 @@ void	render_north_letter(t_win *win, t_compass *comp)
 	while (i < N_SIZE)
 	{
 		translate_point(&north[i], dx, dy);
-		north[i].colour = rgba(0,255,0,255);
+		north[i].colour = 255 << 16;
 		rotate_point(&north[i], comp->centre, -comp->sin_rad, -comp->cos_rad);
 		i++;
 	}

@@ -63,6 +63,7 @@ void	game_actions(t_game *game)
 	game_key_manager(game);
 	game_mouse_manager(game);
 	player_actions(game);
+	mlx_mouse_move(game->win.mlx, game->win.mlx_win, game->win.width / 2, game->win.height / 2);
 }
 
 int	game_render(t_game *game)

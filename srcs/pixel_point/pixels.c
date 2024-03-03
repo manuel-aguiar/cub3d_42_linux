@@ -12,29 +12,29 @@
 
 # include "pixel_point.h"
 
-int		rgb_r(int color)
+int		rgb_a(int color)
 {
 	return ((color >> 24) & 0xff);
 }
 
-int		rgb_g(int color)
+int		rgb_r(int color)
 {
 	return ((color >> 16) & 0xff);
 }
 
-int		rgb_b(int color)
+int		rgb_g(int color)
 {
 	return ((color >> 8) & 0xff);
 }
 
-int		rgb_a(int color)
+int		rgb_b(int color)
 {
 	return (color & 0xff);
 }
 
 int		rgba(int r, int g, int b, int a)
 {
-	return ((r << 24) | (g << 16) | (b << 8) | (a));
+	return ((a << 24) | (r << 16) | (g << 8) | (b));
 }
 
 int		argb(int color)

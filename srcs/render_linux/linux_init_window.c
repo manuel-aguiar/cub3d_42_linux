@@ -32,6 +32,7 @@ int	win_init_window(t_win *win)
 	win->set_pixel = linux_set_pixel;
 	win->get_pixel = linux_get_pixel;
 	mlx_do_key_autorepeatoff(win->mlx);
+	mlx_mouse_hide(win->mlx, win->mlx_win);
 	return (1);	
 }
 
@@ -46,6 +47,7 @@ int	free_window(t_win *win)
 	{
 		mlx_destroy_display(win->mlx);
 		mlx_do_key_autorepeaton(win->mlx);
+		mlx_mouse_show(win->mlx, win->mlx_win);
 	}
 	if (win->blur.first)
 		free(win->blur.first);

@@ -33,7 +33,7 @@ void	xpm_to_window(t_win *win, t_xpm_tex *tex, t_pixel bot_left, int pixel_wdt, 
 			column = (int)(j * ((float)tex->width / (float)pixel_wdt));
 			//printf("i %d j %d, row %d col %d, pixel val is %d\n",i, j, row, column, tex->pixels[column + row * tex->width]);
 			int color = tex->pixels[column + row * tex->width];
-			if (color != 255)
+			if (color != 0)
 				win->set_pixel(win, bot_left.x + j, bot_left.y + i, tex->pixels[column + row * tex->width]);
 			j++;
 		}

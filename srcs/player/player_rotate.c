@@ -40,7 +40,8 @@ void	player_rotate_and_pitch(t_game *game)
 	rotate_aim_multi = 1;
 	if (game->player.is_aiming)
 		rotate_aim_multi = game->player.aim_rot_multi;
-	rotate = game->win.width / 2 - game->win.mouse.cur_x;
+	rotate = (game->win.width / 2 - game->win.mouse.cur_x) * game->player.rot_sense * rotate_aim_multi \
+		* game->player.clock->elapsed;
 	pitch = ((game->win.mouse.cur_y - game->win.height / 2) \
 		* game->player.verti_sense * rotate_aim_multi * game->player.clock->elapsed);
 	player_shot_pitch(game);
@@ -50,8 +51,7 @@ void	player_rotate_and_pitch(t_game *game)
 		- game->player.shot_pitch_mod, game->player.verti_min, game->player.verti_max));
 	game->player.pitch = (int)(game->player.cur_dir_len / game->player.base_dir_len \
 		* game->player.verti_tan * game->win.height / 2);
-	game_rotate_view_angle(game, rotate * game->player.rot_sense * rotate_aim_multi \
-		* game->player.clock->elapsed);
+	game_rotate_view_angle(game, rotate);
 	game->player.posi_3d = (t_vec3d){game->player.map_posi.x, game->player.map_posi.y, \
 		(game->player.cur_z + game->player.jump_z_mod + \
 		game->player.walk_z_mod)};
