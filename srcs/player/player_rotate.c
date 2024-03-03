@@ -41,13 +41,13 @@ void	player_rotate_and_pitch(t_game *game)
 	if (game->player.is_aiming)
 		rotate_aim_multi = game->player.aim_rot_multi;
 	//printf("rot sense %.10f\n", game->player.rot_sense);
-	rotate = (game->win.mouse.prev_x - game->win.mouse.cur_x) * game->player.rot_sense * rotate_aim_multi \
+	rotate = (game->win.width / 2 - game->win.mouse.cur_x) * game->player.rot_sense * rotate_aim_multi \
 		* game->player.clock->elapsed;
 	//printf("rotate is %.10f ex sense %.3f sense is %.3f\n", rotate, rotate / game->player.rot_sense, game->player.rot_sense);
-	pitch = ((game->win.mouse.cur_y - game->win.mouse.prev_y) \
+	pitch = ((game->win.mouse.cur_y - game->win.height / 2) \
 		* game->player.pitch_sense * rotate_aim_multi * game->player.clock->elapsed);
-	game->win.mouse.prev_x = game->win.mouse.cur_x;
-	game->win.mouse.prev_y = game->win.mouse.cur_y;
+	//game->win.mouse.prev_x = game->win.mouse.cur_x;
+	//game->win.mouse.prev_y = game->win.mouse.cur_y;
 	player_shot_pitch(game);
 	game->player.verti_angle = float_clamp(game->player.verti_angle \
 		+ pitch, game->player.verti_min, game->player.verti_max);
