@@ -90,8 +90,8 @@ enum e_keys_bits
 
 enum e_button_vals
 {
-	BUT_AIM = 1,
-	BUT_SHOOT = 2,
+	BUT_AIM = 3,
+	BUT_SHOOT = 1,
 	BUT_COUNT = 2,
 };
 

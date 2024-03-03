@@ -240,7 +240,7 @@ void	doorcast(t_game *game, t_sprite *sprite)
 					tex_position_y += step_y;
 
 					int color = tex->pixels[texX * tex->width + texY];
-					if (color != 255)
+					if (color != 0)
 					{
 						color = add_shade(color, shade);
 						game->win.set_pixel(&game->win, x, start_y, color);

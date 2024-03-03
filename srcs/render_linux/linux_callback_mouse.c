@@ -14,6 +14,7 @@
 
 int    mouse_press(int button, int x, int y, t_win *win)
 {
+	printf("mouse press %d\n", button);
 	(void)x;
 	(void)y;
 	if (button == BUT_AIM)

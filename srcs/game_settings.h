@@ -79,7 +79,7 @@
 
 
 //rotation an pitch sensibility, aiming multiplier
-# define PLAY_ROT_SENSE 0.0008f
+# define PLAY_ROT_SENSE 0.0002f
 # define PLAY_PITCH_SENSE 0.0002f
 # define PLAY_AIM_ROT_MULTI 0.5f
 
@@ -185,7 +185,7 @@
 
 # define MAX_BULLETS 100
 
-# define BULLET_MOVE_SENSE 0.001f
+# define BULLET_MOVE_SENSE 0.005f
 # define BULLET_HGT 0.1f
 # define BULLET_UNIT_SIZE 0.1f
 # define BULLET_ATTACK_VAL PLAYER_ATTACK_VAL
