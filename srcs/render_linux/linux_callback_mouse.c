@@ -39,8 +39,11 @@ int	mouse_release(int button, int x, int y, t_win *win)
 
 int	mouse_position(int x, int y, t_win *win)
 {	
+	printf("BEFORE mouse: prev %d %d, cur %d %d   ", win->mouse.prev_x, win->mouse.prev_y,win->mouse.cur_x, win->mouse.cur_y);
+	win->mouse.prev_x = win->mouse.cur_x;
+	win->mouse.prev_y = win->mouse.cur_y;
 	win->mouse.cur_x = x;
 	win->mouse.cur_y = y;
-	
+	printf("AFTER mouse: prev %d %d, cur %d %d\n", win->mouse.prev_x, win->mouse.prev_y,win->mouse.cur_x, win->mouse.cur_y);
 	return (1);
 }

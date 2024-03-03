@@ -59,7 +59,6 @@ void	settings_player(t_player *player)
     player->verti_tan = tanf(player->verti_angle);
     player->verti_min = PITCH_ANGLE_MIN;
     player->verti_max = PITCH_ANGLE_MAX;
-    player->verti_sense = VERTI_SENSE;
     player->health[CTR_CUR] = PLAY_HEALTH_START;
     player->health[CTR_MIN] = PLAY_HEALTH_MIN;
     player->health[CTR_MAX] = PLAY_HEALTH_MAX;

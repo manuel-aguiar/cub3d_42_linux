@@ -71,9 +71,6 @@ typedef struct s_player
 	float			verti_min;
 	float			verti_max;
 	float			verti_tan;
-	float			verti_sin;
-	float			verti_cos;
-	float			verti_sense;
 	float			vertical_correction;
 
 	float			cos_rad;

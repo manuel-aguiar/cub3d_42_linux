@@ -207,6 +207,15 @@ $(NAME): $(LIBFT) $(MLX) $(OBJS)
 	$(CC) $(FLAGS) $(OBJS) $(ALL_INCS) -o $(NAME) $(LIBS)
 	@echo Program $(NAME) ready!!
 
+$(OBJ_PATH)/settings.o : $(SRC_PATH)/settings.c $(SRC_PATH)/game_settings.h
+	$(CC) $(FLAGS) $(ALL_INCS) -c $< -o $@
+
+$(OBJ_PATH)/settings_template.o : $(SRC_PATH)/settings_template.c $(SRC_PATH)/game_settings.h
+	$(CC) $(FLAGS) $(ALL_INCS) -c $< -o $@
+
+$(OBJ_PATH)/settings_player.o : $(SRC_PATH)/settings_player.c $(SRC_PATH)/game_settings.h
+	$(CC) $(FLAGS) $(ALL_INCS) -c $< -o $@
+
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c $(INCS)
 	mkdir -p $(dir $@)
 	$(CC) $(FLAGS) $(ALL_INCS) -c $< -o $@

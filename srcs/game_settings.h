@@ -79,8 +79,8 @@
 
 
 //rotation an pitch sensibility, aiming multiplier
-# define PLAY_ROT_SENSE 0.00008f
-# define PLAY_PITCH_SENSE (PLAY_ROT_SENSE * 1000)
+# define PLAY_ROT_SENSE 0.0008f
+# define PLAY_PITCH_SENSE 0.0008f
 # define PLAY_AIM_ROT_MULTI 0.5f
 
 # define PLAY_HGT_NORMAL 0.5f
