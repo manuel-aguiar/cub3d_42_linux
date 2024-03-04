@@ -58,7 +58,7 @@ int	flood_count_island(t_parsing *parse)
 	if (!parse->map_copy)
 		return (perror_msg_int("malloc", 0));
 	i = 0;
-	while (parse->map_copy[i] == MAP_EMPTY)
+	while (i < parse->map_height * parse->map_width && parse->map_copy[i] == MAP_EMPTY)
 		i++;
 	if (i < parse->map_height * parse->map_width && parse->map_copy[i] == MAP_WALL)
 		flood_fill(parse, i / parse->map_width, i % parse->map_width, MAP_WALL);
@@ -72,7 +72,8 @@ int	flood_count_island(t_parsing *parse)
 		free(parse->map_copy);
 		return (error_msg_int("cub3d: bad map: not surrounded by walls\n", STDERR_FILENO, 0));
 	}
-	while (parse->map_copy[i] == MAP_EMPTY || parse->map_copy[i] == FLOOD_CHAR)
+	while (i < parse->map_height * parse->map_width \
+	&& (parse->map_copy[i] == MAP_EMPTY || parse->map_copy[i] == FLOOD_CHAR))
 		i++;
 	if (i < parse->map_height * parse->map_width)
 	{
