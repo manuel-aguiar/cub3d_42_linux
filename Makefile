@@ -237,7 +237,7 @@ clean:
         rm -rf $(OBJ_PATH); \
     fi
 	@$(MAKE) clean -C $(LIB_PATH)
-##	@$(MAKE) clean -C $(MLX_PATH)
+##@$(MAKE) clean -C $(MLX_PATH)
 	@echo Objects successfully deleted!
 
 fclean: clean
