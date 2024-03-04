@@ -12,6 +12,18 @@
 
 #include "parsing.h"
 
+static inline void fill_it(t_parsing *parse, int row, int col, char me)
+{
+	flood_fill(parse, row - 1, col - 1, me);
+	flood_fill(parse, row - 0, col - 1, me);
+	flood_fill(parse, row + 1, col - 1, me);
+	flood_fill(parse, row - 0, col - 1, me);
+	flood_fill(parse, row - 0, col + 1, me);
+	flood_fill(parse, row - 1, col + 1, me);
+	flood_fill(parse, row - 0, col + 1, me);
+	flood_fill(parse, row + 1, col + 1, me);
+}
+
 void	flood_fill(t_parsing *parse, int row, int col, char caller)
 {
 	char	me;
@@ -31,14 +43,7 @@ void	flood_fill(t_parsing *parse, int row, int col, char caller)
 	if (!within_bounds || me == MAP_EMPTY)
 		return ;
 	parse->map_copy[row * parse->map_width + col] = FLOOD_CHAR;
-	flood_fill(parse, row - 1, col - 1, me);
-	flood_fill(parse, row - 0, col - 1, me);
-	flood_fill(parse, row + 1, col - 1, me);
-	flood_fill(parse, row - 0, col - 1, me);
-	flood_fill(parse, row - 0, col + 1, me);
-	flood_fill(parse, row - 1, col + 1, me);
-	flood_fill(parse, row - 0, col + 1, me);
-	flood_fill(parse, row + 1, col + 1, me);
+	fill_it(parse, row, col, me);
 }
 
 int	flood_count_island(t_parsing *parse)
