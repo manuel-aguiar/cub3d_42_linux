@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 14:11:11 by marvin            #+#    #+#             */
-/*   Updated: 2024/02/29 16:24:07 by codespace        ###   ########.fr       */
+/*   Updated: 2024/03/04 15:01:06 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ float	vertical_coefficient(t_game *game)
 	wall_3d = (t_vec3d){wall_hit.x, wall_hit.y, 1};
 	diff = (t_vec3d){wall_3d.x - play_3d.x, wall_3d.y - play_3d.y, \
 		wall_3d.z - play_3d.z};
-	times = float_ternary(game->player.dir_vec.x == 0, \
+	times = float_ternary(ft_fabs(game->player.dir_vec.x) <= 0.001f, \
 		diff.y / game->player.dir_vec.y, diff.x / game->player.dir_vec.x);
 	dir_z = diff.z / times;
 	coefficient = dir_z / new_tan;

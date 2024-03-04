@@ -48,7 +48,7 @@ float	vec3d_get_z_from_xy(t_vec3d point, t_vec3d dir, t_vec2d xy)
     float	times;
 	float	z;
 
-    if (dir.x != 0)
+    if (ft_fabs(dir.x) > 0.001f)
         times = (xy.x - point.x) / dir.x;
     else
         times = (xy.y - point.y) / dir.y;

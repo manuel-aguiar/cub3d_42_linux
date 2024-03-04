@@ -17,7 +17,7 @@ static inline void setup_bullet_ray(t_ray *ray, t_bullet *bullet)
 {
 	ray->start = (t_vec2d){bullet->posi.x, bullet->posi.y};
 	ray->ray_dir = (t_vec2d){bullet->dir.x, bullet->dir.y};
-	
+
 	ray->step.x = float_ternary(ray->ray_dir.x == 0, FLT_MAX , ft_fabs(1.0f / ray->ray_dir.x));
 	ray->step.y = float_ternary(ray->ray_dir.y == 0, FLT_MAX , ft_fabs(1.0f / ray->ray_dir.y));
 	ray->player_sqr = (t_vec2d){(float)((int)ray->start.x), (float)((int)ray->start.y)};
@@ -44,7 +44,7 @@ static inline void move_ray(t_ray *ray)
 		ray->player_sqr.y += ray->axis_move.y;
 		ray->first.y += ray->step.y;
 		ray->side = 1;
-	}    
+	}
 }
 
 
@@ -69,7 +69,7 @@ double bullet_vec3d_get_z_from_xy(t_vec3d point, t_vec3d dir, t_vec2d coords)
     // Check if the direction vector has a non-zero component to avoid division by zero
     double t;
     // Use one of the parametric equations to solve for t
-    if (dir.x != 0) {
+    if (ft_fabs(dir.x) > 0.001f) {
         t = (coords.x - point.x) / dir.x;
     } else {
         t = (coords.y - point.y) / dir.y;
@@ -129,7 +129,7 @@ static inline t_vec3d bullet_check_wall_hit(t_ray *ray, t_bullet *bullet)
 		}
 		res = (t_vec3d){wall_hit.x, wall_hit.y, z};
 		return (res);
-	}	
+	}
 }
 
 t_vec3d bullet_rest(t_game *game, t_bullet *bullet)
