@@ -10,15 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "game.h"
+#include "game.h"
 
 int	setup_door_cast(t_game *game, t_sprite *sprite, t_door_cast *cast);
 
-static inline void draw_door_line(t_game *game, t_door_cast *cast)
+static inline void	draw_door_line(t_game *game, t_door_cast *cast)
 {
 	cast->shade_perc = (float)(cast->draw_st_x - cast->shade_save_x) \
 		/ (float)cast->tex_pix_width;
-	cast->shade_final = cast->start.shade * ( 1 - cast->shade_perc) \
+	cast->shade_final = cast->start.shade * (1 - cast->shade_perc) \
 		+ cast->end.shade * cast->shade_perc;
 	cast->this_line_step_y = 1.0f * cast->tex->width \
 		/ cast->this_line_h;

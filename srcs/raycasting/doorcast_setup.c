@@ -6,12 +6,11 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 13:13:43 by marvin            #+#    #+#             */
-/*   Updated: 2024/03/04 13:22:34 by codespace        ###   ########.fr       */
+/*   Updated: 2024/03/04 13:24:35 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "game.h"
-
+#include "game.h"
 
 static inline void	swap_door_point(t_door_point *first, t_door_point *second)
 {
