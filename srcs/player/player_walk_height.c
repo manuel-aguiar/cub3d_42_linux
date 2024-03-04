@@ -12,6 +12,17 @@
 
 #include "game.h"
 
+static inline void	player_isnt_walking(t_player *player, t_game *game)
+{
+	if (player->walk_z_mod > 0)
+		player->walk_z_mod = float_clamp(player->walk_z_mod \
+		- 0.0005f * player->clock->elapsed, 0, player->walk_z_mod);
+	else if (player->walk_z_mod < 0)
+		player->walk_z_mod = float_clamp(player->walk_z_mod \
+		+ 0.0005f * player->clock->elapsed, player->walk_z_mod, 0);
+	player->cur_walk_sense = 0;
+}
+
 void	player_walk_height(t_player *player, t_game *game)
 {
 	float	speed;
@@ -38,13 +49,5 @@ void	player_walk_height(t_player *player, t_game *game)
 		}
 	}
 	else
-	{
-		if (player->walk_z_mod > 0)
-			player->walk_z_mod = float_clamp(player->walk_z_mod \
-			- 0.0005f * player->clock->elapsed, 0, player->walk_z_mod);
-		else if (player->walk_z_mod < 0)
-			player->walk_z_mod = float_clamp(player->walk_z_mod \
-			+ 0.0005f * player->clock->elapsed, player->walk_z_mod, 0);
-		player->cur_walk_sense = 0;
-	}
+		player_isnt_walking(game, player);
 }
