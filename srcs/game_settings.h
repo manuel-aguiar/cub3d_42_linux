@@ -152,9 +152,9 @@
 # define ENEMY_HEALTH 50
 # define ENEMY_TIME_ATTACK 1000
 
-# define DOOR_HGT 0.2f
+# define DOOR_HGT 1.0f
 # define DOOR_WDT 0.3f
-# define DOOR_Z DOOR_HGT / 2 - DOOR_HGT + 0.5f
+# define DOOR_Z 0.0f
 # define DOOR_UNIT 0.2f
 # define DOOR_MOVE_SENSE 0.002f
 # define DOOR_DIST_SENSE 1.5f

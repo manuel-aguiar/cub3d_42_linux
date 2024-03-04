@@ -17,6 +17,8 @@ void	settings_template_door(t_door *door)
 	*door = (t_door){};
 	door->move_sense = DOOR_MOVE_SENSE;
 	door->dist_sense = fpow_2(DOOR_DIST_SENSE);
+	door->base_z = DOOR_Z;
+	door->height = DOOR_HGT;
 	door->state = DOOR_CLOSED;
 }
 
