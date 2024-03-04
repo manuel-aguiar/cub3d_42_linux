@@ -12,9 +12,25 @@
 
 # include "game_settings.h"
 
-int 	g_def_keys;
+static inline void	settings_compass_two(t_game *game, t_compass *comp)
+{
+    comp->map_centre = (t_pixel){WIN_WIDTH / 2, WIN_HEIGHT / 4, \
+		rgba(255,255,255,255)};
+    comp->sqr.height = game->compass.sqr_height;
+    comp->sqr.centre = (t_pixel){0, 0, game->compass.sqr_color};
+    comp->sqr.color = game->compass.sqr_color;
+    comp->sqr.biggest_z = 1 + sqrt((COMP_MAX_RAD * SQR_MAX_HEIGHT_PERC) \
+		* (COMP_MAX_RAD * SQR_MAX_HEIGHT_PERC) * 2);
+    comp->player_rad = game->compass.sqr.height * COMP_PLAY_RAD;
+    comp->player_colour = COMP_PLAYER_COLOR;
+    comp->blur_on = BLUR_ON;
+    comp->blur = (t_blur){};
+    comp->blur.max_kernel = BLUR_KERNEL_MAX;
+    comp->blur.kernel_size = BLUR_KERNEL_SIZE;
+    comp->blur.sigma = BLUR_KERNEL_SIGMA;
+}
 
-void    settings_compass(t_game *game, t_compass *comp)
+void	settings_compass(t_game *game, t_compass *comp)
 {
     comp->centre = (t_pixel){COMP_CENTRE_X, COMP_CENTRE_Y, rgba(255,0,0,0)};
     comp->radius = int_clamp(COMP_OUTER_RAD, COMP_MIN_RAD, COMP_MAX_RAD);
@@ -29,23 +45,10 @@ void    settings_compass(t_game *game, t_compass *comp)
     comp->sqr_height = int_clamp ((int)(game->compass.radius * SQR_HEIGHT_PERC), \
                             (int)(game->compass.radius * SQR_MIN_HEIGHT_PERC), \
                             (int)(game->compass.radius * SQR_MAX_HEIGHT_PERC));
-    comp->map_centre = (t_pixel){WIN_WIDTH / 2, WIN_HEIGHT / 4, rgba(255,255,255,255)};			            //para testes
-    comp->sqr.height = game->compass.sqr_height;
-    comp->sqr.centre = (t_pixel){0, 0, game->compass.sqr_color};
-    comp->sqr.color = game->compass.sqr_color;
-    comp->sqr.biggest_z = 1 + sqrt((COMP_MAX_RAD * SQR_MAX_HEIGHT_PERC) * (COMP_MAX_RAD * SQR_MAX_HEIGHT_PERC) * 2);
-    comp->player_rad = game->compass.sqr.height * COMP_PLAY_RAD;
-    comp->player_colour = COMP_PLAYER_COLOR;
-
-
-    comp->blur_on = BLUR_ON;
-    comp->blur = (t_blur){};
-    comp->blur.max_kernel = BLUR_KERNEL_MAX;
-    comp->blur.kernel_size = BLUR_KERNEL_SIZE;
-    comp->blur.sigma = BLUR_KERNEL_SIGMA;
+	settings_compass_two(game, comp);
 }
 
-void    settings_window(t_win *win)
+void	settings_window(t_win *win)
 {
     win->width = int_clamp(WIN_WIDTH, MIN_WIN_WIDTH, MAX_WIN_WIDTH);
     win->height = int_clamp(WIN_HEIGHT, MIN_WIN_HEIGHT, MAX_WIN_HEIGHT);
@@ -65,7 +68,7 @@ void    settings_window(t_win *win)
     win->blur.width = win->width;
 }
 
-void    apply_all_settings(t_game *game)
+void	apply_all_settings(t_game *game)
 {
     settings_window(&game->win);
     settings_player(&game->player);
