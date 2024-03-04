@@ -178,6 +178,15 @@ typedef struct s_door_cast
 	t_xpm_tex 		*tex;
 }	t_door_cast;
 
+typedef struct s_bullet_colli
+{
+	t_bullet	*bullet;
+	int			map_index;
+	t_vec2d		check[2];
+	t_vec2d		box[2];
+	t_vec2d		collision[2];
+}	t_bullet_colli;
+
 typedef struct s_game
 {
 	t_parsing	parsing;
