@@ -16,12 +16,14 @@ static inline void setup_common_floor_line(t_game *game, t_floor_line *line)
 {
 	t_vec2d	dir;
 
-	dir = vec2d_multi(vec2d_multi(game->player.dir_vec, game->player.cur_dir_len), -1);
+	dir = vec2d_multi(vec2d_multi(game->player.dir_vec, \
+		game->player.cur_dir_len), -1);
 	line->win_h = game->win.height;
 	line->win_w = game->win.width;
 	line->ray_left = vec2d_add(dir, game->player.plane);
 	line->ray_right = vec2d_sub(dir, game->player.plane);
-	line->row_z = (game->player.cur_z + game->player.jump_z_mod + game->player.walk_z_mod) * line->win_h;
+	line->row_z = (game->player.cur_z + game->player.jump_z_mod \
+		+ game->player.walk_z_mod) * line->win_h;
 	line->pitch_mod = line->win_h / 2 + game->player.pitch;
 }
 
@@ -29,41 +31,53 @@ static inline void setup_common_ceiling_line(t_game *game, t_floor_line *line)
 {
 	t_vec2d	dir;
 
-	dir = vec2d_multi(vec2d_multi(game->player.dir_vec, game->player.cur_dir_len), 1);
+	dir = vec2d_multi(vec2d_multi(game->player.dir_vec, \
+		game->player.cur_dir_len), 1);
 	line->win_h = game->win.height;
 	line->win_w = game->win.width;
 	line->ray_left = vec2d_add(dir, game->player.plane);
 	line->ray_right = vec2d_sub(dir, game->player.plane);
-	line->row_z = (1 - (game->player.cur_z + game->player.jump_z_mod + game->player.walk_z_mod)) * line->win_h;
+	line->row_z = (1 - (game->player.cur_z + game->player.jump_z_mod \
+		+ game->player.walk_z_mod)) * line->win_h;
 	line->pitch_mod = line->win_h / 2 + game->player.pitch;
 }
 
-static inline void setup_this_floor_line(t_game *game, t_floor_line *line, int y)
+static inline void setup_this_floor_line(t_game *game, t_floor_line *line, \
+					int y)
 {
 	int	this_pitch;
 
 	this_pitch = y - line->pitch_mod;
-	line->row_dist = float_ternary(ft_fabs(line->pitch_mod) < 0.0001f, 2000, line->row_z / this_pitch);
-	//game->verti_rays[y].row_distance = line->row_dist;
-	line->tile_step_x = line->row_dist * (line->ray_right.x - line->ray_left.x) / line->win_w;
-	line->tile_step_y = line->row_dist * (line->ray_right.y - line->ray_left.y) / line->win_w;
-	line->tile_exact_x = game->player.map_posi.x + line->row_dist * line->ray_left.x;
-	line->tile_exact_y = game->player.map_posi.y + line->row_dist * line->ray_left.y;
+	line->row_dist = float_ternary(float_equal(line->pitch_mod, 0, 0.0001f), \
+		2000, line->row_z / this_pitch);
+	line->tile_step_x = line->row_dist * (line->ray_right.x - \
+		line->ray_left.x) / line->win_w;
+	line->tile_step_y = line->row_dist * (line->ray_right.y - \
+		line->ray_left.y) / line->win_w;
+	line->tile_exact_x = game->player.map_posi.x + line->row_dist \
+		* line->ray_left.x;
+	line->tile_exact_y = game->player.map_posi.y + line->row_dist \
+		* line->ray_left.y;
 	line->shade_wgt = float_clamp(ft_fabs(line->row_dist / game->max_vis_dist \
 		* game->player.cur_dir_len / game->player.base_dir_len), 0.0f, 1.0f);
 }
 
-static inline void setup_this_ceiling_line(t_game *game, t_floor_line *line, int y)
+static inline void setup_this_ceiling_line(t_game *game, t_floor_line *line, \
+					int y)
 {
 	int	this_pitch;
 
 	this_pitch = y - line->pitch_mod;
-	line->row_dist = float_ternary(ft_fabs(line->pitch_mod) < 0.0001f, 2000, line->row_z / this_pitch);
-	//game->verti_rays[y].row_distance = line->row_dist;
-	line->tile_step_x = line->row_dist * (line->ray_right.x - line->ray_left.x) / line->win_w;
-	line->tile_step_y = line->row_dist * (line->ray_right.y - line->ray_left.y) / line->win_w;
-	line->tile_exact_x = game->player.map_posi.x + line->row_dist * line->ray_right.x;
-	line->tile_exact_y = game->player.map_posi.y + line->row_dist * line->ray_right.y;
+	line->row_dist = float_ternary(float_equal(line->pitch_mod, 0, 0.0001f), \
+		2000, line->row_z / this_pitch);
+	line->tile_step_x = line->row_dist * (line->ray_right.x - \
+		line->ray_left.x) / line->win_w;
+	line->tile_step_y = line->row_dist * (line->ray_right.y - \
+		line->ray_left.y) / line->win_w;
+	line->tile_exact_x = game->player.map_posi.x + line->row_dist \
+		* line->ray_right.x;
+	line->tile_exact_y = game->player.map_posi.y + line->row_dist \
+		* line->ray_right.y;
 	line->shade_wgt = float_clamp(ft_fabs(line->row_dist / game->max_vis_dist \
 		* game->player.cur_dir_len / game->player.base_dir_len), 0.0f, 1.0f);
 }
@@ -75,10 +89,10 @@ void	floorcast(t_game *game)
 	int x;
 	int	y;
 	int end;
-	
+
 	//ft_memset(game->verti_rays, 0, game->win.height);
 	setup_common_floor_line(game, &line);
-	
+
 	tex = game->tex[F_TEX];
 	end = ft_min(game->maxmin_hori, line.win_h - 1);
 	y = 0;
