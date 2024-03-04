@@ -129,6 +129,51 @@ typedef struct s_sp_cast
 	int			color;
 }	t_sp_cast;
 
+typedef struct s_door_point
+{
+	t_vec2d	point;
+	t_vec2d	relative;
+	t_vec2d	trans;
+	int		screen_x;
+	int		height;
+	int		min_screen_y;
+	int		max_screen_y;
+	float	shade;
+}	t_door_point;
+
+typedef struct s_door_cast
+{
+	int				w;
+	int 			h;
+	t_vec2d			dir;
+	t_door			*door;
+	bool			inverted;
+	t_door_point	start;
+	t_door_point	end;
+	float			inv_cam;
+	float			pitch_mod;
+	float			play_z_mod;
+	float			tex_pix_width;
+	float			step_tex_min_y;
+	float			step_tex_max_y;
+	float			tex_step_x;
+	float			tex_exact_x;
+	int 			out_screen_x;
+	int				out_screen_y;
+	float			pix_exact_min_y;
+	float			pix_exact_max_y;
+	int				this_line_h;
+	float			this_line_step_y;
+	float			this_line_exact_y;
+	int				tex_pix_x;
+	int				tex_pix_y;
+	int				shade_save_x;
+	float			shade_perc;
+	float			shade_final;
+	int				color;
+	t_xpm_tex 		*tex;
+}	t_door_cast;
+
 typedef struct s_game
 {
 	t_parsing	parsing;
