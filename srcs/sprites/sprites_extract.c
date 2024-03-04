@@ -117,10 +117,10 @@ int	check_door_orient(t_map *map, t_door *door, \
 	return (1);
 }
 
-int	extract_door(t_game *game, t_map *map, int place, int map_index)
+int			extract_door(t_game *game, t_map *map, int place, int map_index)
 {
-	t_door		*data;
-	t_sprite	*sprite;
+	t_door 		*data;
+	t_sprite 	*sprite;
 
 	sprite = &game->sprites[place];
 	sprite->my_hit[0].sprite = sprite;
@@ -131,17 +131,18 @@ int	extract_door(t_game *game, t_map *map, int place, int map_index)
 	if (!data)
 		return (perror_msg_int("malloc", 0));
 	ft_memcpy(data, &game->template_door, sizeof(*data));
+	data->map_index = map_index;
 	sprite->data = data;
 	sprite->type = DOOR;
 	sprite->status = NOT_VIS;
 	sprite->posi.x = (float)map_col(map, map_index) + 0.5f;
 	sprite->posi.y = (float)map_row(map, map_index) + 0.5f;
-	sprite->cur_z = 0;
-	sprite->height = 0;
+	sprite->cur_z = data->base_z;
+	sprite->height = data->height;
 	sprite->width = 0;
 	sprite->dist = FLT_MAX;
 	sprite->tex = DOOR_TEX;
-	if (!check_door_orient(map, data, sprite, map_index))
+	if(!check_door_orient(map, data, sprite, map_index))
 		return (0);
 	return (1);
 }

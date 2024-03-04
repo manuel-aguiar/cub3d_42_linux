@@ -24,10 +24,14 @@ void	enemy_take_damage(t_game *game, t_sprite *sprite)
 		sprite->status = GONE;
 }
 
+
+
+
+
 void		update_bullet(t_game *game, t_sprite *sprite)
 {
 	t_bullet	*bullet;
-	t_enemy		*enemy;
+	t_door		*door;
 	t_sprite 	*target;
 	t_vec2d		map_square;
 	t_hitnode	*node;
@@ -50,16 +54,33 @@ void		update_bullet(t_game *game, t_sprite *sprite)
 	while (node)
 	{
 		target = node->sprite;
-		box[0] = (t_vec2d){target->posi.x - target->unit_size, target->posi.y - target->unit_size};
-		box[1] = (t_vec2d){target->posi.x + target->unit_size, target->posi.y + target->unit_size};
-		enemy = (t_enemy *)target->data;
+		if (target->type == ENEMY)
+		{
+			box[0] = (t_vec2d){target->posi.x - target->unit_size, target->posi.y - target->unit_size};
+			box[1] = (t_vec2d){target->posi.x + target->unit_size, target->posi.y + target->unit_size};
+		}
+		if (target->type == DOOR)
+		{
+			door = (t_door *)target->data;
+			if (door->orient == NS)
+			{
+				box[0] = (t_vec2d){target->posi.x - 0.5f, target->posi.y - 0.01f};
+				box[1] = (t_vec2d){target->posi.x + 0.5f, target->posi.y + 0.01f};
+			}
+			else
+			{
+				box[0] = (t_vec2d){target->posi.x - 0.01f, target->posi.y - 0.5f};
+				box[1] = (t_vec2d){target->posi.x + 0.01f, target->posi.y + 0.5f};
+			}
+		}
 		if (liang_barsky_hit(box, check, collision))
 		{
 			z = vec3d_get_z_from_xy(bullet->posi, bullet->dir, collision[0]);
 			if (z >= target->cur_z && z <= target->cur_z + target->height)
 			{
 				sprite->status = GONE;
-				enemy_take_damage(game, target);
+				if (target->type == ENEMY)
+					enemy_take_damage(game, target);
 				printf("hit!!\n");
 				return ;
 			}
@@ -67,7 +88,8 @@ void		update_bullet(t_game *game, t_sprite *sprite)
 			if (z >= target->cur_z && z <= target->cur_z + target->height)
 			{
 				sprite->status = GONE;
-				enemy->health -= bullet->attack_val;
+				if (target->type == ENEMY)
+					enemy_take_damage(game, target);
 				printf("hit!!\n");
 				return ;
 			}

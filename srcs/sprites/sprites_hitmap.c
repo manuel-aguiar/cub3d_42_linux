@@ -10,11 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "game.h"
+# include "game.h"
 
 void	sprite_calc_dist(t_game *game)
 {
-	int	i;
+	int i;
 
 	i = 0;
 	while (i < game->sprite_count)
@@ -31,7 +31,7 @@ void	sprite_calc_dist(t_game *game)
 
 void	clean_hitnodes_and_map(t_game *game, t_sprite *sprite)
 {
-	int	map_index;
+	int map_index;
 
 	map_index = (int)(sprite->posi.x - sprite->unit_size) \
 	+ (int)(sprite->posi.y - sprite->unit_size) * game->map.width;
@@ -56,10 +56,22 @@ void	clean_hitnodes_and_map(t_game *game, t_sprite *sprite)
 	sprite->my_hit[3].sprite = sprite;
 }
 
-void	clean_hitmap(t_game *game)
+void	clean_hitnodes_and_map_door(t_game *game, t_sprite *sprite)
 {
-	int			i;
-	t_sprite	*sprite;
+	t_door *door;
+
+	door = (t_door *)sprite->data;
+	if (game->map.hit[door->map_index].len != 0)
+		ft_memset(&game->map.hit[door->map_index], 0, sizeof(t_hitlist));
+	sprite->my_hit[0].sprite = sprite;
+	sprite->my_hit[0].prev = NULL;
+	sprite->my_hit[0].next = NULL;
+}
+
+void    clean_hitmap(t_game *game)
+{
+	int         i;
+	t_sprite    *sprite;
 
 	i = 0;
 	while (i < game->sprite_count)
@@ -67,14 +79,26 @@ void	clean_hitmap(t_game *game)
 		sprite = game->sorted[i];
 		if (sprite->type == ENEMY)
 			clean_hitnodes_and_map(game, sprite);
+		else if (sprite->type == DOOR)
+			clean_hitnodes_and_map_door(game, sprite);
 		i++;
 	}
 }
 
+void	door_place_hitmap(t_game *game, t_sprite *sprite)
+{
+	t_door *door;
+
+	door = (t_door *)sprite->data;
+	hitlist_in_head(&game->map.hit[door->map_index], &sprite->my_hit[0]);
+}
+
 void	sprite_place_hitmap(t_game *game, t_sprite *sprite)
 {
-	int	map_index;
+	int         map_index;
 
+	if (sprite->type == DOOR)
+		return (door_place_hitmap(game, sprite));
 	if (sprite->type != ENEMY)
 		return ;
 	map_index = (int)(sprite->posi.x - sprite->unit_size) \
@@ -91,10 +115,10 @@ void	sprite_place_hitmap(t_game *game, t_sprite *sprite)
 	hitlist_in_head(&game->map.hit[map_index], &sprite->my_hit[3]);
 }
 
-void	setup_hitmap(t_game *game)
+void    setup_hitmap(t_game *game)
 {
-	int			i;
-	t_sprite	*sprite;
+	int         i;
+	t_sprite    *sprite;
 
 	sprite_calc_dist(game);
 	sprite_qs_distance(game->sorted, game->sprite_count, sprite_qs_comp);
@@ -102,8 +126,9 @@ void	setup_hitmap(t_game *game)
 	while (i < game->sprite_count)
 	{
 		sprite = game->sorted[i];
-		if (sprite->type == ENEMY)
+		if (sprite->type == ENEMY || sprite->type == DOOR)
 			sprite_place_hitmap(game, sprite);
 		i++;
 	}
 }
+

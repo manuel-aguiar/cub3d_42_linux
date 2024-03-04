@@ -62,7 +62,7 @@ typedef enum
 
 typedef enum
 {
-	NS,	
+	NS,
 	WE,
 }	e_door_dir;
 
@@ -81,15 +81,18 @@ typedef enum
 typedef struct s_door
 {
 	t_vec2d				base_position;
+	int					map_index;
 	e_door_state		state;
 	e_door_dir			orient;
 	t_dda_hor			start;
 	t_dda_hor			end;
+	float				base_z;
+	float				height;
 	bool				visible;
 	float				wall_start;
 	float				wall_end;
 	int					start_x;
-	int					end_x;				
+	int					end_x;
 	float				move_sense;
 	float				dist_sense;
 }	t_door;
