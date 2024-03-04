@@ -58,6 +58,8 @@ typedef struct s_lb_hit
 	float	    yn2;
 	float	    rn1;
 	float	    rn2;
+	t_vec2d 	box[2];
+	t_vec2d 	line[2];
 }	t_lb_hit;
 
 int	liang_barsky_hit(t_vec2d win[2], t_vec2d draw[2], t_vec2d res[2]);
@@ -66,7 +68,5 @@ void	hitlist_in_head(t_hitlist *list, t_hitnode *insert);
 void	hitlist_in_tail(t_hitlist *list, t_hitnode *insert);
 void	hitlist_del_head(t_hitlist *list);
 void	hitlist_del_tail(t_hitlist *list);
-
-
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hit_list.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 20:11:55 by mmaria-d          #+#    #+#             */
-/*   Updated: 2024/02/24 10:36:38 by marvin           ###   ########.fr       */
+/*   Updated: 2024/03/04 16:54:29 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ void	hitlist_in_tail(t_hitlist *list, t_hitnode *insert)
 
 void	hitlist_del_head(t_hitlist *list)
 {
-	t_hitnode *cur;
-	
+	t_hitnode	*cur;
+
 	if (!list->head)
 		return ;
 	cur = list->head;

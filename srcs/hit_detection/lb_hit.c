@@ -12,35 +12,8 @@
 
 #include "hit_detection.h"
 
-/*
-
-static void	lb_safety(t_vec2d low_bot, t_vec2d hi_top, t_vec2d *start, t_vec2d *end)
-{
-	if (start->x > hi_top.x - 1)
-		start->x = hi_top.x - 1;
-	if (start->x < low_bot.x)
-		start->x = low_bot.x;
-	if (start->y > hi_top.y - 1)
-		start->y = hi_top.y - 1;
-	if (start->y < low_bot.y)
-		start->y = low_bot.y;
-	if (end->x > hi_top.x - 1)
-		end->x = hi_top.x - 1;
-	if (end->x < low_bot.x)
-		end->x = low_bot.x;
-	if (end->y > hi_top.y - 1)
-		end->y = hi_top.y - 1;
-	if (end->y < low_bot.y)
-		end->y = low_bot.y;
-}
-
-*/
-
-
 float	lb_hit_maxi(float arr[], int n);
 float	lb_hit_mini(float arr[], int n);
-
-
 
 static void	lb_ratios1(t_lb_hit *lb)
 {
@@ -80,16 +53,16 @@ static void	lb_ratios2(t_lb_hit *lb)
 	}
 }
 
-static int	lb_setup(t_vec2d low_bot, t_vec2d hi_top, t_lb_hit *lb, t_vec2d *start, t_vec2d *end)
+static int	lb_setup(t_lb_hit *lb)
 {
-	lb->p1 = -(end->x - start->x);
+	lb->p1 = -(lb->line[1].x - lb->line[0].x);
 	lb->p2 = -lb->p1;
-	lb->p3 = -(end->y - start->y);
+	lb->p3 = -(lb->line[1].y - lb->line[0].y);
 	lb->p4 = -lb->p3;
-	lb->q1 = start->x - low_bot.x;
-	lb->q2 = hi_top.x - start->x;
-	lb->q3 = start->y - low_bot.y;
-	lb->q4 = hi_top.y - start->y;
+	lb->q1 = lb->line[0].x - lb->box[0].x;
+	lb->q2 = lb->box[1].x - lb->line[0].x;
+	lb->q3 = lb->line[0].y - lb->box[0].y;
+	lb->q4 = lb->box[1].y - lb->line[0].y;
 	lb->posind = 1;
 	lb->negind = 1;
 	lb->posarr[0] = 1;
@@ -103,14 +76,12 @@ static int	lb_setup(t_vec2d low_bot, t_vec2d hi_top, t_lb_hit *lb, t_vec2d *star
 int	liang_barsky_hit(t_vec2d win[2], t_vec2d draw[2], t_vec2d res[2])
 {
 	t_lb_hit	lb;
-	t_vec2d box[2];
-	t_vec2d line[2];
 
-	box[0] = win[0];
-	box[1] = win[1];
-	line[0] = draw[0];
-	line[1] = draw[1];
-	if (!lb_setup(box[0], box[1], &lb, &line[0], &line[1]))
+	lb.box[0] = win[0];
+	lb.box[1] = win[1];
+	lb.line[0] = draw[0];
+	lb.line[1] = draw[1];
+	if (!lb_setup(&lb))
 		return (0);
 	lb_ratios1(&lb);
 	lb_ratios2(&lb);
@@ -118,16 +89,15 @@ int	liang_barsky_hit(t_vec2d win[2], t_vec2d draw[2], t_vec2d res[2])
 	lb.rn2 = lb_hit_mini(lb.posarr, lb.posind);
 	if (lb.rn1 > lb.rn2)
 		return (0);
-	lb.xn1 = line[0].x + lb.p2 * lb.rn1;
-	lb.yn1 = line[0].y + lb.p4 * lb.rn1;
-	lb.xn2 = line[0].x + lb.p2 * lb.rn2;
-	lb.yn2 = line[0].y + lb.p4 * lb.rn2;
-	line[0].x = lb.xn1;
-	line[0].y = lb.yn1;
-	line[1].x = lb.xn2;
-	line[1].y = lb.yn2;
-	res[0] = line[0];
-	res[1] = line[1];
+	lb.xn1 = lb.line[0].x + lb.p2 * lb.rn1;
+	lb.yn1 = lb.line[0].y + lb.p4 * lb.rn1;
+	lb.xn2 = lb.line[0].x + lb.p2 * lb.rn2;
+	lb.yn2 = lb.line[0].y + lb.p4 * lb.rn2;
+	lb.line[0].x = lb.xn1;
+	lb.line[0].y = lb.yn1;
+	lb.line[1].x = lb.xn2;
+	lb.line[1].y = lb.yn2;
+	res[0] = lb.line[0];
+	res[1] = lb.line[1];
 	return (1);
 }
-
