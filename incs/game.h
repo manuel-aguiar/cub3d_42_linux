@@ -171,6 +171,10 @@ typedef struct s_door_cast
 	float			shade_perc;
 	float			shade_final;
 	int				color;
+	int				draw_st_x;
+	int				draw_end_x;
+	int				draw_st_y;
+	int				draw_end_y;
 	t_xpm_tex 		*tex;
 }	t_door_cast;
 

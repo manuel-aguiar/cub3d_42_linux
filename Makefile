@@ -164,6 +164,7 @@ SRC_RAYCASTING		=	vec2d_utils1.c					\
 						floorcast.c					\
 						spritecast.c				\
 						doorcast.c					\
+						doorcast_setup.c			\
 						shader.c
 
 SRC_SPRITES			=	sprite_setup.c				\
