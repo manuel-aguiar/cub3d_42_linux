@@ -77,6 +77,6 @@ void	game_key_manager(t_game *game)
 
 	game->win.keys &= ~(1 << BIT_CROUCH);
 	game->win.keys &= ~(1 << BIT_PRONE);
-	game->player.is_sprinting = ((keys >> BIT_SPRINT) & 1) && !game->player.is_aiming && (((keys >> BIT_FRONT) & 1) << 3);
+	game->player.is_sprinting = ((keys >> BIT_SPRINT) & 1) && !game->player.is_aiming && (((keys >> BIT_FRONT) & 1));
 
 }
