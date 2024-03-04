@@ -7,14 +7,14 @@ COMP 		= 		cc -g -O3 -fsanitize=address
 
 FLAGS 		= 		-Wall -Werror -Wextra
 ADD_LIB 	= 		-L./$(LIB_PATH) -lft
-MLX_LIB		=		-Lmlx_linux -lmlx_Linux -L/usr/lib -lmlx -lXext -lX11 -lm -lz
+MLX_LIB		=		-Lminilibx-linux -lminilibx-linux -L/usr/lib -lmlx -lXext -lX11 -lm -lz
 RM 			=		rm
 MAKE		=		make
 
 
 ## FOLDER PATH ##
-INC_MLX 	=		-I/usr/include -Imlx_linux
-MLX_PATH	=		mlx_linux
+INC_MLX 	=		-I/usr/include -Iminilibx-linux
+MLX_PATH	=		minilibx-linux
 INC_PATH	=		incs
 SRC_PATH	=		srcs
 OBJ_PATH	=		objs
@@ -79,7 +79,7 @@ SRC_GAME			=	win_render_loop.c		\
 						update_enemy_move.c			\
 						update_bullet.c				\
 						update_door.c
-						
+
 
 SRC_PLAYER			=	player_setup_and_actions.c	\
 						player_aim.c				\
@@ -97,8 +97,8 @@ SRC_PARSING			=	parsing_main.c						\
 						parsing_print_utils.c				\
 						map_flood_count.c					\
 						map_funcs.c							\
-						map_dimensions.c		
-						
+						map_dimensions.c
+
 
 SRC_XPM_PARSER		=	xpm_compiled_texture.c		\
 						xpm_NSWE.c					\
@@ -125,7 +125,7 @@ SRC_REN_WIN			=	win_init_window.c		\
 						win_callback_mouse.c	\
 						win_clock.c				\
 						win_pause_blur_1.c		\
-						win_pause_blur_2.c	
+						win_pause_blur_2.c
 
 SRC_REN_LINUX		=	linux_init_window.c		\
 						linux_pixels.c			\
@@ -133,7 +133,7 @@ SRC_REN_LINUX		=	linux_init_window.c		\
 						linux_callback_mouse.c	\
 						linux_clock.c				\
 						linux_pause_blur_1.c		\
-						linux_pause_blur_2.c	
+						linux_pause_blur_2.c
 
 SRC_COMPASS			=	compass_setup_render.c		\
 						letter_north.c				\
@@ -150,7 +150,7 @@ SRC_DRAWING_ALGOS	=	drawing_lines.c				\
 						liang_barsky_clipping.c		\
 						liang_barsky_utils.c		\
 						xiaolinwu_antialiasing.c	\
-						xiaolinwu_utils.c		
+						xiaolinwu_utils.c
 
 SRC_PIXEL_POINT		=	gamma_correction.c				\
 						pixels.c						\
@@ -174,7 +174,7 @@ SRC_SPRITES			=	sprite_setup.c				\
 
 SRC_HIT_DETECTION	=	lb_hit.c					\
 						lb_hit_utils.c				\
-						hit_list.c					
+						hit_list.c
 
 ## AGGREGATING FILES ##
 
@@ -193,8 +193,8 @@ SRCS 		:=		$(addprefix $(SRC_PATH)/, $(SRC_MAIN))											\
 					$(addprefix $(SRC_PATH)/$(DIR_XPM_PARSER)/, $(SRC_XPM_PARSER))					\
 					$(addprefix $(SRC_PATH)/$(DIR_PIXEL_POINT)/, $(SRC_PIXEL_POINT))				\
 					$(addprefix $(SRC_PATH)/$(DIR_SPRITES)/, $(SRC_SPRITES))						\
-					$(addprefix $(SRC_PATH)/$(DIR_HIT_DETECTION)/, $(SRC_HIT_DETECTION))			
-					
+					$(addprefix $(SRC_PATH)/$(DIR_HIT_DETECTION)/, $(SRC_HIT_DETECTION))
+
 
 OBJS 		:=		$(patsubst $(SRC_PATH)/%.c,$(OBJ_PATH)/%.o,$(SRCS))
 
@@ -203,26 +203,26 @@ LIBS		=		$(ADD_LIB) $(LIB_PATH)/$(LIBFT) $(MLX_LIB)
 
 all: $(NAME)
 
-$(NAME): $(LIBFT) $(MLX) $(OBJS)
-	$(CC) $(FLAGS) $(OBJS) $(ALL_INCS) -o $(NAME) $(LIBS)
+$(NAME): $(LIBFT) $(OBJS)
+	$(COMP) $(FLAGS) $(OBJS) $(ALL_INCS) -o $(NAME) $(LIBS)
 	@echo Program $(NAME) ready!!
 
 $(OBJ_PATH)/settings.o : $(SRC_PATH)/settings.c $(SRC_PATH)/game_settings.h
-	$(CC) $(FLAGS) $(ALL_INCS) -c $< -o $@
+	$(COMP) $(FLAGS) $(ALL_INCS) -c $< -o $@
 
 $(OBJ_PATH)/settings_template.o : $(SRC_PATH)/settings_template.c $(SRC_PATH)/game_settings.h
-	$(CC) $(FLAGS) $(ALL_INCS) -c $< -o $@
+	$(COMP) $(FLAGS) $(ALL_INCS) -c $< -o $@
 
 $(OBJ_PATH)/settings_player.o : $(SRC_PATH)/settings_player.c $(SRC_PATH)/game_settings.h
-	$(CC) $(FLAGS) $(ALL_INCS) -c $< -o $@
+	$(COMP) $(FLAGS) $(ALL_INCS) -c $< -o $@
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c $(INCS)
 	mkdir -p $(dir $@)
-	$(CC) $(FLAGS) $(ALL_INCS) -c $< -o $@
+	$(COMP) $(FLAGS) $(ALL_INCS) -c $< -o $@
 
 $(LIBFT):
 	@$(MAKE) -C $(LIB_PATH)
-	@$(MAKE) -C $(MLX_PATH)
+##@$(MAKE) -C $(MLX_PATH)
 
 $(MLX):
 	@$(MAKE) -C $(MLX_PATH)
@@ -236,7 +236,7 @@ clean:
         rm -rf $(OBJ_PATH); \
     fi
 	@$(MAKE) clean -C $(LIB_PATH)
-	@$(MAKE) clean -C $(MLX_PATH)
+##	@$(MAKE) clean -C $(MLX_PATH)
 	@echo Objects successfully deleted!
 
 fclean: clean
