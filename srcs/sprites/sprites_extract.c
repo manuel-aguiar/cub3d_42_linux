@@ -29,6 +29,7 @@ int	extract_enemy(t_game *game, t_map *map, int place, int map_index)
 	sprite->data = data;
 	sprite->type = ENEMY;
 	sprite->status = NOT_VIS;
+	sprite->inverted = false;
 	sprite->posi.x = (float)map_col(map, map_index) + 0.5f;
 	sprite->posi.y = (float)map_row(map, map_index) + 0.5f;
 	sprite->cur_z = data->base_z;
@@ -57,6 +58,7 @@ int	extract_ammo(t_game *game, t_map *map, int place, int map_index)
 	sprite->data = data;
 	sprite->type = AMMOKIT;
 	sprite->status = NOT_VIS;
+	sprite->inverted = false;
 	sprite->posi.x = (float)map_col(map, map_index) + 0.5f;
 	sprite->posi.y = (float)map_row(map, map_index) + 0.5f;
 	sprite->cur_z = data->base_z;
@@ -85,6 +87,7 @@ int	extract_medi(t_game *game, t_map *map, int place, int map_index)
 	sprite->data = data;
 	sprite->type = MEDIKIT;
 	sprite->status = NOT_VIS;
+	sprite->inverted = false;
 	sprite->posi.x = (float)map_col(map, map_index) + 0.5f;
 	sprite->posi.y = (float)map_row(map, map_index) + 0.5f;
 	sprite->cur_z = data->base_z;
@@ -135,10 +138,12 @@ int			extract_door(t_game *game, t_map *map, int place, int map_index)
 	sprite->data = data;
 	sprite->type = DOOR;
 	sprite->status = NOT_VIS;
+	sprite->inverted = false;
 	sprite->posi.x = (float)map_col(map, map_index) + 0.5f;
 	sprite->posi.y = (float)map_row(map, map_index) + 0.5f;
 	sprite->cur_z = data->base_z;
 	sprite->height = data->height;
+	sprite->unit_size = 0.5f;
 	sprite->width = 0;
 	sprite->dist = FLT_MAX;
 	sprite->tex = DOOR_TEX;
