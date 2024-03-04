@@ -12,9 +12,9 @@
 
 #include "game.h"
 
-void		update_ammokit(t_game *game, t_sprite *sprite)
+void	update_ammokit(t_game *game, t_sprite *sprite)
 {
-	t_ammo *ammo;
+	t_ammo	*ammo;
 
 	ammo = (t_ammo *)sprite->data;
 	sprite->cur_z = ammo->base_z - game->float_sin * ammo->float_radius;
@@ -27,9 +27,9 @@ void		update_ammokit(t_game *game, t_sprite *sprite)
 	}
 }
 
-void		update_medikit(t_game *game, t_sprite *sprite)
+void	update_medikit(t_game *game, t_sprite *sprite)
 {
-	t_medi *medi;
+	t_medi	*medi;
 
 	medi = (t_medi *)sprite->data;
 	sprite->cur_z = medi->base_z - game->float_sin * medi->float_radius;
