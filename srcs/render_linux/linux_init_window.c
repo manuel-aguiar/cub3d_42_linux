@@ -22,6 +22,7 @@ int	win_init_window(t_win *win)
 	win->front_buf.addr = mlx_get_data_addr(win->front_buf.img, \
 		&(win->front_buf.bpp), &(win->front_buf.line_len), \
 		&(win->front_buf.endian));
+	win->rgb_size = win->front_buf.bpp / 8;
 	win->blur.first = malloc(sizeof(*win->blur.first) * win->width * win->height * win->rgb_size);
 	win->blur.second = malloc(sizeof(*win->blur.second) * win->width * win->height * win->rgb_size);
 	win->blur.save_front = malloc(sizeof(*win->blur.save_front) * win->width * win->height * win->rgb_size);

@@ -158,15 +158,14 @@ void	window_pause_manager(t_win *win, e_pause_state state, bool blur_on)
 		}
 		if (blur->elapsed <= 0)
 		{
-			ft_memcpy(blur->save_front, win->front_buf.addr, win->height * win->width * win->front_buf.bpp);
+			ft_memcpy(blur->save_front, win->front_buf.addr, win->height * win->width * win->rgb_size);
 			window_update_clock(win);
 			blur->elapsed = 1;
 		}
-		//printf("blur elapsed on %d\n", blur->elapsed);
 		if (blur_on)
 			blur_pause(win, blur, true);
 		else
-			blur->elapsed = int_clamp(blur->elapsed + window_update_clock(win), 0, blur->pause_time);;
+			blur->elapsed = int_clamp(blur->elapsed + window_update_clock(win), 0, blur->pause_time);
 	}
 	else if (state == PAUSE_OFF)
 	{
