@@ -7,14 +7,14 @@ COMP 		= 		cc -O3
 
 FLAGS 		= 		-Wall -Werror -Wextra
 ADD_LIB 	= 		-L./$(LIB_PATH) -lft
-MLX_LIB		=		-Lmlx_linux -L/usr/lib -lmlx -lXext -lX11 -lm -lz
+MLX_LIB		=		-Lminilibx-linux -L/usr/lib -lmlx -lXext -lX11 -lm -lz
 RM 			=		rm
 MAKE		=		make
 
 
 ## FOLDER PATH ##
-INC_MLX 	=		-I/usr/include -Imlx_linux
-MLX_PATH	=		mlx_linux
+INC_MLX 	=		-I/usr/include -Iminilibx-linux
+MLX_PATH	=		minilibx-linux
 INC_PATH	=		incs
 SRC_PATH	=		srcs
 OBJ_PATH	=		objs
