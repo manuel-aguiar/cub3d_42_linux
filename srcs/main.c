@@ -12,7 +12,7 @@
 
 #include "game.h"
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
 	t_game	game;
 
@@ -25,5 +25,3 @@ int main(int ac, char **av)
 	free_game(&game);
 	return (0);
 }
-
-
