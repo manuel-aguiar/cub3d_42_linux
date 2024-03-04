@@ -25,7 +25,6 @@ void		update_ammokit(t_game *game, t_sprite *sprite)
 		+ ammo->ammopoints, game->player.ammo[CTR_MAX]);
 		sprite->status = GONE;
 	}
-
 }
 
 void		update_medikit(t_game *game, t_sprite *sprite)
@@ -41,5 +40,4 @@ void		update_medikit(t_game *game, t_sprite *sprite)
 		+ medi->lifepoints, game->player.health[CTR_MAX]);
 		sprite->status = GONE;
 	}
-
 }
