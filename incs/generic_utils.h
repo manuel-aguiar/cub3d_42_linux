@@ -46,4 +46,7 @@ void	*ptr_ternary(bool cond, void *yes, void *no);
 void	int_swap(int *first, int *second);
 void	float_swap(float *first, float *second);
 
+//float_equal.c
+bool	float_equal(float num, float target, float error);
+
 #endif
