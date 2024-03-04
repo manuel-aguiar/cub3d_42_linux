@@ -12,6 +12,8 @@
 
 #include "parsing.h"
 
+void	flood_fill(t_parsing *parse, int row, int col, char caller);
+
 static inline void fill_it(t_parsing *parse, int row, int col, char me)
 {
 	flood_fill(parse, row - 1, col - 1, me);

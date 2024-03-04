@@ -12,7 +12,7 @@
 
 #include "game.h"
 
-static inline void	player_isnt_walking(t_player *player, t_game *game)
+static inline void	player_isnt_walking(t_player *player)
 {
 	if (player->walk_z_mod > 0)
 		player->walk_z_mod = float_clamp(player->walk_z_mod \
@@ -49,5 +49,5 @@ void	player_walk_height(t_player *player, t_game *game)
 		}
 	}
 	else
-		player_isnt_walking(game, player);
+		player_isnt_walking(player);
 }

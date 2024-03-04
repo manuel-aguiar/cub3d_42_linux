@@ -1,20 +1,20 @@
 
 ## BUILD DETAILS
 
-NAME 		=		cub3d
+NAME 		=		cub3D
 
-COMP 		= 		cc -g -O3 -fsanitize=address
+COMP 		= 		cc -O3
 
 FLAGS 		= 		-Wall -Werror -Wextra
 ADD_LIB 	= 		-L./$(LIB_PATH) -lft
-MLX_LIB		=		-Lminilibx-linux -lminilibx-linux -L/usr/lib -lmlx -lXext -lX11 -lm -lz
+MLX_LIB		=		-Lmlx_linux -L/usr/lib -lmlx -lXext -lX11 -lm -lz
 RM 			=		rm
 MAKE		=		make
 
 
 ## FOLDER PATH ##
-INC_MLX 	=		-I/usr/include -Iminilibx-linux
-MLX_PATH	=		minilibx-linux
+INC_MLX 	=		-I/usr/include -Imlx_linux
+MLX_PATH	=		mlx_linux
 INC_PATH	=		incs
 SRC_PATH	=		srcs
 OBJ_PATH	=		objs
@@ -117,7 +117,8 @@ SRC_GENERIC_UTILS 	= 	ft_split_count_replenish.c		\
 						radian_truncate.c				\
 						cubed_string_funcs.c			\
 						ft_ternary.c					\
-						ft_swap.c
+						ft_swap.c						\
+						float_equal.c
 
 SRC_REN_WIN			=	win_init_window.c		\
 						win_pixels.c			\
@@ -223,7 +224,7 @@ $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c $(INCS)
 
 $(LIBFT):
 	@$(MAKE) -C $(LIB_PATH)
-##@$(MAKE) -C $(MLX_PATH)
+	@$(MAKE) -C $(MLX_PATH)
 
 $(MLX):
 	@$(MAKE) -C $(MLX_PATH)
@@ -237,7 +238,7 @@ clean:
         rm -rf $(OBJ_PATH); \
     fi
 	@$(MAKE) clean -C $(LIB_PATH)
-##@$(MAKE) clean -C $(MLX_PATH)
+	@$(MAKE) clean -C $(MLX_PATH)
 	@echo Objects successfully deleted!
 
 fclean: clean
