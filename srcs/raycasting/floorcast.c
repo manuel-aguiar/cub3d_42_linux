@@ -85,7 +85,7 @@ static inline void setup_this_ceiling_line(t_game *game, t_floor_line *line, \
 void	floorcast(t_game *game)
 {
 	t_floor_line	line;
-	t_xpm_tex 		*tex;
+	t_mlx_img 		*tex;
 	int x;
 	int	y;
 	int end;

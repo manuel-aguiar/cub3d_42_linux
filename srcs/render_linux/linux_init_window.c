@@ -19,7 +19,7 @@ int	win_init_window(t_win *win)
 		return (error_msg_int("cub3d: mlx failed to initialize\n", STDERR_FILENO, 0));
 	win->mlx_win = mlx_new_window(win->mlx, win->width, win->height, win->name);
 	win->front_buf.img = mlx_new_image(win->mlx, win->width, win->height);
-	win->front_buf.addr = mlx_get_data_addr(win->front_buf.img, \
+	win->front_buf.pixels = mlx_get_data_addr(win->front_buf.img, \
 		&(win->front_buf.bpp), &(win->front_buf.line_len), \
 		&(win->front_buf.endian));
 	win->rgb_size = win->front_buf.bpp / 8;

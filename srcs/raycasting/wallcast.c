@@ -68,6 +68,7 @@ void	wallcast(t_game *game, t_ray *ray, t_dda_hor *hori, int x)
 	{
 		line.tex_pix_y = (int)line.tex_exact_y;
 		line.tex_exact_y += line.step;
+		//printf("tex %d %d index %d\n", line.tex_pix_x , line.tex_pix_y, line.tex_pix_x * line.tex->height + line.tex_pix_y);
 		line.color = tex_get_pixel(&game->win, line.tex, line.tex_pix_x * line.tex->width + line.tex_pix_y);
 		line.color = add_shade(line.color, line.shade_wgt);
 		game->win.set_pixel(&game->win, x, line.y_start, line.color);

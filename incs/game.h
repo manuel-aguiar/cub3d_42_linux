@@ -52,12 +52,12 @@ typedef struct t_wall_line
 	int			y_end;
 	int			color;
 	float		shade_wgt;
-	t_xpm_tex 	*tex;
+	t_mlx_img 	*tex;
 }	t_wall_line;
 
 typedef struct s_floor_line
 {
-	t_xpm_tex	*tex;
+	t_mlx_img	*tex;
 	int			win_h;
 	int			win_w;
 	t_vec2d	ray_left;
@@ -126,7 +126,7 @@ typedef struct s_sp_cast
 	float		shade_wgt;
 	int			tex_pix_x;
 	int			tex_pix_y;
-	t_xpm_tex 	*tex;
+	t_mlx_img 	*tex;
 	int			color;
 }	t_sp_cast;
 
@@ -176,7 +176,7 @@ typedef struct s_door_cast
 	int				draw_end_x;
 	int				draw_st_y;
 	int				draw_end_y;
-	t_xpm_tex 		*tex;
+	t_mlx_img 		*tex;
 }	t_door_cast;
 
 typedef struct s_bullet_colli
@@ -209,7 +209,7 @@ typedef struct s_game
 	int			minmax_hori;
 	float		max_vis_dist;
 	float		wall_reflection;
-	t_xpm_tex	tex[NUM_TEX];
+	t_mlx_img	tex[NUM_TEX];
 	int			colors[NUM_TEX];
 	t_sprite	*sprites;
 	t_sprite	**sorted;
@@ -264,7 +264,7 @@ void	game_key_manager(t_game *game);
 void	game_mouse_manager(t_game *game);
 
 
-void	xpm_to_window(t_win *win, t_xpm_tex *tex, t_pixel corner, int pixel_wid, int pixel_hgt);
+void	xpm_to_window(t_win *win, t_mlx_img *tex, t_pixel corner, int pixel_wid, int pixel_hgt);
 
 void	player_actions(t_game *game);
 void	player_rotate_and_pitch(t_game *game);
@@ -328,7 +328,7 @@ int			extract_door(t_game *game, t_map *map, int place, int map_index);
 int		game_load_textures(t_game *game);
 
 //tex_get_pixel.c
-int		tex_get_pixel(t_win *win, t_xpm_tex *tex, int index);
+int		tex_get_pixel(t_win *win, t_mlx_img *tex, int index);
 
 //game_rand_gen.c
 float	rand_float(t_rand_gen *rand, float min, float max);

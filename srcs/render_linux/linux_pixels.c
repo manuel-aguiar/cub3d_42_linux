@@ -22,7 +22,7 @@ void	linux_set_pixel(t_win *win, int x, int y, int color)
 	char		*dst;
 
 	y = win->height - y - 1;
-	dst = win->front_buf.addr + (y * win->front_buf.line_len + \
+	dst = win->front_buf.pixels + (y * win->front_buf.line_len + \
 		x * (win->front_buf.bpp / 8));
 	*(unsigned int *)dst = color;
 }
@@ -32,7 +32,7 @@ int	linux_get_pixel(t_win *win, int x, int y)
 	char		*dst;
 
 	y = win->height - y - 1;	
-	dst = win->front_buf.addr + (y * win->front_buf.line_len + \
+	dst = win->front_buf.pixels + (y * win->front_buf.line_len + \
 		x * (win->front_buf.bpp / 8));
 	return (*(unsigned int *)dst);
 }

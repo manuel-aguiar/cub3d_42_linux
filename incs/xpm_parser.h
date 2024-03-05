@@ -17,6 +17,8 @@
 # include "pixel_point.h"
 # include "libft.h"
 
+/*
+
 typedef enum
 {
 	TEX_REGULAR,
@@ -29,18 +31,12 @@ typedef struct s_xpm_pair
 	int		color;
 }	t_xpm_pair;
 
-typedef struct s_xpm_tex
-{
-	int			width;
-	int			height;
-	char		*pixels;
-	e_tex_type	type;
-}	t_xpm_tex;
+
 
 typedef struct s_xpm_parser
 {
 	char 		**xpm;
-	t_xpm_tex	*tex;
+	t_mlx_img	*tex;
 	t_xpm_pair	*id_color;
 	char		**split;
 	int			s_count;
@@ -49,8 +45,10 @@ typedef struct s_xpm_parser
 	e_tex_type	type;
 }	t_xpm_parser;
 
-t_xpm_tex	*xpm_to_tex(char *xpm[], e_tex_type tex_type);
-int			xpm_tex_copy_transpose(t_xpm_tex *tex);
-void		xpm_tex_free(t_xpm_tex *tex);
+t_mlx_img	*xpm_to_tex(char *xpm[], e_tex_type tex_type);
+int			xpm_tex_copy_transpose(t_mlx_img *tex);
+void		xpm_tex_free(t_mlx_img *tex);
+
+*/
 
 #endif

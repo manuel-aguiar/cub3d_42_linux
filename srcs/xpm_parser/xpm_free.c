@@ -12,7 +12,7 @@
 
 #include "xpm_parser.h"
 
-void	xpm_tex_free(t_xpm_tex *tex)
+void	xpm_tex_free(t_mlx_img *tex)
 {
 	free(tex->pixels);
 	free(tex);

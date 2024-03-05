@@ -76,7 +76,7 @@ void	game_actions(t_game *game)
 int	game_render(t_game *game)
 {
 	game_actions(game);
-	ft_memset(game->win.front_buf.addr, 0, game->win.width * game->win.height * game->win.rgb_size);
+	ft_memset(game->win.front_buf.pixels, 0, game->win.width * game->win.height * game->win.rgb_size);
 	if ((game->win.keys >> BIT_PAUSE_T) & 0xff)
 		window_pause_manager(&game->win, PAUSE_ON, (game->win.keys >> BIT_BLUR_T) & 1, pause_text_string);
 	else if (game->win.blur.elapsed > 0)

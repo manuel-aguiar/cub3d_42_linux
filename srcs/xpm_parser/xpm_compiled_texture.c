@@ -12,7 +12,7 @@
 
 # include "xpm_parser.h"
 
-void	print_tex(t_xpm_tex *tex)
+void	print_tex(t_mlx_img *tex)
 {
 	printf("tex: width %d, height %d\n", tex->width, tex->height);
 	int i;
@@ -41,7 +41,7 @@ void	print_xpm_pair(t_xpm_pair *id_color, int color_count)
 	}
 }
 
-static void	*free_xpm_tex(t_xpm_tex **tex)
+static void	*free_xpm_tex(t_mlx_img **tex)
 {
 	if (((*tex)->pixels))
 		free((*tex)->pixels);
@@ -267,7 +267,7 @@ void	*xpm_set_id_color(t_xpm_parser *parse)
 	return ((void *)1);
 }
 
-t_xpm_tex	*xpm_to_tex(char *xpm[], e_tex_type tex_type)
+t_mlx_img	*xpm_to_tex(char *xpm[], e_tex_type tex_type)
 {
 	t_xpm_parser	parse;
 
@@ -278,7 +278,7 @@ t_xpm_tex	*xpm_to_tex(char *xpm[], e_tex_type tex_type)
 	parse.tex = malloc(sizeof(*parse.tex));
 	if (!parse.tex)
 		return (NULL);
-	*parse.tex = (t_xpm_tex){};
+	*parse.tex = (t_mlx_img){};
 	parse.tex->type = tex_type;
 	parse.split = ft_split_count(parse.xpm[0], " ", &parse.s_count);
 	if (!parse.split)
@@ -312,7 +312,7 @@ t_xpm_tex	*xpm_to_tex(char *xpm[], e_tex_type tex_type)
 	return (parse.tex);
 }
 
-int	xpm_tex_copy_transpose(t_xpm_tex *tex)
+int	xpm_tex_copy_transpose(t_mlx_img *tex)
 {
 	int	*new_pixels;
 	int	swap;

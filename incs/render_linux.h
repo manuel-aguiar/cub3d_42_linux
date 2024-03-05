@@ -139,10 +139,12 @@ typedef enum
 typedef struct s_mlx_img
 {
 	void	*img;
-	char	*addr;
+	char	*pixels;
 	int		bpp;
 	int		line_len;
 	int		endian;
+	int		width;
+	int		height;
 }	t_mlx_img;
 
 struct s_win

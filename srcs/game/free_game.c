@@ -16,6 +16,13 @@ int	free_game(t_game *game)
 {
 	int i;
 
+	i = 0;
+	while (i < NUM_TEX)
+	{
+		if (game->tex[i].img)
+			mlx_destroy_image(game->win.mlx, game->tex[i].img);
+		i++;
+	}
 	free_window(&game->win);
 	free_compass(&game->compass);
 	free_map(&game->map);
@@ -23,13 +30,6 @@ int	free_game(t_game *game)
 		free(game->hori_rays);
 	if (game->verti_rays)
 		free(game->verti_rays);
-	i = 0;
-	while (i < NUM_TEX)
-	{
-		if (game->tex[i].pixels)
-			mlx_destroy_image(game->win.mlx, game->tex[i].pixels);
-		i++;
-	}
 	if (game->sprites)
 	{
 		i = 0;

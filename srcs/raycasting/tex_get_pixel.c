@@ -12,7 +12,7 @@
 
 #include "game.h"
 
-int		tex_get_pixel(t_win *win, t_xpm_tex *tex, int index)
+int		tex_get_pixel(t_win *win, t_mlx_img *tex, int index)
 {
 	char		*dst;
 

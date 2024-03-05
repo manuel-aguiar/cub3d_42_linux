@@ -116,8 +116,10 @@ void		update_enemy(t_game *game, t_sprite *sprite)
 	}
 	enemy->elapsed += game->player.clock->elapsed;
 	if (enemy->elapsed >= enemy->ms_to_swap)
+	{
 		sprite->inverted = !sprite->inverted;
-	enemy->elapsed %= enemy->ms_to_swap;
+		enemy->elapsed = rand_int(&game->rand, 0, enemy->ms_to_swap);
+	}
 	if (enemy->attack_elapsed != -1)
 		enemy->attack_elapsed += game->player.clock->elapsed;
 	if (enemy->attack_elapsed >= enemy->attack_time)

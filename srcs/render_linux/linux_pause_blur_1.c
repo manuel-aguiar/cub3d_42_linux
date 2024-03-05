@@ -46,7 +46,7 @@ void	dump_blur_to_front_buf(t_win *win, t_pause_blur *blur, char *dump)
 	{
 		index = (blur->kernel_centre + y * win->width) * win->rgb_size;
 		size = (win->width - (int)(blur->kernel_size / 2) * 2) * win->rgb_size;
-		ft_memcpy(&win->front_buf.addr[index], &dump[index], size);
+		ft_memcpy(&win->front_buf.pixels[index], &dump[index], size);
 		y++;
 	}
 }
@@ -159,7 +159,7 @@ void	window_pause_manager(t_win *win, e_pause_state state, bool blur_on, void st
 		}
 		if (blur->elapsed <= 0)
 		{
-			ft_memcpy(blur->save_front, win->front_buf.addr, win->height * win->width * win->rgb_size);
+			ft_memcpy(blur->save_front, win->front_buf.pixels, win->height * win->width * win->rgb_size);
 			window_update_clock(win);
 			blur->elapsed = 1;
 			mlx_mouse_show(win->mlx, win->mlx_win);

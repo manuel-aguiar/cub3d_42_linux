@@ -56,22 +56,11 @@ void		game_find_player_set_angles(t_game *game)
 // GLOBALS NEEDED BY GLFW
 
 
-extern char *g_f_bullet[];
-extern char *g_coisas[];
-extern char *g_yayaya[];
-extern char *g_cenas[];
-extern char *g_dementor[];
-extern char *g_margarida[];
-extern char *g_door[];
-extern char *g_gun[];
-
-
-
-
 int		game_start(t_game *game, char *game_config)
 {
 	*game = (t_game){};
 	apply_all_settings(game);
+	start_clock(&game->clock);
 	if (!map_parsing(&game->map, game_config) \
 	|| !setup_sprites(game))
 		return (0);
