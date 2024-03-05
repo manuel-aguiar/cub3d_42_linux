@@ -1,5 +1,5 @@
 /* XPM */
-char * g_dementor[] = {
+static char * g_dementor[] = {
 "682 700 2489 2",
 "  	c #000000",
 ". 	c #09070D",

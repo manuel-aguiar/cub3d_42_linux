@@ -202,6 +202,7 @@ typedef struct s_game
 	float		max_vis_dist;
 	float		wall_reflection;
 	t_xpm_tex	*tex[NUM_TEX];
+	int			colors[NUM_TEX];
 	t_sprite	*sprites;
 	t_sprite	**sorted;
 	int			sprite_count;

@@ -224,7 +224,7 @@ $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c $(INCS)
 
 $(LIBFT):
 	@$(MAKE) -C $(LIB_PATH)
-	@$(MAKE) -C $(MLX_PATH)
+##	@$(MAKE) -C $(MLX_PATH)
 
 $(MLX):
 	@$(MAKE) -C $(MLX_PATH)
@@ -238,7 +238,7 @@ clean:
         rm -rf $(OBJ_PATH); \
     fi
 	@$(MAKE) clean -C $(LIB_PATH)
-	@$(MAKE) clean -C $(MLX_PATH)
+##	@$(MAKE) clean -C $(MLX_PATH)
 	@echo Objects successfully deleted!
 
 fclean: clean
