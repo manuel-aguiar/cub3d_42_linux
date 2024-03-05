@@ -41,7 +41,7 @@ void	player_walk_height(t_player *player, t_game *game)
 		if (player->hgt_state == HGT_PRONE)
 			radius = player->prone_radius;
 		player->walk_z_mod = -sinf(player->cur_walk_sense) \
-			/ (speed) * radius;
+			/ (speed) * radius * float_ternary(player->is_aiming, 0.25f, 1);
 		if (player->cur_walk_sense > 2 * MY_PI)
 		{
 			player->is_walking = false;
