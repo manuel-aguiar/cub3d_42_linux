@@ -66,7 +66,7 @@ void	blur_horizontal(t_pause_blur *blur, char *dest, char *src, int width, int h
 	int		x;
 	float	colors[4];
 	int 	i;
-	
+
 	y = blur->kernel_size / 2;
 	while (y < height - blur->kernel_size / 2)
 	{
@@ -75,7 +75,7 @@ void	blur_horizontal(t_pause_blur *blur, char *dest, char *src, int width, int h
 		{
 			blur_index = (y * width + x) * blur->rgb_size;
 			ft_memset(colors, 0, sizeof(colors));
-			i = 0;					
+			i = 0;
 			while (i < blur->kernel_size)
 			{
 				blur->save_pixels[i] = *(int *)&src[(y * width + x - blur->kernel_centre + i) * blur->rgb_size];
@@ -116,8 +116,8 @@ static void pause_setup_kernel(t_pause_blur *blur)
 	while (i < blur->kernel_size)
 	{
         blur->kernel[i] = pause_gaussian(i - blur->kernel_centre, sqrt(blur->cur_sigma));
-        sum += blur->kernel[i];	
-		i++;	
+        sum += blur->kernel[i];
+		i++;
 	}
 	i = 0;
 	while (i < blur->kernel_size)
@@ -143,7 +143,7 @@ void	blur_pause(t_win *win, t_pause_blur *blur, bool increase_blur)
 	dump_blur_to_front_buf(win, blur, blur->second);
 }
 
-void	window_pause_manager(t_win *win, e_pause_state state, bool blur_on)
+void	window_pause_manager(t_win *win, e_pause_state state, bool blur_on, void string(t_win *))
 {
 	t_pause_blur *blur;
 
@@ -161,6 +161,7 @@ void	window_pause_manager(t_win *win, e_pause_state state, bool blur_on)
 			ft_memcpy(blur->save_front, win->front_buf.addr, win->height * win->width * win->rgb_size);
 			window_update_clock(win);
 			blur->elapsed = 1;
+			mlx_mouse_show(win->mlx, win->mlx_win);
 		}
 		if (blur_on)
 			blur_pause(win, blur, true);
@@ -173,6 +174,7 @@ void	window_pause_manager(t_win *win, e_pause_state state, bool blur_on)
 		if (blur->elapsed <= 0)
 		{
 			blur->elapsed = 0;
+			mlx_mouse_hide(win->mlx, win->mlx_win);
 			return ;
 		}
 		if (blur->elapsed >= blur->pause_time)
@@ -180,11 +182,12 @@ void	window_pause_manager(t_win *win, e_pause_state state, bool blur_on)
 			blur->elapsed = blur->pause_time;
 			window_update_clock(win);
 		}
-			
+
 		//printf("blur elapsed off %d\n", blur->elapsed);
 		if (blur_on)
 			blur_pause(win, blur, false);
 		else
 			blur->elapsed = int_clamp(blur->elapsed - window_update_clock(win), 0, blur->pause_time);
 	}
+	string(win);
 }

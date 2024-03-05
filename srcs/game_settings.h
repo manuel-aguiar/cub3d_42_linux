@@ -35,8 +35,8 @@
 # define RGBA(r, g, b, a) (((a) << 24) | ((r) << 16) | ((g) << 8) | (b))
 
 /* compass settings */
-# define COMP_CENTRE_X WIN_WIDTH / 6 
-# define COMP_CENTRE_Y WIN_HEIGHT / 4 
+# define COMP_CENTRE_X WIN_WIDTH / 6
+# define COMP_CENTRE_Y WIN_HEIGHT / 4
 
 # define COMP_MAX_RAD 300
 # define COMP_MIN_RAD 50
@@ -71,9 +71,9 @@
 # define PLAYER_ATTACK_VAL 10
 
 # define PLAY_UNIT_SIZE 0.2f
-# define PLAY_FORWARD_MOVE_SENSE 0.0022f  //0.003f 
-# define PLAY_SIDE_MOVE_SENSE 0.0013f		//0.0018f 
-# define PLAY_BACK_MOVE_SENSE 0.0008f		//0.0008f 
+# define PLAY_FORWARD_MOVE_SENSE 0.0022f  //0.003f
+# define PLAY_SIDE_MOVE_SENSE 0.0013f		//0.0018f
+# define PLAY_BACK_MOVE_SENSE 0.0008f		//0.0008f
 # define PLAY_SPRINT_MULTI 1.5f
 # define PLAY_BASE_PITCH 0
 
@@ -191,6 +191,9 @@
 # define BULLET_UNIT_SIZE 0.1f
 # define BULLET_ATTACK_VAL PLAYER_ATTACK_VAL
 # define BULLET_BASE_Z 0.0f
+
+# define GAME_WIN_TIME 2000
+# define GAME_LOST_TIME 2000
 
 void	settings_template_door(t_door *door);
 void	settings_template_ammo(t_ammo *ammo);

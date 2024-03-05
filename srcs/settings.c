@@ -85,4 +85,9 @@ void	apply_all_settings(t_game *game)
 	game->max_bullets = 0;
 	game->max_bullets = MAX_BULLETS;
 	game->live_bullets = 0;
+	game->cur_time_win_str = 0;
+	game->total_time_win_str = GAME_WIN_TIME;
+	game->is_lost = false;
+	game->cur_time_lost_str = 0;
+	game->total_time_lost_str = GAME_LOST_TIME;
 }

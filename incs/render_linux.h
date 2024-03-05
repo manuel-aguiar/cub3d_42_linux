@@ -15,8 +15,8 @@
 # define RENDER_LINUX_H
 
 # include <mlx.h>
-# include <time.h> 
-# include <sys/time.h> 
+# include <time.h>
+# include <sys/time.h>
 
 # define MY_PI 3.14159265f
 
@@ -25,7 +25,7 @@
 # include "vector.h"
 # include "pixel_point.h"
 
-# define RGB_SIZE 4 
+# define RGB_SIZE 4
 
 typedef struct s_win t_win;
 typedef struct s_pixel t_pixel;
@@ -187,9 +187,14 @@ void	swap_pixels(t_pixel *start, t_pixel *end);
 void 	chatgpt_anticircle(t_win *win, t_pixel centre, int radius, int color);
 
 
-void	window_pause_manager(t_win *win, e_pause_state state, bool blur_on);
+void	window_pause_manager(t_win *win, e_pause_state state, bool blur_on, void string(t_win *));
 
 void	start_clock(t_clock *clock);
 void	update_clock(t_clock *clock);
+
+void	pause_text_string(t_win *win);
+void	you_lost_text_string(t_win *win);
+void	enemies_defeated_text_string(t_win *win);
+
 
 #endif

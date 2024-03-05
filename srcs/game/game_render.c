@@ -46,20 +46,23 @@ void		update_sprites(t_game *game)
 		if (game->sorted[i]->type == BULLET && game->sorted[i]->status != GONE)
 			update_bullet(game, game->sorted[i]);
 		i++;
-	}	
+	}
 }
 
 int	game_is_paused(t_game *game)
 {
 	if ((game->win.keys >> BIT_PAUSE_T) & 1 \
 	|| (!((game->win.keys >> BIT_PAUSE_T) & 1) \
-	&& game->win.blur.elapsed > 0))
+	&& game->win.blur.elapsed > 0)
+	|| game->is_lost)
 		return (1);
 	return (0);
 }
 
 void	game_actions(t_game *game)
 {
+	if ((game->win.keys >> BIT_ESC) & 1)
+		free_game(game);
 	update_clock(&game->clock);
 	if (game_is_paused(game))
 		return ;
@@ -75,9 +78,19 @@ int	game_render(t_game *game)
 	game_actions(game);
 	ft_memset(game->win.front_buf.addr, 0, game->win.width * game->win.height * game->win.rgb_size);
 	if ((game->win.keys >> BIT_PAUSE_T) & 0xff)
-		window_pause_manager(&game->win, PAUSE_ON, (game->win.keys >> BIT_BLUR_T) & 1);
+		window_pause_manager(&game->win, PAUSE_ON, (game->win.keys >> BIT_BLUR_T) & 1, pause_text_string);
 	else if (game->win.blur.elapsed > 0)
-		window_pause_manager(&game->win, PAUSE_OFF, (game->win.keys >> BIT_BLUR_T) & 1);
+		window_pause_manager(&game->win, PAUSE_OFF, (game->win.keys >> BIT_BLUR_T) & 1, pause_text_string);
+	else if (game->is_lost)
+	{
+		if (game->cur_time_lost_str >= game->total_time_lost_str)
+			free_game(game);
+		else
+		{
+			game->cur_time_lost_str += game->clock.elapsed;
+			window_pause_manager(&game->win, PAUSE_ON, (game->win.keys >> BIT_BLUR_T) & 1, you_lost_text_string);
+		}
+	}
 	else
 	{
 		hori_raycasting(game);
@@ -93,6 +106,11 @@ int	game_render(t_game *game)
 		}
 	}
 	game->win.set_pixel(&game->win, game->win.width / 2, game->win.height / 2, (unsigned int)-1);
+	if (game->enemy_count == 0 && game->cur_time_win_str < game->total_time_win_str)
+	{
+		game->cur_time_win_str += game->clock.elapsed;
+		enemies_defeated_text_string(&game->win);
+	}
 	mlx_put_image_to_window(game->win.mlx, game->win.mlx_win, game->win.front_buf.img, 0, 0);
 	return (1);
 }

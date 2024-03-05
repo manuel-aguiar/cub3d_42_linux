@@ -16,7 +16,7 @@ static inline void setup_hit_ray(t_game *game, t_ray *ray, t_vec2d dir)
 {
 	ray->start = game->player.map_posi;
 	ray->ray_dir = dir;
-	
+
 	ray->step.x = float_ternary(ray->ray_dir.x == 0, FLT_MAX , ft_fabs(1.0f / ray->ray_dir.x));
 	ray->step.y = float_ternary(ray->ray_dir.y == 0, FLT_MAX , ft_fabs(1.0f / ray->ray_dir.y));
 	ray->player_sqr = (t_vec2d){(float)((int)ray->start.x), (float)((int)ray->start.y)};
@@ -46,7 +46,7 @@ static inline void move_ray(t_ray *ray)
 		ray->first.y += ray->step.y;
 		ray->side = 1;
 		ray->wall_dist = (ray->first.y - ray->step.y);
-	}    
+	}
 }
 
 int	enemy_sees_player(t_game *game, t_sprite *sprite, t_vec2d dir)
@@ -54,7 +54,7 @@ int	enemy_sees_player(t_game *game, t_sprite *sprite, t_vec2d dir)
 	t_ray	ray;
 	int		map_index;
 	t_door *door;
-	
+
 	setup_hit_ray(game, &ray, dir);
 	while(1)
 	{
@@ -68,16 +68,16 @@ int	enemy_sees_player(t_game *game, t_sprite *sprite, t_vec2d dir)
 			door = ((t_door *)(game->map.doors[map_index]->data));
 			if(door->state == DOOR_CLOSED)
 			{
-				if (door->orient == NS && 
+				if (door->orient == NS &&
 				((sprite->posi.y > door->base_position.y && door->base_position.y > game->player.map_posi.y) ||
 				(sprite->posi.y < door->base_position.y && door->base_position.y < game->player.map_posi.y)))
 					return (0);
-				if (door->orient == WE && 
+				if (door->orient == WE &&
 				((sprite->posi.x > door->base_position.x && door->base_position.x > game->player.map_posi.x) ||
 				(sprite->posi.x < door->base_position.x && door->base_position.x < game->player.map_posi.x)))
 					return (0);
 			}
-				
+
 		}
 		if ((int)ray.player_sqr.x == (int)sprite->posi.x
 		&& (int)ray.player_sqr.y == (int)sprite->posi.y)
@@ -128,6 +128,8 @@ void		update_enemy(t_game *game, t_sprite *sprite)
 		{
 			game->player.health[CTR_CUR] = ft_max(game->player.health[CTR_CUR] - enemy->attack_val, 0);
 			enemy->attack_elapsed = 0;
+			if (game->player.health[CTR_CUR] == 0)
+				game->is_lost = true;
 		}
 	}
 	enemy_movement(game, sprite, enemy);

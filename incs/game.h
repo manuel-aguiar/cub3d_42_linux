@@ -216,6 +216,11 @@ typedef struct s_game
 	t_ammo		template_ammo;
 	t_enemy		template_enemy;
 	t_bullet	template_bullet;
+	int			cur_time_win_str;
+	int			total_time_win_str;
+	bool		is_lost;
+	int			cur_time_lost_str;
+	int			total_time_lost_str;
 	t_clock		clock;
 }	t_game;
 
