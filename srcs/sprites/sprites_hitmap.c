@@ -120,8 +120,6 @@ void    setup_hitmap(t_game *game)
 	int         i;
 	t_sprite    *sprite;
 
-	sprite_calc_dist(game);
-	sprite_qs_distance(game->sorted, game->sprite_count, sprite_qs_comp);
 	i = 0;
 	while (i < game->sprite_count)
 	{

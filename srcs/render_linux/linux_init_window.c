@@ -22,6 +22,7 @@ int	win_init_window(t_win *win)
 	win->front_buf.addr = mlx_get_data_addr(win->front_buf.img, \
 		&(win->front_buf.bpp), &(win->front_buf.line_len), \
 		&(win->front_buf.endian));
+	win->rgb_size = win->front_buf.bpp / 8;
 	win->blur.first = malloc(sizeof(*win->blur.first) * win->width * win->height * win->rgb_size);
 	win->blur.second = malloc(sizeof(*win->blur.second) * win->width * win->height * win->rgb_size);
 	win->blur.save_front = malloc(sizeof(*win->blur.save_front) * win->width * win->height * win->rgb_size);
@@ -42,12 +43,14 @@ int	free_window(t_win *win)
 	if (win->front_buf.img)
 		mlx_destroy_image(win->mlx, win->front_buf.img);
 	if (win->mlx_win)
+	{
+		mlx_mouse_show(win->mlx, win->mlx_win);
 		mlx_destroy_window(win->mlx, win->mlx_win);
+	}
 	if (win->mlx)
 	{
-		mlx_destroy_display(win->mlx);
 		mlx_do_key_autorepeaton(win->mlx);
-		mlx_mouse_show(win->mlx, win->mlx_win);
+		mlx_destroy_display(win->mlx);
 	}
 	if (win->blur.first)
 		free(win->blur.first);

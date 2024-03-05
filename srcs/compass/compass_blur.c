@@ -56,7 +56,9 @@ void	blur_compass(t_win *win, t_compass *comp)
 	y = 0;
 	while (y < height)
 	{
-		if (y >= comp->inner.min_max[MM_MIN_Y] + comp->radius - centre && y < comp->inner.min_max[MM_MAX_Y] + comp->radius + centre)
+		if (y >= comp->inner.min_max[MM_MIN_Y] + comp->radius - centre \
+		&& y < comp->inner.min_max[MM_MAX_Y] + comp->radius + centre \
+		&& y >= rad_diff && y < height  - rad_diff )
 		{
 			x = 0;
 			while (x < height)

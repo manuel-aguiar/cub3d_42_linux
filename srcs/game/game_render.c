@@ -28,8 +28,6 @@ void		update_sprites(t_game *game)
 	{
 		if (game->sorted[i]->status != GONE)
 		{
-			if (game->sorted[i]->type == BULLET)
-				update_bullet(game, game->sorted[i]);
 			if (game->sorted[i]->type == DOOR)
 				update_door(game, game->sorted[i]);
 			if (game->sorted[i]->type == ENEMY)
@@ -38,11 +36,17 @@ void		update_sprites(t_game *game)
 				update_medikit(game, game->sorted[i]);
 			if (game->sorted[i]->type == AMMOKIT)
 				update_ammokit(game, game->sorted[i]);
-			if (game->sorted[i]->status != GONE)
-				sprite_place_hitmap(game, game->sorted[i]);			
+			sprite_place_hitmap(game, game->sorted[i]);
 		}
 		i++;
 	}
+	i = 0;
+	while (i < game->sprite_count)
+	{
+		if (game->sorted[i]->type == BULLET && game->sorted[i]->status != GONE)
+			update_bullet(game, game->sorted[i]);
+		i++;
+	}	
 }
 
 int	game_is_paused(t_game *game)

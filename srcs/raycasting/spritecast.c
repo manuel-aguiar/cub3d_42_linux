@@ -82,7 +82,7 @@ void	sprite_cast(t_game *game)
 	{
 		if (game->sorted[i]->type == DOOR)
 			doorcast(game, game->sorted[i]);
-		if (game->sorted[i]->status != GONE)
+		else if (game->sorted[i]->status != GONE)
 		{
 			setup_this_spritecast(game, &cast, i);
 

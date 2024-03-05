@@ -36,9 +36,9 @@ static inline t_vdmnode	*iterate_remove_empty(t_parsing *parsing, \
 
 	while (node && is_only_spaces((char *)(node->data)))
 	{
-		save = node;
+		save = node->next;
 		vdmlist_del_node(parsing->list, node, free);
-		node = save->next;
+		node = save;
 	}
 	return (node);
 }

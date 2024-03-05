@@ -72,13 +72,13 @@ void	set_hitbox(t_sprite *target, t_vec2d box[2])
 		door = (t_door *)target->data;
 		if (door->orient == NS)
 		{
-			box[0] = (t_vec2d){target->posi.x - 0.5f, target->posi.y - 0.01f};
-			box[1] = (t_vec2d){target->posi.x + 0.5f, target->posi.y + 0.01f};
+			box[0] = (t_vec2d){target->posi.x - 0.5f, target->posi.y - 0.05f};
+			box[1] = (t_vec2d){target->posi.x + 0.5f, target->posi.y + 0.05f};
 		}
 		else
 		{
-			box[0] = (t_vec2d){target->posi.x - 0.01f, target->posi.y - 0.5f};
-			box[1] = (t_vec2d){target->posi.x + 0.01f, target->posi.y + 0.5f};
+			box[0] = (t_vec2d){target->posi.x - 0.05f, target->posi.y - 0.5f};
+			box[1] = (t_vec2d){target->posi.x + 0.05f, target->posi.y + 0.5f};
 		}
 	}
 }
