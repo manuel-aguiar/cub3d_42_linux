@@ -17,6 +17,11 @@ pause:
 hud:
     automate hud for the size of the window, right now it is fixed
 
+game:
+	  exit when health reaches zero
+    pause screen, string "YOU LOST!!", couple of seconds, exit
+    enemy counter, let know when all enemies died, counter down when enemy down
+
 norminette:
     norminette everything in sight.......
 

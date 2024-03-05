@@ -129,7 +129,8 @@ SRC_REN_LINUX		=	linux_init_window.c		\
 						linux_callback_mouse.c	\
 						linux_clock.c				\
 						linux_pause_blur_1.c		\
-						linux_pause_blur_2.c
+						linux_pause_blur_2.c		\
+						linux_help_string.c
 
 SRC_COMPASS			=	compass_setup_render.c		\
 						letter_north.c				\

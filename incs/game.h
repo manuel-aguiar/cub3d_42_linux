@@ -194,7 +194,6 @@ typedef struct s_game
 	t_compass	compass;
 	t_win		win;
 	t_player	player;			//pointers because GLFW requires globals, change to stack with MLX;
-	int			*key_defs;
 	t_dda_hor	*hori_rays;
 	t_dda_ver	*verti_rays;
 	int			maxmin_hori;
@@ -206,6 +205,7 @@ typedef struct s_game
 	t_sprite	*sprites;
 	t_sprite	**sorted;
 	int			sprite_count;
+	int			enemy_count;
 	float		floating;
 	float		float_sense;
 	float		float_sin;

@@ -38,6 +38,7 @@ int	extract_enemy(t_game *game, t_map *map, int place, int map_index)
 	sprite->unit_size = data->unit_size;
 	sprite->dist = FLT_MAX;
 	sprite->tex = ENEMY_TEX;
+	game->enemy_count++;
 	return (1);
 }
 

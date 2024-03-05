@@ -24,6 +24,7 @@ void	enemy_take_damage(t_game *game, t_sprite *sprite)
 	if (enemy->health <= 0)
 	{
 		sprite->status = GONE;
+		game->enemy_count--;
 		printf("enemy down!!\n");
 	}
 	else
