@@ -115,6 +115,8 @@ typedef struct s_player
 	float			jump_release_cap;
 	float			jump_z_mod;
 
+	int				min_shot_time;
+	int				cur_shot_time;
 	float			shot_pitch_mod;
 	float			shot_init;
 	float			shot_gravity;

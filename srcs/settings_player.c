@@ -28,6 +28,8 @@ static inline void	settings_player_three(t_player *player)
 	player->ammo[CTR_MIN] = PLAY_AMMO_MIN;
 	player->ammo[CTR_MAX] = PLAY_AMMO_MAX;
 	player->attack = PLAY_BULLET_DAMAGE;
+	player->min_shot_time = PLAY_SHOT_MIN_TIME;
+	player->cur_shot_time = 0;
 	player->shot_pitch_mod = 0;
 	player->shot_init = PLAY_SHOT_INIT;
 	player->shot_gravity = PLAY_SHOT_GRAVITY;
