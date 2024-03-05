@@ -49,17 +49,6 @@ typedef struct s_xpm_parser
 	e_tex_type	type;
 }	t_xpm_parser;
 
-extern char *g_teste[];
-extern char *g_north[];
-extern char *g_south[];
-extern char *g_east[];
-extern char *g_west[];
-extern char *g_floor[];
-extern char *g_ceiling[];
-
-extern char *g_mario[];
-extern char *g_medikit[];
-
 t_xpm_tex	*xpm_to_tex(char *xpm[], e_tex_type tex_type);
 int			xpm_tex_copy_transpose(t_xpm_tex *tex);
 void		xpm_tex_free(t_xpm_tex *tex);

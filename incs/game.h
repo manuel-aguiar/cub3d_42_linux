@@ -309,4 +309,8 @@ int			extract_ammo(t_game *game, t_map *map, int place, int map_index);
 int			extract_medi(t_game *game, t_map *map, int place, int map_index);
 int			extract_door(t_game *game, t_map *map, int place, int map_index);
 
+//game_loud_textures.c
+int		game_load_textures(t_game *game);
+
+
 #endif

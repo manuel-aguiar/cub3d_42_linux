@@ -70,6 +70,7 @@ SRC_GAME			=	win_render_loop.c		\
 						free_game.c				\
 						game_rotate.c			\
 						game_render.c			\
+						game_loud_textures.c	\
 						render_inside_compass.c		\
 						handle_collisions.c		\
 						xpm_to_window.c				\
@@ -101,14 +102,8 @@ SRC_PARSING			=	parsing_main.c						\
 
 
 SRC_XPM_PARSER		=	xpm_compiled_texture.c		\
-						xpm_NSWE.c					\
-						rubens_dementor.c			\
-						xpm_mario.c					\
-						xpm_items.c					\
-						xpm_gun.c					\
-						xpm_door.c					\
-						xpm_free.c					\
-						xpm_flying_bullet.c
+						xpm_free.c
+
 
 SRC_GENERIC_UTILS 	= 	ft_split_count_replenish.c		\
 						clamp.c							\

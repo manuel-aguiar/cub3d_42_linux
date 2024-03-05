@@ -77,9 +77,9 @@ enum e_tex_type
 
 typedef struct s_tex
 {
-	int		type;
-	char	*path;
-	int		color;
+	e_tex_type		type;
+	char			*path;
+	int				color;
 }	t_tex;
 
 typedef struct s_parsing
@@ -92,7 +92,7 @@ typedef struct s_parsing
 	int			nbr_tex;
 	int			index_tex;
 	char		**split;
-	int			split_count;	
+	int			split_count;
 	t_tex		tex_data[NUM_TEX];
 	char		*map;
 	int			map_width;

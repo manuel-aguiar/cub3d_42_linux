@@ -28,7 +28,7 @@ void	setup_all_angles(t_game *game, float rad)
 void		game_starting_angle(t_game *game, char direction)
 {
 	if (direction == MAP_NORTH)
-		setup_all_angles(game, P_MY_PI / 2); 
+		setup_all_angles(game, P_MY_PI / 2);
 	if (direction == MAP_SOUTH)
 		setup_all_angles(game, - P_MY_PI / 2);
 	if (direction == MAP_EAST)
@@ -65,31 +65,7 @@ extern char *g_margarida[];
 extern char *g_door[];
 extern char *g_gun[];
 
-int		game_load_textures(t_game *game)
-{
-	int i;
 
-	ft_memset(game->tex, 0, sizeof(*game->tex) * NUM_TEX);
-	game->tex[NO_TEX] = xpm_to_tex(g_north, TEX_TRANSPOSED);
-	game->tex[SO_TEX] = xpm_to_tex(g_south, TEX_TRANSPOSED);
-	game->tex[WE_TEX] = xpm_to_tex(g_west, TEX_TRANSPOSED);
-	game->tex[EA_TEX] = xpm_to_tex(g_east, TEX_TRANSPOSED);
-	game->tex[F_TEX] = xpm_to_tex(g_margarida, TEX_REGULAR);
-	game->tex[C_TEX] = xpm_to_tex(g_margarida, TEX_REGULAR);
-	game->tex[MEDI_TEX] = xpm_to_tex(g_medikit, TEX_TRANSPOSED);
-	game->tex[AMMO_TEX] = xpm_to_tex(g_dementor, TEX_TRANSPOSED);
-	game->tex[ENEMY_TEX] = xpm_to_tex(g_mario, TEX_TRANSPOSED);
-	game->tex[BULLET_TEX] = xpm_to_tex(g_f_bullet, TEX_TRANSPOSED);
-	game->tex[GUN_TEX] = xpm_to_tex(g_gun, TEX_REGULAR);
-	game->tex[DOOR_TEX] = xpm_to_tex(g_door, TEX_TRANSPOSED);
-	i = 0;
-	while (i < NUM_TEX)
-	{
-		if (game->tex[i++] == NULL)
-			return (0);
-	}
-	return (1);
-}
 
 
 int		game_start(t_game *game, char *game_config)
@@ -111,7 +87,7 @@ int		game_start(t_game *game, char *game_config)
 	if (!game->hori_rays || !game->verti_rays)
 		return (perror_msg_int("malloc",0));
 	sprite_calc_dist(game);
-	sprite_qs_distance(game->sorted, game->sprite_count, sprite_qs_comp);	
+	sprite_qs_distance(game->sorted, game->sprite_count, sprite_qs_comp);
 	setup_hitmap(game);
 	game_setup_keys(game);
 	if(!win_init_window(&game->win))

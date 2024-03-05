@@ -1,17 +1,17 @@
-NO ./path_to_the_north_texture
-SO ./path_to_the_south_texture
-WE ./path_to_the_west_texture
-EA ./path_to_the_east_texture
+NO ./assets/xpm_north.xpm
+SO ./assets/xpm_south.xpm
+WE ./assets/xpm_east.xpm
+EA ./assets/xpm_west.xpm
 
-F 220,100,0
-C 225,30,0
+F ./assets/xpm_margarida.xpm
+C ./assets/xpm_margarida.xpm
 
-MEDI ./cenas
-AMMO ./tretas
-ENEMY ./coisas
-BULLET ./bro
-DOOR ./cenas
-GUN ./ya
+MEDI ./assets/xpm_medikit.xpm
+AMMO ./assets/xpm_rubens_dementor.xpm
+ENEMY ./assets/xpm_mario.xpm
+BULLET ./assets/xpm_flying_bullet.xpm
+GUN ./assets/xpm_gun.xpm
+DOOR ./assets/xpm_door.xpm
 
 
 1111111
