@@ -47,7 +47,7 @@ void	wallcast(t_game *game, t_ray *ray, t_dda_hor *hori, int x)
 	{
 		line.tex_exact_y = line.tex_exact_y_save;
 		line.tex_exact_y += line.step * (line.line_start - ray->h - 1) * (line.line_start > ray->h - 1);
-		line.y_start = ft_min(ray->h - 1, line.line_start);
+		line.y_start = ft_min(ray->h - 1, line.line_start - 1);
 		line.y_end = ft_max(line.line_start - hori->line_h, 0);
 		while (line.y_start > line.y_end)
 		{
@@ -63,13 +63,12 @@ void	wallcast(t_game *game, t_ray *ray, t_dda_hor *hori, int x)
 	line.tex_exact_y = line.tex_exact_y_save;
 	line.tex_exact_y += line.step * (0 - line.line_start) * (line.line_start < 0);
 	line.y_start = ft_max(line.line_start, 0);
-	line.y_end = ft_min(line.line_end, ray->h);
+	line.y_end = ft_min(line.line_end, ray->h - 1);
 	while( line.y_start < line.y_end)
 	{
 		line.tex_pix_y = (int)line.tex_exact_y;
 		line.tex_exact_y += line.step;
 		line.color = line.tex->pixels[line.tex_pix_x * line.tex->width + line.tex_pix_y];
-		//line.color = line.tex->pixels[line.tex_pix_x * line.tex->width + line.tex_pix_y];
 		line.color = add_shade(line.color, line.shade_wgt);
 		game->win.set_pixel(&game->win, x, line.y_start, line.color);
 		line.y_start++;
@@ -78,8 +77,8 @@ void	wallcast(t_game *game, t_ray *ray, t_dda_hor *hori, int x)
 	{
 		line.tex_exact_y = line.tex->width - 1;
 		line.tex_exact_y -= line.step * (0 - line.line_end) * (line.line_end < 0);
-		line.y_start = ft_max(line.line_end, 0);
-		line.y_end = ft_min(line.line_end + hori->line_h, ray->h);
+		line.y_start = ft_max(line.line_end + 1, 0);
+		line.y_end = ft_min(line.line_end + hori->line_h, ray->h - 1);
 		while (line.y_start < line.y_end)
 		{
 			line.tex_pix_y = (int)line.tex_exact_y;
