@@ -153,6 +153,7 @@ void	window_pause_manager(t_win *win, e_pause_state state, bool blur_on, void st
 		if (blur->elapsed >= blur->pause_time)
 		{
 			blur->elapsed = blur->pause_time;
+			string(win);
 			//printf("hello?\n");
 			return ;
 		}
