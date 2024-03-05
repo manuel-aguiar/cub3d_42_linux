@@ -34,6 +34,7 @@ int	win_init_window(t_win *win)
 	win->get_pixel = linux_get_pixel;
 	mlx_do_key_autorepeatoff(win->mlx);
 	mlx_mouse_hide(win->mlx, win->mlx_win);
+	loading_text_string(win);
 	return (1);	
 }
 

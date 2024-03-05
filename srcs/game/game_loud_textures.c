@@ -22,7 +22,7 @@ int		mlx_load_from_xpm(t_game *game, t_tex_data *data, int i)
 	tex->type = i;
 	tex->pixels = mlx_xpm_file_to_image(game->win.mlx, \
 		data->path, &tex->width, &tex->height);
-	printf("seg fault\n");
+	printf("tex %d width %d height %d\n", tex->type, tex->width, tex->height);
 	ft_free_set_null(&data->path);
 	if (!tex->pixels)
 		return (0);

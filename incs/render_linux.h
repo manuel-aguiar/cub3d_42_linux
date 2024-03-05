@@ -192,9 +192,10 @@ void	window_pause_manager(t_win *win, e_pause_state state, bool blur_on, void st
 void	start_clock(t_clock *clock);
 void	update_clock(t_clock *clock);
 
+//linux_text_strings.c
 void	pause_text_string(t_win *win);
 void	you_lost_text_string(t_win *win);
 void	enemies_defeated_text_string(t_win *win);
-
+void	loading_text_string(t_win *win);
 
 #endif

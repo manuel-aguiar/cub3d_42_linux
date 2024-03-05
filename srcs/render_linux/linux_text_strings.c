@@ -12,6 +12,13 @@
 
 #include "render_linux.h"
 
+void	loading_text_string(t_win *win)
+{
+	mlx_string_put(win->mlx, win->mlx_win, win->width / 2, win->height / 2, 0xffffff, \
+	"Loading...");
+}
+
+
 void	pause_text_string(t_win *win)
 {
 	mlx_string_put(win->mlx, win->mlx_win, win->width / 2, win->height / 2, 0xffffff, \

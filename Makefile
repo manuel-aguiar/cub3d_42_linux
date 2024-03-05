@@ -131,7 +131,7 @@ SRC_REN_LINUX		=	linux_init_window.c		\
 						linux_clock.c				\
 						linux_pause_blur_1.c		\
 						linux_pause_blur_2.c		\
-						linux_help_string.c
+						linux_text_strings.c
 
 SRC_COMPASS			=	compass_setup_render.c		\
 						letter_north.c				\
@@ -223,7 +223,7 @@ $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c $(INCS)
 
 $(LIBFT):
 	@$(MAKE) -C $(LIB_PATH)
-##	@$(MAKE) -C $(MLX_PATH)
+	@$(MAKE) -C $(MLX_PATH)
 
 $(MLX):
 	@$(MAKE) -C $(MLX_PATH)
@@ -237,7 +237,7 @@ clean:
         rm -rf $(OBJ_PATH); \
     fi
 	@$(MAKE) clean -C $(LIB_PATH)
-##	@$(MAKE) clean -C $(MLX_PATH)
+	@$(MAKE) clean -C $(MLX_PATH)
 	@echo Objects successfully deleted!
 
 fclean: clean

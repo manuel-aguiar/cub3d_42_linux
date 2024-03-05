@@ -73,8 +73,7 @@ int		game_start(t_game *game, char *game_config)
 	*game = (t_game){};
 	apply_all_settings(game);
 	if (!map_parsing(&game->map, game_config) \
-	|| !setup_sprites(game) \
-	|| !game_load_textures(game))
+	|| !setup_sprites(game))
 		return (0);
 	game_find_player_set_angles(game);
 	player_setup(&game->player);
@@ -90,8 +89,10 @@ int		game_start(t_game *game, char *game_config)
 	sprite_qs_distance(game->sorted, game->sprite_count, sprite_qs_comp);
 	setup_hitmap(game);
 	game_setup_keys(game);
-	if(!win_init_window(&game->win))
+	if(!win_init_window(&game->win)
+	|| !game_load_textures(game))
 		return (0);
+	
 	return (1);
 }
 

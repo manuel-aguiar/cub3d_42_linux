@@ -16,6 +16,6 @@ int		tex_get_pixel(t_win *win, t_xpm_tex *tex, int index)
 {
 	char		*dst;
 
-	dst = &tex->pixels[index * win->front_buf.bpp / 8];
+	dst = &tex->pixels[index * win->rgb_size];
 	return (*(unsigned int *)dst);
 }
