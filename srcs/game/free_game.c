@@ -26,8 +26,8 @@ int	free_game(t_game *game)
 	i = 0;
 	while (i < NUM_TEX)
 	{
-		if (game->tex[i])
-			xpm_tex_free(game->tex[i]);
+		if (game->tex[i].pixels)
+			mlx_destroy_image(game->win.mlx, game->tex[i].pixels);
 		i++;
 	}
 	if (game->sprites)

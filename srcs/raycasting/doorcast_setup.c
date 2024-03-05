@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 13:13:43 by marvin            #+#    #+#             */
-/*   Updated: 2024/03/04 14:21:06 by codespace        ###   ########.fr       */
+/*   Updated: 2024/03/05 11:34:41 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ int	setup_door_cast(t_game *game, t_sprite *sprite, t_door_cast *cast)
 	cast->h = game->win.height;
 	cast->dir = vec2d_multi(game->player.dir_vec, game->player.cur_dir_len);
 	cast->door = (t_door *)sprite->data;
-	cast->tex = game->tex[DOOR_TEX];
+	cast->tex = &game->tex[DOOR_TEX];
 	door_orientation(game, sprite, cast);
 	cast->inv_cam = 1.0 / (game->player.plane.x * cast->dir.y \
 		- game->player.plane.y * cast->dir.x);

@@ -93,7 +93,7 @@ void	floorcast(t_game *game)
 	//ft_memset(game->verti_rays, 0, game->win.height);
 	setup_common_floor_line(game, &line);
 
-	tex = game->tex[F_TEX];
+	tex = &game->tex[F_TEX];
 	end = ft_min(game->maxmin_hori, line.win_h - 1);
 	y = 0;
 	while (y < end)
@@ -127,7 +127,7 @@ void	floorcast(t_game *game)
 	}
 	setup_common_ceiling_line(game, &line);
 	y = ft_max(game->minmax_hori + 1, 0);
-	tex = game->tex[C_TEX];
+	tex = &game->tex[C_TEX];
 	while (y < line.win_h)
 	{
 		setup_this_ceiling_line(game, &line, y);

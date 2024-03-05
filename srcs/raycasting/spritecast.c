@@ -38,14 +38,14 @@ void	setup_common_spritecast(t_game *game, t_sp_cast *cast)
 	cast->pitch_mod = game->player.pitch;
 	cast->play_z_mod = game->player.cur_z + game->player.jump_z_mod + game->player.walk_z_mod;
 	cast->inv_camera = 1.0f / (cast->play_plane.x * cast->play_dir.y - cast->play_plane.y * cast->play_dir.x);
-	
+
 }
 
 
 void	setup_this_spritecast(t_game *game, t_sp_cast *cast, int i)
 {
 	cast->sprite = game->sorted[i];
-	cast->tex = game->tex[cast->sprite->tex];
+	cast->tex = &game->tex[cast->sprite->tex];
 	cast->relative = vec2d_sub(cast->sprite->posi, cast->play_posi);
 	cast->trans.x = (cast->play_dir.y * cast->relative.x - cast->play_dir.x * cast->relative.y);
 	cast->trans.y = (-cast->play_plane.y * cast->relative.x + cast->play_plane.x * cast->relative.y);
@@ -112,18 +112,18 @@ void	sprite_cast(t_game *game)
 								cast.color = add_shade(cast.color, cast.shade_wgt);
 								game->win.set_pixel(&game->win, x, y, cast.color);
 							}
-							
+
 							//printf("placing %d, %d\n", x, y);
-							
+
 							y++;
 						}
 					}
 					x++;
 				}
 			}
-			
-			
-		
+
+
+
 		}
 		i++;
 	}

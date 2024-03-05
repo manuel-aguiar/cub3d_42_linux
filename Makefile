@@ -187,10 +187,11 @@ SRCS 		:=		$(addprefix $(SRC_PATH)/, $(SRC_MAIN))											\
 					$(addprefix $(SRC_PATH)/$(DIR_GAME)/, $(SRC_GAME))								\
 					$(addprefix $(SRC_PATH)/$(DIR_PLAYER)/, $(SRC_PLAYER))							\
 					$(addprefix $(SRC_PATH)/$(DIR_RAYCASTING)/, $(SRC_RAYCASTING))					\
-					$(addprefix $(SRC_PATH)/$(DIR_XPM_PARSER)/, $(SRC_XPM_PARSER))					\
 					$(addprefix $(SRC_PATH)/$(DIR_PIXEL_POINT)/, $(SRC_PIXEL_POINT))				\
 					$(addprefix $(SRC_PATH)/$(DIR_SPRITES)/, $(SRC_SPRITES))						\
 					$(addprefix $(SRC_PATH)/$(DIR_HIT_DETECTION)/, $(SRC_HIT_DETECTION))
+##					$(addprefix $(SRC_PATH)/$(DIR_XPM_PARSER)/, $(SRC_XPM_PARSER))
+
 
 
 OBJS 		:=		$(patsubst $(SRC_PATH)/%.c,$(OBJ_PATH)/%.o,$(SRCS))

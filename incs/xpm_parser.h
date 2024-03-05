@@ -33,7 +33,7 @@ typedef struct s_xpm_tex
 {
 	int			width;
 	int			height;
-	int			*pixels;
+	char		*pixels;
 	e_tex_type	type;
 }	t_xpm_tex;
 

@@ -201,7 +201,7 @@ typedef struct s_game
 	int			minmax_hori;
 	float		max_vis_dist;
 	float		wall_reflection;
-	t_xpm_tex	*tex[NUM_TEX];
+	t_xpm_tex	tex[NUM_TEX];
 	int			colors[NUM_TEX];
 	t_sprite	*sprites;
 	t_sprite	**sorted;

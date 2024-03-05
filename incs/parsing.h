@@ -69,18 +69,18 @@ typedef	enum
 	NUM_TEX,
 }	e_textures;
 
-enum e_tex_type
+typedef enum
 {
 	PATH_TEX,
 	COLOR_TEX,
-};
+}	e_data_type;
 
 typedef struct s_tex
 {
-	e_tex_type		type;
+	e_data_type		type;
 	char			*path;
 	int				color;
-}	t_tex;
+}	t_tex_data;
 
 typedef struct s_parsing
 {
@@ -93,7 +93,7 @@ typedef struct s_parsing
 	int			index_tex;
 	char		**split;
 	int			split_count;
-	t_tex		tex_data[NUM_TEX];
+	t_tex_data		tex_data[NUM_TEX];
 	char		*map;
 	int			map_width;
 	int			map_height;
@@ -105,13 +105,13 @@ typedef struct s_parsing
 
 typedef struct s_map
 {
-	char		*map;
-	t_hitlist	*hit;
-	t_sprite	**doors;
-	int			width;
-	int			height;
-	int			len;
-	t_tex		tex_data[NUM_TEX];
+	char			*map;
+	t_hitlist		*hit;
+	t_sprite		**doors;
+	int				width;
+	int				height;
+	int				len;
+	t_tex_data		tex_data[NUM_TEX];
 }	t_map;
 
 

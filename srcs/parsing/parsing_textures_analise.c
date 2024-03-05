@@ -31,7 +31,7 @@ static int	color_atoi(char *str, int *place_res)
 	return (1);
 }
 
-static int	extract_color(t_tex	*tex)
+static int	extract_color(t_tex_data	*tex)
 {
 	char	**split;
 	int		count;

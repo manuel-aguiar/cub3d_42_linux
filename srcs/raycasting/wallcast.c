@@ -22,10 +22,10 @@ static inline void	setup_wall_line(t_game *game, t_ray *ray, t_dda_hor *hori, t_
 
 	line->tex = ptr_ternary(hori->side == 0, \
 		ptr_ternary(game->player.map_posi.x + hori->wall_dist \
-		* ray->ray_dir.x < game->player.map_posi.x, game->tex[WE_TEX], game->tex[EA_TEX]),
+		* ray->ray_dir.x < game->player.map_posi.x, &game->tex[WE_TEX], &game->tex[EA_TEX]),
 		ptr_ternary(game->player.map_posi.y + hori->wall_dist \
-		* ray->ray_dir.y < game->player.map_posi.y, game->tex[SO_TEX], game->tex[NO_TEX]));
-		
+		* ray->ray_dir.y < game->player.map_posi.y, &game->tex[SO_TEX], &game->tex[NO_TEX]));
+
 	line->x_hit -= (int)(line->x_hit);
 	line->tex_pix_x = (int)(line->x_hit * (float)(line->tex->height));
 	if(hori->side == 0 && ray->ray_dir.x > 0)
