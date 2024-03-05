@@ -16,10 +16,13 @@ int		mlx_load_from_xpm(t_game *game, t_tex_data *data, int i)
 {
 	t_xpm_tex	*tex;
 
+	//int res = open(data->path, O_RDONLY);
+	//printf("path is :'%s', open gave %d\n", data->path, res);
 	tex = &game->tex[i];
 	tex->type = i;
 	tex->pixels = mlx_xpm_file_to_image(game->win.mlx, \
 		data->path, &tex->width, &tex->height);
+	printf("seg fault\n");
 	ft_free_set_null(&data->path);
 	if (!tex->pixels)
 		return (0);

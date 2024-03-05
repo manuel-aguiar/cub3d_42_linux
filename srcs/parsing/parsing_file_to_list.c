@@ -36,7 +36,15 @@ int	file_to_list(t_parsing *parsing)
 	{
 		parsing->gnl = get_next_line(parsing->fd);
 		if (parsing->gnl)
-			vdmlist_in_tail(parsing->list, parsing->gnl);
+		{
+			if (!vdmlist_in_tail(parsing->list, parsing->gnl))
+			{
+				close(parsing->fd);
+				parsing->gnl = NULL;
+				return (0);
+			}
+			parsing->gnl = NULL;
+		}
 		else
 			break ;
 	}

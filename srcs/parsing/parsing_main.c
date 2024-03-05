@@ -73,6 +73,53 @@ static int	dump_parsing_to_map(t_map *map, t_parsing *parsing)
 	return (1);
 }
 
+/*
+typedef struct s_parsing
+{
+	t_vdmlist	*list;
+	char		*file;
+	int			file_len;
+	int			fd;
+	char		*gnl;
+	int			nbr_tex;
+	int			index_tex;
+	char		**split;
+	int			split_count;
+	t_tex_data		tex_data[NUM_TEX];
+	char		*map;
+	int			map_width;
+	int			map_height;
+	bool		found_player;
+	char		*map_copy;
+	bool		ff_found;
+	int			ff_count;
+}	t_parsing;
+
+*/
+
+void	destroy_parsing(t_parsing *parsing)
+{
+	int	i;
+
+	if (parsing->map_copy)
+		ft_free_set_null(&parsing->map_copy);
+	if (parsing->map)
+		ft_free_set_null(&parsing->map);
+	if (parsing->gnl)
+		ft_free_set_null(&parsing->gnl);
+	if (parsing->split)
+		ft_free_charmat_null(&parsing->split, free);
+	if (parsing->list)
+		vdmlist_destroy(&parsing->list, free);
+	i = 0;
+	while (i < NUM_TEX)
+	{
+		if (parsing->tex_data[i].path)
+			ft_free_set_null(&parsing->tex_data[i].path);
+		i++;
+	}
+}
+
 int	map_parsing(t_map *map, char *av_file)
 {
 	t_parsing	parsing;
@@ -88,9 +135,9 @@ int	map_parsing(t_map *map, char *av_file)
 	|| !analise_textures(&parsing) \
 	|| !dump_parsing_to_map(map, &parsing))
 	{
-		vdmlist_destroy(&parsing.list, free_gnl_len);
+		destroy_parsing(&parsing);
 		return (0);
 	}
-	vdmlist_destroy(&parsing.list, free_gnl_len);
+	vdmlist_destroy(&parsing.list, free);
 	return (1);
 }
