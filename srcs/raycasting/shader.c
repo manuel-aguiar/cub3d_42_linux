@@ -28,7 +28,7 @@ int	add_shade_new(int color, float perc)
 {
 	char	*pixels;
 
-	
+
 	if (perc > 1)
 		return (0);
 	pixels = (char *)&color;

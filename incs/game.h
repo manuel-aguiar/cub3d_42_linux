@@ -312,5 +312,7 @@ int			extract_door(t_game *game, t_map *map, int place, int map_index);
 //game_loud_textures.c
 int		game_load_textures(t_game *game);
 
+//tex_get_pixel.c
+int		tex_get_pixel(t_win *win, t_xpm_tex *tex, int index);
 
 #endif

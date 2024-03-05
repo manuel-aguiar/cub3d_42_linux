@@ -106,7 +106,7 @@ void	sprite_cast(t_game *game)
 						{
 							cast.tex_pix_y = (int)(cast.tex_exact_y);
 							cast.tex_exact_y += cast.tex_step_y;
-							cast.color = cast.tex->pixels[cast.tex_pix_x * cast.tex->width + cast.tex_pix_y];
+							cast.color = tex_get_pixel(&game->win, cast.tex, cast.tex_pix_x * cast.tex->width + cast.tex_pix_y);
 							if (cast.color != 0)
 							{
 								cast.color = add_shade(cast.color, cast.shade_wgt);
