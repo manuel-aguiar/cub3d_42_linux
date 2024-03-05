@@ -67,6 +67,7 @@ SRC_GAME			=	win_render_loop.c		\
 						game_keys.c				\
 						game_manager_keys.c		\
 						game_manager_mouse.c	\
+						game_rand_gen.c			\
 						free_game.c				\
 						game_rotate.c			\
 						game_render.c			\

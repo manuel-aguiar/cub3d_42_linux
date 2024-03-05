@@ -32,6 +32,7 @@ int	extract_enemy(t_game *game, t_map *map, int place, int map_index)
 	sprite->inverted = false;
 	sprite->posi.x = (float)map_col(map, map_index) + 0.5f;
 	sprite->posi.y = (float)map_row(map, map_index) + 0.5f;
+	data->elapsed = rand_int(&game->rand, 0, data->ms_to_swap);
 	sprite->cur_z = data->base_z;
 	sprite->height = data->height;
 	sprite->width = data->width;

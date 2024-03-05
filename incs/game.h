@@ -15,7 +15,7 @@
 # define GAME_H
 
 # include <float.h>
-
+# include <stdint.h>
 # include "libft.h"
 # include "pixel_point.h"
 # include "compass.h"
@@ -28,6 +28,7 @@
 # include "xpm_parser.h"
 # include "sprites.h"
 
+#define RAND_MAX_UINT64 0xFFFFFFFFUL
 
 typedef struct s_hud
 {
@@ -187,6 +188,14 @@ typedef struct s_bullet_colli
 	t_vec2d		collision[2];
 }	t_bullet_colli;
 
+typedef struct s_rand_gen
+{
+	unsigned long int 	seed;
+	int					multiplier;
+	int					increment;
+	t_clock				*clock;
+}	t_rand_gen;
+
 typedef struct s_game
 {
 	t_parsing	parsing;
@@ -222,6 +231,7 @@ typedef struct s_game
 	int			cur_time_lost_str;
 	int			total_time_lost_str;
 	t_clock		clock;
+	t_rand_gen	rand;
 }	t_game;
 
 //settings.c
@@ -319,5 +329,9 @@ int		game_load_textures(t_game *game);
 
 //tex_get_pixel.c
 int		tex_get_pixel(t_win *win, t_xpm_tex *tex, int index);
+
+//game_rand_gen.c
+float	rand_float(t_rand_gen *rand, float min, float max);
+int		rand_int(t_rand_gen *rand, int min, int max);
 
 #endif
