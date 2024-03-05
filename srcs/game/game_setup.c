@@ -35,7 +35,6 @@ void		game_starting_angle(t_game *game, char direction)
 		setup_all_angles(game, 0);
 	if (direction == MAP_WEST)
 		setup_all_angles(game, P_MY_PI);
-	printf("starting angle called\n");
 }
 
 
@@ -111,6 +110,8 @@ int		game_start(t_game *game, char *game_config)
 	game->player.vertical_correction = vertical_coefficient(game);
 	if (!game->hori_rays || !game->verti_rays)
 		return (perror_msg_int("malloc",0));
+	sprite_calc_dist(game);
+	sprite_qs_distance(game->sorted, game->sprite_count, sprite_qs_comp);	
 	setup_hitmap(game);
 	game_setup_keys(game);
 	if(!win_init_window(&game->win))
