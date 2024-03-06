@@ -19,19 +19,20 @@ void	render_square_vs_circle(t_win *win, t_compass *comp, t_pixel centre)
 	int			x;
 	int			y;
 	t_square	sqr;
+	t_hori_line	line;
 	int			c_min_max[MM_SIZE];
 
 	sqr = comp->sqr;
 	ft_memcpy(&c_min_max, &comp->inner.min_max, sizeof(c_min_max));
-	x = centre.x;														
-	y = centre.y;	
+	x = centre.x;
+	y = centre.y;
 	i = 0;
 	while (i < SQR_SIZE)
 	{
 		translate_point(&sqr.edges[i], x, y);
 		i++;
 	}
-	
+
 
 	sqr.min_max[MM_MIN_X] += x;
 	sqr.min_max[MM_MAX_X] += x;
@@ -54,10 +55,11 @@ void	render_square_vs_circle(t_win *win, t_compass *comp, t_pixel centre)
 	int adj_x = sqr.min_max[MM_MIN_Y] - comp->inner.centre.y + comp->inner.radius;
 	while (i < sqr.real_z - end)
 	{
-		int start = ft_max(comp->sqr_x_lim[i].min + x, comp->circle_x_lim[i + adj_x].min + comp->inner.centre.x);
-		int end_line = ft_min(comp->sqr_x_lim[i].max + x, comp->circle_x_lim[i + adj_x].max + comp->inner.centre.x);
-		
-		draw_horizontal_line(win, start , end_line, i + sqr.min_max[MM_MIN_Y], comp->sqr.color);
+		line.min_x = ft_max(comp->sqr_x_lim[i].min + x, comp->circle_x_lim[i + adj_x].min + comp->inner.centre.x);
+		line.max_x = ft_min(comp->sqr_x_lim[i].max + x, comp->circle_x_lim[i + adj_x].max + comp->inner.centre.x);
+		line.y = i + sqr.min_max[MM_MIN_Y];
+		line.color = comp->sqr.color;
+		draw_horizontal_line(win, &line);
 		i++;
 	}
 }

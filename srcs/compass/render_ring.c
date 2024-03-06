@@ -39,16 +39,23 @@ each scanline and print only what is needed
 
 void setPixel4(t_win *win, int centreX, int centreY, int deltaX, int deltaY, int color, float perc_start, bool line)
 {
+	t_hori_line	draw;
+
     win->set_pixel(win, centreX + deltaX, centreY + deltaY, gamma_average(win->get_pixel(win, centreX + deltaX, centreY + deltaY), color, perc_start));
     win->set_pixel(win, centreX - deltaX, centreY + deltaY, gamma_average(win->get_pixel(win, centreX - deltaX, centreY + deltaY), color, perc_start));
-	
+
     win->set_pixel(win, centreX + deltaX, centreY - deltaY, gamma_average(win->get_pixel(win, centreX + deltaX, centreY - deltaY), color, perc_start));
     win->set_pixel(win, centreX - deltaX, centreY - deltaY, gamma_average(win->get_pixel(win, centreX - deltaX, centreY - deltaY), color, perc_start));
 
 	if (line)
 	{
-		draw_horizontal_line(win, centreX - deltaX, centreX + deltaX, centreY + deltaY, color);
-		draw_horizontal_line(win, centreX - deltaX, centreX + deltaX, centreY - deltaY, color);
+		draw.color = color;
+		draw.min_x = centreX - deltaX;
+		draw.max_x = centreX + deltaX;
+		draw.y = centreY + deltaY;
+		draw_horizontal_line(win, &draw);
+		draw.y = centreY - deltaY;
+		draw_horizontal_line(win, &draw);
 	}
 }
 
@@ -104,66 +111,98 @@ void	reduce_alpha_horizontal_line(t_win *win, int min_x, int max_x, int y, float
 	}
 }
 
-void	drop_the_blur(t_win *win, t_compass *comp, int min_x, int max_x, int y)
+void	drop_the_blur(t_win *win, t_compass *comp, t_hori_line *draw)
 {
 	t_blur *blur;
 	int blur_y;
 	int	blur_x;
 
 	if (!comp->blur_on)
-		return ; 
+		return ;
 	blur = &comp->blur;
-	blur_y = comp->radius + y - comp->centre.y;
-	blur_x = comp->radius + min_x - comp->centre.x;
+	blur_y = comp->radius + draw->y - comp->centre.y;
+	blur_x = comp->radius + draw->min_x - comp->centre.x;
 	int blur_index = blur->verti_blur[blur_y * blur->blur_height + blur_x];
-	int screen_index = (min_x + y * win->width) * win->rgb_size;
+	int screen_index = (draw->min_x + draw->y * win->width) * win->rgb_size;
 	//ft_memcpy(&win->front_buf[screen_index], &blur[blur_index], (max_x - min_x) * sizeof(blur[blur_index]));
 
 	(void)blur_index;
 	(void)screen_index;
-
-	while (min_x < max_x)
+	// replace with memcpy!!!!
+	while (draw->min_x < draw->max_x)
 	{
-		blur_x = comp->radius + min_x - comp->centre.x;
-		win->set_pixel(win, min_x++, y, blur->verti_blur[blur_y * blur->blur_height + blur_x]);
+		blur_x = comp->radius + draw->min_x - comp->centre.x;
+		win->set_pixel(win, draw->min_x++, draw->y, blur->verti_blur[blur_y * blur->blur_height + blur_x]);
 	}
-	
+
 }
 
 
 void setpixel_inner(t_win *win, t_compass *comp, int c_min_max[MM_SIZE], \
 int centreX, int centreY, int deltaX, int deltaY, int color, float perc_start, bool line)
 {
+	t_hori_line	draw;
+	int			index;
 
     win->set_pixel(win, centreX + deltaX, centreY + deltaY, gamma_average(win->get_pixel(win, centreX + deltaX, centreY + deltaY), color, perc_start));
     win->set_pixel(win, centreX - deltaX, centreY + deltaY, gamma_average(win->get_pixel(win, centreX - deltaX, centreY + deltaY), color, perc_start));
-	
+
     win->set_pixel(win, centreX + deltaX, centreY - deltaY, gamma_average(win->get_pixel(win, centreX + deltaX, centreY - deltaY), color, perc_start));
     win->set_pixel(win, centreX - deltaX, centreY - deltaY, gamma_average(win->get_pixel(win, centreX - deltaX, centreY - deltaY), color, perc_start));
-
+	draw.color = color;
 	if (line)
 	{
+		draw.y = centreY + deltaY;
 		if (centreY + deltaY > c_min_max[MM_MAX_Y])
-			draw_horizontal_line(win, centreX - deltaX, centreX + deltaX, centreY + deltaY, color);
+		{
+			draw.min_x = centreX - deltaX;
+			draw.max_x = centreX + deltaX;
+
+			draw_horizontal_line(win, &draw);
+		}
 		else
 		{
-			
-			int	index = centreY + deltaY - comp->inner.centre.y + comp->inner.radius;
-			draw_horizontal_line(win, centreX - deltaX, comp->circle_x_lim[index].min + comp->inner.centre.x, centreY + deltaY, color);
+
+			index = centreY + deltaY - comp->inner.centre.y + comp->inner.radius;
+
+			draw.min_x = centreX - deltaX;
+			draw.max_x = comp->circle_x_lim[index].min + comp->inner.centre.x;
+			draw_horizontal_line(win, &draw);
 			if (comp->blur_on == true)
-				drop_the_blur(win, comp, comp->circle_x_lim[index].min + comp->inner.centre.x, comp->circle_x_lim[index].max + comp->inner.centre.x, centreY + deltaY);
-			draw_horizontal_line(win, comp->circle_x_lim[index].max + comp->inner.centre.x, centreX + deltaX, centreY + deltaY, color);
+			{
+				draw.min_x = comp->circle_x_lim[index].min + comp->inner.centre.x;
+				draw.max_x = comp->circle_x_lim[index].max + comp->inner.centre.x;
+				drop_the_blur(win, comp, &draw);
+			}
+			draw.min_x = comp->circle_x_lim[index].max + comp->inner.centre.x;
+			draw.max_x = centreX + deltaX;
+			draw_horizontal_line(win, &draw);
 		}
+		draw.y = centreY - deltaY;
 		if (centreY - deltaY < c_min_max[MM_MIN_Y])
-			draw_horizontal_line(win, centreX - deltaX, centreX + deltaX, centreY - deltaY, color);
+		{
+			draw.min_x = centreX - deltaX;
+			draw.max_x = centreX + deltaX;
+			draw_horizontal_line(win, &draw);
+		}
 		else if (deltaY)	//double rendering the same line
 		{
 
-			int	index = centreY - deltaY - comp->inner.centre.y + comp->inner.radius;
-			draw_horizontal_line(win, centreX - deltaX, comp->circle_x_lim[index].min + comp->inner.centre.x, centreY - deltaY, color);
+			index = centreY - deltaY - comp->inner.centre.y + comp->inner.radius;
+			draw.min_x = centreX - deltaX;
+			draw.max_x = comp->circle_x_lim[index].min + comp->inner.centre.x;
+
+			draw_horizontal_line(win, &draw);
 			if (comp->blur_on == true)
-				drop_the_blur(win, comp, comp->circle_x_lim[index].min + comp->inner.centre.x, comp->circle_x_lim[index].max + comp->inner.centre.x, centreY - deltaY);
-			draw_horizontal_line(win, comp->circle_x_lim[index].max + comp->inner.centre.x, centreX + deltaX, centreY - deltaY, color);
+			{
+				draw.min_x = comp->circle_x_lim[index].min + comp->inner.centre.x;
+				draw.max_x = comp->circle_x_lim[index].max + comp->inner.centre.x;
+				drop_the_blur(win, comp, &draw);
+
+			}
+			draw.min_x = comp->circle_x_lim[index].max + comp->inner.centre.x;
+			draw.max_x = centreX + deltaX;
+			draw_horizontal_line(win, &draw);
 		}
 	}
 }
@@ -200,5 +239,5 @@ void draw_ring_to_inner_circle(t_win *win, t_compass *comp)
         setpixel_inner(win, comp, c_min_max, centreX, centreY, x, (int)(y) + 1, color, 1 - error, false);
 		setpixel_inner(win, comp, c_min_max, centreX, centreY, (int)(y) + 1, x, color, 1 - error, false);
     }
-	
+
 }

@@ -61,7 +61,7 @@ typedef struct s_west t_west;
 			any square to be rendered will simply be a copy of the template (with hashtable, after rotations)
 				square rotates against its own centre (vs letters that rotate against the compass centre)
 			and every point will be translated according to the square placement vs this centre
-		
+
 		starting letters will be centreed around (0,0) +/- their offset on the compass (0,0)
 			then they are displaced to their positions (individual offsets)
 			and finally they are rotated against the centre of the compass
@@ -85,7 +85,7 @@ typedef struct s_west t_west;
 
 		east and west are the same (symetrical nature), but their place vs the centre of the compass is different
 		and that will lead them to rotate in diffent directions
-		
+
 
 
 */
@@ -202,7 +202,7 @@ typedef	struct s_blur
 typedef struct s_compass
 {
 	t_pixel		centre;
-	
+
 	//t_circle	outer;
 	int			radius;
 	int			color;
@@ -256,7 +256,6 @@ void	render_south_letter_circle(t_win *win, t_compass *comp);
 //win_square.c
 int		init_template_square(t_compass *comp);
 void	compass_square_xlim_rotate(t_compass *comp, t_square *sqr);
-void	draw_horizontal_line(t_win *win, int min_x, int max_x, int y, int color);
 
 //translate_rotate.c
 void	translate_point(t_pixel	*point, int dx, int dy);

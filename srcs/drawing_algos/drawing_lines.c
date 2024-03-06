@@ -12,16 +12,16 @@
 
 #include "drawing_algos.h"
 
-void	draw_horizontal_line(t_win *win, int min_x, int max_x, int y, int color)
+void	draw_horizontal_line(t_win *win, t_hori_line *data)
 {
-	while (min_x <= max_x)
-		win->set_pixel(win, min_x++, y, color);
+	while (data->min_x <= data->max_x)
+		win->set_pixel(win, data->min_x++, data->y, data->color);
 }
 
-void	draw_vertical_line(t_win *win, int start_y, int end_y, int x, int color)
+void	draw_vertical_line(t_win *win, t_verti_line *data)
 {
-	while (start_y <= end_y)
-		win->set_pixel(win, x, start_y++, color);
+	while (data->min_y <= data->max_y)
+		win->set_pixel(win, data->x, data->min_y++, data->color);
 }
 
 static inline void
