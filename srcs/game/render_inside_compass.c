@@ -12,7 +12,7 @@
 
 #include "game.h"
 
-static inline void render_square_inside_compass(t_game *game, \
+static inline void	render_square_inside_compass(t_game *game, \
 					t_pixel centre, int centre_index, int i)
 {
 	t_pixel	sqr_centre;
@@ -53,7 +53,7 @@ void	render_map_inside_compass(t_game *game)
 void	render_player_inside_compass(t_game *game)
 {
 	int			sqr_hgt;
-	t_pixel 	centre;
+	t_pixel		centre;
 	t_player	*player;
 
 	player = &game->player;

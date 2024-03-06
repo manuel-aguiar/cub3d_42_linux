@@ -71,7 +71,7 @@ SRC_GAME			=	win_render_loop.c		\
 						free_game.c				\
 						game_rotate.c			\
 						game_render.c			\
-						game_loud_textures.c	\
+						game_load_textures.c	\
 						render_inside_compass.c		\
 						handle_collisions.c		\
 						xpm_to_window.c				\
