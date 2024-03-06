@@ -43,7 +43,8 @@ static void	fill_lookup_table(t_compass *comp, t_circle *inner, int x, int y)
 			= ft_max(comp->circle_x_lim[y + inner->radius].max, x);
 }
 
-static inline void	eight_point_fill(t_compass *comp, t_circle *inner, int x, int y)
+static inline void	eight_point_fill(t_compass *comp, t_circle *inner, \
+					int x, int y)
 {
 	fill_lookup_table(comp, inner, x, y);
 	fill_lookup_table(comp, inner, -x, y);
