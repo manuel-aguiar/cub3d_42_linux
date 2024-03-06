@@ -43,9 +43,9 @@ void	settings_compass(t_game *game, t_compass *comp)
 	comp->letter_color = COMP_LETTER_COLOR;
 	comp->sqr_color = COMP_SQR_COLOR;
 	comp->sqr_height = int_clamp (\
-							(int)(game->compass.radius * SQR_HEIGHT_PERC), \
-							(int)(game->compass.radius * SQR_MIN_HEIGHT_PERC), \
-							(int)(game->compass.radius * SQR_MAX_HEIGHT_PERC));
+					(int)(game->compass.radius * SQR_HEIGHT_PERC), \
+					(int)(game->compass.radius * SQR_MIN_HEIGHT_PERC), \
+					(int)(game->compass.radius * SQR_MAX_HEIGHT_PERC));
 	settings_compass_two(game, comp);
 }
 
