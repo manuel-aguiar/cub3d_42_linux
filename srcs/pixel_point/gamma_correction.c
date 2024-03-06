@@ -10,14 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "pixel_point.h"
+#include "pixel_point.h"
 
 /*
 https://stackoverflow.com/questions/48903716/fast-image-gamma-correction
  replace pow(float x, float 2.2f) with this
 it is a polinomial aproximation for the function x^2.2 when 0 < x < 1
 */
-float gamma22_pow(float x)
+
+float	gamma22_pow(float x)
 {
 	return (0.8 * x * x + 0.2 * x * x * x);
 }
@@ -32,12 +33,12 @@ https://mimosa-pudica.net/fast-gamma/
  (1.138 / x ^ 0.5 - 0.138) * x, good aprox and gets rid of the cube root
 */
 
-float inverse_gamma22_pow(float x)
+float	inverse_gamma22_pow(float x)
 {
 	return ((1.138f / sqrt(x) - 0.138f) * x);
 }
 
-int gamma_average(int start, int end, float perc_start)
+int	gamma_average(int start, int end, float perc_start)
 {
 	t_gamma_avg	g;
 

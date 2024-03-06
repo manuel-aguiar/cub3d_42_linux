@@ -152,7 +152,8 @@ SRC_DRAWING_ALGOS	=	drawing_lines.c				\
 						xiaolinwu_utils.c
 
 SRC_PIXEL_POINT		=	gamma_correction.c				\
-						pixels.c						\
+						pixels_1.c						\
+						pixels_2.c						\
 						translate_rotate.c
 
 SRC_RAYCASTING		=	vec2d_utils1.c					\
