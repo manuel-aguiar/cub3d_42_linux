@@ -31,73 +31,78 @@ void	drop_the_blur(t_win *win, t_compass *comp, t_hori_line *draw)
 	}
 }
 
+void	place_circle_aa(t_win *win, int x, int y, t_render_circ *ren)
+{
+	win->set_pixel(win, ren->centre.x + x, ren->centre.y + y, \
+	gamma_average(win->get_pixel(win, ren->centre.x + x, ren->centre.y + y), \
+	ren->color, ren->error));
+	win->set_pixel(win, ren->centre.x - x, ren->centre.y + y, \
+	gamma_average(win->get_pixel(win, ren->centre.x - x, ren->centre.y + y), \
+	ren->color, ren->error));
+	win->set_pixel(win, ren->centre.x + x, ren->centre.y - y, \
+	gamma_average(win->get_pixel(win, ren->centre.x + x, ren->centre.y - y), \
+	ren->color, ren->error));
+	win->set_pixel(win, ren->centre.x - x, ren->centre.y - y, \
+	gamma_average(win->get_pixel(win, ren->centre.x - x, ren->centre.y - y), \
+	ren->color, ren->error));
+}
 
-void setpixel_inner(t_win *win, int x, int y, t_render_circ *ren)
+void	setpixel_inner(t_win *win, int x, int y, t_render_circ *ren)
 {
 	t_compass	*comp;
 	t_hori_line	draw;
 	int			index;
 
-    win->set_pixel(win, ren->centre.x + x, ren->centre.y + y, gamma_average(win->get_pixel(win, ren->centre.x + x, ren->centre.y + y), ren->color, ren->error));
-    win->set_pixel(win, ren->centre.x - x, ren->centre.y + y, gamma_average(win->get_pixel(win, ren->centre.x - x, ren->centre.y + y), ren->color, ren->error));
-    win->set_pixel(win, ren->centre.x + x, ren->centre.y - y, gamma_average(win->get_pixel(win, ren->centre.x + x, ren->centre.y - y), ren->color, ren->error));
-    win->set_pixel(win, ren->centre.x - x, ren->centre.y - y, gamma_average(win->get_pixel(win, ren->centre.x - x, ren->centre.y - y), ren->color, ren->error));
+	place_circle_aa(win, x, y, ren);
 	draw.color = ren->color;
-	if (ren->with_line)
+	if (!ren->with_line)
+		return ;
+	comp = ren->comp;
+	draw.y = ren->centre.y + y;
+	if (ren->centre.y + y > ren->c_min_max[MM_MAX_Y])
 	{
-		comp = ren->comp;
-		draw.y = ren->centre.y + y;
-		if (ren->centre.y + y > ren->c_min_max[MM_MAX_Y])
+		draw.min_x = ren->centre.x - x;
+		draw.max_x = ren->centre.x + x;
+		draw_horizontal_line(win, &draw);
+	}
+	else
+	{
+		index = ren->centre.y + y - comp->inner.centre.y + comp->inner.radius;
+		draw.min_x = ren->centre.x - x;
+		draw.max_x = comp->circle_x_lim[index].min + comp->inner.centre.x;
+		draw_horizontal_line(win, &draw);
+		if (comp->blur_on == true)
 		{
-			draw.min_x = ren->centre.x - x;
-			draw.max_x = ren->centre.x + x;
-
-			draw_horizontal_line(win, &draw);
+			draw.min_x = comp->circle_x_lim[index].min + comp->inner.centre.x;
+			draw.max_x = comp->circle_x_lim[index].max + comp->inner.centre.x;
+			drop_the_blur(win, comp, &draw);
 		}
-		else
+		draw.min_x = comp->circle_x_lim[index].max + comp->inner.centre.x;
+		draw.max_x = ren->centre.x + x;
+		draw_horizontal_line(win, &draw);
+	}
+	draw.y = ren->centre.y - y;
+	if (ren->centre.y - y < ren->c_min_max[MM_MIN_Y])
+	{
+		draw.min_x = ren->centre.x - x;
+		draw.max_x = ren->centre.x + x;
+		draw_horizontal_line(win, &draw);
+	}
+	else if (y)
+	{
+		index = ren->centre.y - y - comp->inner.centre.y + comp->inner.radius;
+		draw.min_x = ren->centre.x - x;
+		draw.max_x = comp->circle_x_lim[index].min + comp->inner.centre.x;
+		draw_horizontal_line(win, &draw);
+		if (comp->blur_on == true)
 		{
-
-			index = ren->centre.y + y - comp->inner.centre.y + comp->inner.radius;
-
-			draw.min_x = ren->centre.x - x;
-			draw.max_x = comp->circle_x_lim[index].min + comp->inner.centre.x;
-			draw_horizontal_line(win, &draw);
-			if (comp->blur_on == true)
-			{
-				draw.min_x = comp->circle_x_lim[index].min + comp->inner.centre.x;
-				draw.max_x = comp->circle_x_lim[index].max + comp->inner.centre.x;
-				drop_the_blur(win, comp, &draw);
-			}
-			draw.min_x = comp->circle_x_lim[index].max + comp->inner.centre.x;
-			draw.max_x = ren->centre.x + x;
-			draw_horizontal_line(win, &draw);
+			draw.min_x = comp->circle_x_lim[index].min + comp->inner.centre.x;
+			draw.max_x = comp->circle_x_lim[index].max + comp->inner.centre.x;
+			drop_the_blur(win, comp, &draw);
 		}
-		draw.y = ren->centre.y - y;
-		if (ren->centre.y - y < ren->c_min_max[MM_MIN_Y])
-		{
-			draw.min_x = ren->centre.x - x;
-			draw.max_x = ren->centre.x + x;
-			draw_horizontal_line(win, &draw);
-		}
-		else if (y)	//double rendering the same line
-		{
-
-			index = ren->centre.y - y - comp->inner.centre.y + comp->inner.radius;
-			draw.min_x = ren->centre.x - x;
-			draw.max_x = comp->circle_x_lim[index].min + comp->inner.centre.x;
-
-			draw_horizontal_line(win, &draw);
-			if (comp->blur_on == true)
-			{
-				draw.min_x = comp->circle_x_lim[index].min + comp->inner.centre.x;
-				draw.max_x = comp->circle_x_lim[index].max + comp->inner.centre.x;
-				drop_the_blur(win, comp, &draw);
-
-			}
-			draw.min_x = comp->circle_x_lim[index].max + comp->inner.centre.x;
-			draw.max_x = ren->centre.x + x;
-			draw_horizontal_line(win, &draw);
-		}
+		draw.min_x = comp->circle_x_lim[index].max + comp->inner.centre.x;
+		draw.max_x = ren->centre.x + x;
+		draw_horizontal_line(win, &draw);
 	}
 }
 
@@ -117,7 +122,7 @@ static inline void	setup_ring_draw(t_compass *comp, t_render_circ *ren)
 	ren->c_min_max[MM_MAX_Y] += comp->centre.y;
 }
 
-void draw_ring_to_inner_circle(t_win *win, t_compass *comp)
+void	draw_ring_to_inner_circle(t_win *win, t_compass *comp)
 {
 	t_render_circ	ren;
 	int				x;
@@ -125,17 +130,17 @@ void draw_ring_to_inner_circle(t_win *win, t_compass *comp)
 
 	setup_ring_draw(comp, &ren);
 	x = 0;
-    while (x <= ren.quarter)
+	while (x <= ren.quarter)
 	{
-        y = ren.radius * sqrt(1 - x * x / (float)ren.rad_sqr);
-        ren.error = y - (int)(y);
+		y = ren.radius * sqrt(1 - x * x / (float)ren.rad_sqr);
+		ren.error = y - (int)(y);
 		ren.with_line = true;
-        setpixel_inner(win, x, (int)(y), &ren);
+		setpixel_inner(win, x, (int)(y), &ren);
 		setpixel_inner(win, (int)(y), x, &ren);
 		ren.error = 1 - ren.error;
 		ren.with_line = false;
-        setpixel_inner(win, x, (int)(y) + 1, &ren);
+		setpixel_inner(win, x, (int)(y) + 1, &ren);
 		setpixel_inner(win, (int)(y) + 1, x, &ren);
 		x++;
-    }
+	}
 }
