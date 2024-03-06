@@ -37,23 +37,26 @@ void	blur_horizontal(t_pause_blur *blur, char *dest, char *src, \
 	float	colors[4];
 	int		i;
 
-	y = blur->kernel_centre - 1;
-	while (++y < help->height - blur->kernel_centre)
+	y = blur->kernel_centre;
+	while (y < help->height - blur->kernel_centre)
 	{
-		x = blur->kernel_centre - 1;
-		while (++x < help->width - blur->kernel_centre)
+		x = blur->kernel_centre;
+		while (x < help->width - blur->kernel_centre)
 		{
 			blur_index = (y * help->width + x) * blur->rgb_size;
 			ft_memset(colors, 0, sizeof(colors));
-			i = -1;
-			while (++i < blur->kernel_size)
+			i = 0;
+			while (i < blur->kernel_size)
 			{
 				blur->save_pixels[i] = *(int *)&src[(y * help->width + x \
 					- blur->kernel_centre + i) * blur->rgb_size];
 				fill_kernel_colors(blur, colors, i);
+				i++;
 			}
 			*(int *)&dest[blur_index] = pack_color_channels((int)colors[0], \
 				(int)colors[1], (int)colors[2], (int)colors[3]);
+			x++;
 		}
+		y++;
 	}
 }

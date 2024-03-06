@@ -111,8 +111,8 @@ typedef struct s_clock
 
 typedef struct s_blur_helper
 {
-	int	height;
 	int	width;
+	int	height;
 	int	rgb_size;
 }	t_blur_helper;
 
