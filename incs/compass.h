@@ -211,6 +211,7 @@ typedef struct s_render_circ
 	int			color;
 	bool		with_line;
 	int			c_min_max[MM_SIZE];
+	t_hori_line	draw;
 }	t_render_circ;
 
 typedef	struct s_comp_blur

@@ -139,6 +139,7 @@ SRC_COMPASS			=	compass_setup.c				\
 						xlim_inner_circle.c			\
 						render_map_square.c			\
 						render_ring.c				\
+						render_ring_inner_pixels.c	\
 						render_circle_player.c		\
 						compass_blur.c
 
