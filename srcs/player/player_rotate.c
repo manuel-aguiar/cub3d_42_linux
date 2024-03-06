@@ -25,7 +25,6 @@ static inline void	player_shot_pitch(t_game *game)
 			* player->clock->elapsed;
 		player->cur_shot_sense -= player->shot_gravity \
 			* player->clock->elapsed;
-		
 	}
 	if (player->shot_pitch_mod <= 0)
 	{

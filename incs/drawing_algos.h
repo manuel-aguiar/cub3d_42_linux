@@ -71,6 +71,22 @@ typedef struct s_bh_line
 	int	err_2;
 }	t_bh_line;
 
+typedef struct s_hori_line
+{
+	int	min_x;
+	int	max_x;
+	int	y;
+	int	color;
+}	t_hori_line;
+
+typedef struct s_verti_line
+{
+	int	min_y;
+	int	max_y;
+	int	x;
+	int	color;
+}	t_verti_line;
+
 //liang barsky
 int		liang_barsky_clipper(t_pixel low_bot, t_pixel hi_top, t_pixel start, t_pixel end, t_pixel new[]);
 float	lb_maxi(float arr[], int n);
@@ -80,8 +96,8 @@ float	lb_mini(float arr[], int n);
 int		xiaolinwu_line(t_win *win, t_pixel start, t_pixel end);
 
 //drawing lines.c
-void	draw_horizontal_line(t_win *win, int min_x, int max_x, int y, int color);
-void	draw_vertical_line(t_win *win, int start_y, int end_y, int x, int color);
+void	draw_horizontal_line(t_win *win, t_hori_line *data);
+void	draw_vertical_line(t_win *win, t_verti_line *data);
 
 void 	bersenham_line(t_win *win, t_pixel start, t_pixel end, int color);
 

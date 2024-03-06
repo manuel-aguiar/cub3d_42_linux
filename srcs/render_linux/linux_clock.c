@@ -10,17 +10,17 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "render_linux.h"
+#include "render_linux.h"
 
-void start_clock(t_clock *clock)
+void	start_clock(t_clock *clock)
 {
-    gettimeofday(&clock->start, NULL);
+	gettimeofday(&clock->start, NULL);
 }
 
-void update_clock(t_clock *clock)
+void	update_clock(t_clock *clock)
 {
-    gettimeofday(&clock->end, NULL);
-    clock->elapsed = (size_t)((clock->end.tv_sec - clock->start.tv_sec) * 1000 +
-                               (clock->end.tv_usec - clock->start.tv_usec) / 1000);
-    clock->start = clock->end;
+	gettimeofday(&clock->end, NULL);
+	clock->elapsed = (size_t)((clock->end.tv_sec - clock->start.tv_sec) \
+		* 1000 + (clock->end.tv_usec - clock->start.tv_usec) / 1000);
+	clock->start = clock->end;
 }

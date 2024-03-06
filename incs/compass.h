@@ -44,6 +44,7 @@ used on defining character movement
 # define SQR_MAX_HEIGHT 100
 # define SQR_MIN_HEIGHT 5
 
+typedef struct s_compass t_compass;
 typedef struct s_circle t_circle;
 typedef struct s_north t_north;
 typedef struct s_south t_south;
@@ -61,7 +62,7 @@ typedef struct s_west t_west;
 			any square to be rendered will simply be a copy of the template (with hashtable, after rotations)
 				square rotates against its own centre (vs letters that rotate against the compass centre)
 			and every point will be translated according to the square placement vs this centre
-		
+
 		starting letters will be centreed around (0,0) +/- their offset on the compass (0,0)
 			then they are displaced to their positions (individual offsets)
 			and finally they are rotated against the centre of the compass
@@ -85,7 +86,7 @@ typedef struct s_west t_west;
 
 		east and west are the same (symetrical nature), but their place vs the centre of the compass is different
 		and that will lead them to rotate in diffent directions
-		
+
 
 
 */
@@ -126,6 +127,18 @@ typedef struct s_square
 	int			real_z;
 }	t_square;
 
+
+typedef struct s_render_sqr
+{
+	int			x;
+	int			y;
+	t_square	sqr;
+	t_hori_line	line;
+	int			c_min_max[MM_SIZE];
+	int			start;
+	int 		end;
+	int 		adj_x;
+}	t_render_sqr;
 
 enum e_east
 {
@@ -187,7 +200,21 @@ struct s_circle
 	int			min_max[MM_SIZE];
 };
 
-typedef	struct s_blur
+typedef struct s_render_circ
+{
+	t_pixel		centre;
+	t_compass	*comp;
+	int			radius;
+	int			rad_sqr;
+	int			quarter;
+	float		error;
+	int			color;
+	bool		with_line;
+	int			c_min_max[MM_SIZE];
+	t_hori_line	draw;
+}	t_render_circ;
+
+typedef	struct s_comp_blur
 {
 	float	kernel[31];
 	int		save_pixels[31];
@@ -197,12 +224,16 @@ typedef	struct s_blur
 	int		*hori_blur;
 	int		*verti_blur;
 	int		blur_height;
-}	t_blur;
+	int		centre;
+	int 	rad_diff;
+	int		img_x;
+	int		img_y;
+}	t_comp_blur;
 
-typedef struct s_compass
+struct s_compass
 {
 	t_pixel		centre;
-	
+
 	//t_circle	outer;
 	int			radius;
 	int			color;
@@ -224,14 +255,14 @@ typedef struct s_compass
 	t_mm_pair	*sqr_x_lim;
 	t_pixel		map_centre;
 	bool		blur_on;
-	t_blur		blur;
+	t_comp_blur		blur;
 
 	t_pixel		north[N_SIZE];
 	t_pixel		south[S_SIZE];
 	t_pixel		south_circle[S_SIZE];
 	t_pixel		east[E_SIZE];
 	t_pixel		west[W_SIZE];
-}	t_compass;
+};
 
 //letter_north.c
 void	init_template_north(t_compass *comp);
@@ -256,7 +287,6 @@ void	render_south_letter_circle(t_win *win, t_compass *comp);
 //win_square.c
 int		init_template_square(t_compass *comp);
 void	compass_square_xlim_rotate(t_compass *comp, t_square *sqr);
-void	draw_horizontal_line(t_win *win, int min_x, int max_x, int y, int color);
 
 //translate_rotate.c
 void	translate_point(t_pixel	*point, int dx, int dy);

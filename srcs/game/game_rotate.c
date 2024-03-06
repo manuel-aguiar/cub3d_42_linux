@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "game.h"
+#include "game.h"
 
 void	game_rotate_view_angle(t_game *game, float diff)
 {

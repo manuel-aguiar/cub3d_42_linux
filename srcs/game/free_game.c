@@ -12,9 +12,23 @@
 
 #include "game.h"
 
-int	free_game(t_game *game)
+static inline void	destroy_sprites(t_game *game)
 {
-	int i;
+	int	i;
+
+	i = 0;
+	while (i < game->sprite_count)
+	{
+		if (game->sprites[i].data)
+			free(game->sprites[i].data);
+		i++;
+	}
+	free(game->sprites);
+}
+
+static inline void	destroy_textures(t_game *game)
+{
+	int	i;
 
 	i = 0;
 	while (i < NUM_TEX)
@@ -23,6 +37,11 @@ int	free_game(t_game *game)
 			mlx_destroy_image(game->win.mlx, game->tex[i].img);
 		i++;
 	}
+}
+
+int	free_game(t_game *game)
+{
+	destroy_textures(game);
 	free_window(&game->win);
 	free_compass(&game->compass);
 	free_map(&game->map);
@@ -31,16 +50,7 @@ int	free_game(t_game *game)
 	if (game->verti_rays)
 		free(game->verti_rays);
 	if (game->sprites)
-	{
-		i = 0;
-		while (i < game->sprite_count)
-		{
-			if (game->sprites[i].data)
-				free(game->sprites[i].data);
-			i++;
-		}
-		free(game->sprites);
-	}
+		destroy_sprites(game);
 	if (game->sorted)
 		free(game->sorted);
 	exit(EXIT_SUCCESS);

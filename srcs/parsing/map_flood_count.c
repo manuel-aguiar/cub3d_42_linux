@@ -14,7 +14,7 @@
 
 void	flood_fill(t_parsing *parse, int row, int col, char caller);
 
-static inline void fill_it(t_parsing *parse, int row, int col, char me)
+static inline void	fill_it(t_parsing *parse, int row, int col, char me)
 {
 	flood_fill(parse, row - 1, col - 1, me);
 	flood_fill(parse, row - 0, col - 1, me);
@@ -48,29 +48,37 @@ void	flood_fill(t_parsing *parse, int row, int col, char caller)
 	fill_it(parse, row, col, me);
 }
 
+static inline int	bad_map_message(void)
+{
+	return (error_msg_int("cub3d: map not surrounded / multiple islands\n", \
+		STDERR_FILENO, 0));
+}
+
 int	flood_count_island(t_parsing *parse)
 {
 	int	i;
 
 	parse->ff_found = false;
 	parse->ff_count = 0;
-	parse->map_copy = ft_memdup(parse->map, sizeof(*parse->map) * parse->map_height * parse->map_width);
+	parse->map_copy = ft_memdup(parse->map, sizeof(*parse->map) \
+		* parse->map_len);
 	if (!parse->map_copy)
 		return (perror_msg_int("malloc", 0));
 	i = 0;
-	while (i < parse->map_height * parse->map_width && parse->map_copy[i] == MAP_EMPTY)
+	while (i < parse->map_len && parse->map_copy[i] == MAP_EMPTY)
 		i++;
-	if (i < parse->map_height * parse->map_width && parse->map_copy[i] == MAP_WALL)
-		flood_fill(parse, i / parse->map_width, i % parse->map_width, MAP_WALL);
+	if (i < parse->map_len && parse->map_copy[i] == MAP_WALL)
+		flood_fill(parse, i / parse->map_width, i % parse->map_width, \
+		MAP_WALL);
 	else
-		return (error_msg_int("cub3d: bad map: not surrounded by walls\n", STDERR_FILENO, 0));
+		return (bad_map_message());
 	if (parse->ff_found == true)
-		return (error_msg_int("cub3d: bad map: not surrounded by walls\n", STDERR_FILENO, 0));
-	while (i < parse->map_height * parse->map_width \
+		return (bad_map_message());
+	while (i < parse->map_len \
 	&& (parse->map_copy[i] == MAP_EMPTY || parse->map_copy[i] == FLOOD_CHAR))
 		i++;
-	if (i < parse->map_height * parse->map_width)
-		return (error_msg_int("cub3d: bad map: multiple islands\n", STDERR_FILENO, 0));
+	if (i < parse->map_len)
+		return (bad_map_message());
 	ft_free_set_null(&parse->map_copy);
 	return (1);
 }

@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   letter_south.c                                      :+:      :+:    :+:   */
+/*   letter_south.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/15 13:51:49 by marvin            #+#    #+#             */
-/*   Updated: 2024/01/15 13:51:49 by marvin           ###   ########.fr       */
+/*   Created: 2024/03/06 13:59:14 by codespace         #+#    #+#             */
+/*   Updated: 2024/03/06 13:59:14 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "compass.h"
+#include "compass.h"
 
 void	init_template_south(t_compass *comp)
 {
-	comp->south[S_BOT_LEFT] = (t_pixel){-(comp->letter_width / 2 + 1), \
-		-(comp->letter_height / 2 + 1), comp->letter_color};
+	comp->south[S_BOT_LEFT] = (t_pixel){-comp->letter_width / 2 - 1, \
+		- (comp->letter_height / 2 + 1), comp->letter_color};
 	comp->south[S_BOT_RIGHT] = (t_pixel){(comp->letter_width / 2 + 1), \
-		-(comp->letter_height / 2 + 1), comp->letter_color};
-	comp->south[S_TOP_LEFT] = (t_pixel){-(comp->letter_width / 2 + 1), \
+		- (comp->letter_height / 2 + 1), comp->letter_color};
+	comp->south[S_TOP_LEFT] = (t_pixel){-comp->letter_width / 2 - 1, \
 		(comp->letter_height / 2 + 1), comp->letter_color};
 	comp->south[S_TOP_RIGHT] = (t_pixel){(comp->letter_width / 2 + 1), \
 		(comp->letter_height / 2 + 1), comp->letter_color};
-	comp->south[S_MID_LEFT] = (t_pixel){-(comp->letter_width / 2 + 1), \
+	comp->south[S_MID_LEFT] = (t_pixel){-comp->letter_width / 2 - 1, \
 		0, comp->letter_color};
 	comp->south[S_MID_RIGHT] = (t_pixel){(comp->letter_width / 2 + 1), \
 		0, comp->letter_color};

@@ -25,7 +25,6 @@
 # include "vector.h"
 # include "player.h"
 # include "generic_utils.h"
-# include "xpm_parser.h"
 # include "sprites.h"
 
 #define RAND_MAX_UINT64 0xFFFFFFFFUL

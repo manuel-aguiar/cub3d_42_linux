@@ -1,16 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   game_loud_textures.c                               :+:      :+:    :+:   */
+/*   game_load_textures.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 11:00:29 by codespace         #+#    #+#             */
-/*   Updated: 2024/03/05 11:21:16 by codespace        ###   ########.fr       */
+/*   Updated: 2024/03/06 11:47:10 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "game.h"
+
+int	setup_mlx_image(t_game *game, t_mlx_img *new, char *path)
+{
+	new->img = mlx_xpm_file_to_image(game->win.mlx, \
+		path, &new->width, &new->height);
+	if (!new->img)
+		return (error_msg_int("cub3d: mlx xpm to image failed\n", \
+		STDERR_FILENO, 0));
+	new->pixels = mlx_get_data_addr(new->img, &new->bpp, \
+		&new->line_len, &new->endian);
+	return (1);
+}
 
 void	swap_verti_coords(t_mlx_img	*tex)
 {
@@ -46,20 +58,18 @@ int	mlx_image_transpose(t_game *game, t_tex_data *data, int i, t_mlx_img *tex)
 	int			src_index;
 	int			dest_index;
 
-	new.img = mlx_xpm_file_to_image(game->win.mlx, \
-		data->path, &new.width, &new.height);
-	if (!new.img)
-		return (error_msg_int("cub3d: mlx xpm to image failed\n", STDERR_FILENO, 0));
-	new.pixels = mlx_get_data_addr(new.img, &new.bpp, &new.line_len, &new.endian);
+	if (!setup_mlx_image(game, &new, data->path))
+		return (0);
 	row = -1;
 	while (++row < tex->height)
 	{
 		col = -1;
-		while(++col < tex->width)
+		while (++col < tex->width)
 		{
 			src_index = (col + row * tex->width) * tex->bpp / 8;
 			dest_index = (row + col * tex->height) * tex->bpp / 8;
-			*(int *)(&new.pixels[dest_index]) = *(int *)(&tex->pixels[src_index]);
+			*(int *)(&new.pixels[dest_index]) \
+			= *(int *)(&tex->pixels[src_index]);
 		}
 	}
 	mlx_destroy_image(game->win.mlx, tex->img);
@@ -69,25 +79,23 @@ int	mlx_image_transpose(t_game *game, t_tex_data *data, int i, t_mlx_img *tex)
 	return (1);
 }
 
-int		mlx_load_from_xpm(t_game *game, t_tex_data *data, int i)
+int	mlx_load_from_xpm(t_game *game, t_tex_data *data, int i)
 {
 	t_mlx_img	*tex;
 
 	tex = &game->tex[i];
-	tex->img = mlx_xpm_file_to_image(game->win.mlx, \
-		data->path, &tex->width, &tex->height);
-	if (!tex->img)
-		return (error_msg_int("cub3d: mlx xpm to image failed\n", STDERR_FILENO, 0));
-	tex->pixels = mlx_get_data_addr(tex->img, &tex->bpp, &tex->line_len, &tex->endian);
-	if (i != F_TEX && i != C_TEX && i != GUN_TEX && !mlx_image_transpose(game, data, i, tex))
+	if (!setup_mlx_image(game, tex, data->path))
+		return (0);
+	if (i != F_TEX && i != C_TEX && i != GUN_TEX \
+	&& !mlx_image_transpose(game, data, i, tex))
 		return (0);
 	ft_free_set_null(&data->path);
 	return (1);
 }
 
-int		game_load_textures(t_game *game)
+int	game_load_textures(t_game *game)
 {
-	int 		i;
+	int			i;
 	t_tex_data	*data;
 
 	i = 0;
@@ -101,7 +109,6 @@ int		game_load_textures(t_game *game)
 			ft_free_set_null(&data->path);
 			return (0);
 		}
-			
 		i++;
 	}
 	return (1);

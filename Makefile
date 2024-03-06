@@ -38,7 +38,6 @@ DIR_PLAYER			=	player
 DIR_SPRITES			=	sprites
 DIR_PIXEL_POINT		=	pixel_point
 DIR_RAYCASTING		=	raycasting
-DIR_XPM_PARSER		=	xpm_parser
 DIR_HIT_DETECTION	=	hit_detection
 
 ## SOURCE FILES ##
@@ -52,7 +51,6 @@ INC_FILES		=		game.h				\
 						drawing_algos.h		\
 						pixel_point.h		\
 						compass.h			\
-						xpm_parser.h		\
 						generic_utils.h		\
 						hit_detection.h
 
@@ -71,7 +69,7 @@ SRC_GAME			=	win_render_loop.c		\
 						free_game.c				\
 						game_rotate.c			\
 						game_render.c			\
-						game_loud_textures.c	\
+						game_load_textures.c	\
 						render_inside_compass.c		\
 						handle_collisions.c		\
 						xpm_to_window.c				\
@@ -90,7 +88,8 @@ SRC_PLAYER			=	player_setup_and_actions.c	\
 						player_crouch_prone.c		\
 						player_walk_height.c		\
 						player_rotate.c				\
-						player_jump.c
+						player_jump.c				\
+						player_height_manager.c
 
 SRC_PARSING			=	parsing_main.c						\
 						parsing_textures_get.c				\
@@ -100,11 +99,6 @@ SRC_PARSING			=	parsing_main.c						\
 						map_flood_count.c					\
 						map_funcs.c							\
 						map_dimensions.c
-
-
-SRC_XPM_PARSER		=	xpm_compiled_texture.c		\
-						xpm_free.c
-
 
 SRC_GENERIC_UTILS 	= 	ft_split_count_replenish.c		\
 						clamp.c							\
@@ -129,20 +123,26 @@ SRC_REN_LINUX		=	linux_init_window.c		\
 						linux_callback_keys.c		\
 						linux_callback_mouse.c	\
 						linux_clock.c				\
+						linux_pause_manager.c		\
 						linux_pause_blur_1.c		\
 						linux_pause_blur_2.c		\
 						linux_text_strings.c
 
-SRC_COMPASS			=	compass_setup_render.c		\
+SRC_COMPASS			=	compass_setup.c				\
+						compass_render.c			\
 						letter_north.c				\
 						letter_south.c				\
 						letter_east.c				\
 						letter_west.c				\
+						xlim_map_square.c			\
+						xlim_map_square_helper.c	\
+						xlim_inner_circle.c			\
+						render_map_square.c			\
 						render_ring.c				\
-						xlim_map_square.c				\
-						xlim_inner_circle.c				\
-						render_map_square.c				\
-						compass_blur.c
+						render_ring_inner_pixels.c	\
+						render_circle_player.c		\
+						compass_blur.c				\
+						compass_blur_passes.c
 
 SRC_DRAWING_ALGOS	=	drawing_lines.c				\
 						liang_barsky_clipping.c		\
@@ -151,7 +151,8 @@ SRC_DRAWING_ALGOS	=	drawing_lines.c				\
 						xiaolinwu_utils.c
 
 SRC_PIXEL_POINT		=	gamma_correction.c				\
-						pixels.c						\
+						pixels_1.c						\
+						pixels_2.c						\
 						translate_rotate.c
 
 SRC_RAYCASTING		=	vec2d_utils1.c					\
@@ -193,7 +194,6 @@ SRCS 		:=		$(addprefix $(SRC_PATH)/, $(SRC_MAIN))											\
 					$(addprefix $(SRC_PATH)/$(DIR_PIXEL_POINT)/, $(SRC_PIXEL_POINT))				\
 					$(addprefix $(SRC_PATH)/$(DIR_SPRITES)/, $(SRC_SPRITES))						\
 					$(addprefix $(SRC_PATH)/$(DIR_HIT_DETECTION)/, $(SRC_HIT_DETECTION))
-##					$(addprefix $(SRC_PATH)/$(DIR_XPM_PARSER)/, $(SRC_XPM_PARSER))
 
 
 

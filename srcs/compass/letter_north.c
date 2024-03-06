@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   letter_north.c                                      :+:      :+:    :+:   */
+/*   letter_north.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/15 13:51:49 by marvin            #+#    #+#             */
-/*   Updated: 2024/01/15 13:51:49 by marvin           ###   ########.fr       */
+/*   Created: 2024/03/06 13:56:16 by codespace         #+#    #+#             */
+/*   Updated: 2024/03/06 13:56:16 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "compass.h"
+#include "compass.h"
 
 void	init_template_north(t_compass *comp)
 {
-	comp->north[N_BOT_LEFT] = (t_pixel){-(comp->letter_width / 2 + 1), \
-		-(comp->letter_height / 2 + 1), comp->letter_color};
-	comp->north[N_BOT_RIGHT] = (t_pixel){+(comp->letter_width / 2 + 1), \
-		-(comp->letter_height / 2 + 1), comp->letter_color};
-	comp->north[N_TOP_LEFT] = (t_pixel){-(comp->letter_width / 2 + 1), \
-		+(comp->letter_height / 2 + 1), comp->letter_color};
-	comp->north[N_TOP_RIGHT] = (t_pixel){+(comp->letter_width / 2 + 1), \
-		+(comp->letter_height / 2 + 1), comp->letter_color};
+	comp->north[N_BOT_LEFT] = (t_pixel){-comp->letter_width / 2 - 1, \
+		- (comp->letter_height / 2 + 1), comp->letter_color};
+	comp->north[N_BOT_RIGHT] = (t_pixel){comp->letter_width / 2 + 1, \
+		- (comp->letter_height / 2 + 1), comp->letter_color};
+	comp->north[N_TOP_LEFT] = (t_pixel){-comp->letter_width / 2 - 1, \
+		+ (comp->letter_height / 2 + 1), comp->letter_color};
+	comp->north[N_TOP_RIGHT] = (t_pixel){comp->letter_width / 2 + 1, \
+		+ (comp->letter_height / 2 + 1), comp->letter_color};
 }
 
 void	render_north_letter(t_win *win, t_compass *comp)
@@ -38,7 +38,7 @@ void	render_north_letter(t_win *win, t_compass *comp)
 	while (i < N_SIZE)
 	{
 		translate_point(&north[i], dx, dy);
-		north[i].colour = rgba(0,255,0,255);
+		north[i].colour = rgba(0, 255, 0, 255);
 		rotate_point(&north[i], comp->centre, -comp->sin_rad, -comp->cos_rad);
 		i++;
 	}

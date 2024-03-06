@@ -58,5 +58,6 @@ int	get_map_dimensions(t_parsing *parsing)
 		return (error_msg_int("cub3d: file must end on map\n", \
 			STDERR_FILENO, 0));
 	parsing->map_height = parsing->list->len;
+	parsing->map_len = parsing->map_height * parsing->map_width;
 	return (1);
 }

@@ -97,6 +97,7 @@ typedef struct s_parsing
 	char		*map;
 	int			map_width;
 	int			map_height;
+	int			map_len;
 	bool		found_player;
 	char		*map_copy;
 	bool		ff_found;

@@ -3,22 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   letter_west.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/15 13:51:47 by marvin            #+#    #+#             */
-/*   Updated: 2024/01/15 13:51:47 by marvin           ###   ########.fr       */
+/*   Created: 2024/03/06 14:00:44 by codespace         #+#    #+#             */
+/*   Updated: 2024/03/06 14:00:44 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "compass.h"
+#include "compass.h"
 
 void	init_template_west(t_compass *comp)
 {
-	comp->west[W_TOP_LEFT] = (t_pixel){-(comp->letter_width + 1), \
+	comp->west[W_TOP_LEFT] = (t_pixel){-comp->letter_width - 1, \
 		(comp->letter_height / 2 + 1), comp->letter_color};
-	comp->west[W_MB_LEFT] = (t_pixel){-(comp->letter_width / 2), \
+	comp->west[W_MB_LEFT] = (t_pixel){-comp->letter_width / 2, \
 		-(comp->letter_height / 2 + 1), comp->letter_color};
-	comp->west[W_TOP_MID]= (t_pixel){0, (comp->letter_height / 2 + 1), \
+	comp->west[W_TOP_MID] = (t_pixel){0, (comp->letter_height / 2 + 1), \
 		comp->letter_color};
 	comp->west[W_MB_RIGHT] = (t_pixel){(comp->letter_width / 2), \
 		-(comp->letter_height / 2 + 1), comp->letter_color};

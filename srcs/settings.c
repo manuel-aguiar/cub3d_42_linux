@@ -24,7 +24,7 @@ static inline void	settings_compass_two(t_game *game, t_compass *comp)
 	comp->player_rad = game->compass.sqr.height * COMP_PLAY_RAD;
 	comp->player_colour = COMP_PLAYER_COLOR;
 	comp->blur_on = BLUR_ON;
-	comp->blur = (t_blur){};
+	comp->blur = (t_comp_blur){};
 	comp->blur.max_kernel = BLUR_KERNEL_MAX;
 	comp->blur.kernel_size = BLUR_KERNEL_SIZE;
 	comp->blur.sigma = BLUR_KERNEL_SIGMA;
@@ -43,9 +43,9 @@ void	settings_compass(t_game *game, t_compass *comp)
 	comp->letter_color = COMP_LETTER_COLOR;
 	comp->sqr_color = COMP_SQR_COLOR;
 	comp->sqr_height = int_clamp (\
-							(int)(game->compass.radius * SQR_HEIGHT_PERC), \
-							(int)(game->compass.radius * SQR_MIN_HEIGHT_PERC), \
-							(int)(game->compass.radius * SQR_MAX_HEIGHT_PERC));
+					(int)(game->compass.radius * SQR_HEIGHT_PERC), \
+					(int)(game->compass.radius * SQR_MIN_HEIGHT_PERC), \
+					(int)(game->compass.radius * SQR_MAX_HEIGHT_PERC));
 	settings_compass_two(game, comp);
 }
 

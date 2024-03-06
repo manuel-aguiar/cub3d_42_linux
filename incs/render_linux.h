@@ -109,6 +109,13 @@ typedef struct s_clock
     size_t          elapsed;
 }   t_clock;
 
+typedef struct s_blur_helper
+{
+	int	width;
+	int	height;
+	int	rgb_size;
+}	t_blur_helper;
+
 typedef struct s_pause_blur
 {
 	float		kernel[31];
