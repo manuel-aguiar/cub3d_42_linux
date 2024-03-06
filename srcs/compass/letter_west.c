@@ -14,15 +14,15 @@
 
 void	init_template_west(t_compass *comp)
 {
-	comp->west[W_TOP_LEFT] = (t_pixel){-(comp->letter_width + 1),
+	comp->west[W_TOP_LEFT] = (t_pixel){-comp->letter_width - 1, \
 		(comp->letter_height / 2 + 1), comp->letter_color};
-	comp->west[W_MB_LEFT] = (t_pixel){-(comp->letter_width / 2),
+	comp->west[W_MB_LEFT] = (t_pixel){-comp->letter_width / 2, \
 		-(comp->letter_height / 2 + 1), comp->letter_color};
-	comp->west[W_TOP_MID] = (t_pixel){0, (comp->letter_height / 2 + 1),
+	comp->west[W_TOP_MID] = (t_pixel){0, (comp->letter_height / 2 + 1), \
 		comp->letter_color};
-	comp->west[W_MB_RIGHT] = (t_pixel){(comp->letter_width / 2),
+	comp->west[W_MB_RIGHT] = (t_pixel){(comp->letter_width / 2), \
 		-(comp->letter_height / 2 + 1), comp->letter_color};
-	comp->west[W_TOP_RIGHT] = (t_pixel){(comp->letter_width + 1),
+	comp->west[W_TOP_RIGHT] = (t_pixel){(comp->letter_width + 1), \
 		(comp->letter_height / 2 + 1), comp->letter_color};
 }
 

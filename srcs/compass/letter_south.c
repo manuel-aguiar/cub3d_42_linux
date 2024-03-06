@@ -14,15 +14,15 @@
 
 void	init_template_south(t_compass *comp)
 {
-	comp->south[S_BOT_LEFT] = (t_pixel){- (comp->letter_width / 2 + 1), \
+	comp->south[S_BOT_LEFT] = (t_pixel){-comp->letter_width / 2 - 1, \
 		- (comp->letter_height / 2 + 1), comp->letter_color};
 	comp->south[S_BOT_RIGHT] = (t_pixel){(comp->letter_width / 2 + 1), \
 		- (comp->letter_height / 2 + 1), comp->letter_color};
-	comp->south[S_TOP_LEFT] = (t_pixel){- (comp->letter_width / 2 + 1), \
+	comp->south[S_TOP_LEFT] = (t_pixel){-comp->letter_width / 2 - 1, \
 		(comp->letter_height / 2 + 1), comp->letter_color};
 	comp->south[S_TOP_RIGHT] = (t_pixel){(comp->letter_width / 2 + 1), \
 		(comp->letter_height / 2 + 1), comp->letter_color};
-	comp->south[S_MID_LEFT] = (t_pixel){- (comp->letter_width / 2 + 1), \
+	comp->south[S_MID_LEFT] = (t_pixel){-comp->letter_width / 2 - 1, \
 		0, comp->letter_color};
 	comp->south[S_MID_RIGHT] = (t_pixel){(comp->letter_width / 2 + 1), \
 		0, comp->letter_color};
