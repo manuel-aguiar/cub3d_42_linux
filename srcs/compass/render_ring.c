@@ -12,42 +12,23 @@
 
 #include "compass.h"
 
-
-
-// must be visible
-
-// gamma correction instead of linear average of pixels when antialiasing
-
-
-
-// turn these into hash tables...? the inverse pow becoming 2 sqrrts.....
-
-//quake fast inverse square root of doom
-
 void	drop_the_blur(t_win *win, t_compass *comp, t_hori_line *draw)
 {
-	t_comp_blur *blur;
-	int blur_y;
-	int	blur_x;
+	t_comp_blur	*blur;
+	int			blur_y;
+	int			blur_x;
 
 	if (!comp->blur_on)
 		return ;
 	blur = &comp->blur;
 	blur_y = comp->radius + draw->y - comp->centre.y;
 	blur_x = comp->radius + draw->min_x - comp->centre.x;
-	int blur_index = blur->verti_blur[blur_y * blur->blur_height + blur_x];
-	int screen_index = (draw->min_x + draw->y * win->width) * win->rgb_size;
-	//ft_memcpy(&win->front_buf[screen_index], &blur[blur_index], (max_x - min_x) * sizeof(blur[blur_index]));
-
-	(void)blur_index;
-	(void)screen_index;
-	// replace with memcpy!!!!
 	while (draw->min_x < draw->max_x)
 	{
 		blur_x = comp->radius + draw->min_x - comp->centre.x;
-		win->set_pixel(win, draw->min_x++, draw->y, blur->verti_blur[blur_y * blur->blur_height + blur_x]);
+		win->set_pixel(win, draw->min_x++, draw->y, \
+			blur->verti_blur[blur_y * blur->blur_height + blur_x]);
 	}
-
 }
 
 
