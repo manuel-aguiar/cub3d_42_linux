@@ -15,7 +15,7 @@
 static int	circlelim_setup_and_compare(t_compass *comp, t_square *sqr, \
 			int c_min_max[MM_SIZE])
 {
-	ft_memcpy(c_min_max, &comp->inner.min_max, sizeof(int) * 4);
+	ft_memcpy(c_min_max, &comp->inner.min_max, sizeof(c_min_max[0]) * MM_SIZE);
 	c_min_max[MM_MIN_X] += comp->centre.x;
 	c_min_max[MM_MAX_X] += comp->centre.x;
 	c_min_max[MM_MIN_Y] += comp->centre.y;

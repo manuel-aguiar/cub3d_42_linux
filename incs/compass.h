@@ -44,6 +44,7 @@ used on defining character movement
 # define SQR_MAX_HEIGHT 100
 # define SQR_MIN_HEIGHT 5
 
+typedef struct s_compass t_compass;
 typedef struct s_circle t_circle;
 typedef struct s_north t_north;
 typedef struct s_south t_south;
@@ -201,12 +202,15 @@ struct s_circle
 
 typedef struct s_render_circ
 {
-	t_pixel	centre;
-	int		rad_sqr;
-	int		quarter;
-	float	error;
-	int		color;
-	bool	with_line;
+	t_pixel		centre;
+	t_compass	*comp;
+	int			radius;
+	int			rad_sqr;
+	int			quarter;
+	float		error;
+	int			color;
+	bool		with_line;
+	int			c_min_max[MM_SIZE];
 }	t_render_circ;
 
 typedef	struct s_comp_blur
@@ -225,7 +229,7 @@ typedef	struct s_comp_blur
 	int		img_y;
 }	t_comp_blur;
 
-typedef struct s_compass
+struct s_compass
 {
 	t_pixel		centre;
 
@@ -257,7 +261,7 @@ typedef struct s_compass
 	t_pixel		south_circle[S_SIZE];
 	t_pixel		east[E_SIZE];
 	t_pixel		west[W_SIZE];
-}	t_compass;
+};
 
 //letter_north.c
 void	init_template_north(t_compass *comp);
