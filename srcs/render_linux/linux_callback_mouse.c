@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "render_linux.h"
+#include "render_linux.h"
 
-int    mouse_press(int button, int x, int y, t_win *win)
+int	mouse_press(int button, int x, int y, t_win *win)
 {
 	(void)x;
 	(void)y;
@@ -21,7 +21,7 @@ int    mouse_press(int button, int x, int y, t_win *win)
 		if (!((win->mouse.buttons >> BIT_AIM) & 1))
 			win->mouse.buttons |= (1 << BIT_AIM);
 		else
-			win->mouse.buttons &= ~(1 << BIT_AIM);	
+			win->mouse.buttons &= ~(1 << BIT_AIM);
 	}
 	else if (button == BUT_SHOOT)
 		win->mouse.buttons |= (1 << BIT_SHOOT);
@@ -38,7 +38,7 @@ int	mouse_release(int button, int x, int y, t_win *win)
 }
 
 int	mouse_position(int x, int y, t_win *win)
-{	
+{
 	win->mouse.cur_x = x;
 	win->mouse.cur_y = y;
 	return (1);

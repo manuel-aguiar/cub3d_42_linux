@@ -10,16 +10,17 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "render_linux.h"
+#include "render_linux.h"
 
 /*
 endianess issues here, should place pixels char by char....
 performance looks to be exactly the same, optimized by the compiler
 
 */
+
 void	linux_set_pixel(t_win *win, int x, int y, int color)
 {
-	char		*dst;
+	char	*dst;
 
 	y = win->height - y - 1;
 	dst = win->front_buf.pixels + (y * win->front_buf.line_len + \
@@ -29,15 +30,13 @@ void	linux_set_pixel(t_win *win, int x, int y, int color)
 
 int	linux_get_pixel(t_win *win, int x, int y)
 {
-	char		*dst;
+	char	*dst;
 
-	y = win->height - y - 1;	
+	y = win->height - y - 1;
 	dst = win->front_buf.pixels + (y * win->front_buf.line_len + \
 		x * (win->front_buf.bpp / 8));
 	return (*(unsigned int *)dst);
 }
-
-
 
 void	swap_pixels(t_pixel *start, t_pixel *end)
 {
@@ -47,4 +46,3 @@ void	swap_pixels(t_pixel *start, t_pixel *end)
 	*start = *end;
 	*end = temp;
 }
-

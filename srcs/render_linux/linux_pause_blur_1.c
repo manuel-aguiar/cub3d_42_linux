@@ -172,7 +172,7 @@ void	window_pause_manager(t_win *win, e_pause_state state, bool blur_on, void st
 	else if (state == PAUSE_OFF)
 	{
 		//printf("elapsed off is %d\n", blur->elapsed);
-		
+
 		if (blur->elapsed <= 0)
 		{
 			blur->elapsed = 0;
@@ -200,7 +200,7 @@ void	window_pause_manager(t_win *win, e_pause_state state, bool blur_on, void st
 			win->mouse.cur_x = win->width / 2;
 			win->mouse.cur_y = win->height / 2;
 		}
-			
+
 	}
 	//string(win);
 }
