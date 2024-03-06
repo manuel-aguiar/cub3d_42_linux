@@ -102,7 +102,7 @@ int	game_render(t_game *game)
 		game->compass.blur_on = blur_on;
 		if (((game->win.keys) >> BIT_HUD_T) & 1)
 		{
-			//render_compass(&game->win, &game->compass);
+			render_compass(&game->win, &game->compass);
 			render_map_inside_compass(game);
 			render_player_inside_compass(game);
 			render_stats_bars(game);

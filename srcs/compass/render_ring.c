@@ -21,7 +21,7 @@ static inline void	setup_ring_draw(t_compass *comp, t_render_circ *ren)
 	ren->radius = comp->radius;
 	ren->color = comp->color;
 	ren->rad_sqr = ren->radius * ren->radius;
-	ren->quarter = round(ren->radius / sqrt(ren->radius + ren->radius));
+	ren->quarter = round(ren->rad_sqr / sqrt(ren->rad_sqr + ren->rad_sqr));
 	ft_memcpy(&ren->c_min_max, &comp->inner.min_max, \
 		sizeof(ren->c_min_max[0]) * MM_SIZE);
 	ren->c_min_max[MM_MIN_X] += comp->centre.x;
