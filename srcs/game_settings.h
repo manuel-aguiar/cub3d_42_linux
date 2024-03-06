@@ -17,7 +17,7 @@
 # include "game.h"
 
 /* window settings */
-# define MAX_WIN_WIDTH 1900
+# define MAX_WIN_WIDTH 1920
 # define MIN_WIN_WIDTH 800
 # define MAX_WIN_HEIGHT 1080
 # define MIN_WIN_HEIGHT 480
@@ -148,7 +148,7 @@
 # define ENEMY_Z_SENSE 0.005f
 # define ENEMY_MOVE_SENSE 0.0015f
 //# define ENEMY_MOVE_SENSE 0.0f
-# define ENEMY_MS_SWAP 300
+# define ENEMY_MS_SWAP 500
 # define ENEMY_ATTACK 20
 # define ENEMY_HEALTH 50
 # define ENEMY_TIME_ATTACK 1000

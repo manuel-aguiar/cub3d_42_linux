@@ -28,7 +28,7 @@ int		rand_int(t_rand_gen *rand, int min, int max)
 {
 	int	res;
 
-	rand->seed += rand->clock->start.tv_sec;
+	rand->seed += rand->clock->end.tv_usec;
 	rand->seed = (rand->seed * rand->multiplier + rand->increment) / RAND_MAX_UINT64;
 	res = (rand->seed % (max - min + 1)) + min;
 	return (res);

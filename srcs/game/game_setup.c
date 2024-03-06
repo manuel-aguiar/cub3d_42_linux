@@ -61,6 +61,7 @@ int		game_start(t_game *game, char *game_config)
 	*game = (t_game){};
 	apply_all_settings(game);
 	start_clock(&game->clock);
+	update_clock(&game->clock);
 	if (!map_parsing(&game->map, game_config) \
 	|| !setup_sprites(game))
 		return (0);

@@ -172,10 +172,14 @@ void	window_pause_manager(t_win *win, e_pause_state state, bool blur_on, void st
 	else if (state == PAUSE_OFF)
 	{
 		//printf("elapsed off is %d\n", blur->elapsed);
+		
 		if (blur->elapsed <= 0)
 		{
 			blur->elapsed = 0;
 			mlx_mouse_hide(win->mlx, win->mlx_win);
+			mlx_mouse_move(win->mlx, win->mlx_win, win->width / 2, win->height / 2);
+			win->mouse.cur_x = win->width / 2;
+			win->mouse.cur_y = win->height / 2;
 			return ;
 		}
 		if (blur->elapsed >= blur->pause_time)
@@ -189,6 +193,14 @@ void	window_pause_manager(t_win *win, e_pause_state state, bool blur_on, void st
 			blur_pause(win, blur, false);
 		else
 			blur->elapsed = int_clamp(blur->elapsed - window_update_clock(win), 0, blur->pause_time);
+		if (blur->elapsed == 0)
+		{
+			mlx_mouse_hide(win->mlx, win->mlx_win);
+			mlx_mouse_move(win->mlx, win->mlx_win, win->width / 2, win->height / 2);
+			win->mouse.cur_x = win->width / 2;
+			win->mouse.cur_y = win->height / 2;
+		}
+			
 	}
-	string(win);
+	//string(win);
 }
