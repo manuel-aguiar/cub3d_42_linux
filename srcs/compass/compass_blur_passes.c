@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 17:48:53 by codespace         #+#    #+#             */
-/*   Updated: 2024/03/06 17:50:28 by codespace        ###   ########.fr       */
+/*   Updated: 2024/03/06 17:51:50 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static inline void	second_pass_helper(t_comp_blur *blur, int blur_index)
 	float		colors[4];
 	int			i;
 
-	ft_memset(colors, 0, sizeof(float) * 4);
+	ft_memset(colors, 0, sizeof(colors));
 	i = 0;
 	while (i < blur->kernel_size)
 	{
@@ -80,7 +80,7 @@ static inline void	first_pass_helper(t_win *win, t_comp_blur *blur, \
 	float	colors[4];
 
 	blur_index = y * blur->blur_height + x;
-	ft_memset(colors, 0, sizeof(float) * 4);
+	ft_memset(colors, 0, sizeof(colors));
 	i = 0;
 	while (i < blur->kernel_size)
 	{
