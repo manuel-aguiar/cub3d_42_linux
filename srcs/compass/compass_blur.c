@@ -45,7 +45,7 @@ void	blur_compass(t_win *win, t_compass *comp)
 	int		x;
 	float		colors[4];
 	//int		radius_diff;
-	t_blur	*blur;
+	t_comp_blur	*blur;
 	int rad_diff = comp->radius - comp->inner.radius;
 	//radius_diff = comp->radius - comp->inner.radius;
 	blur = &comp->blur;
@@ -68,7 +68,7 @@ void	blur_compass(t_win *win, t_compass *comp)
 				{
 					ft_memset(colors, 0, sizeof(colors));
 					int i;
-					i = 0;					
+					i = 0;
 					while (i < blur->kernel_size)
 					{
 						blur->save_pixels[i] = win->get_pixel(win, (x + img_x) - centre + i, (y + img_y));
@@ -115,6 +115,6 @@ void	blur_compass(t_win *win, t_compass *comp)
 			}
 		}
 		y++;
-	}	
+	}
 	transpose(blur->verti_blur, height);
 }

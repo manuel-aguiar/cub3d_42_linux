@@ -75,12 +75,14 @@ void	game_actions(t_game *game)
 
 int	game_render(t_game *game)
 {
+	int blur_on;
+
 	game_actions(game);
-	
+	blur_on = (game->win.keys >> BIT_BLUR_T) & 1;
 	if ((game->win.keys >> BIT_PAUSE_T) & 0xff)
-		window_pause_manager(&game->win, PAUSE_ON, (game->win.keys >> BIT_BLUR_T) & 1, pause_text_string);
+		window_pause_manager(&game->win, PAUSE_ON, blur_on, pause_text_string);
 	else if (game->win.blur.elapsed > 0)
-		window_pause_manager(&game->win, PAUSE_OFF, (game->win.keys >> BIT_BLUR_T) & 1, pause_text_string);
+		window_pause_manager(&game->win, PAUSE_OFF, blur_on, pause_text_string);
 	else if (game->is_lost)
 	{
 		if (game->cur_time_lost_str >= game->total_time_lost_str)
@@ -88,7 +90,7 @@ int	game_render(t_game *game)
 		else
 		{
 			game->cur_time_lost_str += game->clock.elapsed;
-			window_pause_manager(&game->win, PAUSE_ON, (game->win.keys >> BIT_BLUR_T) & 1, you_lost_text_string);
+			window_pause_manager(&game->win, PAUSE_ON, blur_on, you_lost_text_string);
 		}
 	}
 	else
@@ -97,7 +99,7 @@ int	game_render(t_game *game)
 		hori_raycasting(game);
 		floorcast(game);
 		sprite_cast(game);
-		game->compass.blur_on = (game->win.keys >> BIT_BLUR_T) & 1;
+		game->compass.blur_on = blur_on;
 		if (((game->win.keys) >> BIT_HUD_T) & 1)
 		{
 			render_compass(&game->win, &game->compass);

@@ -130,6 +130,7 @@ SRC_REN_LINUX		=	linux_init_window.c		\
 						linux_callback_keys.c		\
 						linux_callback_mouse.c	\
 						linux_clock.c				\
+						linux_pause_manager.c		\
 						linux_pause_blur_1.c		\
 						linux_pause_blur_2.c		\
 						linux_text_strings.c

@@ -113,7 +113,7 @@ void	reduce_alpha_horizontal_line(t_win *win, int min_x, int max_x, int y, float
 
 void	drop_the_blur(t_win *win, t_compass *comp, t_hori_line *draw)
 {
-	t_blur *blur;
+	t_comp_blur *blur;
 	int blur_y;
 	int	blur_x;
 

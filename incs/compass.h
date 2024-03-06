@@ -187,7 +187,7 @@ struct s_circle
 	int			min_max[MM_SIZE];
 };
 
-typedef	struct s_blur
+typedef	struct s_comp_blur
 {
 	float	kernel[31];
 	int		save_pixels[31];
@@ -197,7 +197,7 @@ typedef	struct s_blur
 	int		*hori_blur;
 	int		*verti_blur;
 	int		blur_height;
-}	t_blur;
+}	t_comp_blur;
 
 typedef struct s_compass
 {
@@ -224,7 +224,7 @@ typedef struct s_compass
 	t_mm_pair	*sqr_x_lim;
 	t_pixel		map_centre;
 	bool		blur_on;
-	t_blur		blur;
+	t_comp_blur		blur;
 
 	t_pixel		north[N_SIZE];
 	t_pixel		south[S_SIZE];

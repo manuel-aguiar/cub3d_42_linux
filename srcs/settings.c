@@ -24,7 +24,7 @@ static inline void	settings_compass_two(t_game *game, t_compass *comp)
 	comp->player_rad = game->compass.sqr.height * COMP_PLAY_RAD;
 	comp->player_colour = COMP_PLAYER_COLOR;
 	comp->blur_on = BLUR_ON;
-	comp->blur = (t_blur){};
+	comp->blur = (t_comp_blur){};
 	comp->blur.max_kernel = BLUR_KERNEL_MAX;
 	comp->blur.kernel_size = BLUR_KERNEL_SIZE;
 	comp->blur.sigma = BLUR_KERNEL_SIGMA;
