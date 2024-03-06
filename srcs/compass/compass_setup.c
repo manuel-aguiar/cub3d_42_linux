@@ -25,16 +25,15 @@ float	normal_distribution(float x, float sigma)
 
 void	setup_blur_kernel(t_comp_blur *blur)
 {
-	int		centre;
 	int		i;
 	float	sum;
 
-	centre = blur->kernel_size / 2;
+	blur->centre = blur->kernel_size / 2;
 	sum = 0;
 	i = 0;
 	while (i < blur->kernel_size)
 	{
-		blur->kernel[i] = normal_distribution(i - centre, blur->sigma);
+		blur->kernel[i] = normal_distribution(i - blur->centre, blur->sigma);
 		sum += blur->kernel[i];
 		i++;
 	}
@@ -60,6 +59,9 @@ int	compass_blur_setup(t_compass *comp)
 		* (blur->blur_height * blur->blur_height));
 	if (!blur->hori_blur || !blur->verti_blur)
 		return (perror_msg_int("malloc", 0));
+	blur->rad_diff = comp->radius - comp->inner.radius;
+	blur->img_x = (comp->centre.x - comp->radius);
+	blur->img_y = (comp->centre.y - comp->radius);
 	setup_blur_kernel(blur);
 	return (1);
 }

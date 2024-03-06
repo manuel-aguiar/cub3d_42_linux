@@ -219,6 +219,10 @@ typedef	struct s_comp_blur
 	int		*hori_blur;
 	int		*verti_blur;
 	int		blur_height;
+	int		centre;
+	int 	rad_diff;
+	int		img_x;
+	int		img_y;
 }	t_comp_blur;
 
 typedef struct s_compass
