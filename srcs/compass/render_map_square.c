@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "compass.h"
+#include "compass.h"
 
 
 void	render_square_vs_circle(t_win *win, t_compass *comp, t_pixel centre)

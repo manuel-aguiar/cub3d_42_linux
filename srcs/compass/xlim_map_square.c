@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "compass.h"
+#include "compass.h"
 
 static inline void
 bersenham_line_setup(t_bh_line *bh, t_pixel start, t_pixel end)
@@ -62,7 +62,7 @@ void	calculate_sqr_x_lim(t_compass *comp, t_square *sqr)
 	int i;
 
 	sqr->min_max[MM_MIN_X] = sqr->edges[0].x;
-	sqr->min_max[MM_MAX_X] = sqr->edges[0].x;	
+	sqr->min_max[MM_MAX_X] = sqr->edges[0].x;
 	sqr->min_max[MM_MIN_Y] = sqr->edges[0].y;
 	sqr->min_max[MM_MAX_Y] = sqr->edges[0].y;
 	i = 1;
@@ -87,7 +87,7 @@ void	calculate_sqr_x_lim(t_compass *comp, t_square *sqr)
 	bersenham_sqr_x_lim(comp, sqr, sqr->edges[SQR_TOP_LEFT], sqr->edges[SQR_TOP_RIGHT]);
 	bersenham_sqr_x_lim(comp, sqr, sqr->edges[SQR_TOP_RIGHT], sqr->edges[SQR_BOT_RIGHT]);
 	bersenham_sqr_x_lim(comp, sqr, sqr->edges[SQR_BOT_RIGHT], sqr->edges[SQR_BOT_LEFT]);
-	
+
 }
 
 void	compass_square_xlim_rotate(t_compass *comp, t_square *sqr)
@@ -119,7 +119,7 @@ int	init_template_square(t_compass *comp)
 	sqr = &comp->sqr;
 	comp->sqr_x_lim = malloc(sizeof(*comp->sqr_x_lim) * sqr->biggest_z);
 	if (!comp->sqr_x_lim)
-		return (perror_msg_int("malloc", 0));	
+		return (perror_msg_int("malloc", 0));
 	compass_square_xlim_rotate(comp, sqr);
 	return (1);
 }

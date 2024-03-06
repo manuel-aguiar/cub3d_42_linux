@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "compass.h"
+#include "compass.h"
 
 /*Midpoint Circle algorithm, by calculating 1/8 of a circle, one can render the
 full object by projecting coordinates
