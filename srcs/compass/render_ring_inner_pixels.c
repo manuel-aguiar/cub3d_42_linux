@@ -78,17 +78,17 @@ void	place_circle_aa(t_win *win, int x, int y, t_render_circ *ren)
 void	setpixel_inner(t_win *win, int x, int y, t_render_circ *ren)
 {
 	place_circle_aa(win, x, y, ren);
-	//ren->draw.color = ren->color;
-	//if (!ren->with_line)
-	//	return ;
-	//ren->draw.y = ren->centre.y + y;
-	//if (ren->draw.y > ren->c_min_max[MM_MAX_Y])
-	//	full_line(win, x, ren);
-	//else
-	//	line_with_blur(win, x, ren);
-	//ren->draw.y = ren->centre.y - y;
-	//if (ren->draw.y < ren->c_min_max[MM_MIN_Y])
-	//	full_line(win, x, ren);
-	//else if (y)
-	//	line_with_blur(win, x, ren);
+	ren->draw.color = ren->color;
+	if (!ren->with_line)
+		return ;
+	ren->draw.y = ren->centre.y + y;
+	if (ren->draw.y > ren->c_min_max[MM_MAX_Y])
+		full_line(win, x, ren);
+	else
+		line_with_blur(win, x, ren);
+	ren->draw.y = ren->centre.y - y;
+	if (ren->draw.y < ren->c_min_max[MM_MIN_Y])
+		full_line(win, x, ren);
+	else if (y)
+		line_with_blur(win, x, ren);
 }
