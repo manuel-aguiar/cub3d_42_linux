@@ -38,7 +38,6 @@ DIR_PLAYER			=	player
 DIR_SPRITES			=	sprites
 DIR_PIXEL_POINT		=	pixel_point
 DIR_RAYCASTING		=	raycasting
-DIR_XPM_PARSER		=	xpm_parser
 DIR_HIT_DETECTION	=	hit_detection
 
 ## SOURCE FILES ##
@@ -52,7 +51,6 @@ INC_FILES		=		game.h				\
 						drawing_algos.h		\
 						pixel_point.h		\
 						compass.h			\
-						xpm_parser.h		\
 						generic_utils.h		\
 						hit_detection.h
 
@@ -101,11 +99,6 @@ SRC_PARSING			=	parsing_main.c						\
 						map_flood_count.c					\
 						map_funcs.c							\
 						map_dimensions.c
-
-
-SRC_XPM_PARSER		=	xpm_compiled_texture.c		\
-						xpm_free.c
-
 
 SRC_GENERIC_UTILS 	= 	ft_split_count_replenish.c		\
 						clamp.c							\
@@ -196,7 +189,6 @@ SRCS 		:=		$(addprefix $(SRC_PATH)/, $(SRC_MAIN))											\
 					$(addprefix $(SRC_PATH)/$(DIR_PIXEL_POINT)/, $(SRC_PIXEL_POINT))				\
 					$(addprefix $(SRC_PATH)/$(DIR_SPRITES)/, $(SRC_SPRITES))						\
 					$(addprefix $(SRC_PATH)/$(DIR_HIT_DETECTION)/, $(SRC_HIT_DETECTION))
-##					$(addprefix $(SRC_PATH)/$(DIR_XPM_PARSER)/, $(SRC_XPM_PARSER))
 
 
 

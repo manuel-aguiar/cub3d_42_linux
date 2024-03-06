@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 13:42:23 by codespace         #+#    #+#             */
-/*   Updated: 2024/03/06 10:58:13 by codespace        ###   ########.fr       */
+/*   Updated: 2024/03/06 13:53:07 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ float	rand_float(t_rand_gen *rand, float min, float max)
 	return (res);
 }
 
-int		rand_int(t_rand_gen *rand, int min, int max)
+int	rand_int(t_rand_gen *rand, int min, int max)
 {
 	int	res;
 
