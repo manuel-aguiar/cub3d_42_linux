@@ -90,7 +90,8 @@ SRC_PLAYER			=	player_setup_and_actions.c	\
 						player_crouch_prone.c		\
 						player_walk_height.c		\
 						player_rotate.c				\
-						player_jump.c
+						player_jump.c				\
+						player_height_manager.c
 
 SRC_PARSING			=	parsing_main.c						\
 						parsing_textures_get.c				\

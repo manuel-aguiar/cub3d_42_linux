@@ -63,7 +63,7 @@ typedef struct s_player
 	int				attack;
 
 	int				pitch;
-	
+
 	float			angle;
 
 	float			verti_angle;
@@ -135,15 +135,15 @@ typedef struct s_player
 	float			walk_init;
 	float			walk_inc;
 	float			walk_press_cap;
-	float			walk_release_cap;	
+	float			walk_release_cap;
 	float			walk_z_mod;
 	float			walk_sway_mod;
 	float			walk_radius;
 	float			crouch_radius;
 	float			prone_radius;
 
-	t_vec2d			(*move[16])(t_player *);
-
+	t_vec2d			(*move[16])(t_player *player);
+	void			(*hgt_manager[4])(t_player *player, int *keys, int *new_height_state);
 	t_clock 		*clock;
 }   t_player;
 
@@ -165,5 +165,10 @@ t_vec2d	move_player_left(t_player *player);
 t_vec2d	move_player_right(t_player *player);
 t_vec2d	move_player_backward(t_player *player);
 t_vec2d	move_player_forward(t_player *player);
+
+void	manage_prone_height(t_player *player, int *keys, int *new_height_state);
+void	manage_crouch_height(t_player *player, int *keys, int *new_height_state);
+void	manage_normal_height(t_player *player, int *keys, int *new_height_state);
+void	manage_jump_height(t_player *player, int *keys, int *new_height_state);
 
 #endif
