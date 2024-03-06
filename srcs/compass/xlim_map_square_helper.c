@@ -6,12 +6,11 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 14:12:12 by codespace         #+#    #+#             */
-/*   Updated: 2024/03/06 14:12:26 by codespace        ###   ########.fr       */
+/*   Updated: 2024/03/06 14:17:03 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "compass.h"
-
 
 static inline void	bersenham_line_setup(t_bh_line *bh, \
 					t_pixel start, t_pixel end)
