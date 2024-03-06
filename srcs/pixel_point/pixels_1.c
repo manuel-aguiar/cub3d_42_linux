@@ -10,29 +10,29 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "pixel_point.h"
+#include "pixel_point.h"
 
-int		rgb_a(int color)
+int	rgb_a(int color)
 {
 	return ((color >> 24) & 0xff);
 }
 
-int		rgb_r(int color)
+int	rgb_r(int color)
 {
 	return ((color >> 16) & 0xff);
 }
 
-int		rgb_g(int color)
+int	rgb_g(int color)
 {
 	return ((color >> 8) & 0xff);
 }
 
-int		rgb_b(int color)
+int	rgb_b(int color)
 {
 	return (color & 0xff);
 }
 
-int		rgba(int r, int g, int b, int a)
+int	rgba(int r, int g, int b, int a)
 {
 	return ((a << 24) | (r << 16) | (g << 8) | (b));
 }

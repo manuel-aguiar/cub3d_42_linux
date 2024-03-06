@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 12:26:48 by codespace         #+#    #+#             */
-/*   Updated: 2024/03/06 12:27:54 by codespace        ###   ########.fr       */
+/*   Updated: 2024/03/06 12:28:03 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	argb(int color)
 {
-	int new;
+	int	new;
 
 	new = ((color & 0xff) << 24) \
 	| (((color >> 8) & 0xff) << 16) \
