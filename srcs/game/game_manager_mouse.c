@@ -37,7 +37,8 @@ void	start_new_bullet(t_game *game)
 void	game_mouse_manager(t_game *game)
 {
 	game->player.is_aiming = ((game->win.mouse.buttons >> BIT_AIM) & 1);
-	game->player.cur_shot_time = ft_max(game->player.cur_shot_time - game->clock.elapsed, 0);
+	game->player.cur_shot_time \
+		= ft_max(game->player.cur_shot_time - game->clock.elapsed, 0);
 	if (((game->win.mouse.buttons >> BIT_SHOOT) & 1) \
 	&& game->player.cur_shot_time == 0 \
 	&& game->player.ammo[CTR_CUR] > 0)

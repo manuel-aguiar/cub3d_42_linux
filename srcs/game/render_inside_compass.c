@@ -10,32 +10,42 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "game.h"
+#include "game.h"
+
+static inline void render_square_inside_compass(t_game *game, \
+					t_pixel centre, int centre_index, int i)
+{
+	t_pixel	sqr_centre;
+	int		sqr_hgt;
+
+	sqr_hgt = game->compass.sqr_height;
+	sqr_centre = centre;
+	sqr_centre.x += (i % game->map.width - centre_index \
+		/ game->map.height) * sqr_hgt;
+	sqr_centre.y += (i / game->map.width - centre_index \
+		/ game->map.width) * sqr_hgt;
+	sqr_centre.x -= (int)((game->player.map_posi.x - centre_index \
+		/ game->map.height - 0.5f) * sqr_hgt);
+	sqr_centre.y -= (int)((game->player.map_posi.y - centre_index \
+		/ game->map.width - 0.5f) * sqr_hgt);
+	rotate_point(&sqr_centre, centre, -game->compass.sin_rad, \
+		-game->compass.cos_rad);
+	render_square_vs_circle(&game->win, &game->compass, sqr_centre);
+}
 
 void	render_map_inside_compass(t_game *game)
 {
-	int		sqr_hgt;
 	int		i;
 	int		centre_index;
 	t_pixel	centre;
-	t_pixel	sqr_centre;
 
 	centre = game->compass.centre;
-	sqr_hgt = game->compass.sqr_height;
 	centre_index = game->map.len / 2;
 	i = 0;
 	while (i < game->map.len)
 	{
 		if (game->map.map[i] == MAP_WALL)
-		{
-			sqr_centre = centre;
-			sqr_centre.x += (i % game->map.width - centre_index / game->map.height) * sqr_hgt;
-			sqr_centre.y += (i / game->map.width - centre_index / game->map.width) * sqr_hgt;
-			sqr_centre.x -= (int)((game->player.map_posi.x - centre_index / game->map.height - 0.5f) * sqr_hgt);
-			sqr_centre.y -= (int)((game->player.map_posi.y - centre_index / game->map.width - 0.5f) * sqr_hgt);
-			rotate_point(&sqr_centre, centre, -game->compass.sin_rad, -game->compass.cos_rad);
-			render_square_vs_circle(&game->win, &game->compass, sqr_centre);
-		}
+			render_square_inside_compass(game, centre, centre_index, i);
 		i++;
 	}
 }
