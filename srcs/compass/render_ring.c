@@ -12,19 +12,7 @@
 
 #include "compass.h"
 
-/*Midpoint Circle algorithm, by calculating 1/8 of a circle, one can render the
-full object by projecting coordinates
 
-i will have to use a hashtable to store the circles coordinates to make collision
-detection easier. inner circle will not be moveable so the coordinates will always
-be valid. if the circle has atmost 200 height, i'll be storing 1600 bytes,
-so it is a very small table and not drain much memory
-
-hashtable for the square as well, for each single frame the square will be the same for everyone except
-the offset from where it starts off, with a couple of lookups i can check the boundaries for
-each scanline and print only what is needed
-
-*/
 
 // must be visible
 
@@ -35,81 +23,6 @@ each scanline and print only what is needed
 // turn these into hash tables...? the inverse pow becoming 2 sqrrts.....
 
 //quake fast inverse square root of doom
-
-
-void setPixel4(t_win *win, int centreX, int centreY, int deltaX, int deltaY, int color, float perc_start, bool line)
-{
-	t_hori_line	draw;
-
-    win->set_pixel(win, centreX + deltaX, centreY + deltaY, gamma_average(win->get_pixel(win, centreX + deltaX, centreY + deltaY), color, perc_start));
-    win->set_pixel(win, centreX - deltaX, centreY + deltaY, gamma_average(win->get_pixel(win, centreX - deltaX, centreY + deltaY), color, perc_start));
-
-    win->set_pixel(win, centreX + deltaX, centreY - deltaY, gamma_average(win->get_pixel(win, centreX + deltaX, centreY - deltaY), color, perc_start));
-    win->set_pixel(win, centreX - deltaX, centreY - deltaY, gamma_average(win->get_pixel(win, centreX - deltaX, centreY - deltaY), color, perc_start));
-
-	if (line)
-	{
-		draw.color = color;
-		draw.min_x = centreX - deltaX;
-		draw.max_x = centreX + deltaX;
-		draw.y = centreY + deltaY;
-		draw_horizontal_line(win, &draw);
-		draw.y = centreY - deltaY;
-		draw_horizontal_line(win, &draw);
-	}
-}
-
-void render_full_circle_with_aa(t_win *win, t_pixel centre, int radius, int color)
-{
-
-	int centreX = centre.x;
-	int centreY = centre.y;
-    int radius2 = radius * radius;
-
-    // Upper and lower halves
-    int quarter = round(radius2 / sqrt(radius2 + radius2));
-    for (int x = 0; x <= quarter; x++) {
-        float y = radius * sqrt(1 - x * x / (float)radius2);
-        float error = y - (int)(y);
-
-        setPixel4(win, centreX, centreY, x, (int)(y), color, error, true);
-		setPixel4(win, centreX, centreY, (int)(y), x, color, error, true);
-        setPixel4(win, centreX, centreY, x, (int)(y) + 1, color, 1.0f - error, false);
-		setPixel4(win, centreX, centreY, (int)(y) + 1, x, color, 1.0f - error, false);
-    }
-}
-
-void render_empty_circle_with_aa(t_win *win, t_pixel centre, int radius, int color)
-{
-	int centreX = centre.x;
-	int centreY = centre.y;
-    int radius2 = radius * radius;
-
-    // Upper and lower halves
-    int quarter = round(radius2 / sqrt(radius2 + radius2));
-    for (int x = 0; x <= quarter; x++) {
-        float y = radius * sqrt(1 - x * x / (float)radius2);
-        float error = y - (int)(y);
-
-        setPixel4(win, centreX, centreY, x, (int)(y), color, error, false);  //lol
-		setPixel4(win, centreX, centreY, (int)(y), x, color, error, false);	 //lol
-        setPixel4(win, centreX, centreY, x, (int)(y) + 1, color, 1.0f - error, false);
-		setPixel4(win, centreX, centreY, (int)(y) + 1, x, color, 1.0f - error, false);
-    }
-}
-
-
-void	reduce_alpha_horizontal_line(t_win *win, int min_x, int max_x, int y, float factor)
-{
-	int color;
-
-	while (min_x <= max_x)
-	{
-		//printf("old color: %d, new color %d\n", color, ARGB(RGB_R(color), RGB_G(color), RGB_B(color), (int)(RGB_A(color) * factor)));
-		color = win->get_pixel(win, min_x, y);
-		win->set_pixel(win, min_x++, y, rgba(rgb_r(color), rgb_g(color), rgb_b(color), (int)(rgb_a(color) * factor)));
-	}
-}
 
 void	drop_the_blur(t_win *win, t_compass *comp, t_hori_line *draw)
 {

@@ -199,6 +199,16 @@ struct s_circle
 	int			min_max[MM_SIZE];
 };
 
+typedef struct s_render_circ
+{
+	t_pixel	centre;
+	int		rad_sqr;
+	int		quarter;
+	float	error;
+	int		color;
+	bool	with_line;
+}	t_render_circ;
+
 typedef	struct s_comp_blur
 {
 	float	kernel[31];

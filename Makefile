@@ -134,11 +134,12 @@ SRC_COMPASS			=	compass_setup.c				\
 						letter_south.c				\
 						letter_east.c				\
 						letter_west.c				\
-						render_ring.c				\
 						xlim_map_square.c			\
 						xlim_map_square_helper.c	\
 						xlim_inner_circle.c			\
 						render_map_square.c			\
+						render_ring.c				\
+						render_circle_player.c		\
 						compass_blur.c
 
 SRC_DRAWING_ALGOS	=	drawing_lines.c				\
