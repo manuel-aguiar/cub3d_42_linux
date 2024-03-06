@@ -127,6 +127,18 @@ typedef struct s_square
 }	t_square;
 
 
+typedef struct s_render_sqr
+{
+	int			x;
+	int			y;
+	t_square	sqr;
+	t_hori_line	line;
+	int			c_min_max[MM_SIZE];
+	int			start;
+	int 		end;
+	int 		adj_x;
+}	t_render_sqr;
+
 enum e_east
 {
 	E_BOT_LEFT,

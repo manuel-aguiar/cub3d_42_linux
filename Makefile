@@ -128,7 +128,8 @@ SRC_REN_LINUX		=	linux_init_window.c		\
 						linux_pause_blur_2.c		\
 						linux_text_strings.c
 
-SRC_COMPASS			=	compass_setup_render.c		\
+SRC_COMPASS			=	compass_setup.c				\
+						compass_render.c			\
 						letter_north.c				\
 						letter_south.c				\
 						letter_east.c				\
