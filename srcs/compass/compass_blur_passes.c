@@ -15,13 +15,13 @@
 static inline void	fill_kernel_colors(t_comp_blur *blur, \
 					float colors[4], int index)
 {
-	colors[0] += ((blur->save_pixels[index] >> 24) & 0xff) \
+	colors[0] += ((blur->save_pixels[index] >> 0) & 0xff) \
 		* blur->kernel[index];
-	colors[1] += ((blur->save_pixels[index] >> 16) & 0xff) \
+	colors[1] += ((blur->save_pixels[index] >> 8) & 0xff) \
 		* blur->kernel[index];
-	colors[2] += ((blur->save_pixels[index] >> 8) & 0xff) \
+	colors[2] += ((blur->save_pixels[index] >> 16) & 0xff) \
 		* blur->kernel[index];
-	colors[3] += ((blur->save_pixels[index] >> 0) & 0xff) \
+	colors[3] += ((blur->save_pixels[index] >> 24) & 0xff) \
 		* blur->kernel[index];
 }
 
