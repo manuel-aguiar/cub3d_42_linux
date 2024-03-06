@@ -14,6 +14,16 @@
 
 void	blur_pause(t_win *win, t_pause_blur *blur, bool increase_blur);
 
+int	window_update_clock(t_win *win)
+{
+	gettimeofday(&win->blur.clock.end, NULL);
+	win->blur.clock.elapsed = (size_t)((win->blur.clock.end.tv_sec \
+		- win->blur.clock.start.tv_sec) * 1000 \
+		+(win->blur.clock.end.tv_usec - win->blur.clock.start.tv_usec) / 1000);
+	win->blur.clock.start = win->blur.clock.end;
+	return (win->blur.clock.elapsed + 1);
+}
+
 void	mouse_hide_and_centre(t_win *win)
 {
 	mlx_mouse_hide(win->mlx, win->mlx_win);
