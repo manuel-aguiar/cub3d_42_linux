@@ -59,7 +59,7 @@ int	list_to_map(t_parsing *parsing)
 	int			gnl_len;
 
 	parsing->map = malloc(sizeof(*(parsing->map)) \
-		* parsing->map_height * parsing->map_width);
+		* parsing->map_len);
 	if (!parsing->map)
 		return (perror_msg_int("malloc", 0));
 	i = 0;

@@ -65,13 +65,16 @@ int	analise_textures(t_parsing *parsing)
 	while (i < NUM_TEX)
 	{
 		len = ft_strlen(parsing->tex_data[i].path);
-		if (len > 4 && !ft_strncmp(".xpm\0", &parsing->tex_data[i].path[len - 4], 5))
+		if (len > 4 && !ft_strncmp(".xpm\0", \
+		&parsing->tex_data[i].path[len - 4], 5))
 			parsing->tex_data[i].type = PATH_TEX;
 		else
 		{
 			parsing->tex_data[i].type = COLOR_TEX;
 			if (!extract_color(&parsing->tex_data[i]))
-				return (error_msg_int("cub3d: bad color format/file type is not .xpm\n", STDERR_FILENO, 0));
+				return (error_msg_int(\
+				"cub3d: bad color format/file type is not .xpm\n", \
+				STDERR_FILENO, 0));
 		}
 		i++;
 	}
