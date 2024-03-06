@@ -15,7 +15,7 @@
 void	bersenham_sqr_x_lim(t_compass *comp, t_square *sqr, \
 						t_pixel start, t_pixel end);
 
-static void	get_square_edges(t_compass *comp, t_square *sqr)
+static void	get_square_edges(t_square *sqr)
 {
 	int	i;
 
@@ -43,6 +43,7 @@ void	calculate_sqr_x_lim(t_compass *comp, t_square *sqr)
 	int	i;
 
 	sqr->real_z = sqr->min_max[MM_MAX_Y] - sqr->min_max[MM_MIN_Y] + 1;
+	get_square_edges(sqr);
 	i = 0;
 	while (i < sqr->real_z)
 	{

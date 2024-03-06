@@ -12,6 +12,7 @@
 
 #include "render_linux.h"
 
+int		window_update_clock(t_win *win);
 void	blur_horizontal(t_pause_blur *blur, char *dest, char *src, \
 						t_blur_helper *help);
 

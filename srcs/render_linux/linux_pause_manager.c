@@ -54,6 +54,7 @@ int	window_pause_on(t_win *win, t_pause_blur *blur, bool blur_on, \
 	else
 		blur->elapsed = int_clamp(blur->elapsed \
 			+ window_update_clock(win), 0, blur->pause_time);
+	string(win);
 	return (1);
 }
 
@@ -78,6 +79,7 @@ int	window_pause_off(t_win *win, t_pause_blur *blur, bool blur_on, \
 			- window_update_clock(win), 0, blur->pause_time);
 	if (blur->elapsed == 0)
 		mouse_hide_and_centre(win);
+	string(win);
 	return (1);
 }
 
