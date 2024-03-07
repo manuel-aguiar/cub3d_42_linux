@@ -61,18 +61,19 @@ SRC_MAIN			=	main.c				\
 						settings_template_enemy.c \
 						settings_player.c
 
-SRC_GAME			=	win_render_loop.c		\
-						game_setup.c			\
-						game_keys.c				\
-						game_manager_keys.c		\
-						game_manager_mouse.c	\
-						game_rand_gen.c			\
-						free_game.c				\
-						game_rotate.c			\
-						game_render.c			\
-						game_load_textures.c	\
+SRC_GAME			=	win_render_loop.c			\
+						game_setup.c				\
+						game_keys.c					\
+						game_manager_keys.c			\
+						game_manager_mouse.c		\
+						game_rand_gen.c				\
+						free_game.c					\
+						game_rotate.c				\
+						game_render.c				\
+						game_load_textures.c		\
 						render_inside_compass.c		\
-						handle_collisions.c		\
+						map_collisions.c			\
+						map_collision_corners.c		\
 						xpm_to_window.c				\
 						game_render_hud.c			\
 						bullet_rest.c				\

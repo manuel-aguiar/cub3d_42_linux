@@ -29,6 +29,24 @@
 
 #define RAND_MAX_UINT64 0xFFFFFFFFUL
 
+typedef struct s_move_colli
+{
+	t_map		*map;
+	t_sprite	*sprite;
+	t_door		*door;
+	int			fixed_x;
+	int			fixed_y;
+	float		unit_size;
+	float		potential_len;
+	int			divide_potential;
+	t_vec2d		player;
+	t_vec2d		add;
+	t_vec2d 	nearest;
+	t_vec2d 	ray_to_nearest;
+	float 		ray_length;
+	float 		overlap;
+}				t_move_colli;
+
 typedef struct s_hud
 {
 	t_pixel bar_bot_left;
