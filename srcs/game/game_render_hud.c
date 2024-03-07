@@ -34,7 +34,7 @@ void	render_stats_bars(t_game *game)
 	int separator;
 	int y;
 	render_gun(game);
-	if(!(game->win.keys >> BIT_HUD_T) & 1)
+	if(!((game->win.keys >> BIT_HUD_T) & 1))
 		return ;
 	health_start = (t_pixel){550, 60, 0};
 	health_end = (t_pixel){750, 85, 0};

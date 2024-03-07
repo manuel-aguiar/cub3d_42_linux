@@ -55,7 +55,6 @@ INC_FILES		=		game.h				\
 						hit_detection.h
 
 SRC_MAIN			=	main.c				\
-						game_settings.h		\
 						settings.c			\
 						settings_template.c	\
 						settings_template_enemy.c \
@@ -213,7 +212,7 @@ LIBS		=		$(ADD_LIB) $(LIB_PATH)/$(LIBFT) $(MLX_LIB)
 all: $(NAME)
 
 $(NAME): $(LIBFT) $(OBJS)
-	$(COMP) $(FLAGS) $(OBJS) $(ALL_INCS) -o $(NAME) $(LIBS)
+	$(COMP) $(FLAGS) $(OBJS) $(ALL_INCS) $(LIBS) -o $@
 	@echo Program $(NAME) ready!!
 
 $(OBJ_PATH)/settings.o : $(SRC_PATH)/settings.c $(SRC_PATH)/game_settings.h
