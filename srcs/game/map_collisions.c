@@ -48,19 +48,23 @@ void	check_door_collision(t_move_colli *colli, t_vec2d *posi)
 	{
 		if (colli->door->orient == NS)
 		{
-			posi->y = ft_fmax(posi->y, colli->sprite->posi.y \
-				+ (colli->unit_size));
+			
 			if (colli->player.y < colli->sprite->posi.y)
 				posi->y = ft_fmin(posi->y, colli->sprite->posi.y \
 					- (colli->unit_size));
+			else
+				posi->y = ft_fmax(posi->y, colli->sprite->posi.y \
+				+ (colli->unit_size));
 		}
 		else
 		{
-			posi->x = ft_fmax(posi->x, colli->sprite->posi.x \
-				+ (colli->unit_size));
+			
 			if (colli->player.x < colli->sprite->posi.x)
 				posi->x = ft_fmin(posi->x, colli->sprite->posi.x \
 					- (colli->unit_size));
+			else
+				posi->x = ft_fmax(posi->x, colli->sprite->posi.x \
+				+ (colli->unit_size));
 		}
 	}
 }

@@ -22,8 +22,8 @@ void	start_friendly_bullet(t_game *game)
 	sprite = &game->sprites[game->sprite_count - game->max_bullets \
 		+ game->live_bullets];
 	sprite->tex = MY_BULLET_TEX;
-	sprite->posi = vec2d_add(game->player.map_posi, \
-		vec2d_multi(game->player.dir_vec, game->player.unit_size * 2));
+	sprite->posi = game->player.map_posi;
+	handle_collisions(game, &sprite->posi, vec2d_multi(game->player.dir_vec, game->player.unit_size * 2), sprite->unit_size);
 	sprite->status = VISIBLE;
 	bullet = (t_bullet *)sprite->data;
 	bullet->shooter = B_ME;
