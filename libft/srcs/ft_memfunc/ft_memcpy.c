@@ -22,6 +22,22 @@ instead of moving "i" all in one)*/
 
 #include "ft_memfunc.h"
 
+void	*ft_memcpy(void *dst, const void *src, size_t n)
+{
+	size_t i;
+
+	if (!dst && !src)
+		return (0);
+	i = 0;
+	while (i < n)
+	{
+		((unsigned char *)dst)[i] = ((unsigned char *)src)[i];
+		i++;
+	}
+	return (dst);
+}
+
+/*
 static size_t	check_align(t_uchar **dest, t_uchar **src, size_t *len)
 {
 	t_ulong	check;
@@ -145,3 +161,4 @@ void	*ft_memcpy(void *dest, const void *src, size_t len)
 		*d++ = *s++;
 	return (dest);
 }
+*/

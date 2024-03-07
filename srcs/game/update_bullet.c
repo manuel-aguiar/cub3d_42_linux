@@ -148,7 +148,7 @@ int	friendly_bullet(t_game *game, t_bullet_colli *colli, t_sprite *sprite)
 {
 	t_sprite		*target;
 	t_hitnode		*node;
-
+	
 	node = game->map.hit[colli->map_index].head;
 	while (node)
 	{
