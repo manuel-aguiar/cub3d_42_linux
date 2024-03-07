@@ -20,7 +20,10 @@ int	main(int ac, char **av)
 		return (0 & ft_printf_fd(STDERR_FILENO, \
 			"cub3d: invalid number of arguments\n"));
 	if (!game_start(&game, av[1]))
-		return (0);
+	{
+		free_game(&game);
+		return (EXIT_FAILURE);
+	}
 	rendering_loop(&game);
 	free_game(&game);
 	return (0);
