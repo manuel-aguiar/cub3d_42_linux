@@ -84,13 +84,6 @@ int	setup_interp_cast(t_game *game, t_sprite *sprite, t_interp_cast *cast)
 		swap_cast_point(&cast->start, &cast->end);
 	if (cast->start.trans.y < 0 && cast->end.trans.y < 0)
 		return (0);
-	if (sprite->type == BULLET && (\
-		cast->start.screen_x < 0 \
-		|| cast->end.screen_x > cast->w - 1 \
-		|| cast->start.trans.y > \
-		game->hori_rays[cast->start.screen_x].wall_dist \
-		|| cast->end.trans.y > game->hori_rays[cast->end.screen_x].wall_dist))
-		return (0);
 	setup_interp_cast_cont(cast);
 	return (1);
 }

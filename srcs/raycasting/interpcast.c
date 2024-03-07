@@ -43,7 +43,7 @@ static inline void	draw_interp_line(t_game *game, t_interp_cast *cast)
 	}
 }
 
-void	draw_interp(t_game *game, t_interp_cast *cast)
+void	draw_interp(t_game *game, t_sprite *sprite, t_interp_cast *cast)
 {
 	cast->draw_st_x = ft_max(cast->start.screen_x, 0);
 	cast->draw_end_x = ft_min(cast->end.screen_x, cast->w - 1);
@@ -56,8 +56,8 @@ void	draw_interp(t_game *game, t_interp_cast *cast)
 		cast->draw_st_y = (int)(cast->pix_exact_min_y);
 		cast->draw_end_y = (int)(cast->pix_exact_max_y);
 		cast->this_line_h = cast->draw_end_y - cast->draw_st_y;
-		if (cast->this_line_h >= game->hori_rays[cast->draw_st_x].line_h \
-		|| cast->bullet != NULL)
+		if ((cast->door != NULL && cast->this_line_h >= game->hori_rays[cast->draw_st_x].line_h) \
+		|| cast->bullet != NULL && (int)(cast->this_line_h / sprite->height) + 50 >= game->hori_rays[cast->draw_st_x].line_h)
 			draw_interp_line(game, cast);
 		cast->pix_exact_min_y += cast->step_tex_min_y;
 		cast->pix_exact_max_y += cast->step_tex_max_y;
@@ -72,5 +72,5 @@ void	interpcast(t_game *game, t_sprite *sprite)
 	cast = (t_interp_cast){};
 	if (!setup_interp_cast(game, sprite, &cast))
 		return ;
-	draw_interp(game, &cast);
+	draw_interp(game, sprite, &cast);
 }

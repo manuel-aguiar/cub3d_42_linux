@@ -168,10 +168,12 @@ void	update_bullet(t_game *game, t_sprite *sprite)
 	t_vec3d			sub;
 	float			dot;
 
+	if (sprite->status == ON_WALL)
+		return ;
 	setup_bullet_hit(game, &colli, sprite);
-	if ((colli.bullet->shooter = B_ME \
+	if ((colli.bullet->shooter == B_ME \
 	&& friendly_bullet(game, &colli, sprite)) || \
-	(colli.bullet->shooter = B_ENEMY \
+	(colli.bullet->shooter == B_ENEMY \
 	&& enemy_bullet(game, &colli, sprite))
 	)
 		return ;
@@ -180,8 +182,8 @@ void	update_bullet(t_game *game, t_sprite *sprite)
 		+ sub.z * colli.bullet->dir.z;
 	if (dot <= 0)
 	{
-		if (colli.bullet->hole.z < 0 || colli.bullet->hole.z > 1)
-			sprite->status = GONE;
+		if (colli.bullet->hole.z < 0.0f || colli.bullet->hole.z > 1.0f)
+			sprite->status = ON_CEIL;
 		else
 		{
 			sprite->status = ON_WALL;

@@ -42,21 +42,21 @@ static inline void	bullet_orientation(t_game *game, t_sprite *sprite, \
 {
 	bool	ns;
 
-	ns = (cast->bullet->hole.y == (int)cast->bullet->hole.y);
+	ns = (ft_fabs(cast->bullet->hole.y - (int)cast->bullet->hole.y) < 0.0001f);
 	if (ns)
 	{
 		cast->inverted = false;
-		cast->start.point = (t_vec2d){sprite->posi.x - sprite->unit_size, \
-			sprite->posi.y};
-		cast->end.point = (t_vec2d){sprite->posi.x + sprite->unit_size, \
-			sprite->posi.y};
+		cast->start.point = (t_vec2d){cast->bullet->hole.x - sprite->unit_size, \
+			cast->bullet->hole.y};
+		cast->end.point = (t_vec2d){cast->bullet->hole.x + sprite->unit_size, \
+			cast->bullet->hole.y};
 	}
 	else
 	{
 		cast->inverted = true;
-		cast->start.point = (t_vec2d){sprite->posi.x, sprite->posi.y \
+		cast->start.point = (t_vec2d){cast->bullet->hole.x, cast->bullet->hole.y \
 			- sprite->unit_size};
-		cast->end.point = (t_vec2d){sprite->posi.x, sprite->posi.y \
+		cast->end.point = (t_vec2d){cast->bullet->hole.x, cast->bullet->hole.y \
 			+ sprite->unit_size};
 	}
 	if ((ns && game->player.map_posi.y > cast->start.point.y) \
