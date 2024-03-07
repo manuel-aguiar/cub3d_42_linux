@@ -44,28 +44,19 @@ void	check_door_collision(t_move_colli *colli, t_vec2d *posi)
 	colli->sprite = colli->map->doors[colli->fixed_x + colli->fixed_y \
 		* colli->map->width];
 	colli->door = (t_door *)colli->sprite->data;
-	if (colli->door->state == DOOR_CLOSED)
+	if (colli->door->state != DOOR_CLOSED)
+		return ;
+	if (colli->door->orient == NS)
 	{
-		if (colli->door->orient == NS)
-		{
-			
-			if (colli->player.y < colli->sprite->posi.y)
-				posi->y = ft_fmin(posi->y, colli->sprite->posi.y \
-					- (colli->unit_size));
-			else
-				posi->y = ft_fmax(posi->y, colli->sprite->posi.y \
-				+ (colli->unit_size));
-		}
-		else
-		{
-			
-			if (colli->player.x < colli->sprite->posi.x)
-				posi->x = ft_fmin(posi->x, colli->sprite->posi.x \
-					- (colli->unit_size));
-			else
-				posi->x = ft_fmax(posi->x, colli->sprite->posi.x \
-				+ (colli->unit_size));
-		}
+		posi->y = float_ternary(colli->player.y < colli->sprite->posi.y, \
+		ft_fmin(posi->y, colli->sprite->posi.y - (colli->unit_size)), \
+		ft_fmax(posi->y, colli->sprite->posi.y + (colli->unit_size)));
+	}
+	else
+	{
+		posi->x = float_ternary(colli->player.x < colli->sprite->posi.x, \
+		ft_fmin(posi->x, colli->sprite->posi.x - (colli->unit_size)), \
+		ft_fmax(posi->x, colli->sprite->posi.x + (colli->unit_size)));
 	}
 }
 
