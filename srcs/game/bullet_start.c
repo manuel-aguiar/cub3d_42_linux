@@ -32,6 +32,7 @@ void	start_friendly_bullet(t_game *game)
 		game->player.walk_z_mod + bullet->base_z) + bullet->dir.z \
 			* game->player.unit_size * 2;
 	bullet->posi = (t_vec3d){sprite->posi.x, sprite->posi.y, sprite->cur_z};
+	bullet->wall_hole = true;
 	bullet->hole = bullet_rest(game, bullet);
 	game->live_bullets++;
 }
@@ -58,6 +59,7 @@ void	start_enemy_bullet(t_game *game, t_sprite *enemy)
 	bullet->dir = dir;
 	bullet->shooter = B_ENEMY;
 	bullet->posi = (t_vec3d){sprite->posi.x, sprite->posi.y, sprite->cur_z};
+	bullet->wall_hole = true;
 	bullet->hole = bullet_rest(game, bullet);
 	game->live_bullets++;
 }

@@ -159,6 +159,7 @@ typedef struct s_bullet
 	float				height;
 	int					attack_val;
 	t_vec3d				hole;
+	bool				wall_hole;
 }	t_bullet;
 
 typedef struct s_exit

@@ -54,4 +54,5 @@ void	settings_template_bullet(t_bullet *bullet)
 	bullet->height = BULLET_HGT;
 	bullet->attack_val = BULLET_ATTACK_VAL;
 	bullet->base_z = BULLET_BASE_Z;
+	bullet->wall_hole = true;
 }

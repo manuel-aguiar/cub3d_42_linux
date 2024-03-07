@@ -98,12 +98,14 @@ static inline t_vec3d bullet_check_wall_hit(t_ray *ray, t_bullet *bullet)
 		{
 			floor_ceil = bullet_vec3d_get_xy_from_z(bullet->posi, bullet->dir, 0);
 			res = (t_vec3d){floor_ceil.x, floor_ceil.y, 0};
+			bullet->wall_hole = false;
 			return (res);
 		}
 		else if (z > 1)
 		{
 			floor_ceil = bullet_vec3d_get_xy_from_z(bullet->posi, bullet->dir, 1);
 			res = (t_vec3d){floor_ceil.x, floor_ceil.y, 1};
+			bullet->wall_hole = false;
 			return (res);
 		}
 		res = (t_vec3d){wall_hit.x, wall_hit.y, z};
@@ -119,12 +121,14 @@ static inline t_vec3d bullet_check_wall_hit(t_ray *ray, t_bullet *bullet)
 		{
 			floor_ceil = bullet_vec3d_get_xy_from_z(bullet->posi, bullet->dir, 0);
 			res = (t_vec3d){floor_ceil.x, floor_ceil.y, 0};
+			bullet->wall_hole = false;
 			return (res);
 		}
 		else if (z > 1)
 		{
 			floor_ceil = bullet_vec3d_get_xy_from_z(bullet->posi, bullet->dir, 1);
 			res = (t_vec3d){floor_ceil.x, floor_ceil.y, 1};
+			bullet->wall_hole = false;
 			return (res);
 		}
 		res = (t_vec3d){wall_hit.x, wall_hit.y, z};
