@@ -22,11 +22,6 @@
 # include "hit_detection.h"
 # include <float.h>
 
-
-
-# define SPRITES "MAZXD"
-
-
 typedef struct s_dda_hor
 {
 	int 	min_y;

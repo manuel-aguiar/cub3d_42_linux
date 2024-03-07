@@ -26,8 +26,8 @@
 # define TOTAL_TEXTURES 6
 
 # define VALID_MAP_CHARS "01NSWEMAXYZD "
-
 # define VALID_DIR_CHARS "NSWE"
+# define SPRITE_CHARS "MAXYZD"
 
 # define MAP_MEDI 'M'
 # define MAP_AMMO 'A'
