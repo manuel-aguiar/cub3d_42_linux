@@ -130,5 +130,4 @@ void	update_bullet(t_game *game, t_sprite *sprite)
 		else
 			sprite->status = ON_WALL;
 	}
-
 }
