@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 13:13:43 by marvin            #+#    #+#             */
-/*   Updated: 2024/03/07 12:06:20 by codespace        ###   ########.fr       */
+/*   Updated: 2024/03/07 13:41:15 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	setup_orientation(t_game *game, t_sprite *sprite, t_interp_cast *cast)
 	else if (sprite->type == BULLET)
 	{
 		cast->bullet = (t_bullet *)sprite->data;
-		cast->tex = &game->tex[BULLET_TEX];
+		cast->tex = &game->tex[WALL_BULLET_TEX];
 		bullet_orientation(game, sprite, cast);
 	}
 }

@@ -12,7 +12,7 @@
 
 #include "game.h"
 
-int	extract_enemy(t_game *game, t_map *map, int place, int map_index)
+int	extract_x_enemy(t_game *game, t_map *map, int place, int map_index)
 {
 	t_enemy		*data;
 	t_sprite	*sprite;
@@ -25,7 +25,7 @@ int	extract_enemy(t_game *game, t_map *map, int place, int map_index)
 	data = malloc(sizeof(*data));
 	if (!data)
 		return (perror_msg_int("malloc", 0));
-	ft_memcpy(data, &game->template_enemy, sizeof(*data));
+	ft_memcpy(data, &game->template_x_enemy, sizeof(*data));
 	sprite->data = data;
 	sprite->type = ENEMY;
 	sprite->status = NOT_VIS;
@@ -38,7 +38,69 @@ int	extract_enemy(t_game *game, t_map *map, int place, int map_index)
 	sprite->width = data->width;
 	sprite->unit_size = data->unit_size;
 	sprite->dist = FLT_MAX;
-	sprite->tex = ENEMY_TEX;
+	sprite->tex = X_ENEMY_TEX;
+	game->enemy_count++;
+	return (1);
+}
+
+int	extract_y_enemy(t_game *game, t_map *map, int place, int map_index)
+{
+	t_enemy		*data;
+	t_sprite	*sprite;
+
+	sprite = &game->sprites[place];
+	sprite->my_hit[0].sprite = sprite;
+	sprite->my_hit[1].sprite = sprite;
+	sprite->my_hit[2].sprite = sprite;
+	sprite->my_hit[3].sprite = sprite;
+	data = malloc(sizeof(*data));
+	if (!data)
+		return (perror_msg_int("malloc", 0));
+	ft_memcpy(data, &game->template_y_enemy, sizeof(*data));
+	sprite->data = data;
+	sprite->type = ENEMY;
+	sprite->status = NOT_VIS;
+	sprite->inverted = false;
+	sprite->posi.x = (float)map_col(map, map_index) + 0.5f;
+	sprite->posi.y = (float)map_row(map, map_index) + 0.5f;
+	data->elapsed = rand_int(&game->rand, 0, data->ms_to_swap);
+	sprite->cur_z = data->base_z;
+	sprite->height = data->height;
+	sprite->width = data->width;
+	sprite->unit_size = data->unit_size;
+	sprite->dist = FLT_MAX;
+	sprite->tex = Y_ENEMY_TEX;
+	game->enemy_count++;
+	return (1);
+}
+
+int	extract_z_enemy(t_game *game, t_map *map, int place, int map_index)
+{
+	t_enemy		*data;
+	t_sprite	*sprite;
+
+	sprite = &game->sprites[place];
+	sprite->my_hit[0].sprite = sprite;
+	sprite->my_hit[1].sprite = sprite;
+	sprite->my_hit[2].sprite = sprite;
+	sprite->my_hit[3].sprite = sprite;
+	data = malloc(sizeof(*data));
+	if (!data)
+		return (perror_msg_int("malloc", 0));
+	ft_memcpy(data, &game->template_z_enemy, sizeof(*data));
+	sprite->data = data;
+	sprite->type = ENEMY;
+	sprite->status = NOT_VIS;
+	sprite->inverted = false;
+	sprite->posi.x = (float)map_col(map, map_index) + 0.5f;
+	sprite->posi.y = (float)map_row(map, map_index) + 0.5f;
+	data->elapsed = rand_int(&game->rand, 0, data->ms_to_swap);
+	sprite->cur_z = data->base_z;
+	sprite->height = data->height;
+	sprite->width = data->width;
+	sprite->unit_size = data->unit_size;
+	sprite->dist = FLT_MAX;
+	sprite->tex = Z_ENEMY_TEX;
 	game->enemy_count++;
 	return (1);
 }

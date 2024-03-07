@@ -26,7 +26,9 @@ int	extract_sprites(t_game *game, t_map *map)
 		if ((map->map[i] == MAP_MEDI && !extract_medi(game, map, cur, i)) \
 		|| (map->map[i] == MAP_AMMO && !extract_ammo(game, map, cur, i)) \
 		|| (map->map[i] == MAP_DOOR && !extract_door(game, map, cur, i)) \
-		|| (map->map[i] == MAP_ENEMY && !extract_enemy(game, map, cur, i)))
+		|| (map->map[i] == MAP_X_ENEMY && !extract_x_enemy(game, map, cur, i)) \
+		|| (map->map[i] == MAP_Y_ENEMY && !extract_y_enemy(game, map, cur, i)) \
+		|| (map->map[i] == MAP_Z_ENEMY && !extract_z_enemy(game, map, cur, i)))
 			return (0);
 		i++;
 		cur++;
@@ -55,7 +57,7 @@ int	place_bullet(t_game *game, int place)
 	sprite->height = data->height;
 	sprite->unit_size = data->unit_size;
 	sprite->dist = FLT_MAX;
-	sprite->tex = BULLET_TEX;
+	sprite->tex = MY_BULLET_TEX;
 	return (1);
 }
 

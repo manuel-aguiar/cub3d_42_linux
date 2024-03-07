@@ -58,6 +58,7 @@ SRC_MAIN			=	main.c				\
 						game_settings.h		\
 						settings.c			\
 						settings_template.c	\
+						settings_template_enemy.c \
 						settings_player.c
 
 SRC_GAME			=	win_render_loop.c		\
@@ -75,6 +76,7 @@ SRC_GAME			=	win_render_loop.c		\
 						xpm_to_window.c				\
 						game_render_hud.c			\
 						bullet_rest.c				\
+						bullet_start.c				\
 						update_medi_ammo.c			\
 						update_enemy_move.c			\
 						update_bullet.c				\
@@ -158,6 +160,7 @@ SRC_PIXEL_POINT		=	gamma_correction.c				\
 SRC_RAYCASTING		=	vec2d_utils1.c					\
 						vec2d_utils2.c					\
 						vec3d_utils1.c					\
+						vec3d_utils2.c					\
 						raycasting.c				\
 						wallcast.c					\
 						floorcast.c					\

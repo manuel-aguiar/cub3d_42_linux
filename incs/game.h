@@ -225,7 +225,9 @@ typedef struct s_game
 	t_door		template_door;
 	t_medi		template_medi;
 	t_ammo		template_ammo;
-	t_enemy		template_enemy;
+	t_enemy		template_x_enemy;
+	t_enemy		template_y_enemy;
+	t_enemy		template_z_enemy;
 	t_bullet	template_bullet;
 	int			cur_time_win_str;
 	int			total_time_win_str;
@@ -321,7 +323,9 @@ void		enemy_movement(t_game *game, t_sprite *sprite, t_enemy *enemy);
 
 //update_door.c
 void		update_door(t_game *game, t_sprite *sprite);
-int			extract_enemy(t_game *game, t_map *map, int place, int map_index);
+int			extract_x_enemy(t_game *game, t_map *map, int place, int map_index);
+int			extract_y_enemy(t_game *game, t_map *map, int place, int map_index);
+int			extract_z_enemy(t_game *game, t_map *map, int place, int map_index);
 int			extract_ammo(t_game *game, t_map *map, int place, int map_index);
 int			extract_medi(t_game *game, t_map *map, int place, int map_index);
 int			extract_door(t_game *game, t_map *map, int place, int map_index);
@@ -335,5 +339,11 @@ int		tex_get_pixel(t_win *win, t_mlx_img *tex, int index);
 //game_rand_gen.c
 float	rand_float(t_rand_gen *rand, float min, float max);
 int		rand_int(t_rand_gen *rand, int min, int max);
+
+//bullet_start.c
+void	start_friendly_bullet(t_game *game);
+void	start_enemy_bullet(t_game *game, t_sprite *enemy);
+
+void		player_takes_damage(t_game *game, int damage);
 
 #endif

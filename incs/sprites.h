@@ -122,8 +122,16 @@ typedef struct s_medi
 	float				width;
 }	t_medi;
 
+typedef enum
+{
+	X_ENEMY,
+	Y_ENEMY,
+	Z_ENEMY,
+}	e_enemy_type;
+
 typedef struct s_enemy
 {
+	e_enemy_type		type;
 	int					ms_to_swap;
 	int					elapsed;
 	float				base_z;
@@ -140,13 +148,13 @@ typedef struct s_enemy
 
 typedef enum
 {
-	BULL_FLYING,
-	BULL_WALL,
-}	e_bullet_state;
+	B_ME,
+	B_ENEMY,
+}	e_bullet_shooter;
 
 typedef struct s_bullet
 {
-	e_bullet_state		state;
+	e_bullet_shooter	shooter;
 	t_vec3d				dir;
 	float				dir_len;
 	t_vec3d				posi;
@@ -157,7 +165,6 @@ typedef struct s_bullet
 	int					attack_val;
 	t_vec3d				hole;
 }	t_bullet;
-
 
 typedef struct s_exit
 {

@@ -46,5 +46,6 @@ float 		vec3d_get_z_from_xy(t_vec3d point, t_vec3d dir, t_vec2d xy);
 float		vec3d_len(t_vec3d vec);
 t_vec3d		vec3d_sub(t_vec3d first, t_vec3d second);
 t_vec3d		vec3d_get_dirvec(t_vec3d from, t_vec3d to);
+t_vec3d		vec3d_norm(t_vec3d target, float vec3d_len);
 
 #endif

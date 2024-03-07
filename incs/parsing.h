@@ -25,13 +25,15 @@
 
 # define TOTAL_TEXTURES 6
 
-# define VALID_MAP_CHARS "01NSWEMAZXDT "
+# define VALID_MAP_CHARS "01NSWEMAXYZD "
 
 # define VALID_DIR_CHARS "NSWE"
 
 # define MAP_MEDI 'M'
 # define MAP_AMMO 'A'
-# define MAP_ENEMY 'Z'
+# define MAP_X_ENEMY 'X'
+# define MAP_Y_ENEMY 'Y'
+# define MAP_Z_ENEMY 'Z'
 # define MAP_EXIT 'X'
 # define MAP_DOOR 'D'
 # define MAP_EMPTY ' '
@@ -62,8 +64,12 @@ typedef	enum
 	C_TEX,
 	MEDI_TEX,
 	AMMO_TEX,
-	ENEMY_TEX,
-	BULLET_TEX,
+	X_ENEMY_TEX,
+	Y_ENEMY_TEX,
+	Z_ENEMY_TEX,
+	MY_BULLET_TEX,
+	EN_BULLET_TEX,
+	WALL_BULLET_TEX,
 	GUN_TEX,
 	DOOR_TEX,
 	NUM_TEX,
