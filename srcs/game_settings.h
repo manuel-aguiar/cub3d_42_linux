@@ -221,9 +221,7 @@
 
 void	settings_template_door(t_door *door);
 void	settings_template_ammo(t_ammo *ammo);
-void	settings_template_x_enemy(t_enemy *enemy);
-void	settings_template_y_enemy(t_enemy *enemy);
-void	settings_template_z_enemy(t_enemy *enemy);
+void	settings_template_enemy(t_enemy *enemy);
 void	settings_template_medi(t_medi *medi);
 void	settings_template_bullet(t_bullet *bullet);
 
