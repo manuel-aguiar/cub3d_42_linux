@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 13:13:43 by marvin            #+#    #+#             */
-/*   Updated: 2024/03/07 12:06:56 by codespace        ###   ########.fr       */
+/*   Updated: 2024/03/07 12:32:20 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,6 @@ static void	setup_cast_point(t_game *game, t_interp_cast *cast, \
 
 static inline void	setup_interp_cast_cont(t_interp_cast *cast)
 {
-	if (cast->start.screen_x > cast->end.screen_x)
-		swap_cast_point(&cast->start, &cast->end);
 	cast->tex_pix_width = cast->end.screen_x - cast->start.screen_x;
 	cast->step_tex_min_y = (float)(cast->end.min_screen_y \
 		- cast->start.min_screen_y) / (float)(cast->tex_pix_width);
@@ -82,7 +80,16 @@ int	setup_interp_cast(t_game *game, t_sprite *sprite, t_interp_cast *cast)
 		+ game->player.walk_z_mod));
 	setup_cast_point(game, cast, sprite, &cast->start);
 	setup_cast_point(game, cast, sprite, &cast->end);
-	if (cast->start.trans.y < 0 && cast->start.trans.y < 0)
+	if (cast->start.screen_x > cast->end.screen_x)
+		swap_cast_point(&cast->start, &cast->end);
+	if (cast->start.trans.y < 0 && cast->end.trans.y < 0)
+		return (0);
+	if (sprite->type == BULLET && (\
+		cast->start.screen_x < 0 \
+		|| cast->end.screen_x > cast->w - 1 \
+		|| cast->start.trans.y > \
+		game->hori_rays[cast->start.screen_x].wall_dist \
+		|| cast->end.trans.y > game->hori_rays[cast->end.screen_x].wall_dist))
 		return (0);
 	setup_interp_cast_cont(cast);
 	return (1);
