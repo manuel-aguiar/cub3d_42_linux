@@ -80,7 +80,8 @@ int	vdmlist_in_tail(t_vdmlist *list, void *data)
 	return (1);
 }
 
-void	vdmlist_del_node(t_vdmlist *list, t_vdmnode *delete, void (*del)(void *))
+void	vdmlist_del_node(t_vdmlist *list, t_vdmnode *delete, \
+						void (*del)(void *))
 {
 	if (!list || !(list->head) || !delete)
 		return ;

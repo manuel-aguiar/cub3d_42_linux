@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 20:28:25 by manuel            #+#    #+#             */
-/*   Updated: 2023/04/18 17:55:44 by marvin           ###   ########.fr       */
+/*   Updated: 2024/03/07 10:48:57 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,3 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 	}
 	return (*str1 - *str2);
 }
-
-/*
-int main (void)
-{
-	//printf("memcmp %d\n", ft_memcmp ("ola tudo bem", "ola tudo bem", 10000000));
-	printf("memcmp %d\n", ft_memcmp("abcdefghij", "abcdefgxyz", 7));
-}*/

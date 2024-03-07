@@ -23,11 +23,10 @@
 # define RB_RED 'r'
 # define RB_BLACK 'b'
 
-
 /* can use memory pool as linkedlist to guarantee locality*/
 
-typedef struct s_rb_node t_rb_node;
-typedef struct s_rb_tree t_rb_tree;
+typedef struct s_rb_node	t_rb_node;
+typedef struct s_rb_tree	t_rb_tree;
 
 struct s_rb_node
 {
@@ -45,11 +44,10 @@ struct s_rb_tree
 	size_t		members;
 	size_t		levels;
 	int			(*comp)(void *, void *);
-	void 		(*del)(void *);
+	void		(*del)(void *);
 };
 
 t_rb_tree	*rbtree_new(int (*comp)(void *, void *), void (*del)(void *));
 t_rb_node	*rbnode_new(void *data);
-
 
 #endif

@@ -14,7 +14,7 @@
 
 void	free_gnl_len(void *gnl)
 {
-	t_gnl_len *stack_gnl;
+	t_gnl_len	*stack_gnl;
 
 	stack_gnl = (t_gnl_len *)gnl;
 	free(stack_gnl->line);
