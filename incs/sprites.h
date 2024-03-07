@@ -39,6 +39,21 @@ typedef struct s_dda_ver
 	float row_distance;
 }	t_dda_ver;
 
+typedef struct s_verti_coef
+{
+	t_ray		ray;
+	t_dda_hor	hori;
+	t_vec2d		wall_hit;
+	int			new_pitch;
+	float		new_tan;
+	t_vec3d		play_3d;
+	t_vec3d		wall_3d;
+	t_vec3d		diff;
+	float 		times;
+	float 		dir_z;
+	float 		coefficient;
+}	t_verti_coef;
+
 typedef enum
 {
 	MEDIKIT,
