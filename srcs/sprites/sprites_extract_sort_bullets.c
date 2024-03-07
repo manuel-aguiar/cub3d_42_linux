@@ -6,12 +6,11 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 15:24:26 by codespace         #+#    #+#             */
-/*   Updated: 2024/03/07 15:25:01 by codespace        ###   ########.fr       */
+/*   Updated: 2024/03/07 15:34:49 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "game.h"
-
 
 int	place_bullet(t_game *game, int place)
 {

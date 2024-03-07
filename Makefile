@@ -174,7 +174,8 @@ SRC_RAYCASTING		=	vec2d_utils1.c					\
 
 SRC_SPRITES			=	sprite_setup.c				\
 						sprite_quicksort.c			\
-						sprites_hitmap.c			\
+						sprites_hitmap_place.c			\
+						sprites_hitmap_clean.c			\
 						sprites_extract_doors.c			\
 						sprites_extract_non_doors.c		\
 						sprites_extract_sort_bullets.c	\

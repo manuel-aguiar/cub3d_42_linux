@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 15:18:13 by codespace         #+#    #+#             */
-/*   Updated: 2024/03/07 15:33:27 by codespace        ###   ########.fr       */
+/*   Updated: 2024/03/07 15:34:31 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@ int	check_door_orient(t_map *map, t_door *door, \
 	return (1);
 }
 
-int			extract_door(t_game *game, t_map *map, int place, int map_index)
+int	extract_door(t_game *game, t_map *map, int place, int map_index)
 {
-	t_door 		*data;
-	t_sprite 	*sprite;
+	t_door		*data;
+	t_sprite	*sprite;
 
 	sprite = &game->sprites[place];
 	data = malloc(sizeof(*data));
@@ -53,7 +53,7 @@ int			extract_door(t_game *game, t_map *map, int place, int map_index)
 	sprite->unit_size = 0.5f;
 	sprite->width = 0;
 	sprite->tex = DOOR_TEX;
-	if(!check_door_orient(map, data, sprite, map_index))
+	if (!check_door_orient(map, data, sprite, map_index))
 		return (0);
 	return (1);
 }

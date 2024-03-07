@@ -60,7 +60,8 @@ void	setup_common_sprite(t_sprite *array, int count)
 	}
 }
 
-int	sprites_count_and_malloc(t_map *map, t_sprite **place_array, int *count, int max_bullets)
+int	sprites_count_and_malloc(t_map *map, t_sprite **place_array, \
+							int *count, int max_bullets)
 {
 	int			i;
 
