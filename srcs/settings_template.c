@@ -34,23 +34,6 @@ void	settings_template_ammo(t_ammo *ammo)
 	ammo->z_sense = AMMO_Z_SENSE;
 }
 
-void	settings_template_enemy(t_enemy *enemy)
-{
-	*enemy = (t_enemy){};
-	enemy->unit_size = ENEMY_UNIT;
-	enemy->height = ENEMY_HGT;
-	enemy->width = ENEMY_WDT;
-	enemy->base_z = ENEMY_Z;
-	enemy->z_sense = ENEMY_Z_SENSE;
-	enemy->move_sense = ENEMY_MOVE_SENSE;
-	enemy->ms_to_swap = ENEMY_MS_SWAP;
-	enemy->elapsed = 0;
-	enemy->attack_val = ENEMY_ATTACK;
-	enemy->health = ENEMY_HEALTH;
-	enemy->attack_time = ENEMY_TIME_ATTACK;
-	enemy->attack_elapsed = 0;
-}
-
 void	settings_template_medi(t_medi *medi)
 {
 	*medi = (t_medi){};
@@ -71,4 +54,5 @@ void	settings_template_bullet(t_bullet *bullet)
 	bullet->height = BULLET_HGT;
 	bullet->attack_val = BULLET_ATTACK_VAL;
 	bullet->base_z = BULLET_BASE_Z;
+	bullet->wall_hole = true;
 }

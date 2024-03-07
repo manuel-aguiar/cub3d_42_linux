@@ -104,6 +104,13 @@ void	enemy_movement(t_game *game, t_sprite *sprite, t_enemy *enemy)
 	}
 }
 
+void		player_takes_damage(t_game *game, int damage)
+{
+	game->player.health[CTR_CUR] = ft_max(game->player.health[CTR_CUR] - damage, 0);
+	if (game->player.health[CTR_CUR] == 0)
+		game->is_lost = true;
+}
+
 void		update_enemy(t_game *game, t_sprite *sprite)
 {
 	t_enemy *enemy;
@@ -128,10 +135,8 @@ void		update_enemy(t_game *game, t_sprite *sprite)
 	{
 		if (enemy->attack_elapsed == -1)
 		{
-			game->player.health[CTR_CUR] = ft_max(game->player.health[CTR_CUR] - enemy->attack_val, 0);
+			player_takes_damage(game, enemy->attack_val);
 			enemy->attack_elapsed = 0;
-			if (game->player.health[CTR_CUR] == 0)
-				game->is_lost = true;
 		}
 	}
 	enemy_movement(game, sprite, enemy);

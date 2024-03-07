@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
+#    By: codespace <codespace@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/11 14:41:01 by marvin            #+#    #+#              #
-#    Updated: 2024/02/16 09:40:38 by marvin           ###   ########.fr        #
+#    Updated: 2024/03/07 17:14:23 by codespace        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,7 +68,7 @@ INC_FILES		=	libft.h						\
 					red_black_tree.h			\
 					void_dl_list.h
 
-SRCS_MAIN		=	
+SRCS_MAIN		=
 
 SRCS_ATOI		=	ft_atoi_arr.c 				\
 					ft_atoi_overf.c 			\
@@ -219,7 +219,7 @@ $(NAME):  message $(OBJS)
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
 	@mkdir -p $(dir $@)
-	@$(CC) $(FLAGS) -I$(INC_PATH) -c $< -o $@
+	@$(COMP) $(FLAGS) -I$(INC_PATH) -c $< -o $@
 
 message:
 	@echo Creating object files for Libft...

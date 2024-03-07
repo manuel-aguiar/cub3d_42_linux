@@ -12,9 +12,9 @@
 
 #include "game.h"
 
-int	setup_door_cast(t_game *game, t_sprite *sprite, t_door_cast *cast);
+int	setup_interp_cast(t_game *game, t_sprite *sprite, t_interp_cast *cast);
 
-static inline void	draw_door_line(t_game *game, t_door_cast *cast)
+static inline void	draw_interp_line(t_game *game, t_interp_cast *cast)
 {
 	cast->shade_perc = (float)(cast->draw_st_x - cast->shade_save_x) \
 		/ (float)cast->tex_pix_width;
@@ -43,7 +43,7 @@ static inline void	draw_door_line(t_game *game, t_door_cast *cast)
 	}
 }
 
-void	draw_door(t_game *game, t_door_cast *cast)
+void	draw_interp(t_game *game, t_sprite *sprite, t_interp_cast *cast)
 {
 	cast->draw_st_x = ft_max(cast->start.screen_x, 0);
 	cast->draw_end_x = ft_min(cast->end.screen_x, cast->w - 1);
@@ -56,19 +56,21 @@ void	draw_door(t_game *game, t_door_cast *cast)
 		cast->draw_st_y = (int)(cast->pix_exact_min_y);
 		cast->draw_end_y = (int)(cast->pix_exact_max_y);
 		cast->this_line_h = cast->draw_end_y - cast->draw_st_y;
-		if (cast->this_line_h >= game->hori_rays[cast->draw_st_x].line_h)
-			draw_door_line(game, cast);
+		if ((cast->door != NULL && cast->this_line_h >= game->hori_rays[cast->draw_st_x].line_h) \
+		|| cast->bullet != NULL && (int)(cast->this_line_h / sprite->height) + 50 >= game->hori_rays[cast->draw_st_x].line_h)
+			draw_interp_line(game, cast);
 		cast->pix_exact_min_y += cast->step_tex_min_y;
 		cast->pix_exact_max_y += cast->step_tex_max_y;
 		cast->draw_st_x++;
 	}
 }
 
-void	doorcast(t_game *game, t_sprite *sprite)
+void	interpcast(t_game *game, t_sprite *sprite)
 {
-	t_door_cast	cast;
+	t_interp_cast	cast;
 
-	if (!setup_door_cast(game, sprite, &cast))
+	cast = (t_interp_cast){};
+	if (!setup_interp_cast(game, sprite, &cast))
 		return ;
-	draw_door(game, &cast);
+	draw_interp(game, sprite, &cast);
 }

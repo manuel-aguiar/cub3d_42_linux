@@ -12,6 +12,10 @@
 
 #include "game.h"
 
+void	fill_sorted_pointers(t_game *game);
+int		fill_with_bullets(t_game *game);
+int		place_bullet(t_game *game, int place);
+
 int	extract_sprites(t_game *game, t_map *map)
 {
 	int	i;
@@ -21,12 +25,14 @@ int	extract_sprites(t_game *game, t_map *map)
 	cur = 0;
 	while (cur < game->sprite_count)
 	{
-		while (!char_in_charset(map->map[i], SPRITES))
+		while (!char_in_charset(map->map[i], SPRITE_CHARS))
 			i++;
 		if ((map->map[i] == MAP_MEDI && !extract_medi(game, map, cur, i)) \
 		|| (map->map[i] == MAP_AMMO && !extract_ammo(game, map, cur, i)) \
 		|| (map->map[i] == MAP_DOOR && !extract_door(game, map, cur, i)) \
-		|| (map->map[i] == MAP_ENEMY && !extract_enemy(game, map, cur, i)))
+		|| (map->map[i] == MAP_X_ENEMY && !extract_x_enemy(game, map, cur, i)) \
+		|| (map->map[i] == MAP_Y_ENEMY && !extract_y_enemy(game, map, cur, i)) \
+		|| (map->map[i] == MAP_Z_ENEMY && !extract_z_enemy(game, map, cur, i)))
 			return (0);
 		i++;
 		cur++;
@@ -34,77 +40,56 @@ int	extract_sprites(t_game *game, t_map *map)
 	return (1);
 }
 
-int	place_bullet(t_game *game, int place)
+void	setup_common_sprite(t_sprite *array, int count)
 {
-	t_bullet	*data;
+	int			i;
 	t_sprite	*sprite;
 
-	sprite = &game->sprites[place];
-	sprite->my_hit[0].sprite = sprite;
-	sprite->my_hit[1].sprite = sprite;
-	sprite->my_hit[2].sprite = sprite;
-	sprite->my_hit[3].sprite = sprite;
-	data = malloc(sizeof(*data));
-	if (!data)
+	i = 0;
+	while (i < count)
+	{
+		sprite = &array[i];
+		sprite->my_hit[0].sprite = sprite;
+		sprite->my_hit[1].sprite = sprite;
+		sprite->my_hit[2].sprite = sprite;
+		sprite->my_hit[3].sprite = sprite;
+		sprite->status = NOT_VIS;
+		sprite->inverted = false;
+		sprite->dist = FLT_MAX;
+		i++;
+	}
+}
+
+int	sprites_count_and_malloc(t_map *map, t_sprite **place_array, \
+							int *count, int max_bullets)
+{
+	int			i;
+
+	i = 0;
+	*count = 0;
+	while (i < map->len)
+	{
+		if (char_in_charset(map->map[i], SPRITE_CHARS))
+			(*count)++;
+		i++;
+	}
+	*place_array = malloc(sizeof(**place_array) * (*count + max_bullets));
+	if (!*place_array)
 		return (perror_msg_int("malloc", 0));
-	ft_memcpy(data, &game->template_bullet, sizeof(*data));
-	sprite->data = data;
-	sprite->type = BULLET;
-	sprite->status = GONE;
-	sprite->cur_z = data->base_z;
-	sprite->height = data->height;
-	sprite->unit_size = data->unit_size;
-	sprite->dist = FLT_MAX;
-	sprite->tex = BULLET_TEX;
+	setup_common_sprite(*place_array, (*count + max_bullets));
 	return (1);
-}
-
-int	fill_with_bullets(t_game *game)
-{
-	int	i;
-
-	i = 0;
-	while (i < game->max_bullets)
-	{
-		if (!place_bullet(game, game->sprite_count + i))
-			return (0);
-		i++;
-	}
-	return (1);
-}
-
-void	fill_sorted_pointers(t_game *game)
-{
-	int	i;
-
-	i = 0;
-	while (i < game->sprite_count)
-	{
-		game->sorted[i] = &game->sprites[i];
-		i++;
-	}
 }
 
 int	setup_sprites(t_game *game)
 {
-	t_sprite	*sprite;
+	t_sprite	*array;
 	t_map		*map;
 	int			count;
-	int			i;
 
 	map = &game->map;
-	i = 0;
-	count = 0;
-	while (i < map->len)
-	{
-		if (char_in_charset(map->map[i], SPRITES))
-			count++;
-		i++;
-	}
-	sprite = malloc(sizeof(*sprite) * (count + game->max_bullets));
-	if (!sprite)
-		return (perror_msg_int("malloc", 0));
-	game->sprites = sprite;
+	if (!sprites_count_and_malloc(map, &array, &count, game->max_bullets))
+		return (0);
+	game->sprites = array;
 	game->sprite_count = count;
 	if (!extract_sprites(game, map))
 		return (0);

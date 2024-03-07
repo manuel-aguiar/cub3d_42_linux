@@ -43,6 +43,8 @@ typedef struct s_lbclip
 	int		yn2;
 	float	rn1;
 	float	rn2;
+	t_pixel box[2];
+	t_pixel line[2];
 }	t_lbclip;
 
 typedef struct s_xldata

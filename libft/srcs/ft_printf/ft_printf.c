@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmaria-d <mmaria-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 19:03:55 by manuel            #+#    #+#             */
-/*   Updated: 2023/08/17 19:49:24 by mmaria-d         ###   ########.fr       */
+/*   Updated: 2024/03/07 17:08:43 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,7 @@ int	ft_printf(const char *str, ...)
 	{
 		if (*str != '%')
 		{
-			write(1, str, 1);
-			i++;
+			i += write(1, str, 1);
 		}
 		else
 		{
@@ -94,10 +93,7 @@ int	ft_printf_fd(int fd, const char *str, ...)
 	while (*str)
 	{
 		if (*str != '%')
-		{
-			write(fd, str, 1);
-			i++;
-		}
+			i += write(fd, str, 1);
 		else
 		{
 			i += printformat(ptr, *(str + 1), fd);

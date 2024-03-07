@@ -29,6 +29,24 @@
 
 #define RAND_MAX_UINT64 0xFFFFFFFFUL
 
+typedef struct s_move_colli
+{
+	t_map		*map;
+	t_sprite	*sprite;
+	t_door		*door;
+	int			fixed_x;
+	int			fixed_y;
+	float		unit_size;
+	float		potential_len;
+	int			divide_potential;
+	t_vec2d		player;
+	t_vec2d		add;
+	t_vec2d 	nearest;
+	t_vec2d 	ray_to_nearest;
+	float 		ray_length;
+	float 		overlap;
+}				t_move_colli;
+
 typedef struct s_hud
 {
 	t_pixel bar_bot_left;
@@ -129,27 +147,30 @@ typedef struct s_sp_cast
 	int			color;
 }	t_sp_cast;
 
-typedef struct s_door_point
+typedef struct s_cast_point
 {
 	t_vec2d	point;
 	t_vec2d	relative;
 	t_vec2d	trans;
+	float	z_mod;
+	int		total_z_mod;
 	int		screen_x;
 	int		height;
 	int		min_screen_y;
 	int		max_screen_y;
 	float	shade;
-}	t_door_point;
+}	t_cast_point;
 
-typedef struct s_door_cast
+typedef struct s_interp_cast
 {
 	int				w;
 	int 			h;
 	t_vec2d			dir;
 	t_door			*door;
+	t_bullet		*bullet;
 	bool			inverted;
-	t_door_point	start;
-	t_door_point	end;
+	t_cast_point	start;
+	t_cast_point	end;
 	float			inv_cam;
 	float			pitch_mod;
 	float			play_z_mod;
@@ -176,7 +197,22 @@ typedef struct s_door_cast
 	int				draw_st_y;
 	int				draw_end_y;
 	t_mlx_img 		*tex;
-}	t_door_cast;
+}	t_interp_cast;
+
+typedef struct s_verti_coef
+{
+	t_ray		ray;
+	t_dda_hor	hori;
+	t_vec2d		wall_hit;
+	int			new_pitch;
+	float		new_tan;
+	t_vec3d		play_3d;
+	t_vec3d		wall_3d;
+	t_vec3d		diff;
+	float 		times;
+	float 		dir_z;
+	float 		coefficient;
+}	t_verti_coef;
 
 typedef struct s_bullet_colli
 {
@@ -222,7 +258,9 @@ typedef struct s_game
 	t_door		template_door;
 	t_medi		template_medi;
 	t_ammo		template_ammo;
-	t_enemy		template_enemy;
+	t_enemy		template_x_enemy;
+	t_enemy		template_y_enemy;
+	t_enemy		template_z_enemy;
 	t_bullet	template_bullet;
 	int			cur_time_win_str;
 	int			total_time_win_str;
@@ -278,7 +316,7 @@ void    move_player(t_game *game, int keys);
 int		add_shade(int color, float perc);
 void	hori_raycasting(t_game *game);
 void	sprite_cast(t_game *game);
-void	doorcast(t_game *game, t_sprite *sprite);
+void	interpcast(t_game *game, t_sprite *sprite);
 void	floorcast(t_game *game);
 void	wallcast(t_game *game, t_ray *ray, t_dda_hor *hori, int x);
 
@@ -318,7 +356,9 @@ void		enemy_movement(t_game *game, t_sprite *sprite, t_enemy *enemy);
 
 //update_door.c
 void		update_door(t_game *game, t_sprite *sprite);
-int			extract_enemy(t_game *game, t_map *map, int place, int map_index);
+int			extract_x_enemy(t_game *game, t_map *map, int place, int map_index);
+int			extract_y_enemy(t_game *game, t_map *map, int place, int map_index);
+int			extract_z_enemy(t_game *game, t_map *map, int place, int map_index);
 int			extract_ammo(t_game *game, t_map *map, int place, int map_index);
 int			extract_medi(t_game *game, t_map *map, int place, int map_index);
 int			extract_door(t_game *game, t_map *map, int place, int map_index);
@@ -332,5 +372,11 @@ int		tex_get_pixel(t_win *win, t_mlx_img *tex, int index);
 //game_rand_gen.c
 float	rand_float(t_rand_gen *rand, float min, float max);
 int		rand_int(t_rand_gen *rand, int min, int max);
+
+//bullet_start.c
+void	start_friendly_bullet(t_game *game);
+void	start_enemy_bullet(t_game *game, t_sprite *enemy);
+
+void		player_takes_damage(t_game *game, int damage);
 
 #endif

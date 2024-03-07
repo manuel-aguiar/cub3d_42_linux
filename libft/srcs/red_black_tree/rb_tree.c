@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "red_black_tree.h"
+#include "red_black_tree.h"
 
 t_rb_node	*rbnode_new(void *data)
 {
@@ -41,9 +41,4 @@ t_rb_tree	*rbtree_new(int (*comp)(void *, void *), void (*del)(void *))
 	tree->comp = comp;
 	tree->del = del;
 	return (tree);
-}
-
-int		rb_tree_insert()
-{
-	return (0);
 }

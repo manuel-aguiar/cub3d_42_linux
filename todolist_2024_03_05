@@ -1,15 +1,6 @@
-textures:
-    (pseudo done)
-    must check transposition of the original images to match the 90º rotated
-
 colors:
     change avg_color and gamma_correction to take into account linux endianess
     weird effect with wall/ceilling refelctions
-
-pause:
-    (pseudo done) help string in the centre
-    (pseudo done) free mouse to allow closure on window by clicking X
-    (pseudo done) recenter mouse after exiting pause
 
 hud:
     (pseudo done) automate hud for the size of the window, right now it is fixed
@@ -18,6 +9,12 @@ game:
 	  (pseudo done) exit when health reaches zero
     (pseudo done) pause screen, string "YOU LOST!!", couple of seconds, exit
     (pseudo done) enemy counter, let know when all enemies died, counter down when enemy down
+
+new enemy?
+
+clean old macros
+
+screen shade of red green blue when taking damage, healing or finding bullets
 
 norminette:
     norminette everything in sight.......

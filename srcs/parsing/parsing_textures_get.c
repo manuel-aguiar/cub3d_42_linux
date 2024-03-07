@@ -14,10 +14,18 @@
 
 static inline int	get_texture_index_2(char *cmp)
 {
-	if (!ft_strncmp(cmp, "ENEMY", 6))
-		return (ENEMY_TEX);
-	if (!ft_strncmp(cmp, "BULLET", 7))
-		return (BULLET_TEX);
+	if (!ft_strncmp(cmp, "X_ENEMY", 8))
+		return (X_ENEMY_TEX);
+	if (!ft_strncmp(cmp, "Y_ENEMY", 8))
+		return (Y_ENEMY_TEX);
+	if (!ft_strncmp(cmp, "Z_ENEMY", 8))
+		return (Z_ENEMY_TEX);
+	if (!ft_strncmp(cmp, "MY_BULLET", 10))
+		return (MY_BULLET_TEX);
+	if (!ft_strncmp(cmp, "EN_BULLET", 10))
+		return (EN_BULLET_TEX);
+	if (!ft_strncmp(cmp, "WALL_BULLET", 12))
+		return (WALL_BULLET_TEX);
 	if (!ft_strncmp(cmp, "GUN", 4))
 		return (GUN_TEX);
 	if (!ft_strncmp(cmp, "DOOR", 5))

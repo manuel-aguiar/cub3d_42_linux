@@ -8,16 +8,20 @@ C ./assets/xpm_margarida.xpm
 
 MEDI ./assets/xpm_medikit.xpm
 AMMO ./assets/xpm_rubens_dementor.xpm
-ENEMY ./assets/xpm_mario.xpm
-BULLET ./assets/xpm_flying_bullet.xpm
+X_ENEMY ./assets/xpm_mario.xpm
+Y_ENEMY ./assets/xpm_mario.xpm
+Z_ENEMY ./assets/xpm_mario.xpm
+MY_BULLET ./assets/xpm_flying_bullet.xpm
+EN_BULLET ./assets/xpm_flying_bullet.xpm
+WALL_BULLET ./assets/xpm_flying_bullet.xpm
 GUN ./assets/xpm_gun.xpm
 DOOR ./assets/xpm_door.xpm
 
         1111111111111111111111111
-        1000000000110MMM00Z000001
-        101100000111000000Z100001
+        1000000000110MMM0XZ000001
+        10110000011100000XZ100001
         100100E00DDD00000Z1000001
-111111111011000001110000000000001
+1111111110110000011100Y00Y0000001
 10000000A011000001110111110111111
 11110111111111D11100000010001
 1111D111111111011101010010001

@@ -5,7 +5,7 @@ NAME 		=		cub3D
 
 COMP 		= 		cc -O3  -g -fsanitize=address
 
-FLAGS 		= 		-Wall -Werror -Wextra
+FLAGS 		= 		
 ADD_LIB 	= 		-L./$(LIB_PATH) -lft
 MLX_LIB		=		-Lminilibx-linux -L/usr/lib -lmlx -lXext -lX11 -lm -lz
 RM 			=		rm
@@ -55,26 +55,28 @@ INC_FILES		=		game.h				\
 						hit_detection.h
 
 SRC_MAIN			=	main.c				\
-						game_settings.h		\
 						settings.c			\
 						settings_template.c	\
+						settings_template_enemy.c \
 						settings_player.c
 
-SRC_GAME			=	win_render_loop.c		\
-						game_setup.c			\
-						game_keys.c				\
-						game_manager_keys.c		\
-						game_manager_mouse.c	\
-						game_rand_gen.c			\
-						free_game.c				\
-						game_rotate.c			\
-						game_render.c			\
-						game_load_textures.c	\
+SRC_GAME			=	win_render_loop.c			\
+						game_setup.c				\
+						game_keys.c					\
+						game_manager_keys.c			\
+						game_manager_mouse.c		\
+						game_rand_gen.c				\
+						free_game.c					\
+						game_rotate.c				\
+						game_render.c				\
+						game_load_textures.c		\
 						render_inside_compass.c		\
-						handle_collisions.c		\
+						map_collisions.c			\
+						map_collision_corners.c		\
 						xpm_to_window.c				\
 						game_render_hud.c			\
 						bullet_rest.c				\
+						bullet_start.c				\
 						update_medi_ammo.c			\
 						update_enemy_move.c			\
 						update_bullet.c				\
@@ -158,19 +160,24 @@ SRC_PIXEL_POINT		=	gamma_correction.c				\
 SRC_RAYCASTING		=	vec2d_utils1.c					\
 						vec2d_utils2.c					\
 						vec3d_utils1.c					\
+						vec3d_utils2.c					\
 						raycasting.c				\
 						wallcast.c					\
 						floorcast.c					\
 						spritecast.c				\
-						doorcast.c					\
-						doorcast_setup.c			\
+						interpcast.c					\
+						interpcast_setup.c			\
+						interpcast_orientation.c			\
 						shader.c					\
 						tex_get_pixel.c
 
 SRC_SPRITES			=	sprite_setup.c				\
 						sprite_quicksort.c			\
-						sprites_hitmap.c			\
-						sprites_extract.c			\
+						sprites_hitmap_place.c			\
+						sprites_hitmap_clean.c			\
+						sprites_extract_doors.c			\
+						sprites_extract_non_doors.c		\
+						sprites_extract_sort_bullets.c	\
 						vertical_correction.c
 
 SRC_HIT_DETECTION	=	lb_hit.c					\
@@ -205,13 +212,16 @@ LIBS		=		$(ADD_LIB) $(LIB_PATH)/$(LIBFT) $(MLX_LIB)
 all: $(NAME)
 
 $(NAME): $(LIBFT) $(OBJS)
-	$(COMP) $(FLAGS) $(OBJS) $(ALL_INCS) -o $(NAME) $(LIBS)
+	$(COMP) $(FLAGS) $(OBJS) $(ALL_INCS) $(LIBS) -o $@
 	@echo Program $(NAME) ready!!
 
 $(OBJ_PATH)/settings.o : $(SRC_PATH)/settings.c $(SRC_PATH)/game_settings.h
 	$(COMP) $(FLAGS) $(ALL_INCS) -c $< -o $@
 
 $(OBJ_PATH)/settings_template.o : $(SRC_PATH)/settings_template.c $(SRC_PATH)/game_settings.h
+	$(COMP) $(FLAGS) $(ALL_INCS) -c $< -o $@
+
+$(OBJ_PATH)/settings_template_enemy.o : $(SRC_PATH)/settings_template_enemy.c $(SRC_PATH)/game_settings.h
 	$(COMP) $(FLAGS) $(ALL_INCS) -c $< -o $@
 
 $(OBJ_PATH)/settings_player.o : $(SRC_PATH)/settings_player.c $(SRC_PATH)/game_settings.h

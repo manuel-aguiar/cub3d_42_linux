@@ -6,11 +6,26 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 14:11:11 by marvin            #+#    #+#             */
-/*   Updated: 2024/03/04 15:26:42 by codespace        ###   ########.fr       */
+/*   Updated: 2024/03/07 15:57:37 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "game.h"
+
+static inline void	setup_correction_ray_cont(t_ray *ray)
+{
+	ray->player_sqr = (t_vec2d){(float)((int)ray->start.x), \
+		(float)((int)ray->start.y)};
+	ray->first.x = float_ternary(ray->ray_dir.x < 0, \
+		(ray->start.x - ray->player_sqr.x), \
+		((ray->player_sqr.x + 1) - ray->start.x));
+	ray->first.y = float_ternary(ray->ray_dir.y < 0, \
+		(ray->start.y - ray->player_sqr.y), \
+		((ray->player_sqr.y + 1) - ray->start.y));
+	ray->first = vec2d_product(ray->first, ray->step);
+	ray->axis_move.x = ft_ternary(ray->ray_dir.x < 0, -1, 1);
+	ray->axis_move.y = ft_ternary(ray->ray_dir.y < 0, -1, 1);
+}
 
 static inline void	setup_correction_ray(t_game *game, t_ray *ray)
 {
@@ -23,21 +38,12 @@ static inline void	setup_correction_ray(t_game *game, t_ray *ray)
 	ray->pitch_mod = ray->h / 2 + game->player.pitch;
 	ray->z_mod = (game->player.cur_z + game->player.jump_z_mod + \
 		game->player.walk_z_mod) * ray->h - ray->h / 2;
-	ray->cam_x = 0;
-	ray->ray_dir = (t_vec2d){ray->dir_vec.x + ray->plane.x \
-		* ray->cam_x, ray->dir_vec.y + ray->plane.y * ray->cam_x};
-	ray->step.x = float_ternary(ray->ray_dir.x == 0, FLT_MAX , \
+	ray->ray_dir = ray->dir_vec;
+	ray->step.x = float_ternary(ray->ray_dir.x == 0, FLT_MAX, \
 		ft_fabs(1.0f / ray->ray_dir.x));
-	ray->step.y = float_ternary(ray->ray_dir.y == 0, FLT_MAX , \
+	ray->step.y = float_ternary(ray->ray_dir.y == 0, FLT_MAX, \
 		ft_fabs(1.0f / ray->ray_dir.y));
-	ray->player_sqr = (t_vec2d){(float)((int)ray->start.x), (float)((int)ray->start.y)};
-	ray->first.x = float_ternary(ray->ray_dir.x < 0, (ray->start.x - ray->player_sqr.x), \
-				((ray->player_sqr.x + 1) - ray->start.x));
-	ray->first.y = float_ternary(ray->ray_dir.y < 0, (ray->start.y - ray->player_sqr.y), \
-				((ray->player_sqr.y + 1) - ray->start.y));
-	ray->first = vec2d_product(ray->first, ray->step);
-	ray->axis_move.x = ft_ternary(ray->ray_dir.x < 0, -1, 1);
-	ray->axis_move.y = ft_ternary(ray->ray_dir.y < 0, -1, 1);
+	setup_correction_ray_cont(ray);
 }
 
 static inline void	cast_this_ray(t_game *game, t_ray *ray)
@@ -71,49 +77,44 @@ static t_vec2d	get_wall_hit_vertical(t_game *game, t_ray *ray)
 	{
 		wall_dist = (ray->first.x - ray->step.x);
 		wall_hit.y = game->player.map_posi.y + wall_dist * ray->ray_dir.y;
-		wall_hit.x = ray->player_sqr.x + (ray->player_sqr.x <= game->player.map_posi.x);
+		wall_hit.x = ray->player_sqr.x + (ray->player_sqr.x \
+			<= game->player.map_posi.x);
 	}
 	else
 	{
 		wall_dist = (ray->first.y - ray->step.y);
 		wall_hit.x = game->player.map_posi.x + wall_dist * ray->ray_dir.x;
-		wall_hit.y = ray->player_sqr.y + (ray->player_sqr.y <= game->player.map_posi.y);
+		wall_hit.y = ray->player_sqr.y + (ray->player_sqr.y \
+			<= game->player.map_posi.y);
 	}
 	return (wall_hit);
 }
 
 float	vertical_coefficient(t_game *game)
 {
-	t_ray		ray;
-	t_dda_hor	hori;
-	t_vec2d		wall_hit;
-	int			new_pitch;
-	float		new_tan;
-	t_vec3d		play_3d;
-	t_vec3d		wall_3d;
-	t_vec3d		diff;
-	float 		times;
-	float 		dir_z;
-	float coefficient;
+	t_verti_coef	coef;
 
-	setup_correction_ray(game, &ray);
-	cast_this_ray(game, &ray);
-	wall_hit = get_wall_hit_vertical(game, &ray);
-	hori.side = ray.side;
-	hori.wall_dist = float_ternary(ray.side == 0, (ray.first.x - ray.step.x), \
-		(ray.first.y - ray.step.y));
-	hori.line_h = (int)((ray.h / hori.wall_dist));
-	new_pitch = hori.line_h / 2;
-	new_tan = new_pitch * 2 / (float)game->win.height \
-		* (float)game->player.base_dir_len / (float)game->player.cur_dir_len;
-	play_3d = (t_vec3d){game->player.map_posi.x, game->player.map_posi.y, \
-		(game->player.cur_z + game->player.jump_z_mod + game->player.walk_z_mod)};
-	wall_3d = (t_vec3d){wall_hit.x, wall_hit.y, 1};
-	diff = (t_vec3d){wall_3d.x - play_3d.x, wall_3d.y - play_3d.y, \
-		wall_3d.z - play_3d.z};
-	times = float_ternary(ft_fabs(game->player.dir_vec.x) <= 0.001f, \
-		diff.y / game->player.dir_vec.y, diff.x / game->player.dir_vec.x);
-	dir_z = diff.z / times;
-	coefficient = dir_z / new_tan;
-	return (coefficient);
+	setup_correction_ray(game, &coef.ray);
+	cast_this_ray(game, &coef.ray);
+	coef.wall_hit = get_wall_hit_vertical(game, &coef.ray);
+	coef.hori.side = coef.ray.side;
+	coef.hori.wall_dist = float_ternary(coef.ray.side == 0, \
+		(coef.ray.first.x - coef.ray.step.x), \
+		(coef.ray.first.y - coef.ray.step.y));
+	coef.hori.line_h = (int)((coef.ray.h / coef.hori.wall_dist));
+	coef.new_pitch = coef.hori.line_h / 2;
+	coef.new_tan = coef.new_pitch * 2 / (float)game->win.height \
+		* (float)game->player.base_dir_len \
+		/ (float)game->player.cur_dir_len;
+	coef.play_3d = (t_vec3d){game->player.map_posi.x, \
+		game->player.map_posi.y, (game->player.cur_z \
+		+ game->player.jump_z_mod + game->player.walk_z_mod)};
+	coef.wall_3d = (t_vec3d){coef.wall_hit.x, coef.wall_hit.y, 1};
+	coef.diff = vec3d_sub(coef.wall_3d, coef.play_3d);
+	coef.times = float_ternary(ft_fabs(game->player.dir_vec.x) <= 0.001f, \
+		coef.diff.y / game->player.dir_vec.y, coef.diff.x \
+		/ game->player.dir_vec.x);
+	coef.dir_z = coef.diff.z / coef.times;
+	coef.coefficient = coef.dir_z / coef.new_tan;
+	return (coef.coefficient);
 }

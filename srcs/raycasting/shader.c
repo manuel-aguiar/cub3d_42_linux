@@ -35,7 +35,7 @@ int	add_shade_new(int color, float perc)
 	pixels[0] = (char)(pixels[0] * ( 1 - perc));
 	pixels[1] = (char)(pixels[1] * ( 1 - perc));
 	pixels[2] = (char)(pixels[2] * ( 1 - perc));
-	pixels[3] = 255;
+	//pixels[3] = 255;
 	//pixels[3] = (char)(pixels[3] * ( 1 - perc));
 	return (color);
 }

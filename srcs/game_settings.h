@@ -141,17 +141,41 @@
 //sprite settings
 # define GAME_FLOAT_SENSE 0.003f
 
-# define ENEMY_HGT 0.5f
-# define ENEMY_WDT 3.0f
-# define ENEMY_Z 0.0f
-# define ENEMY_UNIT 0.2f
-# define ENEMY_Z_SENSE 0.005f
-# define ENEMY_MOVE_SENSE 0.0015f
+# define X_ENEMY_HGT 0.5f
+# define X_ENEMY_WDT 3.0f
+# define X_ENEMY_Z 0.0f
+# define X_ENEMY_UNIT 0.2f
+# define X_ENEMY_Z_SENSE 0.005f
+# define X_ENEMY_MOVE_SENSE 0.0015f
 //# define ENEMY_MOVE_SENSE 0.0f
-# define ENEMY_MS_SWAP 500
-# define ENEMY_ATTACK 20
-# define ENEMY_HEALTH 50
-# define ENEMY_TIME_ATTACK 1000
+# define X_ENEMY_MS_SWAP 500
+# define X_ENEMY_ATTACK 20
+# define X_ENEMY_HEALTH 50
+# define X_ENEMY_TIME_ATTACK 1000
+
+# define Y_ENEMY_HGT 0.5f
+# define Y_ENEMY_WDT 3.0f
+# define Y_ENEMY_Z 0.0f
+# define Y_ENEMY_UNIT 0.2f
+# define Y_ENEMY_Z_SENSE 0.005f
+# define Y_ENEMY_MOVE_SENSE 0.0015f
+//# define ENEMY_MOVE_SENSE 0.0f
+# define Y_ENEMY_MS_SWAP 500
+# define Y_ENEMY_ATTACK 20
+# define Y_ENEMY_HEALTH 50
+# define Y_ENEMY_TIME_ATTACK 1000
+
+# define Z_ENEMY_HGT 0.5f
+# define Z_ENEMY_WDT 3.0f
+# define Z_ENEMY_Z 0.0f
+# define Z_ENEMY_UNIT 0.2f
+# define Z_ENEMY_Z_SENSE 0.005f
+# define Z_ENEMY_MOVE_SENSE 0.0015f
+//# define ENEMY_MOVE_SENSE 0.0f
+# define Z_ENEMY_MS_SWAP 500
+# define Z_ENEMY_ATTACK 20
+# define Z_ENEMY_HEALTH 50
+# define Z_ENEMY_TIME_ATTACK 1000
 
 # define DOOR_HGT 1.0f
 # define DOOR_WDT 0.3f
@@ -200,7 +224,9 @@ void	settings_template_ammo(t_ammo *ammo);
 void	settings_template_enemy(t_enemy *enemy);
 void	settings_template_medi(t_medi *medi);
 void	settings_template_bullet(t_bullet *bullet);
-
+void	settings_template_x_enemy(t_enemy *enemy);
+void	settings_template_y_enemy(t_enemy *enemy);
+void	settings_template_z_enemy(t_enemy *enemy);
 void	settings_player(t_player *player);
 
 #endif
