@@ -124,5 +124,11 @@ void	update_bullet(t_game *game, t_sprite *sprite)
 	dot = sub.x * colli.bullet->dir.x + sub.y * colli.bullet->dir.y \
 		+ sub.z * colli.bullet->dir.z;
 	if (dot <= 0)
-		sprite->status = GONE;
+	{
+		if (colli.bullet->hole.z < 0 || colli.bullet->hole.z > 1)
+			sprite->status = GONE;
+		else
+			sprite->status = ON_WALL;
+	}
+
 }

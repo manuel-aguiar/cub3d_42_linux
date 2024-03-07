@@ -73,7 +73,7 @@ static int	lb_setup(t_lbclip *lb)
 	return (1);
 }
 
-int	liang_barsky_hit(t_pixel win[2], t_pixel draw[2], t_pixel res[2])
+int	liang_barsky_clipping(t_pixel win[2], t_pixel draw[2], t_pixel res[2])
 {
 	t_lbclip	lb;
 

@@ -56,6 +56,9 @@ typedef enum
 typedef enum
 {
 	GONE,
+	ON_WALL,
+	ON_FLOOR,
+	ON_CEIL,
 	VISIBLE,
 	NOT_VIS,
 }	e_sprite_status;

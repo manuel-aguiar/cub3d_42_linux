@@ -129,27 +129,30 @@ typedef struct s_sp_cast
 	int			color;
 }	t_sp_cast;
 
-typedef struct s_door_point
+typedef struct s_cast_point
 {
 	t_vec2d	point;
 	t_vec2d	relative;
 	t_vec2d	trans;
+	float	z_mod;
+	int		total_z_mod;
 	int		screen_x;
 	int		height;
 	int		min_screen_y;
 	int		max_screen_y;
 	float	shade;
-}	t_door_point;
+}	t_cast_point;
 
-typedef struct s_door_cast
+typedef struct s_interp_cast
 {
 	int				w;
 	int 			h;
 	t_vec2d			dir;
 	t_door			*door;
+	t_bullet		*bullet;
 	bool			inverted;
-	t_door_point	start;
-	t_door_point	end;
+	t_cast_point	start;
+	t_cast_point	end;
 	float			inv_cam;
 	float			pitch_mod;
 	float			play_z_mod;
@@ -176,7 +179,7 @@ typedef struct s_door_cast
 	int				draw_st_y;
 	int				draw_end_y;
 	t_mlx_img 		*tex;
-}	t_door_cast;
+}	t_interp_cast;
 
 typedef struct s_bullet_colli
 {
@@ -278,7 +281,7 @@ void    move_player(t_game *game, int keys);
 int		add_shade(int color, float perc);
 void	hori_raycasting(t_game *game);
 void	sprite_cast(t_game *game);
-void	doorcast(t_game *game, t_sprite *sprite);
+void	interpcast(t_game *game, t_sprite *sprite);
 void	floorcast(t_game *game);
 void	wallcast(t_game *game, t_ray *ray, t_dda_hor *hori, int x);
 
