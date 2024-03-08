@@ -305,7 +305,6 @@ void	render_inner_circle(t_win *win, t_compass *comp);
 
 //render_inner_square.c
 void	render_square_vs_circle(t_win *win, t_compass *comp, t_pixel centre);
-void	render_square_vs_rect(t_win *win, t_compass *comp, t_pixel centre, t_pixel low_bot, t_pixel hi_top);
 
 //render_outter_circle.c
 void 	render_empty_circle_with_aa(t_win *win, t_pixel centre, int radius, int color);
