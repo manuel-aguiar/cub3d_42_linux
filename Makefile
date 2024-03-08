@@ -73,7 +73,6 @@ SRC_GAME			=	win_render_loop.c			\
 						render_inside_compass.c		\
 						map_collisions.c			\
 						map_collision_corners.c		\
-						xpm_to_window.c				\
 						game_render_hud.c			\
 						bullet_rest.c				\
 						bullet_start.c				\
@@ -130,7 +129,8 @@ SRC_REN_LINUX		=	linux_init_window.c		\
 						linux_pause_manager.c		\
 						linux_pause_blur_1.c		\
 						linux_pause_blur_2.c		\
-						linux_text_strings.c
+						linux_text_strings.c		\
+						linux_xpm_to_window.c
 
 SRC_COMPASS			=	compass_setup.c				\
 						compass_render.c			\

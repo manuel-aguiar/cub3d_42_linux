@@ -302,8 +302,6 @@ void	game_key_manager(t_game *game);
 void	game_mouse_manager(t_game *game);
 
 
-void	xpm_to_window(t_win *win, t_mlx_img *tex, t_pixel corner, int pixel_wid, int pixel_hgt);
-
 void	player_actions(t_game *game);
 void	player_rotate_and_pitch(t_game *game);
 

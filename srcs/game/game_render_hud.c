@@ -14,7 +14,15 @@
 
 void	render_gun(t_game *game)
 {
-	xpm_to_window(&game->win, &game->tex[GUN_TEX], (t_pixel){300, 0, 0}, 300, 200);
+	t_xpm_to_win	xpm;
+
+	xpm = (t_xpm_to_win){};
+	xpm.tex = &game->tex[GUN_TEX];
+	xpm.win_low_x = 300;
+	xpm.win_low_y = 0;
+	xpm.pix_width = 300;
+	xpm.pix_height = 200;
+	xpm_to_window(&game->win, &xpm);
 }
 
 
