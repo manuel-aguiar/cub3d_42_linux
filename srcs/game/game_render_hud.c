@@ -25,44 +25,60 @@ void	render_gun(t_game *game)
 	xpm_to_window(&game->win, &xpm);
 }
 
-void	render_stats_bars(t_game *game)
+void	render_health(t_game *game, t_hud_stats *stats)
 {
+	int	values[CTR_SIZE];
+	int	separator;
+	int	y;
 
-	t_hud_stats	*stats;
-
-	stats = &game->stats;
-
-	int statsss[CTR_SIZE];
-
-	int separator;
-	int y;
-
-	render_gun(game);
-	if (!((game->win.keys >> BIT_HUD_T) & 1))
-		return ;
-
-	ft_memcpy(statsss, game->player.health, sizeof(*statsss) * CTR_SIZE);
-	separator = ((float)(statsss[CTR_CUR] - statsss[CTR_MIN]) / (float)(statsss[CTR_MAX] - statsss[CTR_MIN]) * (stats->health_end.x - stats->health_start.x)) + stats->health_start.x;
-
+	ft_memcpy(values, game->player.health, sizeof(*values) * CTR_SIZE);
+	separator = ((float)(values[CTR_CUR] - values[CTR_MIN]) \
+		/ (float)(values[CTR_MAX] - values[CTR_MIN]) \
+		*(stats->health_end.x - stats->health_start.x)) \
+		+ stats->health_start.x;
 	y = stats->health_start.y;
 	while (y < stats->health_end.y)
 	{
-		bersenham_line(&game->win, (t_pixel){stats->health_start.x, y, 0}, (t_pixel){separator, y, 0}, stats->health_color);
+		bersenham_line(&game->win, (t_pixel){stats->health_start.x, y, 0}, \
+			(t_pixel){separator, y, 0}, stats->health_color);
 		if (separator + 1 < stats->health_end.x)
-			bersenham_line(&game->win, (t_pixel){separator + 1, y, 0}, (t_pixel){stats->health_end.x, y, 0}, stats->empty_color);
+			bersenham_line(&game->win, (t_pixel){separator + 1, y, 0}, \
+				(t_pixel){stats->health_end.x, y, 0}, stats->empty_color);
 		y++;
 	}
+}
 
-	ft_memcpy(statsss, game->player.ammo, sizeof(*statsss) * CTR_SIZE);
-	separator = ((float)(statsss[CTR_CUR] - statsss[CTR_MIN]) / (float)(statsss[CTR_MAX] - statsss[CTR_MIN]) * (stats->ammo_end.x - stats->ammo_start.x)) + stats->ammo_start.x;
+void	render_ammo(t_game *game, t_hud_stats *stats)
+{
+	int	values[CTR_SIZE];
+	int	separator;
+	int	y;
 
+	ft_memcpy(values, game->player.ammo, sizeof(*values) * CTR_SIZE);
+	separator = ((float)(values[CTR_CUR] - values[CTR_MIN]) \
+		/ (float)(values[CTR_MAX] - values[CTR_MIN]) \
+		*(stats->ammo_end.x - stats->ammo_start.x)) \
+		+ stats->ammo_start.x;
 	y = stats->ammo_start.y;
 	while (y < stats->ammo_end.y)
 	{
-		bersenham_line(&game->win, (t_pixel){stats->ammo_start.x, y, 0}, (t_pixel){separator, y, 0}, stats->ammo_color);
+		bersenham_line(&game->win, (t_pixel){stats->ammo_start.x, y, 0}, \
+			(t_pixel){separator, y, 0}, stats->ammo_color);
 		if (separator + 1 < stats->ammo_end.x)
-			bersenham_line(&game->win, (t_pixel){separator + 1, y, 0}, (t_pixel){stats->ammo_end.x, y, 0}, stats->empty_color);
-
+			bersenham_line(&game->win, (t_pixel){separator + 1, y, 0}, \
+				(t_pixel){stats->ammo_end.x, y, 0}, stats->empty_color);
 		y++;
 	}
+}
+
+void	render_stats_bars(t_game *game)
+{
+	t_hud_stats	*stats;
+
+	stats = &game->stats;
+	render_gun(game);
+	if (!((game->win.keys >> BIT_HUD_T) & 1))
+		return ;
+	render_health(game, stats);
+	render_ammo(game, stats);
 }
