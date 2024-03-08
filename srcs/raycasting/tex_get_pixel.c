@@ -12,9 +12,9 @@
 
 #include "game.h"
 
-int		tex_get_pixel(t_win *win, t_mlx_img *tex, int index)
+int	tex_get_pixel(t_win *win, t_mlx_img *tex, int index)
 {
-	char		*dst;
+	char	*dst;
 
 	dst = &tex->pixels[index * win->rgb_size];
 	return (*(unsigned int *)dst);

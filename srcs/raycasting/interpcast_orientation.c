@@ -54,8 +54,8 @@ static inline void	bullet_orientation(t_game *game, t_sprite *sprite, \
 	else
 	{
 		cast->inverted = true;
-		cast->start.point = (t_vec2d){cast->bullet->hole.x, cast->bullet->hole.y \
-			- sprite->unit_size};
+		cast->start.point = (t_vec2d){cast->bullet->hole.x, \
+			cast->bullet->hole.y - sprite->unit_size};
 		cast->end.point = (t_vec2d){cast->bullet->hole.x, cast->bullet->hole.y \
 			+ sprite->unit_size};
 	}

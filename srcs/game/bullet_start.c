@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bullet_start.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: mmaria-d <mmaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 13:31:56 by codespace         #+#    #+#             */
-/*   Updated: 2024/03/07 14:05:32 by codespace        ###   ########.fr       */
+/*   Updated: 2024/03/08 13:24:27 by mmaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,16 @@ void	start_friendly_bullet(t_game *game)
 		+ game->live_bullets];
 	sprite->tex = MY_BULLET_TEX;
 	sprite->posi = game->player.map_posi;
-	handle_collisions(game, &sprite->posi, vec2d_multi(game->player.dir_vec, game->player.unit_size * 2), sprite->unit_size);
+	handle_collisions(game, &sprite->posi, \
+		vec2d_multi(game->player.dir_vec, game->player.unit_size * 2), \
+		sprite->unit_size);
 	sprite->status = VISIBLE;
 	bullet = (t_bullet *)sprite->data;
 	bullet->shooter = B_ME;
 	bullet->dir = game->player.dir_3d;
 	sprite->cur_z = (game->player.cur_z + game->player.jump_z_mod + \
 		game->player.walk_z_mod + bullet->base_z) + bullet->dir.z \
-			* game->player.unit_size * 2;
+			* vec2d_len(vec2d_sub(sprite->posi, game->player.map_posi));
 	bullet->posi = (t_vec3d){sprite->posi.x, sprite->posi.y, sprite->cur_z};
 	bullet->wall_hole = true;
 	bullet->hole = bullet_rest(game, bullet);

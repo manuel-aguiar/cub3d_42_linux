@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "vector.h"
+#include "vector.h"
 
 t_vec2d	vec2d_swap_coords(t_vec2d target)
 {
@@ -29,12 +29,12 @@ float	vec2d_distance(t_vec2d start, t_vec2d end)
 
 t_vec2d	vec2d_product(t_vec2d first, t_vec2d second)
 {
-	return((t_vec2d){first.x * second.x, first.y * second.y});
+	return ((t_vec2d){first.x * second.x, first.y * second.y});
 }
 
 void	vec2d_swap(t_vec2d *first, t_vec2d *second)
 {
-	t_vec2d swap;
+	t_vec2d	swap;
 
 	swap = *first;
 	*first = *second;

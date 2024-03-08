@@ -80,6 +80,7 @@ SRC_GAME			=	win_render_loop.c			\
 						update_medi_ammo.c			\
 						update_enemy_move.c			\
 						update_bullet.c				\
+						update_bullet_2.c			\
 						update_door.c
 
 
@@ -165,6 +166,7 @@ SRC_RAYCASTING		=	vec2d_utils1.c					\
 						wallcast.c					\
 						floorcast.c					\
 						spritecast.c				\
+						spritecast_setup.c			\
 						interpcast.c					\
 						interpcast_setup.c			\
 						interpcast_orientation.c			\

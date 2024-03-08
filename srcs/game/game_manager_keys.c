@@ -10,13 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "game.h"
+#include "game.h"
 
 void	game_key_manager(t_game *game)
 {
-	int 	keys;
-	int 	move;
-	int		new_height_state;
+	int	keys;
+	int	move;
+	int	new_height_state;
 
 	keys = game->win.keys;
 	move = (((keys >> BIT_FRONT) & 1) << 3) \
