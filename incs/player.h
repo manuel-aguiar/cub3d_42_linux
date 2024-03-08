@@ -140,10 +140,8 @@ typedef struct s_player
 	float			walk_radius;
 	float			crouch_radius;
 	float			prone_radius;
-
-	t_vec2d			(*move[16])(t_player *player);
-	void			(*hgt_manager[4])(t_player *player, \
-						int *keys, int *new_height_state);
+	void			(*hgt_manager[4])(t_player *, int *keys, int *new_state);
+	t_vec2d			(*move[16])(t_player *);
 	t_clock			*clock;
 }	t_player;
 
