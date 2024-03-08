@@ -83,7 +83,7 @@ int	window_pause_off(t_win *win, t_pause_blur *blur, bool blur_on, \
 	return (1);
 }
 
-void	window_pause_manager(t_win *win, e_pause_state state, bool blur_on, \
+void	window_pause_manager(t_win *win, t_pause_state state, bool blur_on, \
 							void string(t_win *))
 {
 	t_pause_blur	*blur;

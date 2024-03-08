@@ -29,32 +29,43 @@
 # define VALID_DIR_CHARS "NSWE"
 # define SPRITE_CHARS "MAXYZD"
 
-# define MAP_MEDI 'M'
-# define MAP_AMMO 'A'
-# define MAP_X_ENEMY 'X'
-# define MAP_Y_ENEMY 'Y'
-# define MAP_Z_ENEMY 'Z'
-# define MAP_EXIT 'X'
-# define MAP_DOOR 'D'
-# define MAP_EMPTY ' '
+//letra M = 77
+# define MAP_MEDI 77
+//letra A = 65
+# define MAP_AMMO 65
+//letra X = 88
+# define MAP_X_ENEMY 88
+//letra Y = 89
+# define MAP_Y_ENEMY 89
+//letra Z = 90
+# define MAP_Z_ENEMY 90
+//letra D = 68
+# define MAP_DOOR 68
+//space = 32
+# define MAP_EMPTY 32
 
-# define MAP_FLOOR '0'
-# define MAP_WALL '1'
-# define MAP_NORTH 'N'
-# define MAP_SOUTH 'S'
-# define MAP_EAST 'E'
-# define MAP_WEST 'W'
-
-
-# define FLOOD_CHAR '.'
+//char '0' = 48
+# define MAP_FLOOR 48
+//char '1' = 49
+# define MAP_WALL 49
+//letra N = 78
+# define MAP_NORTH 78
+//letra S = 83
+# define MAP_SOUTH 83
+//letra E = 69
+# define MAP_EAST 69
+//letra W = 87
+# define MAP_WEST 87
+//char '.' = 46
+# define FLOOD_CHAR 46
 
 # define START_ALPHA 255
 # define MAX_COLOR 255
 # define MIN_COLOR 0
 
-typedef struct s_sprite t_sprite;
+typedef struct s_sprite	t_sprite;
 
-typedef	enum
+typedef enum e_textures
 {
 	NO_TEX,
 	SO_TEX,
@@ -73,18 +84,17 @@ typedef	enum
 	GUN_TEX,
 	DOOR_TEX,
 	NUM_TEX,
-}	e_textures;
+}	t_textures;
 
-
-typedef enum
+typedef enum e_data_type
 {
 	PATH_TEX,
 	COLOR_TEX,
-}	e_data_type;
+}	t_data_type;
 
 typedef struct s_tex
 {
-	e_data_type		type;
+	t_data_type		type;
 	char			*path;
 	int				color;
 }	t_tex_data;
@@ -100,7 +110,7 @@ typedef struct s_parsing
 	int			index_tex;
 	char		**split;
 	int			split_count;
-	t_tex_data		tex_data[NUM_TEX];
+	t_tex_data	tex_data[NUM_TEX];
 	char		*map;
 	int			map_width;
 	int			map_height;
@@ -122,10 +132,8 @@ typedef struct s_map
 	t_tex_data		tex_data[NUM_TEX];
 }	t_map;
 
-
 //parsing_main.c
 int		map_parsing(t_map *map, char *av_file);
-
 
 //parsing_print_utils.c
 void	print_tex_data(t_parsing *parsing);
@@ -151,7 +159,7 @@ int		separate_textures(t_parsing *parsing);
 int		analise_textures(t_parsing *parsing);
 
 //parsing_file_to_list.c
-int 	file_to_list(t_parsing *parsing);
+int		file_to_list(t_parsing *parsing);
 int		list_to_map(t_parsing *parsing);
 
 #endif
