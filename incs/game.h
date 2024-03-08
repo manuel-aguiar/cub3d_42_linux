@@ -78,8 +78,8 @@ typedef struct s_floor_line
 	t_mlx_img	*tex;
 	int			win_h;
 	int			win_w;
-	t_vec2d	ray_left;
-	t_vec2d	ray_right;
+	t_vec2d		ray_left;
+	t_vec2d		ray_right;
 	float		row_z;
 	float		pitch_mod;
 	float		row_dist;
