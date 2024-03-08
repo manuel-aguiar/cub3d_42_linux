@@ -69,6 +69,7 @@ typedef struct t_wall_line
 	int			y_end;
 	int			color;
 	float		shade_wgt;
+	int			x;
 	t_mlx_img 	*tex;
 }	t_wall_line;
 
