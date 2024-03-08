@@ -54,12 +54,17 @@ void	game_find_player_set_angles(t_game *game)
 	game_starting_angle(game, game->map.map[i]);
 }
 
-int	game_start(t_game *game, char *game_config)
+void	game_start_helper(t_game *game)
 {
-	*game = (t_game){};
 	apply_all_settings(game);
 	start_clock(&game->clock);
 	update_clock(&game->clock);
+}
+
+int	game_start(t_game *game, char *game_config)
+{
+	*game = (t_game){};
+	game_start_helper(game);
 	if (!map_parsing(&game->map, game_config) \
 	|| !setup_sprites(game))
 		return (0);
@@ -79,9 +84,7 @@ int	game_start(t_game *game, char *game_config)
 	sprite_qs_distance(game->sorted, game->sprite_count, sprite_qs_comp);
 	setup_hitmap(game);
 	game_setup_keys(game);
-	if (!win_init_window(&game->win)
-	|| !game_load_textures(game))
+	if (!win_init_window(&game->win) || !game_load_textures(game))
 		return (0);
 	return (1);
 }
-

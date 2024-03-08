@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "game.h"
+#include "game.h"
 
 void	render_gun(t_game *game)
 {
@@ -27,6 +27,7 @@ void	render_gun(t_game *game)
 
 void	render_stats_bars(t_game *game)
 {
+
 	t_hud_stats	*stats;
 
 	stats = &game->stats;
@@ -35,9 +36,11 @@ void	render_stats_bars(t_game *game)
 
 	int separator;
 	int y;
+
 	render_gun(game);
-	if(!((game->win.keys >> BIT_HUD_T) & 1))
+	if (!((game->win.keys >> BIT_HUD_T) & 1))
 		return ;
+
 	ft_memcpy(statsss, game->player.health, sizeof(*statsss) * CTR_SIZE);
 	separator = ((float)(statsss[CTR_CUR] - statsss[CTR_MIN]) / (float)(statsss[CTR_MAX] - statsss[CTR_MIN]) * (stats->health_end.x - stats->health_start.x)) + stats->health_start.x;
 
@@ -59,6 +62,7 @@ void	render_stats_bars(t_game *game)
 		bersenham_line(&game->win, (t_pixel){stats->ammo_start.x, y, 0}, (t_pixel){separator, y, 0}, stats->ammo_color);
 		if (separator + 1 < stats->ammo_end.x)
 			bersenham_line(&game->win, (t_pixel){separator + 1, y, 0}, (t_pixel){stats->ammo_end.x, y, 0}, stats->empty_color);
+
 		y++;
 	}
 }

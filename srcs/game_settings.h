@@ -61,7 +61,6 @@
 # define PLAY_SPRINT_MULTI 1.5f
 # define PLAY_BASE_PITCH 0
 
-
 //rotation an pitch sensibility, aiming multiplier
 # define PLAY_ROT_SENSE 0.0002f
 # define PLAY_PITCH_SENSE 0.0002f
@@ -79,14 +78,12 @@
 # define PLAY_BASE_FOV 0.66f
 # define PLAY_AIM_FOV 0.8f
 
-
 //player jump characteristics
 # define PLAY_JUMP_INIT 0.0019f
 # define PLAY_JUMP_INC 0.00001f
 # define PLAY_JUMP_PRESS_CAP 0.007f
 # define PLAY_JUMP_RELEASE_CAP 0.002f
 # define PLAY_VERTICAL_GRAVITY 0.000005f
-
 
 //player walking
 # define PLAY_WALKING_GRAVITY 0.000005f
@@ -101,7 +98,6 @@
 # define PLAY_CROUCH_MOVE_MULTI 0.5f
 # define PLAY_PRONE_MOVE_MULTI 0.2f
 # define PLAY_SPRINT_ROT_MULTI 0.7f
-
 
 # define PITCH_ANGLE_BASE 0
 # define PITCH_ANGLE_MIN -1.0f
