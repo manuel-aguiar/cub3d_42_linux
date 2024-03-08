@@ -98,6 +98,7 @@ int	game_render(t_game *game)
 		ft_memset(game->win.front_buf.pixels, 0, game->win.width * game->win.height * game->win.rgb_size);
 		hori_raycasting(game);
 		floorcast(game);
+		ceilcast(game);
 		sprite_cast(game);
 		game->compass.blur_on = blur_on;
 		if (((game->win.keys) >> BIT_HUD_T) & 1)
