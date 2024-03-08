@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bullet_start.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: mmaria-d <mmaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 13:31:56 by codespace         #+#    #+#             */
-/*   Updated: 2024/03/07 14:05:32 by codespace        ###   ########.fr       */
+/*   Updated: 2024/03/08 13:19:29 by mmaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,3 +65,39 @@ void	start_enemy_bullet(t_game *game, t_sprite *enemy)
 	bullet->hole = bullet_rest(game, bullet);
 	game->live_bullets++;
 }
+
+/*
+static inline t_vec3d	bullet_check_wall_hit(t_ray *ray, t_bullet *bullet)
+{
+	t_vec3d		res;
+	t_vec2d		wall_hit;
+	float		wall_dist;
+	float		z;
+	t_vec2d		floor_ceil;
+
+	if (ray->side == 0)
+	{
+		wall_dist = (ray->first.x - ray->step.x);
+		wall_hit.y = bullet->posi.y + wall_dist * ray->ray_dir.y;
+		wall_hit.x = ray->player_sqr.x + (ray->player_sqr.x <= bullet->posi.x);
+	}
+	else
+	{
+		wall_dist = (ray->first.y - ray->step.y);
+		wall_hit.x = bullet->posi.x + wall_dist * ray->ray_dir.x;
+		wall_hit.y = ray->player_sqr.y + (ray->player_sqr.y <= bullet->posi.y);
+	}
+	z = vec3d_get_z_from_xy(bullet->posi, bullet->dir, wall_hit);
+	if (z < 0 || z > 1)
+	{
+		floor_ceil = vec3d_get_xy_from_z(bullet->posi, bullet->dir, z);
+		bullet->wall_hole = false;
+		res = (t_vec3d){floor_ceil.x, floor_ceil.y, float_clamp(z, 0.0f, 1.0f)};
+	}
+	else
+		res = (t_vec3d){wall_hit.x, wall_hit.y, z};
+	return (res);
+}
+
+*/
+
