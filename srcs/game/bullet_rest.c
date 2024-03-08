@@ -50,6 +50,23 @@ static inline void	move_ray(t_ray *ray)
 	}
 }
 
+static inline void	calc_hit_and_dist(t_ray *ray, t_bullet *bullet, \
+					float *wall_dist, t_vec2d *wall_hit)
+{
+	if (ray->side == 0)
+	{
+		*wall_dist = (ray->first.x - ray->step.x);
+		wall_hit->y = bullet->posi.y + *wall_dist * ray->ray_dir.y;
+		wall_hit->x = ray->player_sqr.x + (ray->player_sqr.x <= bullet->posi.x);
+	}
+	else
+	{
+		*wall_dist = (ray->first.y - ray->step.y);
+		wall_hit->x = bullet->posi.x + *wall_dist * ray->ray_dir.x;
+		wall_hit->y = ray->player_sqr.y + (ray->player_sqr.y <= bullet->posi.y);
+	}
+}
+
 static inline t_vec3d	bullet_check_wall_hit(t_ray *ray, t_bullet *bullet)
 {
 	t_vec3d		res;
@@ -58,18 +75,7 @@ static inline t_vec3d	bullet_check_wall_hit(t_ray *ray, t_bullet *bullet)
 	float		z;
 	t_vec2d		floor_ceil;
 
-	if (ray->side == 0)
-	{
-		wall_dist = (ray->first.x - ray->step.x);
-		wall_hit.y = bullet->posi.y + wall_dist * ray->ray_dir.y;
-		wall_hit.x = ray->player_sqr.x + (ray->player_sqr.x <= bullet->posi.x);
-	}
-	else
-	{
-		wall_dist = (ray->first.y - ray->step.y);
-		wall_hit.x = bullet->posi.x + wall_dist * ray->ray_dir.x;
-		wall_hit.y = ray->player_sqr.y + (ray->player_sqr.y <= bullet->posi.y);
-	}
+	calc_hit_and_dist(ray, bullet, &wall_dist, &wall_hit);
 	z = vec3d_get_z_from_xy(bullet->posi, bullet->dir, wall_hit);
 	if (z < 0 || z > 1)
 	{
