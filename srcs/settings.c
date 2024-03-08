@@ -12,6 +12,17 @@
 
 #include "game_settings.h"
 
+static void	settings_hud(t_hud_stats *hud)
+{
+	hud->health_color = rgba(125,0,0,255);
+	hud->ammo_color = rgba(0,0,125,255);
+	hud->empty_color = rgba(25,25,25,255);
+	hud->health_start = (t_pixel){550, 60, 0};
+	hud->health_end = (t_pixel){750, 85, 0};
+	hud->ammo_start = (t_pixel){550, 25, 0};
+	hud->ammo_end = (t_pixel){750, 50, 0};
+}
+
 static inline void	settings_compass_two(t_game *game, t_compass *comp)
 {
 	comp->map_centre = (t_pixel){WIN_WIDTH / 2, WIN_HEIGHT / 4, \
@@ -22,7 +33,7 @@ static inline void	settings_compass_two(t_game *game, t_compass *comp)
 	comp->sqr.biggest_z = 1 + sqrt((COMP_MAX_RAD * SQR_MAX_HEIGHT_PERC) \
 		* (COMP_MAX_RAD * SQR_MAX_HEIGHT_PERC) * 2);
 	comp->player_rad = game->compass.sqr.height * COMP_PLAY_RAD;
-	comp->player_colour = COMP_PLAYER_COLOR;
+	comp->player_colour = rgba(0, 0, 255, 255);
 	comp->blur_on = BLUR_ON;
 	comp->blur = (t_comp_blur){};
 	comp->blur.max_kernel = BLUR_KERNEL_MAX;
@@ -32,16 +43,16 @@ static inline void	settings_compass_two(t_game *game, t_compass *comp)
 
 void	settings_compass(t_game *game, t_compass *comp)
 {
-	comp->centre = (t_pixel){COMP_CENTRE_X, COMP_CENTRE_Y, rgba(255, 0, 0, 0)};
-	comp->radius = int_clamp(COMP_OUTER_RAD, COMP_MIN_RAD, COMP_MAX_RAD);
-	comp->color = COMP_COLOR;
+	comp->centre = (t_pixel){game->win.width / 6, game->win.height / 4, rgba(255, 0, 0, 0)};
+	comp->radius = int_clamp(game->win.height / 5, COMP_MIN_RAD, COMP_MAX_RAD);
+	comp->color = rgba(50, 0, 0, 255);
 	comp->inner.radius = game->compass.radius * COMP_INNER_RAD_PERC;
-	comp->inner.color = COMP_INNER_COLOR;
+	comp->inner.color = rgba(50, 0, 0, 255);
 	comp->letter_radius = game->compass.radius * COMP_LETTER_RAD_PERC;
 	comp->letter_width = game->compass.radius * COMP_LETTER_WDT_PERC;
 	comp->letter_height = game->compass.radius * COMP_LETTER_HGT_PERC;
-	comp->letter_color = COMP_LETTER_COLOR;
-	comp->sqr_color = COMP_SQR_COLOR;
+	comp->letter_color = rgba(255, 255, 255, 255);
+	comp->sqr_color = rgba(50, 25, 0, 255);
 	comp->sqr_height = int_clamp (\
 					(int)(game->compass.radius * SQR_HEIGHT_PERC), \
 					(int)(game->compass.radius * SQR_MIN_HEIGHT_PERC), \
@@ -74,6 +85,7 @@ void	apply_all_settings(t_game *game)
 	settings_window(&game->win);
 	settings_player(&game->player);
 	settings_compass(game, &game->compass);
+	settings_hud(&game->stats);
 	settings_template_door(&game->template_door);
 	settings_template_ammo(&game->template_ammo);
 	settings_template_medi(&game->template_medi);

@@ -32,31 +32,15 @@
 # define WIN_MAX_SIGMA 50
 # define WIN_PAUSE_TIME 500
 
-# define RGBA(r, g, b, a) (((a) << 24) | ((r) << 16) | ((g) << 8) | (b))
-
 /* compass settings */
-# define COMP_CENTRE_X WIN_WIDTH / 6
-# define COMP_CENTRE_Y WIN_HEIGHT / 4
 
 # define COMP_MAX_RAD 300
 # define COMP_MIN_RAD 50
-# define COMP_OUTER_RAD WIN_HEIGHT / 5
-# define COMP_INNER_COLOR RGBA(50, 0, 0, 255)
 # define COMP_INNER_RAD_PERC 0.8f
 # define COMP_LETTER_RAD_PERC 0.9f
-# define COMP_COLOR RGBA(50, 0, 0, 255)
 
 # define COMP_LETTER_HGT_PERC 0.1f
 # define COMP_LETTER_WDT_PERC 0.05f
-# define COMP_LETTER_COLOR RGBA(255, 255, 255, 255)
-
-# define COMP_SQR_COLOR RGBA(50, 25, 0, 255)
-# define COMP_PLAYER_COLOR RGBA(0, 0, 255, 255)
-
-
-# define HEALTH_BAR_COLOR RGBA(255, 0, 0, 255)
-# define AMMO_BAR_COLOR RGBA(0, 0, 255, 255)
-# define BAR_EMPTY_COLOR RGBA(25, 25, 25, 255)
 
 /* compass squares */
 # define SQR_MAX_HEIGHT_PERC 0.5f
@@ -213,7 +197,6 @@
 # define BULLET_MOVE_SENSE 0.008f
 # define BULLET_HGT 0.1f
 # define BULLET_UNIT_SIZE 0.05f
-# define BULLET_ATTACK_VAL PLAYER_ATTACK_VAL
 # define BULLET_BASE_Z 0.0f
 
 # define GAME_WIN_TIME 2000
