@@ -57,7 +57,7 @@ void	draw_interp(t_game *game, t_sprite *sprite, t_interp_cast *cast)
 		cast->draw_end_y = (int)(cast->pix_exact_max_y);
 		cast->this_line_h = cast->draw_end_y - cast->draw_st_y;
 		if ((cast->door != NULL && cast->this_line_h >= game->hori_rays[cast->draw_st_x].line_h) \
-		|| cast->bullet != NULL && (int)(cast->this_line_h / sprite->height) + 50 >= game->hori_rays[cast->draw_st_x].line_h)
+		|| (cast->bullet != NULL && (int)(cast->this_line_h / sprite->height) + 50 >= game->hori_rays[cast->draw_st_x].line_h))
 			draw_interp_line(game, cast);
 		cast->pix_exact_min_y += cast->step_tex_min_y;
 		cast->pix_exact_max_y += cast->step_tex_max_y;

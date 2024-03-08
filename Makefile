@@ -5,7 +5,7 @@ NAME 		=		cub3D
 
 COMP 		= 		cc -O3  -g -fsanitize=address
 
-FLAGS 		= 		
+FLAGS 		= 		-Wall -Werror -Wextra
 ADD_LIB 	= 		-L./$(LIB_PATH) -lft
 MLX_LIB		=		-Lminilibx-linux -L/usr/lib -lmlx -lXext -lX11 -lm -lz
 RM 			=		rm

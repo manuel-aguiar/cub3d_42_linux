@@ -38,16 +38,15 @@ int	avg_colour(int start, int end, int num, int den)
 	t_ulong	r;
 	t_ulong	g;
 	t_ulong	b;
-	t_ulong	a;
 
 	if (den == 0)
 		return (start);
-	r = rgb_r(start) * num / den \
-		+ rgb_r(end) * (den - num) / den;
-	g = rgb_g(start) * num / den \
-		+ rgb_g(end) * (den - num) / den;
-	b = rgb_b(start) * num / den \
-		+ rgb_b(end) * (den - num) / den;
-	a = rgb_a(start);
-	return (pack_color_channels((int)r, (int)g, (int)b, (int)a));
+	r = ((start >> 16) & 0xff) * num / den \
+		+ ((end >> 16) & 0xff) * (den - num) / den;
+	g = ((start >> 8) & 0xff) * num / den \
+		+ ((end >> 8) & 0xff) * (den - num) / den;
+	b = (start & 0xff) * num / den \
+		+ (end & 0xff) * (den - num) / den;
+	return (((((int)r) << 16) | (((int)g) << 8) | ((int)b)));
 }
+
