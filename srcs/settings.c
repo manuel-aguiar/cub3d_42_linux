@@ -14,9 +14,9 @@
 
 static void	settings_hud(t_hud_stats *hud)
 {
-	hud->health_color = rgba(125,0,0,255);
-	hud->ammo_color = rgba(0,0,125,255);
-	hud->empty_color = rgba(25,25,25,255);
+	hud->health_color = rgba(125, 0, 0, 255);
+	hud->ammo_color = rgba(0, 0, 125, 255);
+	hud->empty_color = rgba(25, 25, 25, 255);
 	hud->health_start = (t_pixel){550, 60, 0};
 	hud->health_end = (t_pixel){750, 85, 0};
 	hud->ammo_start = (t_pixel){550, 25, 0};
@@ -43,7 +43,8 @@ static inline void	settings_compass_two(t_game *game, t_compass *comp)
 
 void	settings_compass(t_game *game, t_compass *comp)
 {
-	comp->centre = (t_pixel){game->win.width / 6, game->win.height / 4, rgba(255, 0, 0, 0)};
+	comp->centre = (t_pixel){game->win.width / 6, game->win.height / 4, \
+		rgba(255, 0, 0, 0)};
 	comp->radius = int_clamp(game->win.height / 5, COMP_MIN_RAD, COMP_MAX_RAD);
 	comp->color = rgba(50, 0, 0, 255);
 	comp->inner.radius = game->compass.radius * COMP_INNER_RAD_PERC;
@@ -58,6 +59,7 @@ void	settings_compass(t_game *game, t_compass *comp)
 					(int)(game->compass.radius * SQR_MIN_HEIGHT_PERC), \
 					(int)(game->compass.radius * SQR_MAX_HEIGHT_PERC));
 	settings_compass_two(game, comp);
+	settings_hud(&game->stats);
 }
 
 void	settings_window(t_win *win)
@@ -85,7 +87,6 @@ void	apply_all_settings(t_game *game)
 	settings_window(&game->win);
 	settings_player(&game->player);
 	settings_compass(game, &game->compass);
-	settings_hud(&game->stats);
 	settings_template_door(&game->template_door);
 	settings_template_ammo(&game->template_ammo);
 	settings_template_medi(&game->template_medi);
