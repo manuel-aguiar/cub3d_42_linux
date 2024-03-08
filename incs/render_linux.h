@@ -150,6 +150,20 @@ typedef struct s_mlx_img
 	int		height;
 }	t_mlx_img;
 
+typedef struct s_xpm_to_win
+{
+	t_mlx_img	*tex;
+	int			win_low_x;
+	int			win_low_y;
+	int			pix_width;
+	int			pix_height;
+	int			start_x;
+	int			end_x;
+	int			start_y;
+	int			end_y;
+	int			this_color;
+}	t_xpm_to_win;
+
 struct s_win
 {
 	void			*mlx;
@@ -183,9 +197,12 @@ void	linux_set_pixel(t_win *win, int x, int y, int color);
 int		linux_get_pixel(t_win *win, int x, int y);
 int		avg_colour(int start, int end, int num, int den);
 void	swap_pixels(t_pixel *start, t_pixel *end);
-void	chatgpt_anticircle(t_win *win, t_pixel centre, int radius, int color);
+
 void	window_pause_manager(t_win *win, t_pause_state state, \
 		bool blur_on, void string(t_win *));
+
+void	xpm_to_window(t_win *win, t_xpm_to_win	*xpm);
+
 void	start_clock(t_clock *clock);
 void	update_clock(t_clock *clock);
 

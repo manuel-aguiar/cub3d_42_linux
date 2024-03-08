@@ -297,7 +297,7 @@ void	game_key_manager(t_game *game);
 
 //game_manager_mouse.c
 void	game_mouse_manager(t_game *game);
-void	xpm_to_window(t_win *win, t_mlx_img *tex, t_pixel corner, int pixel_wid, int pixel_hgt);
+
 void	player_actions(t_game *game);
 void	player_rotate_and_pitch(t_game *game);
 void	move_player(t_game *game, int keys);
@@ -310,6 +310,7 @@ void	hori_raycasting(t_game *game);
 void	sprite_cast(t_game *game);
 void	interpcast(t_game *game, t_sprite *sprite);
 void	floorcast(t_game *game);
+void	ceilcast(t_game *game);
 void	wallcast(t_game *game, t_ray *ray, t_dda_hor *hori, int x);
 
 //////////////////////////////////////

@@ -73,12 +73,12 @@ SRC_GAME			=	win_render_loop.c			\
 						render_inside_compass.c		\
 						map_collisions.c			\
 						map_collision_corners.c		\
-						xpm_to_window.c				\
 						game_render_hud.c			\
 						bullet_rest.c				\
 						bullet_start.c				\
 						update_medi_ammo.c			\
 						update_enemy_move.c			\
+						update_enemy_sees_player.c	\
 						update_bullet.c				\
 						update_bullet_2.c			\
 						update_door.c
@@ -129,7 +129,8 @@ SRC_REN_LINUX		=	linux_init_window.c		\
 						linux_pause_manager.c		\
 						linux_pause_blur_1.c		\
 						linux_pause_blur_2.c		\
-						linux_text_strings.c
+						linux_text_strings.c		\
+						linux_xpm_to_window.c
 
 SRC_COMPASS			=	compass_setup.c				\
 						compass_render.c			\
@@ -165,6 +166,7 @@ SRC_RAYCASTING		=	vec2d_utils1.c					\
 						raycasting.c				\
 						wallcast.c					\
 						floorcast.c					\
+						ceilcast.c					\
 						spritecast.c				\
 						spritecast_setup.c			\
 						interpcast.c					\
