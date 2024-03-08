@@ -10,11 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "game.h"
+#include "game.h"
 
-void		update_sprites(t_game *game)
+void	update_sprites(t_game *game)
 {
-	int i;
+	int	i;
 
 	clean_hitmap(game);
 	sprite_calc_dist(game);
@@ -52,9 +52,9 @@ void		update_sprites(t_game *game)
 int	game_is_paused(t_game *game)
 {
 	if ((game->win.keys >> BIT_PAUSE_T) & 1 \
-	|| (!((game->win.keys >> BIT_PAUSE_T) & 1) \
-	&& game->win.blur.elapsed > 0)
-	|| game->is_lost)
+		|| (!((game->win.keys >> BIT_PAUSE_T) & 1) \
+		&& game->win.blur.elapsed > 0) \
+		|| game->is_lost)
 		return (1);
 	return (0);
 }
@@ -70,12 +70,13 @@ void	game_actions(t_game *game)
 	game_key_manager(game);
 	game_mouse_manager(game);
 	player_actions(game);
-	mlx_mouse_move(game->win.mlx, game->win.mlx_win, game->win.width / 2, game->win.height / 2);
+	mlx_mouse_move(game->win.mlx, game->win.mlx_win, \
+		game->win.width / 2, game->win.height / 2);
 }
 
 int	game_render(t_game *game)
 {
-	int blur_on;
+	int	blur_on;
 
 	game_actions(game);
 	blur_on = (game->win.keys >> BIT_BLUR_T) & 1;
@@ -90,12 +91,14 @@ int	game_render(t_game *game)
 		else
 		{
 			game->cur_time_lost_str += game->clock.elapsed;
-			window_pause_manager(&game->win, PAUSE_ON, blur_on, you_lost_text_string);
+			window_pause_manager(&game->win, PAUSE_ON, \
+				blur_on, you_lost_text_string);
 		}
 	}
 	else
 	{
-		ft_memset(game->win.front_buf.pixels, 0, game->win.width * game->win.height * game->win.rgb_size);
+		ft_memset(game->win.front_buf.pixels, 0, \
+			game->win.width * game->win.height * game->win.rgb_size);
 		hori_raycasting(game);
 		floorcast(game);
 		ceilcast(game);
@@ -109,12 +112,15 @@ int	game_render(t_game *game)
 			render_stats_bars(game);
 		}
 	}
-	game->win.set_pixel(&game->win, game->win.width / 2, game->win.height / 2, (unsigned int)-1);
-	if (game->enemy_count == 0 && game->cur_time_win_str < game->total_time_win_str)
+	game->win.set_pixel(&game->win, game->win.width / 2, \
+		game->win.height / 2, (unsigned int)-1);
+	if (game->enemy_count == 0 && game->cur_time_win_str < \
+		game->total_time_win_str)
 	{
 		game->cur_time_win_str += game->clock.elapsed;
 		enemies_defeated_text_string(&game->win);
 	}
-	mlx_put_image_to_window(game->win.mlx, game->win.mlx_win, game->win.front_buf.img, 0, 0);
+	mlx_put_image_to_window(game->win.mlx, game->win.mlx_win, \
+		game->win.front_buf.img, 0, 0);
 	return (1);
 }
