@@ -319,6 +319,7 @@ void	hori_raycasting(t_game *game);
 void	sprite_cast(t_game *game);
 void	interpcast(t_game *game, t_sprite *sprite);
 void	floorcast(t_game *game);
+void	ceilcast(t_game *game);
 void	wallcast(t_game *game, t_ray *ray, t_dda_hor *hori, int x);
 
 //////////////////////////////////////

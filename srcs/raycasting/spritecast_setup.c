@@ -6,7 +6,7 @@
 /*   By: mmaria-d <mmaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 13:55:29 by mmaria-d          #+#    #+#             */
-/*   Updated: 2024/03/08 14:03:38 by mmaria-d         ###   ########.fr       */
+/*   Updated: 2024/03/08 14:09:21 by mmaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	setup_common_spritecast(t_game *game, t_sp_cast *cast)
 		- cast->play_plane.y * cast->play_dir.x);
 }
 
-static inline void  setup_this_cont(t_game *game, t_sp_cast *cast)
+static inline void	setup_this_cont(t_game *game, t_sp_cast *cast)
 {
 	cast->bot_pix_y = cast->total_z_mod - cast->sp_pix_h / 2;
 	cast->top_pix_y = cast->total_z_mod + cast->sp_pix_h / 2;
@@ -63,5 +63,5 @@ void	setup_this_spritecast(t_game *game, t_sp_cast *cast, int i)
 	cast->total_z_mod = cast->win_h / 2 + cast->pitch_mod \
 		- (int)(((cast->play_z_mod + cast->sp_z_mod) * cast->win_h \
 		- cast->win_h / 2) / cast->trans.y);
-    setup_this_cont(game, cast);
+	setup_this_cont(game, cast);
 }

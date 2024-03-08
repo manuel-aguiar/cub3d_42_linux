@@ -165,6 +165,7 @@ SRC_RAYCASTING		=	vec2d_utils1.c					\
 						raycasting.c				\
 						wallcast.c					\
 						floorcast.c					\
+						ceilcast.c					\
 						spritecast.c				\
 						spritecast_setup.c			\
 						interpcast.c					\
