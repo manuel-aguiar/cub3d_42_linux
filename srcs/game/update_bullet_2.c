@@ -6,12 +6,11 @@
 /*   By: mmaria-d <mmaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 13:06:56 by mmaria-d          #+#    #+#             */
-/*   Updated: 2024/03/08 13:07:17 by mmaria-d         ###   ########.fr       */
+/*   Updated: 2024/03/08 13:25:24 by mmaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "game.h"
-
 
 void	enemy_take_damage(t_game *game, t_sprite *sprite)
 {
@@ -85,12 +84,11 @@ void	set_hitbox(t_sprite *target, t_vec2d box[2])
 	}
 }
 
-
 int	friendly_bullet(t_game *game, t_bullet_colli *colli, t_sprite *sprite)
 {
 	t_sprite		*target;
 	t_hitnode		*node;
-	
+
 	node = game->map.hit[colli->map_index].head;
 	while (node)
 	{
