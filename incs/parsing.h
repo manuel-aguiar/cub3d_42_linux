@@ -75,6 +75,7 @@ typedef	enum
 	NUM_TEX,
 }	e_textures;
 
+
 typedef enum
 {
 	PATH_TEX,
