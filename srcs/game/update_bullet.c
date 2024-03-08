@@ -74,7 +74,6 @@ int	enemy_bullet(t_game *game, t_bullet_colli *colli, t_sprite *sprite)
 	return (0);
 }
 
-
 void	update_bullet(t_game *game, t_sprite *sprite)
 {
 	t_bullet_colli	colli;
@@ -87,8 +86,7 @@ void	update_bullet(t_game *game, t_sprite *sprite)
 	if ((colli.bullet->shooter == B_ME \
 	&& friendly_bullet(game, &colli, sprite)) || \
 	(colli.bullet->shooter == B_ENEMY \
-	&& enemy_bullet(game, &colli, sprite))
-	)
+	&& enemy_bullet(game, &colli, sprite)))
 		return ;
 	sub = vec3d_sub(colli.bullet->posi, colli.bullet->hole);
 	dot = sub.x * colli.bullet->dir.x + sub.y * colli.bullet->dir.y \
@@ -101,7 +99,6 @@ void	update_bullet(t_game *game, t_sprite *sprite)
 			sprite->status = ON_CEIL;
 			sprite->cur_z = float_clamp(sprite->cur_z, 0.0f, 1.0f);
 		}
-			
 		sprite->tex = WALL_BULLET_TEX;
 	}
 }
