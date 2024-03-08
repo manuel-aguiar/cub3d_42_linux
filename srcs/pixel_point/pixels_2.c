@@ -49,4 +49,3 @@ int	avg_colour(int start, int end, int num, int den)
 		+ (end & 0xff) * (den - num) / den;
 	return (((((int)r) << 16) | (((int)g) << 8) | ((int)b)));
 }
-
