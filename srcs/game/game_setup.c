@@ -79,9 +79,7 @@ int	game_start(t_game *game, char *game_config)
 	sprite_qs_distance(game->sorted, game->sprite_count, sprite_qs_comp);
 	setup_hitmap(game);
 	game_setup_keys(game);
-	if (!win_init_window(&game->win)
-	|| !game_load_textures(game))
+	if (!win_init_window(&game->win) || !game_load_textures(game))
 		return (0);
 	return (1);
 }
-
