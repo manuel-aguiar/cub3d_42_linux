@@ -20,8 +20,8 @@
 # include "ft_memfunc.h"
 # include "error_handling.h"
 
-# define RB_RED 'r'
-# define RB_BLACK 'b'
+# define RB_RED 114
+# define RB_BLACK 98
 
 /* can use memory pool as linkedlist to guarantee locality*/
 

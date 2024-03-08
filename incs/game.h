@@ -230,17 +230,16 @@ typedef struct s_rand_gen
 	t_clock				*clock;
 }	t_rand_gen;
 
-typedef	struct s_hud_stats
+typedef struct s_hud_stats
 {
-	int 	health_color;
+	int		health_color;
 	int		ammo_color;
-	int 	empty_color;
+	int		empty_color;
 	t_pixel	health_start;
 	t_pixel	health_end;
 	t_pixel	ammo_start;
 	t_pixel	ammo_end;
 }	t_hud_stats;
-
 
 typedef struct s_game
 {
