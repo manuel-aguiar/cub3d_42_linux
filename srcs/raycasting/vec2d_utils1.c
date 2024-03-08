@@ -10,8 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "vector.h"
-
+#include "vector.h"
 
 t_vec2d	vec2d_add(t_vec2d	first, t_vec2d second)
 {
