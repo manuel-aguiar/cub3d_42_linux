@@ -27,15 +27,12 @@
 
 # define RGB_SIZE 4
 
-typedef struct s_win t_win;
-typedef struct s_pixel t_pixel;
-
-
-typedef struct s_mouse t_mouse;
+typedef struct s_win	t_win;
+typedef struct s_pixel	t_pixel;
+typedef struct s_mouse	t_mouse;
 
 // GLOBALS NEEDED BY GLFW
-
-extern  t_mouse		g_mouse;
+extern t_mouse			g_mouse;
 
 struct s_mouse
 {
@@ -45,7 +42,6 @@ struct s_mouse
 	int	prev_x;
 	int	prev_y;
 };
-
 
 // all keys a buttons are according to glfw, change to mlx
 
@@ -104,10 +100,10 @@ enum e_button_bits
 
 typedef struct s_clock
 {
-    struct timeval  start;
-    struct timeval  end;
-    size_t          elapsed;
-}   t_clock;
+	struct timeval	start;
+	struct timeval	end;
+	size_t			elapsed;
+}	t_clock;
 
 typedef struct s_blur_helper
 {
@@ -137,11 +133,11 @@ typedef struct s_pause_blur
 	int			width;
 }	t_pause_blur;
 
-typedef enum
+typedef enum e_pause_state
 {
 	PAUSE_OFF,
 	PAUSE_ON,
-}	e_pause_state;
+}	t_pause_state;
 
 typedef struct s_mlx_img
 {
@@ -184,11 +180,9 @@ struct s_win
 	int				(*get_pixel)(t_win *win, int x, int y);
 };
 
-
-
 //win_init_window.c
-int			win_init_window(t_win *win);
-int			free_window(t_win *win);
+int		win_init_window(t_win *win);
+int		free_window(t_win *win);
 
 //win_keys.c
 int		mouse_position(int x, int y, t_win *win);
@@ -198,19 +192,16 @@ int		key_press(int keycode, t_win *win);
 int		key_release(int keycode, t_win *win);
 //win_render_loop.c
 
-
 //win_pixels.c
 void	linux_set_pixel(t_win *win, int x, int y, int color);
 int		linux_get_pixel(t_win *win, int x, int y);
 int		avg_colour(int start, int end, int num, int den);
 void	swap_pixels(t_pixel *start, t_pixel *end);
 
+void	window_pause_manager(t_win *win, t_pause_state state, \
+		bool blur_on, void string(t_win *));
+
 void	xpm_to_window(t_win *win, t_xpm_to_win	*xpm);
-
-void 	chatgpt_anticircle(t_win *win, t_pixel centre, int radius, int color);
-
-
-void	window_pause_manager(t_win *win, e_pause_state state, bool blur_on, void string(t_win *));
 
 void	start_clock(t_clock *clock);
 void	update_clock(t_clock *clock);

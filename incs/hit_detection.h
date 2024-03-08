@@ -17,20 +17,20 @@
 # include "libft.h"
 # include "vector.h"
 
-typedef struct s_hitnode t_hitnode;
-typedef struct s_sprite  t_sprite;
+typedef struct s_hitnode	t_hitnode;
+typedef struct s_sprite		t_sprite;
 
 typedef struct s_hitnode
 {
 	t_sprite	*sprite;
 	t_hitnode	*next;
-    t_hitnode   *prev;
+	t_hitnode	*prev;
 }	t_hitnode;
 
 typedef struct s_hitlist
 {
 	t_hitnode	*head;
-    t_hitnode   *tail;
+	t_hitnode	*tail;
 	size_t		len;
 }	t_hitlist;
 
@@ -44,26 +44,25 @@ typedef struct s_lb_hit
 	float		q2;
 	float		q3;
 	float		q4;
-	float	    posarr[5];
-	float	    negarr[5];
-	int		    posind;
-	int		    negind;
-	float	    r1;
-	float	    r2;
-	float	    r3;
-	float	    r4;
-	float	    xn1;
-	float	    yn1;
-	float	    xn2;
-	float	    yn2;
-	float	    rn1;
-	float	    rn2;
-	t_vec2d 	box[2];
-	t_vec2d 	line[2];
+	float		posarr[5];
+	float		negarr[5];
+	int			posind;
+	int			negind;
+	float		r1;
+	float		r2;
+	float		r3;
+	float		r4;
+	float		xn1;
+	float		yn1;
+	float		xn2;
+	float		yn2;
+	float		rn1;
+	float		rn2;
+	t_vec2d		box[2];
+	t_vec2d		line[2];
 }	t_lb_hit;
 
-int	liang_barsky_hit(t_vec2d win[2], t_vec2d draw[2], t_vec2d res[2]);
-
+int		liang_barsky_hit(t_vec2d win[2], t_vec2d draw[2], t_vec2d res[2]);
 void	hitlist_in_head(t_hitlist *list, t_hitnode *insert);
 void	hitlist_in_tail(t_hitlist *list, t_hitnode *insert);
 void	hitlist_del_head(t_hitlist *list);

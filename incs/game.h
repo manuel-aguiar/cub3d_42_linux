@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   game.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cjoao-me <cjoao-me@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/11 14:45:11 by marvin            #+#    #+#             */
-/*   Updated: 2024/01/11 14:45:11 by marvin           ###   ########.fr       */
+/*   Created: 2024/03/08 14:55:51 by cjoao-me          #+#    #+#             */
+/*   Updated: 2024/03/08 14:55:51 by cjoao-me         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GAME_H
-
 # define GAME_H
 
-# include <float.h>
-# include <stdint.h>
+# include "float.h"
+# include "stdint.h"
 # include "libft.h"
 # include "pixel_point.h"
 # include "compass.h"
@@ -27,7 +26,7 @@
 # include "generic_utils.h"
 # include "sprites.h"
 
-#define RAND_MAX_UINT64 0xFFFFFFFFUL
+# define RAND_MAX_UINT64 0xFFFFFFFFUL
 
 typedef struct s_move_colli
 {
@@ -41,19 +40,18 @@ typedef struct s_move_colli
 	int			divide_potential;
 	t_vec2d		player;
 	t_vec2d		add;
-	t_vec2d 	nearest;
-	t_vec2d 	ray_to_nearest;
-	float 		ray_length;
-	float 		overlap;
+	t_vec2d		nearest;
+	t_vec2d		ray_to_nearest;
+	float		ray_length;
+	float		overlap;
 }				t_move_colli;
 
 typedef struct s_hud
 {
-	t_pixel bar_bot_left;
-	t_pixel bar_top_left;
+	t_pixel	bar_bot_left;
+	t_pixel	bar_top_left;
 
 }	t_hud;
-
 
 typedef struct t_wall_line
 {
@@ -70,7 +68,7 @@ typedef struct t_wall_line
 	int			color;
 	float		shade_wgt;
 	int			x;
-	t_mlx_img 	*tex;
+	t_mlx_img	*tex;
 }	t_wall_line;
 
 typedef struct s_floor_line
@@ -99,7 +97,7 @@ typedef struct s_ray
 {
 	int			w;
 	int			h;
-	float 		cam_x;
+	float		cam_x;
 	t_vec2d		dir_vec;
 	t_vec2d		plane;
 	t_vec2d		player_sqr;
@@ -144,7 +142,7 @@ typedef struct s_sp_cast
 	float		shade_wgt;
 	int			tex_pix_x;
 	int			tex_pix_y;
-	t_mlx_img 	*tex;
+	t_mlx_img	*tex;
 	int			color;
 }	t_sp_cast;
 
@@ -165,7 +163,7 @@ typedef struct s_cast_point
 typedef struct s_interp_cast
 {
 	int				w;
-	int 			h;
+	int				h;
 	t_vec2d			dir;
 	t_door			*door;
 	t_bullet		*bullet;
@@ -180,7 +178,7 @@ typedef struct s_interp_cast
 	float			step_tex_max_y;
 	float			tex_step_x;
 	float			tex_exact_x;
-	int 			out_screen_x;
+	int				out_screen_x;
 	int				out_screen_y;
 	float			pix_exact_min_y;
 	float			pix_exact_max_y;
@@ -197,7 +195,7 @@ typedef struct s_interp_cast
 	int				draw_end_x;
 	int				draw_st_y;
 	int				draw_end_y;
-	t_mlx_img 		*tex;
+	t_mlx_img		*tex;
 }	t_interp_cast;
 
 typedef struct s_verti_coef
@@ -210,9 +208,9 @@ typedef struct s_verti_coef
 	t_vec3d		play_3d;
 	t_vec3d		wall_3d;
 	t_vec3d		diff;
-	float 		times;
-	float 		dir_z;
-	float 		coefficient;
+	float		times;
+	float		dir_z;
+	float		coefficient;
 }	t_verti_coef;
 
 typedef struct s_bullet_colli
@@ -226,7 +224,7 @@ typedef struct s_bullet_colli
 
 typedef struct s_rand_gen
 {
-	unsigned long int 	seed;
+	unsigned long int	seed;
 	int					multiplier;
 	int					increment;
 	t_clock				*clock;
@@ -238,7 +236,7 @@ typedef struct s_game
 	t_map		map;
 	t_compass	compass;
 	t_win		win;
-	t_player	player;			//pointers because GLFW requires globals, change to stack with MLX;
+	t_player	player;
 	t_dda_hor	*hori_rays;
 	t_dda_ver	*verti_rays;
 	int			maxmin_hori;
@@ -273,7 +271,7 @@ typedef struct s_game
 }	t_game;
 
 //settings.c
-void    apply_all_settings(t_game *game);
+void	apply_all_settings(t_game *game);
 
 //game_setup.c
 int		game_start(t_game *game, char *game_config);
@@ -289,9 +287,8 @@ void	player_walk_height(t_player *player, t_game *game);
 int		rendering_loop(t_game *game);
 
 //handle_collisions.c
-void	handle_collisions(t_game *game, t_vec2d *posi, t_vec2d potencial, float unit_size);
-
-//
+void	handle_collisions(t_game *game, t_vec2d *posi, \
+		t_vec2d potencial, float unit_size);
 void	render_map_inside_compass(t_game *game);
 void	render_player_inside_compass(t_game *game);
 
@@ -301,13 +298,9 @@ void	game_key_manager(t_game *game);
 //game_manager_mouse.c
 void	game_mouse_manager(t_game *game);
 
-
 void	player_actions(t_game *game);
 void	player_rotate_and_pitch(t_game *game);
-
-void    move_player(t_game *game, int keys);
-
-
+void	move_player(t_game *game, int keys);
 
 //////////////////////////////////////
 //////        RAYCASTING          ////
@@ -325,17 +318,14 @@ void	wallcast(t_game *game, t_ray *ray, t_dda_hor *hori, int x);
 //////////////////////////////////////
 int		setup_sprites(t_game *game);
 void	sprite_calc_dist(t_game *game);
-void    clean_hitmap(t_game *game);
-void    setup_hitmap(t_game *game);
+void	clean_hitmap(t_game *game);
+void	setup_hitmap(t_game *game);
 void	sprite_place_hitmap(t_game *game, t_sprite *sprite);
 float	vertical_coefficient(t_game *game);
 
 //game_render_hud.c
 void	render_stats_bars(t_game *game);
-
-
-
-t_vec3d bullet_rest(t_game *game, t_bullet *bullet);
+t_vec3d	bullet_rest(t_game *game, t_bullet *bullet);
 
 //game_rotate.c
 void	setup_all_angles(t_game *game, float rad);
@@ -344,24 +334,24 @@ void	game_find_player_set_angles(t_game *game);
 void	game_rotate_view_angle(t_game *game, float diff);
 
 //update_medi_ammo.c
-void		update_medikit(t_game *game, t_sprite *sprite);
-void		update_ammokit(t_game *game, t_sprite *sprite);
+void	update_medikit(t_game *game, t_sprite *sprite);
+void	update_ammokit(t_game *game, t_sprite *sprite);
 
 //update_bullet.c
-void		update_bullet(t_game *game, t_sprite *sprite);
+void	update_bullet(t_game *game, t_sprite *sprite);
 
 //update_enemy_move.c
-void		update_enemy(t_game *game, t_sprite *sprite);
-void		enemy_movement(t_game *game, t_sprite *sprite, t_enemy *enemy);
+void	update_enemy(t_game *game, t_sprite *sprite);
+void	enemy_movement(t_game *game, t_sprite *sprite, t_enemy *enemy);
 
 //update_door.c
-void		update_door(t_game *game, t_sprite *sprite);
-int			extract_x_enemy(t_game *game, t_map *map, int place, int map_index);
-int			extract_y_enemy(t_game *game, t_map *map, int place, int map_index);
-int			extract_z_enemy(t_game *game, t_map *map, int place, int map_index);
-int			extract_ammo(t_game *game, t_map *map, int place, int map_index);
-int			extract_medi(t_game *game, t_map *map, int place, int map_index);
-int			extract_door(t_game *game, t_map *map, int place, int map_index);
+void	update_door(t_game *game, t_sprite *sprite);
+int		extract_x_enemy(t_game *game, t_map *map, int place, int map_index);
+int		extract_y_enemy(t_game *game, t_map *map, int place, int map_index);
+int		extract_z_enemy(t_game *game, t_map *map, int place, int map_index);
+int		extract_ammo(t_game *game, t_map *map, int place, int map_index);
+int		extract_medi(t_game *game, t_map *map, int place, int map_index);
+int		extract_door(t_game *game, t_map *map, int place, int map_index);
 
 //game_loud_textures.c
 int		game_load_textures(t_game *game);
@@ -377,6 +367,6 @@ int		rand_int(t_rand_gen *rand, int min, int max);
 void	start_friendly_bullet(t_game *game);
 void	start_enemy_bullet(t_game *game, t_sprite *enemy);
 
-void		player_takes_damage(t_game *game, int damage);
+void	player_takes_damage(t_game *game, int damage);
 
 #endif

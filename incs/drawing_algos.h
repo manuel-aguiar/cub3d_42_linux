@@ -43,8 +43,8 @@ typedef struct s_lbclip
 	int		yn2;
 	float	rn1;
 	float	rn2;
-	t_pixel box[2];
-	t_pixel line[2];
+	t_pixel	box[2];
+	t_pixel	line[2];
 }	t_lbclip;
 
 typedef struct s_xldata
@@ -61,15 +61,15 @@ typedef struct s_xldata
 
 typedef struct s_bh_line
 {
-	int x1;
-	int x2;
-	int y1;
-	int y2;
-	int dx;
-	int dy;
-	int sx;
-	int sy;
-	int err;
+	int	x1;
+	int	x2;
+	int	y1;
+	int	y2;
+	int	dx;
+	int	dy;
+	int	sx;
+	int	sy;
+	int	err;
 	int	err_2;
 }	t_bh_line;
 
@@ -90,7 +90,7 @@ typedef struct s_verti_line
 }	t_verti_line;
 
 //liang barsky
-int		liang_barsky_clipper(t_pixel low_bot, t_pixel hi_top, t_pixel start, t_pixel end, t_pixel new[]);
+int		liang_barsky_clipping(t_pixel win[2], t_pixel draw[2], t_pixel res[2]);
 float	lb_maxi(float arr[], int n);
 float	lb_mini(float arr[], int n);
 
@@ -100,7 +100,6 @@ int		xiaolinwu_line(t_win *win, t_pixel start, t_pixel end);
 //drawing lines.c
 void	draw_horizontal_line(t_win *win, t_hori_line *data);
 void	draw_vertical_line(t_win *win, t_verti_line *data);
-
-void 	bersenham_line(t_win *win, t_pixel start, t_pixel end, int color);
+void	bersenham_line(t_win *win, t_pixel start, t_pixel end, int color);
 
 #endif

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   generic_utils.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cjoao-me <cjoao-me@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/26 16:20:08 by marvin            #+#    #+#             */
-/*   Updated: 2024/01/26 16:20:08 by marvin           ###   ########.fr       */
+/*   Created: 2024/03/08 14:57:15 by cjoao-me          #+#    #+#             */
+/*   Updated: 2024/03/08 14:57:15 by cjoao-me         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include "libft.h"
 
 # define P_MY_PI 3.14159265f
-
 
 //clamp.c
 int		int_clamp(int value, int min, int max);
@@ -41,7 +40,6 @@ int		is_only_spaces(char *str);
 //ft_ternary.c
 float	float_ternary(bool cond, float yes, float no);
 void	*ptr_ternary(bool cond, void *yes, void *no);
-
 
 void	int_swap(int *first, int *second);
 void	float_swap(float *first, float *second);

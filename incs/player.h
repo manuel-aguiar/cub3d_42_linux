@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #ifndef PLAYER_H
-
 # define PLAYER_H
 
 # include "vector.h"
@@ -31,7 +30,7 @@ used on defining character movement
 */
 # define P_SQRT_OF_TWO_OVER_TWO 0.7071067f
 
-typedef struct s_player t_player;
+typedef struct s_player	t_player;
 
 enum e_controls
 {
@@ -98,7 +97,7 @@ typedef struct s_player
 	float			new_rot_sense[CTR_SIZE];
 	float			new_pitch_sense[CTR_SIZE];
 
-	bool 			is_walking;
+	bool			is_walking;
 	bool			is_sprinting;
 	bool			is_aiming;
 
@@ -143,16 +142,16 @@ typedef struct s_player
 	float			prone_radius;
 
 	t_vec2d			(*move[16])(t_player *player);
-	void			(*hgt_manager[4])(t_player *player, int *keys, int *new_height_state);
-	t_clock 		*clock;
-}   t_player;
+	void			(*hgt_manager[4])(t_player *player, \
+						int *keys, int *new_height_state);
+	t_clock			*clock;
+}	t_player;
 
-
-void    player_setup(t_player *player);
+void	player_setup(t_player *player);
 void	render_player(t_win *win, t_player *player);
 
 void	player_change_aim(t_player *player);
-void    player_change_stance(t_player *player);
+void	player_change_stance(t_player *player);
 void	player_jump_gravity(t_player *player);
 void	player_rotate(t_player *player);
 
@@ -167,8 +166,10 @@ t_vec2d	move_player_backward(t_player *player);
 t_vec2d	move_player_forward(t_player *player);
 
 void	manage_prone_height(t_player *player, int *keys, int *new_height_state);
-void	manage_crouch_height(t_player *player, int *keys, int *new_height_state);
-void	manage_normal_height(t_player *player, int *keys, int *new_height_state);
+void	manage_crouch_height(t_player *player, int *keys, \
+		int *new_height_state);
+void	manage_normal_height(t_player *player, int *keys, \
+		int *new_height_state);
 void	manage_jump_height(t_player *player, int *keys, int *new_height_state);
 
 #endif
