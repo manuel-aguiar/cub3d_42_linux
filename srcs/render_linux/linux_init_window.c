@@ -68,14 +68,12 @@ int	free_window(t_win *win)
 		mlx_destroy_image(win->mlx, win->front_buf.img);
 	if (win->mlx_win)
 	{
+		mlx_do_key_autorepeaton(win->mlx);
 		mlx_mouse_show(win->mlx, win->mlx_win);
 		mlx_destroy_window(win->mlx, win->mlx_win);
 	}
 	if (win->mlx)
-	{
-		mlx_do_key_autorepeaton(win->mlx);
 		mlx_destroy_display(win->mlx);
-	}
 	if (win->blur.first)
 		free(win->blur.first);
 	if (win->blur.second)

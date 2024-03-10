@@ -17,7 +17,7 @@ static inline int	open_file_prep_parsing(t_parsing *parsing)
 	parsing->file_len = ft_strlen(parsing->file);
 	if (parsing->file_len < 4 \
 	|| ft_strncmp(&parsing->file[parsing->file_len - 4], ".cub", 4))
-		return (error_msg_int("cub3d: file format is invalid", \
+		return (error_msg_int("cub3d: file format is invalid\n", \
 		STDERR_FILENO, 0));
 	parsing->fd = open(parsing->file, O_RDONLY);
 	if (parsing->fd == -1)
