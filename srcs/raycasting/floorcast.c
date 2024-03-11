@@ -77,6 +77,22 @@ static inline void	floor_hori_line(t_game *game, t_floor_line *line, \
 	}
 }
 
+void	floorcast_rgb(t_game *game)
+{
+	t_verti_line	line;
+
+	line.color = game->map.tex_data[F_TEX].color;
+	line.x = 0;
+	line.min_y = 0;
+	while (line.x < game->win.width - 1)
+	{
+		line.max_y = ft_max(0, game->hori_rays[line.x].min_y - 1);
+		if (line.min_y != line.max_y)
+			draw_vertical_line(&game->win, &line);
+		line.x++;
+	}
+}
+
 void	floorcast(t_game *game)
 {
 	t_floor_line	line;
@@ -84,6 +100,8 @@ void	floorcast(t_game *game)
 	int				y;
 	int				end;
 
+	if (game->map.tex_data[F_TEX].type == COLOR_TEX)
+		return (floorcast_rgb(game));
 	setup_common_floor_line(game, &line);
 	end = ft_min(game->maxmin_hori, line.win_h - 1);
 	y = 0;

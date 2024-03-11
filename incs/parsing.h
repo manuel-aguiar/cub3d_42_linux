@@ -86,15 +86,15 @@ typedef enum e_textures
 	NUM_TEX,
 }	t_textures;
 
-typedef enum e_data_type
+typedef enum e_tex_type
 {
 	PATH_TEX,
 	COLOR_TEX,
-}	t_data_type;
+}	t_tex_type;
 
 typedef struct s_tex
 {
-	t_data_type		type;
+	t_tex_type		type;
 	char			*path;
 	int				color;
 }	t_tex_data;

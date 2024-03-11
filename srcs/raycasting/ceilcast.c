@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ceilcast.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmaria-d <mmaria-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 14:09:47 by mmaria-d          #+#    #+#             */
-/*   Updated: 2024/03/08 14:34:20 by mmaria-d         ###   ########.fr       */
+/*   Updated: 2024/03/11 12:49:38 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,12 +77,31 @@ static inline void	ceiling_hori_line(t_game *game, t_floor_line *line, \
 	}
 }
 
+void	ceiling_rgb(t_game *game)
+{
+	t_verti_line	line;
+
+	line.color = game->map.tex_data[C_TEX].color;
+	line.x = 0;
+	line.max_y = game->win.height - 1;
+	while (line.x < game->win.width - 1)
+	{
+		line.min_y = ft_min(game->win.height - 1, \
+			game->hori_rays[line.x].max_y + 1);
+		if (line.min_y != line.max_y)
+			draw_vertical_line(&game->win, &line);
+		line.x++;
+	}
+}
+
 void	ceilcast(t_game *game)
 {
 	t_floor_line	line;
 	int				x;
 	int				y;
 
+	if (game->map.tex_data[C_TEX].type == COLOR_TEX)
+		return (ceiling_rgb(game));
 	setup_common_ceiling_line(game, &line);
 	y = ft_max(game->minmax_hori + 1, 0);
 	while (y < line.win_h)
