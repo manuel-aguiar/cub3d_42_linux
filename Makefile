@@ -99,7 +99,6 @@ SRC_PARSING			=	parsing_main.c						\
 						parsing_textures_get.c				\
 						parsing_textures_analise.c			\
 						parsing_file_to_list.c				\
-						parsing_print_utils.c				\
 						map_flood_count.c					\
 						map_funcs.c							\
 						map_dimensions.c

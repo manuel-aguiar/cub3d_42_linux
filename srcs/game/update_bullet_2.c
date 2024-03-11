@@ -18,17 +18,13 @@ void	enemy_take_damage(t_game *game, t_sprite *sprite)
 
 	if (sprite->type != ENEMY)
 		return ;
-	printf("hit!! ");
 	enemy = (t_enemy *)sprite->data;
 	enemy->health -= game->player.attack;
 	if (enemy->health <= 0)
 	{
 		sprite->status = GONE;
 		game->enemy_count--;
-		printf("enemy down!!\n");
 	}
-	else
-		printf("\n");
 }
 
 int	target_was_hit_on_z(t_game *game, t_bullet_colli *colli, \
