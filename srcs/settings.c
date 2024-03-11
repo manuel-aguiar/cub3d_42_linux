@@ -103,5 +103,5 @@ void	apply_all_settings(t_game *game)
 	game->rand.clock = &game->clock;
 	game->rand.multiplier = 1103515245;
 	game->rand.increment = 12345;
-	game->exit_status = 0;
+	game->exit_status = EXIT_SUCCESS;
 }

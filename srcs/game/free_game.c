@@ -45,6 +45,7 @@ int	free_game(t_game *game)
 	free_window(&game->win);
 	free_compass(&game->compass);
 	free_map(&game->map);
+	destroy_parsing(&game->parsing);
 	if (game->hori_rays)
 		free(game->hori_rays);
 	if (game->verti_rays)

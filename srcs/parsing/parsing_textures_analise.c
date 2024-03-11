@@ -39,6 +39,7 @@ static int	extract_color(t_tex_data	*tex)
 	int		g;
 	int		b;
 
+	printf("called\n");
 	split = ft_split_count(tex->path, ",", &count);
 	if (!split)
 		return (perror_msg_int("malloc", 0));
@@ -79,7 +80,7 @@ int	analise_textures(t_parsing *parsing)
 		if (len > 4 && !ft_strncmp(".xpm\0", \
 		&parsing->tex_data[i].path[len - 4], 5) \
 		&& texture_exists(parsing->tex_data[i].path))
-			parsing->tex_data[i].path = PATH_TEX;
+			parsing->tex_data[i].type = PATH_TEX;
 		else
 		{
 			if ((i != F_TEX && i != C_TEX) \

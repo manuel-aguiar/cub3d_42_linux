@@ -21,11 +21,9 @@ int	main(int ac, char **av)
 			STDERR_FILENO, 0));
 	if (!game_start(&game, av[1]))
 	{
-		game.exit_status = 1;
+		game.exit_status = EXIT_FAILURE;
 		free_game(&game);
-		printf("parsing failed\n");
 	}
-	printf("parsing succeded\n");
 	rendering_loop(&game);
 	free_game(&game);
 	return (0);
