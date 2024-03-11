@@ -4,6 +4,17 @@ WE assets/greystone.xpm
 EA assets/redbrick.xpm
 F 0x00FFFF,0,0
 C 225,30,0
+MEDI ./assets/xpm_medikit.xpm
+AMMO ./assets/xpm_rubens_dementor.xpm
+X_ENEMY ./assets/xpm_mario.xpm
+Y_ENEMY ./assets/xpm_mario.xpm
+Z_ENEMY ./assets/xpm_mario.xpm
+MY_BULLET ./assets/xpm_flying_bullet.xpm
+EN_BULLET ./assets/xpm_flying_bullet.xpm
+WALL_BULLET ./assets/xpm_flying_bullet.xpm
+GUN ./assets/xpm_gun.xpm
+DOOR ./assets/xpm_door.xpm
+
 
 111
 1N1

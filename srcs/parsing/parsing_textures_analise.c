@@ -56,6 +56,17 @@ static int	extract_color(t_tex_data	*tex)
 	return (1);
 }
 
+static int	texture_exists(char	*path)
+{
+	int	fd;
+
+	fd = open(path, O_RDONLY);
+	if (fd == -1)
+		return (perror_msg_int("open", 0));
+	close(fd);
+	return (1);
+}
+
 int	analise_textures(t_parsing *parsing)
 {
 	int	i;
@@ -66,8 +77,9 @@ int	analise_textures(t_parsing *parsing)
 	{
 		len = ft_strlen(parsing->tex_data[i].path);
 		if (len > 4 && !ft_strncmp(".xpm\0", \
-		&parsing->tex_data[i].path[len - 4], 5))
-			parsing->tex_data[i].type = PATH_TEX;
+		&parsing->tex_data[i].path[len - 4], 5) \
+		&& texture_exists(parsing->tex_data[i].path))
+			parsing->tex_data[i].path = PATH_TEX;
 		else
 		{
 			parsing->tex_data[i].type = COLOR_TEX;
