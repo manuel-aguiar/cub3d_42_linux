@@ -73,7 +73,10 @@ int	free_window(t_win *win)
 		mlx_destroy_window(win->mlx, win->mlx_win);
 	}
 	if (win->mlx)
+	{
 		mlx_destroy_display(win->mlx);
+		free(win->mlx);
+	}
 	if (win->blur.first)
 		free(win->blur.first);
 	if (win->blur.second)
