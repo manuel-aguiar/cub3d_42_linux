@@ -61,6 +61,7 @@ static int	dump_parsing_to_map(t_map *map, t_parsing *parsing)
 	while (i < NUM_TEX)
 	{
 		map->tex_data[i] = parsing->tex_data[i];
+		parsing->tex_data[i].path = NULL;
 		i++;
 	}
 	map->len = map->width * map->height;
@@ -72,30 +73,6 @@ static int	dump_parsing_to_map(t_map *map, t_parsing *parsing)
 		return (perror_msg_int("malloc", 0));
 	return (1);
 }
-
-/*
-typedef struct s_parsing
-{
-	t_vdmlist	*list;
-	char		*file;
-	int			file_len;
-	int			fd;
-	char		*gnl;
-	int			nbr_tex;
-	int			index_tex;
-	char		**split;
-	int			split_count;
-	t_tex_data		tex_data[NUM_TEX];
-	char		*map;
-	int			map_width;
-	int			map_height;
-	bool		found_player;
-	char		*map_copy;
-	bool		ff_found;
-	int			ff_count;
-}	t_parsing;
-
-*/
 
 void	destroy_parsing(t_parsing *parsing)
 {

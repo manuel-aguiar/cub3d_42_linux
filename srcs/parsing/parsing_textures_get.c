@@ -71,12 +71,12 @@ static inline int	extract_and_save(t_parsing *parsing)
 int	separate_textures(t_parsing *parsing)
 {
 	if (parsing->list->len <= NUM_TEX)
-		return (error_msg_int("cub3d: bad input textures\n", 2, 0));
+		return (error_msg_int("cub3d: missing textures\n", 2, 0));
 	parsing->nbr_tex = 0;
 	while (parsing->nbr_tex < NUM_TEX)
 	{
 		if (!parsing->list->head)
-			return (error_msg_int("cub3d: bad input textures\n", 2, 0));
+			return (error_msg_int("cub3d: missing textures\n", 2, 0));
 		parsing->split = ft_split_count(\
 			(char *)(parsing->list->head->data), \
 			"\t\v\n\r ", &parsing->split_count);
@@ -87,7 +87,8 @@ int	separate_textures(t_parsing *parsing)
 		else
 		{
 			if (!extract_and_save(parsing))
-				return (error_msg_int("cub3d: bad input textures\n", 2, 0));
+				return (error_msg_int("cub3d: bad/doubled input textures\n", \
+				2, 0));
 			parsing->nbr_tex++;
 		}
 		vdmlist_del_head(parsing->list, free);
