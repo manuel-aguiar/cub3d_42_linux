@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sprites_extract_sort_bullets.c                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: mmaria-d <mmaria-d@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 15:24:26 by codespace         #+#    #+#             */
-/*   Updated: 2024/03/07 15:34:49 by codespace        ###   ########.fr       */
+/*   Updated: 2024/03/11 13:42:12 by mmaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

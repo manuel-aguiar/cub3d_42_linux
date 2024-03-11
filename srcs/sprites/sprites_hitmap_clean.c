@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sprites_hitmap_clean.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: mmaria-d <mmaria-d@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 15:36:34 by codespace         #+#    #+#             */
-/*   Updated: 2024/03/07 15:38:03 by codespace        ###   ########.fr       */
+/*   Updated: 2024/03/11 13:42:21 by mmaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

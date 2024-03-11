@@ -3,8 +3,8 @@ SO ./assets/xpm_south.xpm
 WE ./assets/xpm_east.xpm
 EA ./assets/xpm_west.xpm
 
-F ./assets/xpm_margarida.xpm
-C ./assets/xpm_margarida.xpm
+F 255,0,0
+C 0,255,255
 
 MEDI ./assets/xpm_medikit.xpm
 AMMO ./assets/xpm_rubens_dementor.xpm
@@ -17,7 +17,7 @@ WALL_BULLET ./assets/xpm_flying_bullet.xpm
 GUN ./assets/xpm_gun.xpm
 DOOR ./assets/xpm_door.xpm
 
-1111
-10N1
-1111
+11111
+1 1N1
+11111
 

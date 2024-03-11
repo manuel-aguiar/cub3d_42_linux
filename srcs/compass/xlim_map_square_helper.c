@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   xlim_map_square_helper.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: mmaria-d <mmaria-d@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 14:12:12 by codespace         #+#    #+#             */
-/*   Updated: 2024/03/06 14:17:03 by codespace        ###   ########.fr       */
+/*   Updated: 2024/03/11 13:41:03 by mmaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

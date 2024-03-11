@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_ring_inner_pixels.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: mmaria-d <mmaria-d@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 17:18:34 by codespace         #+#    #+#             */
-/*   Updated: 2024/03/06 17:21:46 by codespace        ###   ########.fr       */
+/*   Updated: 2024/03/11 13:41:24 by mmaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

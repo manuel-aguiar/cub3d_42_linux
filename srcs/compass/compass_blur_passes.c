@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   compass_blur_passes.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: mmaria-d <mmaria-d@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 17:48:53 by codespace         #+#    #+#             */
-/*   Updated: 2024/03/06 17:51:50 by codespace        ###   ########.fr       */
+/*   Updated: 2024/03/11 13:40:50 by mmaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

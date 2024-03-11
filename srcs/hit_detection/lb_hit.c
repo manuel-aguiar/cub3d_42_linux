@@ -73,7 +73,7 @@ static int	lb_setup(t_lb_hit *lb)
 	return (1);
 }
 
-int	liang_barsky_hit(t_vec2d win[2], t_vec2d draw[2], t_vec2d res[2])
+int	liang_barsky_hit(t_vec2d *win, t_vec2d *draw, t_vec2d *res)
 {
 	t_lb_hit	lb;
 

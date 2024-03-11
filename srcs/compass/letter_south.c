@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   letter_south.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: mmaria-d <mmaria-d@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/06 13:59:14 by codespace         #+#    #+#             */
-/*   Updated: 2024/03/06 13:59:14 by codespace        ###   ########.fr       */
+/*   Created: 2024/03/11 13:44:57 by mmaria-d          #+#    #+#             */
+/*   Updated: 2024/03/11 13:44:57 by mmaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mmaria-d <mmaria-d>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/11 14:43:31 by marvin            #+#    #+#             */
-/*   Updated: 2024/01/11 14:43:31 by marvin           ###   ########.fr       */
+/*   Created: 2024/03/11 13:36:52 by mmaria-d          #+#    #+#             */
+/*   Updated: 2024/03/11 13:36:52 by mmaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	main(int ac, char **av)
 
 	if (ac != 2)
 		return (error_msg_int("cub3d: invalid number of arguments\n", \
-			STDERR_FILENO, 0));
+			STDERR_FILENO, EXIT_FAILURE));
 	if (!game_start(&game, av[1]))
 	{
 		game.exit_status = EXIT_FAILURE;

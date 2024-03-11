@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_collision_corners.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: mmaria-d <mmaria-d@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 14:47:40 by codespace         #+#    #+#             */
-/*   Updated: 2024/03/07 14:51:19 by codespace        ###   ########.fr       */
+/*   Updated: 2024/03/11 13:40:34 by mmaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
