@@ -281,6 +281,7 @@ typedef struct s_game
 	t_clock		clock;
 	t_hud_stats	stats;
 	t_rand_gen	rand;
+	int			blur_is_on;
 	int			exit_status;
 }	t_game;
 
@@ -295,6 +296,7 @@ void	game_setup_keys(t_game *game);
 //game_render.c
 int		game_render(t_game *game);
 void	game_actions(t_game *game);
+void	update_sprites(t_game *game);
 
 void	player_walk_height(t_player *player, t_game *game);
 
