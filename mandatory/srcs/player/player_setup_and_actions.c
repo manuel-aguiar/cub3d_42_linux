@@ -39,9 +39,5 @@ void	player_setup(t_player *player)
 
 void	player_actions(t_game *game)
 {
-	t_player	*player;
-
-	player = &game->player;
-	player_walk_height(player, game);
 	player_rotate_and_pitch(game);
 }

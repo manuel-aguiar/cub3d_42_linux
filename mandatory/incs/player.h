@@ -137,7 +137,6 @@ typedef struct s_player
 	float			walk_z_mod;
 	float			walk_sway_mod;
 	float			walk_radius;
-	float			crouch_radius;
 	float			prone_radius;
 	t_vec2d			(*move[16])(t_player *);
 }	t_player;

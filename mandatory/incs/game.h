@@ -105,25 +105,10 @@ typedef struct s_game
 	t_dda_ver	*verti_rays;
 	int			maxmin_hori;
 	int			minmax_hori;
-	float		max_vis_dist;
-	float		wall_reflection;
 	t_mlx_img	tex[NUM_TEX];
 	int			colors[NUM_TEX];
-	t_sprite	*sprites;
-	t_sprite	**sorted;
-	int			sprite_count;
-	int			enemy_count;
-	float		floating;
-	float		float_sense;
-	float		float_sin;
-	int			max_bullets;
-	int			live_bullets;
-	int			cur_time_win_str;
-	int			total_time_win_str;
-	bool		is_lost;
-	int			cur_time_lost_str;
-	int			total_time_lost_str;
-	int			blur_is_on;
+	float		max_vis_dist;
+	float		wall_reflection;
 	int			exit_status;
 }	t_game;
 

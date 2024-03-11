@@ -25,15 +25,6 @@ void	apply_all_settings(t_game *game)
 	settings_window(&game->win);
 	settings_player(&game->player);
 	game->max_vis_dist = MAX_VISIBLE_DISTANCE;
-	game->wall_reflection = GAME_WALL_REFLECTION;
-	game->float_sense = GAME_FLOAT_SENSE;
-	game->max_bullets = 0;
-	game->max_bullets = MAX_BULLETS;
-	game->live_bullets = 0;
-	game->cur_time_win_str = 0;
-	game->total_time_win_str = GAME_WIN_TIME;
-	game->is_lost = false;
-	game->cur_time_lost_str = 0;
-	game->total_time_lost_str = GAME_LOST_TIME;
+	game->wall_reflection = WALL_REFLECTION;
 	game->exit_status = EXIT_SUCCESS;
 }

@@ -67,7 +67,6 @@ SRC_GAME			=	win_render_loop.c			\
 SRC_PLAYER			=	player_setup_and_actions.c	\
 						player_move_1.c				\
 						player_move_2.c				\
-						player_walk_height.c		\
 						player_rotate.c				
 
 SRC_PARSING			=	parsing_main.c						\

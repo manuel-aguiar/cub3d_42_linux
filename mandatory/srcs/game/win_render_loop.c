@@ -16,9 +16,6 @@ int	rendering_loop(t_game *game)
 {
 	mlx_hook(game->win.mlx_win, 2, (1L << 0), key_press, &game->win);
 	mlx_hook(game->win.mlx_win, 3, (1L << 1), key_release, &game->win);
-	mlx_hook(game->win.mlx_win, 4, (1L << 2), mouse_press, &game->win);
-	mlx_hook(game->win.mlx_win, 5, (1L << 3), mouse_release, &game->win);
-	mlx_hook(game->win.mlx_win, 6, (1L << 6), mouse_position, &game->win);
 	mlx_hook(game->win.mlx_win, 17, (1L << 1), free_game, game);
 	mlx_do_key_autorepeatoff(game->win.mlx);
 	mlx_loop_hook(game->win.mlx, game_render, game);
