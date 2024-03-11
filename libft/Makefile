@@ -13,7 +13,7 @@
 ## BUILD DETAILS
 
 NAME 			= 	libft.a
-COMP 			= 	cc -O3 -g -fsanitize=address
+COMP 			= 	cc -O3 #-g -fsanitize=address
 FLAGS 			= 	-Wall -Wextra -Werror
 LIB 			= 	ar rcs
 RM				=	rm
