@@ -195,8 +195,8 @@
 # define BULLET_UNIT_SIZE 0.05f
 # define BULLET_BASE_Z 0.0f
 
-# define GAME_WIN_TIME 2000
-# define GAME_LOST_TIME 2000
+# define GAME_WIN_TIME 4000
+# define GAME_LOST_TIME 4000
 
 void	settings_template_door(t_door *door);
 void	settings_template_ammo(t_ammo *ammo);

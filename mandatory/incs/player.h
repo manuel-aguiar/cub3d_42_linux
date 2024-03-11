@@ -73,12 +73,7 @@ typedef struct s_player
 	float			hgt_sense;
 	float			cur_z;
 	float			base_z;
-	float			prone_z;
-	float			crouch_z;
 	float			stance_z[HGT_STATES];
-	float			new_aim_sense[CTR_SIZE];
-	float			new_rot_sense[CTR_SIZE];
-	float			new_pitch_sense[CTR_SIZE];
 	bool			is_walking;
 	bool			is_sprinting;
 	bool			is_aiming;
@@ -87,11 +82,6 @@ typedef struct s_player
 	float			pitch_sense;
 	float			aim_rot_multi;
 	float			jump_z_mod;
-	int				min_shot_time;
-	int				cur_shot_time;
-	float			shot_pitch_mod;
-	float			shot_init;
-	float			shot_gravity;
 	float			cur_shot_sense;
 	float			cur_move_multi;
 	float			move_multi[HGT_STATES];
