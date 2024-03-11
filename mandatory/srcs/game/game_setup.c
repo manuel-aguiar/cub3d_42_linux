@@ -65,7 +65,6 @@ int	game_start(t_game *game, char *game_config)
 		* game->win.height);
 	if (!game->hori_rays || !game->verti_rays)
 		return (perror_msg_int("malloc", 0));
-	game_setup_keys(game);
 	if (!win_init_window(&game->win) || !game_load_textures(game))
 		return (0);
 	return (1);

@@ -48,17 +48,8 @@ enum e_keys_vals
 	KEY_BACK = 's',
 	KEY_LEFT = 'a',
 	KEY_RIGHT = 'd',
-	KEY_JUMP = ' ',
-	KEY_SPRINT = 65505,
-	KEY_CROUCH = 'x',
-	KEY_PRONE = 'z',
-	KEY_BLUR_T = '1',
-	KEY_FLOOR_REFL_T = '2',
-	KEY_CEIL_REFL_T = '3',
-	KEY_SHADE_T = '4',
-	KEY_HUD_T = '5',
-	KEY_PAUSE_T = 'p',
-	KEY_COUNT = 19,
+	KEY_ROT_L = 'q',
+	KEY_ROT_R = 'e',
 };
 
 enum e_keys_bits
@@ -68,16 +59,8 @@ enum e_keys_bits
 	BIT_BACK,
 	BIT_LEFT,
 	BIT_RIGHT,
-	BIT_JUMP,
-	BIT_SPRINT,
-	BIT_CROUCH,
-	BIT_PRONE,
-	BIT_BLUR_T,
-	BIT_FLOOR_REFL_T,
-	BIT_CEIL_REFL_T,
-	BIT_SHADE_T,
-	BIT_HUD_T,
-	BIT_PAUSE_T,
+	BIT_ROT_L,
+	BIT_ROT_R,
 };
 
 enum e_button_vals

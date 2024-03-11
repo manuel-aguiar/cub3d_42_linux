@@ -166,7 +166,7 @@ void	move_player(t_game *game, int keys);
 void	hori_raycasting(t_game *game);
 void	wallcast(t_game *game, t_ray *ray, t_dda_hor *hori, int x);
 void	floorcast_rgb(t_game *game);
-void	ceilcast_rgb(t_game *game);
+void	ceiling_rgb(t_game *game);
 
 //game_rotate.c
 void	setup_all_angles(t_game *game, float rad);

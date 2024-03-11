@@ -18,7 +18,7 @@ void	render_as_usual(t_game *game)
 		game->win.width * game->win.height * game->win.rgb_size);
 	hori_raycasting(game);
 	floorcast_rgb(game);
-	ceilcast_rgb(game);
+	ceiling_rgb(game);
 }
 
 int	game_render(t_game *game)

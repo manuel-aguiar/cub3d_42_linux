@@ -3,7 +3,7 @@
 
 NAME 		=		cub3D
 
-COMP 		= 		cc -O3  #-g -fsanitize=address
+COMP 		= 		cc -O3  -g #fsanitize=address
 
 FLAGS 		= 		-Wall -Werror -Wextra
 ADD_LIB 	= 		-L./$(LIB_PATH) -lft
@@ -54,7 +54,6 @@ SRC_MAIN			=	main.c				\
 
 SRC_GAME			=	win_render_loop.c			\
 						game_setup.c				\
-						game_keys.c					\
 						game_manager_keys.c			\
 						free_game.c					\
 						game_rotate.c				\
@@ -111,6 +110,8 @@ SRC_RAYCASTING		=	vec2d_utils1.c					\
 						vec3d_utils2.c					\
 						raycasting.c				\
 						wallcast.c					\
+						floorcast.c					\
+						ceilcast.c					\
 						tex_get_pixel.c
 
 SRC_SPRITES			=	sprite_setup.c				\

@@ -139,7 +139,6 @@ typedef struct s_player
 	float			walk_radius;
 	float			crouch_radius;
 	float			prone_radius;
-	void			(*hgt_manager[4])(t_player *, int *keys, int *new_state);
 	t_vec2d			(*move[16])(t_player *);
 }	t_player;
 

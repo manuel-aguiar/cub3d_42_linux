@@ -31,7 +31,6 @@ static int	init_mlx(t_win *win)
 		&(win->front_buf.bpp), &(win->front_buf.line_len), \
 		&(win->front_buf.endian));
 	mlx_do_key_autorepeatoff(win->mlx);
-	loading_text_string(win);
 	return (1);
 }
 
