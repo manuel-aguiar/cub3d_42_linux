@@ -39,7 +39,6 @@ static int	extract_color(t_tex_data	*tex)
 	int		g;
 	int		b;
 
-	printf("called\n");
 	split = ft_split_count(tex->path, ",", &count);
 	if (!split)
 		return (perror_msg_int("malloc", 0));
