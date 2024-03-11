@@ -12,16 +12,6 @@
 
 #include "game.h"
 
-int	game_is_paused(t_game *game)
-{
-	if ((game->win.keys >> BIT_PAUSE_T) & 1 \
-		|| (!((game->win.keys >> BIT_PAUSE_T) & 1) \
-		&& game->win.blur.elapsed > 0) \
-		|| game->is_lost)
-		return (1);
-	return (0);
-}
-
 void	game_is_lost(t_game *game)
 {
 	if (game->cur_time_lost_str >= game->total_time_lost_str)
@@ -65,7 +55,7 @@ int	game_render(t_game *game)
 	else if (game->is_lost)
 		game_is_lost(game);
 	else
-		render_as_ususal(game);
+		render_as_usual(game);
 	game->win.set_pixel(&game->win, game->win.width / 2, \
 		game->win.height / 2, (unsigned int)-1);
 	if (game->enemy_count == 0 && game->cur_time_win_str < \

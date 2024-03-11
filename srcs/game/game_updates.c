@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 09:55:22 by codespace         #+#    #+#             */
-/*   Updated: 2024/03/11 09:58:52 by codespace        ###   ########.fr       */
+/*   Updated: 2024/03/11 10:01:29 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,16 @@ void	update_sprites(t_game *game)
 			update_bullet(game, game->sorted[i]);
 		i++;
 	}
+}
+
+int	game_is_paused(t_game *game)
+{
+	if ((game->win.keys >> BIT_PAUSE_T) & 1 \
+		|| (!((game->win.keys >> BIT_PAUSE_T) & 1) \
+		&& game->win.blur.elapsed > 0) \
+		|| game->is_lost)
+		return (1);
+	return (0);
 }
 
 void	game_actions(t_game *game)

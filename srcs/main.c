@@ -23,7 +23,9 @@ int	main(int ac, char **av)
 	{
 		game.exit_status = 1;
 		free_game(&game);
+		printf("parsing failed\n");
 	}
+	printf("parsing succeded\n");
 	rendering_loop(&game);
 	free_game(&game);
 	return (0);
