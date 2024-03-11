@@ -70,6 +70,7 @@ SRC_GAME			=	win_render_loop.c			\
 						game_rotate.c				\
 						game_render.c				\
 						game_load_textures.c		\
+						game_updates.c				\
 						render_inside_compass.c		\
 						map_collisions.c			\
 						map_collision_corners.c		\

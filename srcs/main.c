@@ -21,9 +21,11 @@ int	main(int ac, char **av)
 			"cub3d: invalid number of arguments\n"));
 	if (!game_start(&game, av[1]))
 	{
+		game.exit_status = 1;
 		free_game(&game);
-		return (EXIT_FAILURE);
+		printf("parsing failed\n");
 	}
+	printf("parsing succeded\n");
 	rendering_loop(&game);
 	free_game(&game);
 	return (0);

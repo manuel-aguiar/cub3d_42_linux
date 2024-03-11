@@ -207,5 +207,6 @@ void	settings_template_x_enemy(t_enemy *enemy);
 void	settings_template_y_enemy(t_enemy *enemy);
 void	settings_template_z_enemy(t_enemy *enemy);
 void	settings_player(t_player *player);
+void	settings_all_templates(t_game *game);
 
 #endif

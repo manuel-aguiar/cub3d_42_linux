@@ -87,13 +87,7 @@ void	apply_all_settings(t_game *game)
 	settings_window(&game->win);
 	settings_player(&game->player);
 	settings_compass(game, &game->compass);
-	settings_template_door(&game->template_door);
-	settings_template_ammo(&game->template_ammo);
-	settings_template_medi(&game->template_medi);
-	settings_template_x_enemy(&game->template_x_enemy);
-	settings_template_y_enemy(&game->template_y_enemy);
-	settings_template_z_enemy(&game->template_z_enemy);
-	settings_template_bullet(&game->template_bullet);
+	settings_all_templates(game);
 	game->max_vis_dist = MAX_VISIBLE_DISTANCE;
 	game->wall_reflection = GAME_WALL_REFLECTION;
 	game->float_sense = GAME_FLOAT_SENSE;
@@ -109,4 +103,5 @@ void	apply_all_settings(t_game *game)
 	game->rand.clock = &game->clock;
 	game->rand.multiplier = 1103515245;
 	game->rand.increment = 12345;
+	game->exit_status = 0;
 }
