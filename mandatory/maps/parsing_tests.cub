@@ -1,0 +1,12 @@
+NO ./assets/xpm_north.xpm
+SO ./assets/xpm_south.xpm
+WE ./assets/xpm_east.xpm
+EA ./assets/xpm_west.xpm
+
+F 255,0,0
+C 0,255,255
+
+11111
+1 1N1
+11111
+
