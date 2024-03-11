@@ -15,11 +15,8 @@
 void	setup_all_angles(t_game *game, float rad)
 {
 	game->player.angle = radian_truncate(rad);
-	game->compass.angle = radian_truncate(-game->player.angle);
 	game->player.cos_rad = cosf(game->player.angle);
 	game->player.sin_rad = sinf(game->player.angle);
-	game->compass.cos_rad = game->player.cos_rad;
-	game->compass.sin_rad = -game->player.sin_rad;
 	game->player.dir_vec = (t_vec2d){game->player.cos_rad, \
 		game->player.sin_rad};
 	game->player.plane = vec2d_multi((t_vec2d){game->player.sin_rad, \
@@ -54,35 +51,20 @@ void	game_find_player_set_angles(t_game *game)
 	game_starting_angle(game, game->map.map[i]);
 }
 
-void	game_start_helper(t_game *game)
-{
-	apply_all_settings(game);
-	start_clock(&game->clock);
-	update_clock(&game->clock);
-}
-
 int	game_start(t_game *game, char *game_config)
 {
 	*game = (t_game){};
-	game_start_helper(game);
-	if (!map_parsing(&game->map, game_config) \
-	|| !setup_sprites(game))
+	apply_all_settings(game);
+	if (!map_parsing(&game->map, game_config))
 		return (0);
 	game_find_player_set_angles(game);
 	player_setup(&game->player);
-	if (!compass_setup(&game->compass))
-		return (0);
-	game->player.clock = &game->clock;
 	game->hori_rays = malloc(sizeof(*game->hori_rays) \
 		* game->win.width);
 	game->verti_rays = malloc(sizeof(*game->verti_rays) \
 		* game->win.height);
-	game->player.vertical_correction = vertical_coefficient(game);
 	if (!game->hori_rays || !game->verti_rays)
 		return (perror_msg_int("malloc", 0));
-	sprite_calc_dist(game);
-	sprite_qs_distance(game->sorted, game->sprite_count, sprite_qs_comp);
-	setup_hitmap(game);
 	game_setup_keys(game);
 	if (!win_init_window(&game->win) || !game_load_textures(game))
 		return (0);

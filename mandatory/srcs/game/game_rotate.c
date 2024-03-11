@@ -15,5 +15,4 @@
 void	game_rotate_view_angle(t_game *game, float diff)
 {
 	setup_all_angles(game, game->player.angle + diff);
-	compass_square_xlim_rotate(&game->compass, &game->compass.sqr);
 }

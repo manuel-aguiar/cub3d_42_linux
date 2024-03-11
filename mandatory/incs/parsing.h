@@ -21,26 +21,12 @@
 # include "render_linux.h"
 # include "vector.h"
 # include "pixel_point.h"
-# include "hit_detection.h"
 
 # define TOTAL_TEXTURES 6
 
-# define VALID_MAP_CHARS "01NSWEMAXYZD "
+# define VALID_MAP_CHARS "01NSWE "
 # define VALID_DIR_CHARS "NSWE"
-# define SPRITE_CHARS "MAXYZD"
 
-//letra M = 77
-# define MAP_MEDI 77
-//letra A = 65
-# define MAP_AMMO 65
-//letra X = 88
-# define MAP_X_ENEMY 88
-//letra Y = 89
-# define MAP_Y_ENEMY 89
-//letra Z = 90
-# define MAP_Z_ENEMY 90
-//letra D = 68
-# define MAP_DOOR 68
 //space = 32
 # define MAP_EMPTY 32
 
@@ -73,16 +59,6 @@ typedef enum e_textures
 	EA_TEX,
 	F_TEX,
 	C_TEX,
-	MEDI_TEX,
-	AMMO_TEX,
-	X_ENEMY_TEX,
-	Y_ENEMY_TEX,
-	Z_ENEMY_TEX,
-	MY_BULLET_TEX,
-	EN_BULLET_TEX,
-	WALL_BULLET_TEX,
-	GUN_TEX,
-	DOOR_TEX,
 	NUM_TEX,
 }	t_textures;
 
@@ -124,8 +100,6 @@ typedef struct s_parsing
 typedef struct s_map
 {
 	char			*map;
-	t_hitlist		*hit;
-	t_sprite		**doors;
 	int				width;
 	int				height;
 	int				len;

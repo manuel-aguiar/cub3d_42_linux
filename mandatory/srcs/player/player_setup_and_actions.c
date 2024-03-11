@@ -35,10 +35,6 @@ void	player_setup(t_player *player)
 	player->move[13] = move_player_right;
 	player->move[14] = move_player_left;
 	player->move[15] = move_player_default;
-	player->hgt_manager[HGT_PRONE] = manage_prone_height;
-	player->hgt_manager[HGT_CROUCH] = manage_crouch_height;
-	player->hgt_manager[HGT_NORMAL] = manage_normal_height;
-	player->hgt_manager[HGT_JUMP] = manage_jump_height;
 }
 
 void	player_actions(t_game *game)
@@ -46,9 +42,6 @@ void	player_actions(t_game *game)
 	t_player	*player;
 
 	player = &game->player;
-	player_change_aim(player);
-	player_change_stance(player);
-	player_jump_gravity(player);
 	player_walk_height(player, game);
 	player_rotate_and_pitch(game);
 }

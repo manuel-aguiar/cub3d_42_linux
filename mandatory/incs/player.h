@@ -14,7 +14,6 @@
 # define PLAYER_H
 
 # include "vector.h"
-# include "compass.h"
 # include "render_linux.h"
 # include "drawing_algos.h"
 # include "pixel_point.h"
@@ -142,7 +141,6 @@ typedef struct s_player
 	float			prone_radius;
 	void			(*hgt_manager[4])(t_player *, int *keys, int *new_state);
 	t_vec2d			(*move[16])(t_player *);
-	t_clock			*clock;
 }	t_player;
 
 void	player_setup(t_player *player);

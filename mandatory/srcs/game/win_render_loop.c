@@ -21,9 +21,6 @@ int	rendering_loop(t_game *game)
 	mlx_hook(game->win.mlx_win, 6, (1L << 6), mouse_position, &game->win);
 	mlx_hook(game->win.mlx_win, 17, (1L << 1), free_game, game);
 	mlx_do_key_autorepeatoff(game->win.mlx);
-	mlx_mouse_move(game->win.mlx, game->win.mlx_win, \
-		game->win.width / 2, game->win.height / 2);
-	update_clock(&game->clock);
 	mlx_loop_hook(game->win.mlx, game_render, game);
 	mlx_loop(game->win.mlx);
 	return (1);

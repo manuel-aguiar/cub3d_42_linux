@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_load_textures.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: mmaria-d <mmaria-d@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 11:00:29 by codespace         #+#    #+#             */
-/*   Updated: 2024/03/11 12:39:35 by codespace        ###   ########.fr       */
+/*   Updated: 2024/03/11 21:45:59 by mmaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,7 @@ int	mlx_load_from_xpm(t_game *game, t_tex_data *data, int i)
 	tex = &game->tex[i];
 	if (!setup_mlx_image(game, tex, data->path))
 		return (0);
-	if (i != F_TEX && i != C_TEX && i != GUN_TEX \
-	&& !mlx_image_transpose(game, data, i, tex))
+	if (!mlx_image_transpose(game, data, i, tex))
 		return (0);
 	ft_free_set_null(&data->path);
 	return (1);

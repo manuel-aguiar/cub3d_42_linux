@@ -17,7 +17,7 @@ t_vec2d	move_player_left(t_player *player)
 	float	speed;
 
 	speed = player->side_move * player->cur_move_multi \
-		* player->clock->elapsed;
+		* 1;
 	return (vec2d_multi((t_vec2d){-player->dir_vec.y, \
 		+ player->dir_vec.x}, speed));
 }
@@ -27,7 +27,7 @@ t_vec2d	move_player_right(t_player *player)
 	float	speed;
 
 	speed = player->side_move * player->cur_move_multi \
-		* player->clock->elapsed;
+		* 1;
 	return (vec2d_multi((t_vec2d){+player->dir_vec.y, \
 		- player->dir_vec.x}, speed));
 }
@@ -35,7 +35,7 @@ t_vec2d	move_player_right(t_player *player)
 t_vec2d	move_player_backward(t_player *player)
 {
 	return (vec2d_multi(vec2d_multi(player->dir_vec, player->back_move \
-		* player->cur_move_multi * player->clock->elapsed), -1));
+		* player->cur_move_multi * 1), -1));
 }
 
 t_vec2d	move_player_forward(t_player *player)
@@ -47,7 +47,7 @@ t_vec2d	move_player_forward(t_player *player)
 	&& (player->hgt_state == HGT_NORMAL || player->hgt_state == HGT_JUMP))
 		speed *= player->sprint_move_multi;
 	return (vec2d_multi(player->dir_vec, speed \
-		* player->clock->elapsed));
+		* 1));
 }
 
 void	move_player(t_game *game, int keys)

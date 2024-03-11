@@ -28,10 +28,6 @@ void	free_map(t_map *map)
 
 	if (map->map)
 		free(map->map);
-	if (map->hit)
-		free(map->hit);
-	if (map->doors)
-		free(map->doors);
 	i = 0;
 	while (i < NUM_TEX)
 	{

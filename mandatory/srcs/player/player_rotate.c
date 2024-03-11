@@ -22,9 +22,9 @@ static inline void	player_shot_pitch(t_game *game)
 		if (player->shot_pitch_mod > 1.0f)
 			player->cur_shot_sense /= player->shot_pitch_mod;
 		player->shot_pitch_mod += player->cur_shot_sense \
-			* player->clock->elapsed;
+			* 1;
 		player->cur_shot_sense -= player->shot_gravity \
-			* player->clock->elapsed;
+			* 1;
 	}
 	if (player->shot_pitch_mod <= 0)
 	{
@@ -55,11 +55,11 @@ void	player_rotate_and_pitch(t_game *game)
 		rotate_aim_multi = game->player.aim_rot_multi;
 	rotate = (game->win.width / 2 - game->win.mouse.cur_x) \
 		* game->player.rot_sense * rotate_aim_multi \
-		* game->player.clock->elapsed;
+		* 1;
 	game_rotate_view_angle(game, rotate);
 	pitch = ((game->win.mouse.cur_y - game->win.height / 2) \
 		* game->player.pitch_sense * rotate_aim_multi \
-		* game->player.clock->elapsed);
+		* 1);
 	player_shot_pitch(game);
 	game->player.verti_angle = float_clamp(game->player.verti_angle \
 		+ pitch, game->player.verti_min, game->player.verti_max);

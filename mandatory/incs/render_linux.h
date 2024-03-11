@@ -15,8 +15,6 @@
 # define RENDER_LINUX_H
 
 # include <mlx.h>
-# include <time.h>
-# include <sys/time.h>
 
 # define MY_PI 3.14159265f
 
@@ -96,41 +94,6 @@ enum e_button_bits
 	BIT_COUNT = 2,
 };
 
-typedef struct s_clock
-{
-	struct timeval	start;
-	struct timeval	end;
-	size_t			elapsed;
-}	t_clock;
-
-typedef struct s_blur_helper
-{
-	int	width;
-	int	height;
-	int	rgb_size;
-}	t_blur_helper;
-
-typedef struct s_pause_blur
-{
-	float		kernel[31];
-	int			save_pixels[31];
-	int			kernel_size;
-	int			kernel_centre;
-	int			max_kernel;
-	int			cur_sigma;
-	int			min_sigma;
-	int			max_sigma;
-	int			pause_time;
-	t_clock		clock;
-	long int	elapsed;
-	char		*first;
-	char		*second;
-	char		*save_front;
-	int			rgb_size;
-	int			height;
-	int			width;
-}	t_pause_blur;
-
 typedef enum e_pause_state
 {
 	PAUSE_OFF,
@@ -173,7 +136,6 @@ struct s_win
 	char			name[6];
 	t_mouse			mouse;
 	int				keys;
-	t_pause_blur	blur;
 	void			(*set_pixel)(t_win *win, int x, int y, int color);
 	int				(*get_pixel)(t_win *win, int x, int y);
 };
@@ -200,9 +162,6 @@ void	window_pause_manager(t_win *win, t_pause_state state, \
 		bool blur_on, void string(t_win *));
 
 void	xpm_to_window(t_win *win, t_xpm_to_win	*xpm);
-
-void	start_clock(t_clock *clock);
-void	update_clock(t_clock *clock);
 
 //linux_text_strings.c
 void	pause_text_string(t_win *win);

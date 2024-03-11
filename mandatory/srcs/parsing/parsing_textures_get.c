@@ -12,27 +12,6 @@
 
 #include "parsing.h"
 
-static inline int	get_texture_index_2(char *cmp)
-{
-	if (!ft_strncmp(cmp, "X_ENEMY", 8))
-		return (X_ENEMY_TEX);
-	if (!ft_strncmp(cmp, "Y_ENEMY", 8))
-		return (Y_ENEMY_TEX);
-	if (!ft_strncmp(cmp, "Z_ENEMY", 8))
-		return (Z_ENEMY_TEX);
-	if (!ft_strncmp(cmp, "MY_BULLET", 10))
-		return (MY_BULLET_TEX);
-	if (!ft_strncmp(cmp, "EN_BULLET", 10))
-		return (EN_BULLET_TEX);
-	if (!ft_strncmp(cmp, "WALL_BULLET", 12))
-		return (WALL_BULLET_TEX);
-	if (!ft_strncmp(cmp, "GUN", 4))
-		return (GUN_TEX);
-	if (!ft_strncmp(cmp, "DOOR", 5))
-		return (DOOR_TEX);
-	return (-1);
-}
-
 static int	get_texture_index(char *cmp)
 {
 	if (!ft_strncmp(cmp, "NO", 3))
@@ -47,11 +26,7 @@ static int	get_texture_index(char *cmp)
 		return (F_TEX);
 	if (!ft_strncmp(cmp, "C", 2))
 		return (C_TEX);
-	if (!ft_strncmp(cmp, "MEDI", 5))
-		return (MEDI_TEX);
-	if (!ft_strncmp(cmp, "AMMO", 5))
-		return (AMMO_TEX);
-	return (get_texture_index_2(cmp));
+	return (-1);
 }
 
 static inline int	extract_and_save(t_parsing *parsing)

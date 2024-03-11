@@ -24,7 +24,7 @@ t_vec2d	move_player_back_left(t_player *player)
 	float	speed;
 
 	speed = player->back_move * player->cur_move_multi \
-		* player->clock->elapsed;
+		* 1;
 	diagonal.x = 1 * (P_SQRT_OF_TWO_OVER_TWO \
 		* player->cos_rad - P_SQRT_OF_TWO_OVER_TWO * player->sin_rad);
 	diagonal.y = -1 * (P_SQRT_OF_TWO_OVER_TWO \
@@ -38,7 +38,7 @@ t_vec2d	move_player_back_right(t_player *player)
 	float	speed;
 
 	speed = player->back_move * player->cur_move_multi \
-		* player->clock->elapsed;
+		* 1;
 	diagonal.x = -1 * (P_SQRT_OF_TWO_OVER_TWO \
 		* player->cos_rad + P_SQRT_OF_TWO_OVER_TWO * player->sin_rad);
 	diagonal.y = 1 * (P_SQRT_OF_TWO_OVER_TWO \
@@ -52,7 +52,7 @@ t_vec2d	move_player_for_left(t_player *player)
 	float	speed;
 
 	speed = player->side_move * player->cur_move_multi \
-		* player->clock->elapsed;
+		* 1;
 	if (player->is_sprinting \
 	&& (player->hgt_state == HGT_NORMAL || player->hgt_state == HGT_JUMP))
 		speed *= player->sprint_move_multi;
@@ -69,7 +69,7 @@ t_vec2d	move_player_for_right(t_player *player)
 	float	speed;
 
 	speed = player->side_move * player->cur_move_multi \
-		* player->clock->elapsed;
+		* 1;
 	if (player->is_sprinting \
 	&& (player->hgt_state == HGT_NORMAL || player->hgt_state == HGT_JUMP))
 		speed *= player->sprint_move_multi;

@@ -32,68 +32,44 @@ DIR_GAME			=	game
 DIR_PARSING			=	parsing
 DIR_GENERIC_UTILS 	= 	generic_utils
 DIR_REN_LINUX		=	render_linux
-DIR_COMPASS			=	compass
 DIR_DRAWING_ALGOS	= 	drawing_algos
 DIR_PLAYER			=	player
-DIR_SPRITES			=	sprites
 DIR_PIXEL_POINT		=	pixel_point
 DIR_RAYCASTING		=	raycasting
-DIR_HIT_DETECTION	=	hit_detection
 
 ## SOURCE FILES ##
 
 INC_FILES		=		game.h				\
-						sprites.h			\
 						player.h			\
 						vector.h			\
 						parsing.h			\
 						render_linux.h		\
 						drawing_algos.h		\
 						pixel_point.h		\
-						compass.h			\
-						generic_utils.h		\
-						hit_detection.h
+						generic_utils.h
 
 SRC_MAIN			=	main.c				\
 						settings.c			\
-						settings_template.c	\
-						settings_template_enemy.c \
 						settings_player.c
 
 SRC_GAME			=	win_render_loop.c			\
 						game_setup.c				\
 						game_keys.c					\
 						game_manager_keys.c			\
-						game_manager_mouse.c		\
-						game_rand_gen.c				\
 						free_game.c					\
 						game_rotate.c				\
 						game_render.c				\
 						game_load_textures.c		\
 						game_updates.c				\
-						render_inside_compass.c		\
 						map_collisions.c			\
-						map_collision_corners.c		\
-						game_render_hud.c			\
-						bullet_rest.c				\
-						bullet_start.c				\
-						update_medi_ammo.c			\
-						update_enemy_move.c			\
-						update_enemy_sees_player.c	\
-						update_bullet.c				\
-						update_bullet_2.c			\
-						update_door.c
+						map_collision_corners.c	
 
 
 SRC_PLAYER			=	player_setup_and_actions.c	\
-						player_aim.c				\
 						player_move_1.c				\
 						player_move_2.c				\
-						player_crouch_prone.c		\
 						player_walk_height.c		\
-						player_rotate.c				\
-						player_jump.c				\
-						player_height_manager.c
+						player_rotate.c				
 
 SRC_PARSING			=	parsing_main.c						\
 						parsing_textures_get.c				\
@@ -113,40 +89,11 @@ SRC_GENERIC_UTILS 	= 	ft_split_count_replenish.c		\
 						ft_swap.c						\
 						float_equal.c
 
-SRC_REN_WIN			=	win_init_window.c		\
-						win_pixels.c			\
-						win_callback_keys.c		\
-						win_callback_mouse.c	\
-						win_clock.c				\
-						win_pause_blur_1.c		\
-						win_pause_blur_2.c
-
 SRC_REN_LINUX		=	linux_init_window.c		\
 						linux_pixels.c			\
 						linux_callback_keys.c		\
 						linux_callback_mouse.c	\
-						linux_clock.c				\
-						linux_pause_manager.c		\
-						linux_pause_blur_1.c		\
-						linux_pause_blur_2.c		\
-						linux_text_strings.c		\
 						linux_xpm_to_window.c
-
-SRC_COMPASS			=	compass_setup.c				\
-						compass_render.c			\
-						letter_north.c				\
-						letter_south.c				\
-						letter_east.c				\
-						letter_west.c				\
-						xlim_map_square.c			\
-						xlim_map_square_helper.c	\
-						xlim_inner_circle.c			\
-						render_map_square.c			\
-						render_ring.c				\
-						render_ring_inner_pixels.c	\
-						render_circle_player.c		\
-						compass_blur.c				\
-						compass_blur_passes.c
 
 SRC_DRAWING_ALGOS	=	drawing_lines.c				\
 						liang_barsky_clipping.c		\
@@ -156,8 +103,7 @@ SRC_DRAWING_ALGOS	=	drawing_lines.c				\
 
 SRC_PIXEL_POINT		=	gamma_correction.c				\
 						pixels_1.c						\
-						pixels_2.c						\
-						translate_rotate.c
+						pixels_2.c						
 
 SRC_RAYCASTING		=	vec2d_utils1.c					\
 						vec2d_utils2.c					\
@@ -165,14 +111,6 @@ SRC_RAYCASTING		=	vec2d_utils1.c					\
 						vec3d_utils2.c					\
 						raycasting.c				\
 						wallcast.c					\
-						floorcast.c					\
-						ceilcast.c					\
-						spritecast.c				\
-						spritecast_setup.c			\
-						interpcast.c					\
-						interpcast_setup.c			\
-						interpcast_orientation.c			\
-						shader.c					\
 						tex_get_pixel.c
 
 SRC_SPRITES			=	sprite_setup.c				\
@@ -184,10 +122,6 @@ SRC_SPRITES			=	sprite_setup.c				\
 						sprites_extract_sort_bullets.c	\
 						vertical_correction.c
 
-SRC_HIT_DETECTION	=	lb_hit.c					\
-						lb_hit_utils.c				\
-						hit_list.c
-
 ## AGGREGATING FILES ##
 
 INCS		:=		$(addprefix $(INC_PATH)/, $(INC_FILES))
@@ -197,14 +131,11 @@ SRCS 		:=		$(addprefix $(SRC_PATH)/, $(SRC_MAIN))											\
 					$(addprefix $(SRC_PATH)/$(DIR_PARSING)/, $(SRC_PARSING)) 						\
 					$(addprefix $(SRC_PATH)/$(DIR_GENERIC_UTILS)/, $(SRC_GENERIC_UTILS))			\
 					$(addprefix $(SRC_PATH)/$(DIR_REN_LINUX)/, $(SRC_REN_LINUX))					\
-					$(addprefix $(SRC_PATH)/$(DIR_COMPASS)/, $(SRC_COMPASS))						\
 					$(addprefix $(SRC_PATH)/$(DIR_DRAWING_ALGOS)/, $(SRC_DRAWING_ALGOS))			\
 					$(addprefix $(SRC_PATH)/$(DIR_GAME)/, $(SRC_GAME))								\
 					$(addprefix $(SRC_PATH)/$(DIR_PLAYER)/, $(SRC_PLAYER))							\
 					$(addprefix $(SRC_PATH)/$(DIR_RAYCASTING)/, $(SRC_RAYCASTING))					\
-					$(addprefix $(SRC_PATH)/$(DIR_PIXEL_POINT)/, $(SRC_PIXEL_POINT))				\
-					$(addprefix $(SRC_PATH)/$(DIR_SPRITES)/, $(SRC_SPRITES))						\
-					$(addprefix $(SRC_PATH)/$(DIR_HIT_DETECTION)/, $(SRC_HIT_DETECTION))
+					$(addprefix $(SRC_PATH)/$(DIR_PIXEL_POINT)/, $(SRC_PIXEL_POINT))				
 
 
 
@@ -220,12 +151,6 @@ $(NAME): $(LIBFT) $(OBJS)
 	@echo Program $(NAME) ready!!
 
 $(OBJ_PATH)/settings.o : $(SRC_PATH)/settings.c $(SRC_PATH)/game_settings.h
-	$(COMP) $(FLAGS) $(ALL_INCS) -c $< -o $@
-
-$(OBJ_PATH)/settings_template.o : $(SRC_PATH)/settings_template.c $(SRC_PATH)/game_settings.h
-	$(COMP) $(FLAGS) $(ALL_INCS) -c $< -o $@
-
-$(OBJ_PATH)/settings_template_enemy.o : $(SRC_PATH)/settings_template_enemy.c $(SRC_PATH)/game_settings.h
 	$(COMP) $(FLAGS) $(ALL_INCS) -c $< -o $@
 
 $(OBJ_PATH)/settings_player.o : $(SRC_PATH)/settings_player.c $(SRC_PATH)/game_settings.h

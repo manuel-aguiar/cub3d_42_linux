@@ -36,30 +36,6 @@ void	check_perpendicular_walls(t_move_colli *colli, t_vec2d *posi)
 		posi->y = ft_fmax(posi->y, colli->fixed_y + (colli->unit_size));
 }
 
-void	check_door_collision(t_move_colli *colli, t_vec2d *posi)
-{
-	if (colli->map->map[colli->fixed_x + colli->fixed_y \
-	* colli->map->width] != MAP_DOOR)
-		return ;
-	colli->sprite = colli->map->doors[colli->fixed_x + colli->fixed_y \
-		* colli->map->width];
-	colli->door = (t_door *)colli->sprite->data;
-	if (colli->door->state != DOOR_CLOSED)
-		return ;
-	if (colli->door->orient == NS)
-	{
-		posi->y = float_ternary(colli->player.y < colli->sprite->posi.y, \
-		ft_fmin(posi->y, colli->sprite->posi.y - (colli->unit_size)), \
-		ft_fmax(posi->y, colli->sprite->posi.y + (colli->unit_size)));
-	}
-	else
-	{
-		posi->x = float_ternary(colli->player.x < colli->sprite->posi.x, \
-		ft_fmin(posi->x, colli->sprite->posi.x - (colli->unit_size)), \
-		ft_fmax(posi->x, colli->sprite->posi.x + (colli->unit_size)));
-	}
-}
-
 void	handle_collisions(t_game *game, t_vec2d *posi, \
 						t_vec2d potencial, float unit_size)
 {
@@ -78,7 +54,6 @@ void	handle_collisions(t_game *game, t_vec2d *posi, \
 	{
 		colli.player = *posi;
 		*posi = vec2d_add(*posi, colli.add);
-		check_door_collision(&colli, posi);
 		check_perpendicular_walls(&colli, posi);
 		top_corners(&colli, posi);
 		bot_corners(&colli, posi);
