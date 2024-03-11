@@ -32,8 +32,6 @@ typedef struct s_pixel	t_pixel;
 typedef struct s_mouse	t_mouse;
 
 // GLOBALS NEEDED BY GLFW
-extern t_mouse			g_mouse;
-
 struct s_mouse
 {
 	int	buttons;
