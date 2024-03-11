@@ -53,6 +53,6 @@ int	free_game(t_game *game)
 		destroy_sprites(game);
 	if (game->sorted)
 		free(game->sorted);
-	exit(EXIT_SUCCESS);
+	exit(game->exit_status);
 	return (1);
 }

@@ -281,6 +281,7 @@ typedef struct s_game
 	t_clock		clock;
 	t_hud_stats	stats;
 	t_rand_gen	rand;
+	int			exit_status;
 }	t_game;
 
 //settings.c

@@ -56,3 +56,14 @@ void	settings_template_bullet(t_bullet *bullet)
 	bullet->base_z = BULLET_BASE_Z;
 	bullet->wall_hole = true;
 }
+
+void	settings_all_templates(t_game *game)
+{
+	settings_template_door(&game->template_door);
+	settings_template_ammo(&game->template_ammo);
+	settings_template_medi(&game->template_medi);
+	settings_template_x_enemy(&game->template_x_enemy);
+	settings_template_y_enemy(&game->template_y_enemy);
+	settings_template_z_enemy(&game->template_z_enemy);
+	settings_template_bullet(&game->template_bullet);
+}
