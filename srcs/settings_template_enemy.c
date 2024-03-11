@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   settings_template_enemy.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: mmaria-d <mmaria-d@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 13:06:04 by codespace         #+#    #+#             */
-/*   Updated: 2024/03/07 16:34:01 by codespace        ###   ########.fr       */
+/*   Updated: 2024/03/11 13:39:22 by mmaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

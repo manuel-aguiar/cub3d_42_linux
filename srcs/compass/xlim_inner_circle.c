@@ -12,29 +12,6 @@
 
 #include "compass.h"
 
-/*
-void	render_inner_circle(t_win *win, t_compass *comp)
-{
-	t_circle	*inner;
-	int			y_adj;
-	int			i;
-
-	inner = &comp->inner;
-	i = 0;
-	y_adj = inner->min_max[MM_MIN_Y] + inner->centre.y;
-	while (i < inner->radius * 2 + 1)
-	{
-		win->set_pixel(win, comp->circle_x_lim[i].min + inner->centre.x, \
-			i + y_adj, inner->color);
-		win->set_pixel(win, comp->circle_x_lim[i].max + inner->centre.x, \
-			i + y_adj, inner->color);
-		i++;
-	}
-	win->set_pixel(win, inner->centre.x, y_adj, inner->color);
-	win->set_pixel(win, inner->centre.x, y_adj, inner->color);
-}
-*/
-
 static void	fill_lookup_table(t_compass *comp, t_circle *inner, int x, int y)
 {
 	comp->circle_x_lim[y + inner->radius].min \

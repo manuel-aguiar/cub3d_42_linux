@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_circle_player.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: mmaria-d <mmaria-d@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 15:04:54 by codespace         #+#    #+#             */
-/*   Updated: 2024/03/06 15:29:16 by codespace        ###   ########.fr       */
+/*   Updated: 2024/03/11 13:40:57 by mmaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

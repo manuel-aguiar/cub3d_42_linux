@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sprites_extract_doors.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: mmaria-d <mmaria-d@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 15:18:13 by codespace         #+#    #+#             */
-/*   Updated: 2024/03/07 15:34:31 by codespace        ###   ########.fr       */
+/*   Updated: 2024/03/11 13:42:10 by mmaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

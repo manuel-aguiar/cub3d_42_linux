@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   compass_render.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: mmaria-d <mmaria-d@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/06 14:44:24 by codespace         #+#    #+#             */
-/*   Updated: 2024/03/06 14:44:46 by codespace        ###   ########.fr       */
+/*   Created: 2024/03/11 13:43:21 by mmaria-d          #+#    #+#             */
+/*   Updated: 2024/03/11 13:43:22 by mmaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
