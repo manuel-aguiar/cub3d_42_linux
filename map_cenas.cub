@@ -3,8 +3,8 @@ SO ./assets/xpm_south.xpm
 WE ./assets/xpm_east.xpm
 EA ./assets/xpm_west.xpm
 
-F ./assets/xpm_margarida.xpm
-C ./assets/xpm_margarida.xpm
+F 255,0,0
+C 0,255,255
 
 MEDI ./assets/xpm_medikit.xpm
 AMMO ./assets/xpm_rubens_dementor.xpm

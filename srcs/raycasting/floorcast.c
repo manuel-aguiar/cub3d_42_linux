@@ -83,9 +83,9 @@ void	floorcast_rgb(t_game *game)
 
 	line.color = game->map.tex_data[F_TEX].color;
 	line.x = 0;
-	line.min_y = 0;
 	while (line.x < game->win.width)
 	{
+		line.min_y = 0;
 		line.max_y = int_clamp(game->hori_rays[line.x].min_y - 1, \
 			0, game->win.height - 1);
 		if (line.min_y != line.max_y)
