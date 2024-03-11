@@ -27,6 +27,7 @@ static inline void	destroy_textures(t_game *game)
 
 int	free_game(t_game *game)
 {
+	destroy_textures(game);
 	free_window(&game->win);
 	free_map(&game->map);
 	destroy_parsing(&game->parsing);
