@@ -17,8 +17,8 @@ int	main(int ac, char **av)
 	t_game	game;
 
 	if (ac != 2)
-		return (0 & ft_printf_fd(STDERR_FILENO, \
-			"cub3d: invalid number of arguments\n"));
+		return (error_msg_int("cub3d: invalid number of arguments\n", \
+			STDERR_FILENO, 0));
 	if (!game_start(&game, av[1]))
 	{
 		game.exit_status = 1;
