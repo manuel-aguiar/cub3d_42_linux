@@ -31,14 +31,14 @@
 /* player settings */
 
 # define PLAY_UNIT_SIZE 0.2f
-# define PLAY_FORWARD_MOVE_SENSE 0.06f
-# define PLAY_SIDE_MOVE_SENSE 0.06f
-# define PLAY_BACK_MOVE_SENSE 0.06f
+# define PLAY_FORWARD_MOVE_SENSE 0.002f
+# define PLAY_SIDE_MOVE_SENSE 0.002f
+# define PLAY_BACK_MOVE_SENSE 0.002f
 # define PLAY_SPRINT_MULTI 1.5f
 # define PLAY_BASE_PITCH 0
 
 //rotation an pitch sensibility, aiming multiplier
-# define PLAY_ROT_SENSE 0.02f
+# define PLAY_ROT_SENSE 0.002f
 # define PLAY_AIM_ROT_MULTI 0.5f
 
 # define PLAY_HGT_NORMAL 0.5f

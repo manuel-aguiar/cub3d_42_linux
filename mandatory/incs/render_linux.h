@@ -48,8 +48,8 @@ enum e_keys_vals
 	KEY_BACK = 's',
 	KEY_LEFT = 'a',
 	KEY_RIGHT = 'd',
-	KEY_ROT_L = 'q',
-	KEY_ROT_R = 'e',
+	KEY_ROT_L = 65361,
+	KEY_ROT_R = 65363,
 };
 
 enum e_keys_bits
