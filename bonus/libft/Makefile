@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: codespace <codespace@student.42.fr>        +#+  +:+       +#+         #
+#    By: mmaria-d <mmaria-d@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/11 14:41:01 by marvin            #+#    #+#              #
-#    Updated: 2024/03/11 13:06:37 by codespace        ###   ########.fr        #
+#    Updated: 2024/03/11 23:29:57 by mmaria-d         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
