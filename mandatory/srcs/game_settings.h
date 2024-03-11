@@ -31,9 +31,9 @@
 /* player settings */
 
 # define PLAY_UNIT_SIZE 0.2f
-# define PLAY_FORWARD_MOVE_SENSE 0.04f
-# define PLAY_SIDE_MOVE_SENSE 0.04f
-# define PLAY_BACK_MOVE_SENSE 0.04f
+# define PLAY_FORWARD_MOVE_SENSE 0.06f
+# define PLAY_SIDE_MOVE_SENSE 0.06f
+# define PLAY_BACK_MOVE_SENSE 0.06f
 # define PLAY_SPRINT_MULTI 1.5f
 # define PLAY_BASE_PITCH 0
 

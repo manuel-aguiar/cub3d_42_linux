@@ -53,24 +53,8 @@ typedef struct s_player
 	t_vec2d			map_posi;
 	t_vec2d			dir_vec;
 	t_vec2d			plane;
-
-	t_vec3d			posi_3d;
-	t_vec3d			dir_3d;
-	int				health[CTR_SIZE];
-	int				ammo[CTR_SIZE];
-	int				attack;
-
 	int				pitch;
-
 	float			angle;
-
-	float			verti_angle;
-	float			shot_angle;
-	float			verti_min;
-	float			verti_max;
-	float			verti_tan;
-	float			vertical_correction;
-
 	float			cos_rad;
 	float			sin_rad;
 	float			unit_size;
@@ -95,31 +79,20 @@ typedef struct s_player
 	float			new_aim_sense[CTR_SIZE];
 	float			new_rot_sense[CTR_SIZE];
 	float			new_pitch_sense[CTR_SIZE];
-
 	bool			is_walking;
 	bool			is_sprinting;
 	bool			is_aiming;
-
 	float			aim_sense;
 	float			rot_sense;
 	float			pitch_sense;
 	float			aim_rot_multi;
-
-	float			vertical_gravity;
-	float			cur_jump_sense;
-	float			jump_init;
-	float			jump_inc;
-	float			jump_press_cap;
-	float			jump_release_cap;
 	float			jump_z_mod;
-
 	int				min_shot_time;
 	int				cur_shot_time;
 	float			shot_pitch_mod;
 	float			shot_init;
 	float			shot_gravity;
 	float			cur_shot_sense;
-
 	float			cur_move_multi;
 	float			move_multi[HGT_STATES];
 	float			normal_move_multi;
@@ -127,17 +100,7 @@ typedef struct s_player
 	float			crouch_move_multi;
 	float			prone_move_multi;
 	float			aim_move_multi;
-
-	float			walking_gravity;
-	float			cur_walk_sense;
-	float			walk_init;
-	float			walk_inc;
-	float			walk_press_cap;
-	float			walk_release_cap;
 	float			walk_z_mod;
-	float			walk_sway_mod;
-	float			walk_radius;
-	float			prone_radius;
 	t_vec2d			(*move[16])(t_player *);
 }	t_player;
 

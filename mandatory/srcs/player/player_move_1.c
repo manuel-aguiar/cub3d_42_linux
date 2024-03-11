@@ -57,18 +57,8 @@ void	move_player(t_game *game, int keys)
 
 	player = &game->player;
 	player->cur_move_multi = player->move_multi[player->hgt_state];
-	if (player->is_aiming)
-		player->cur_move_multi *= player->aim_move_multi;
 	if (!keys || keys == 3 || keys == 12 || keys == 15)
-	{
-		player->is_walking = false;
 		return ;
-	}
-	if (player->is_walking == false && player->hgt_state != HGT_JUMP)
-	{
-		player->cur_walk_sense = 0;
-	}
-	player->is_walking = true;
 	potential = player->move[keys](player);
 	handle_collisions(game, &player->map_posi, potential, player->unit_size);
 }

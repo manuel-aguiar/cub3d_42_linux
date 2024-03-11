@@ -12,15 +12,6 @@
 
 #include "game_settings.h"
 
-static inline void	settings_player_three(t_player *player)
-{
-	player->cur_walk_sense = 0;
-	player->walk_z_mod = 0;
-	player->walk_sway_mod = 0;
-	player->verti_angle = PITCH_ANGLE_BASE;
-	player->verti_tan = tanf(player->verti_angle);
-}
-
 static inline void	settings_player_two(t_player *player)
 {
 	player->cur_move_multi = PLAY_NORMAL_MOVE_MULTI;
@@ -49,5 +40,4 @@ void	settings_player(t_player *player)
 	player->cur_dir_len = player->base_dir_len;
 	player->aim_sense = PLAY_AIM_SENSE;
 	settings_player_two(player);
-	settings_player_three(player);
 }
