@@ -161,5 +161,6 @@ int		analise_textures(t_parsing *parsing);
 //parsing_file_to_list.c
 int		file_to_list(t_parsing *parsing);
 int		list_to_map(t_parsing *parsing);
+void	destroy_parsing(t_parsing *parsing);
 
 #endif
