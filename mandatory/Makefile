@@ -115,15 +115,6 @@ SRC_RAYCASTING		=	vec2d_utils1.c					\
 						ceilcast.c					\
 						tex_get_pixel.c
 
-SRC_SPRITES			=	sprite_setup.c				\
-						sprite_quicksort.c			\
-						sprites_hitmap_place.c			\
-						sprites_hitmap_clean.c			\
-						sprites_extract_doors.c			\
-						sprites_extract_non_doors.c		\
-						sprites_extract_sort_bullets.c	\
-						vertical_correction.c
-
 ## AGGREGATING FILES ##
 
 INCS		:=		$(addprefix $(INC_PATH)/, $(INC_FILES))
