@@ -114,14 +114,6 @@ SRC_GENERIC_UTILS 	= 	ft_split_count_replenish.c		\
 						ft_swap.c						\
 						float_equal.c
 
-SRC_REN_WIN			=	win_init_window.c		\
-						win_pixels.c			\
-						win_callback_keys.c		\
-						win_callback_mouse.c	\
-						win_clock.c				\
-						win_pause_blur_1.c		\
-						win_pause_blur_2.c
-
 SRC_REN_LINUX		=	linux_init_window.c		\
 						linux_pixels.c			\
 						linux_callback_keys.c		\
