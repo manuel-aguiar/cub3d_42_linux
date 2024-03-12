@@ -133,16 +133,16 @@
 # define X_ENEMY_HEALTH 50
 # define X_ENEMY_TIME_ATTACK 1000
 
-# define Y_ENEMY_HGT 0.5f
+# define Y_ENEMY_HGT 0.7f
 # define Y_ENEMY_WDT 3.0f
 # define Y_ENEMY_Z 0.0f
-# define Y_ENEMY_UNIT 0.2f
-# define Y_ENEMY_Z_SENSE 0.005f
-# define Y_ENEMY_MOVE_SENSE 0.0015f
+# define Y_ENEMY_UNIT 0.3f
+# define Y_ENEMY_Z_SENSE 0.003f
+# define Y_ENEMY_MOVE_SENSE 0.0010f
 //# define ENEMY_MOVE_SENSE 0.0f
 # define Y_ENEMY_MS_SWAP 500
-# define Y_ENEMY_ATTACK 20
-# define Y_ENEMY_HEALTH 50
+# define Y_ENEMY_ATTACK 30
+# define Y_ENEMY_HEALTH 70
 # define Y_ENEMY_TIME_ATTACK 1000
 
 # define Z_ENEMY_HGT 0.5f
@@ -153,7 +153,7 @@
 # define Z_ENEMY_MOVE_SENSE 0.0015f
 //# define ENEMY_MOVE_SENSE 0.0f
 # define Z_ENEMY_MS_SWAP 500
-# define Z_ENEMY_ATTACK 20
+# define Z_ENEMY_ATTACK 30
 # define Z_ENEMY_HEALTH 50
 # define Z_ENEMY_TIME_ATTACK 1000
 
