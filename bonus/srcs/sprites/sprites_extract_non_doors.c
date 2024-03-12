@@ -76,6 +76,7 @@ int	extract_z_enemy(t_game *game, t_map *map, int place, int map_index)
 	sprite->posi.y = (float)map_row(map, map_index) + 0.5f;
 	data->elapsed = rand_int(0, data->ms_to_swap);
 	sprite->cur_z = rand_float(0.0f, 1.0f - data->height);
+	data->shot_this_time = rand_int(0, data->shot_max_time);
 	sprite->height = data->height;
 	sprite->width = data->width;
 	sprite->unit_size = data->unit_size;

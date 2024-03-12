@@ -6,7 +6,7 @@
 /*   By: mmaria-d <mmaria-d@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 13:31:56 by codespace         #+#    #+#             */
-/*   Updated: 2024/03/11 13:41:42 by mmaria-d         ###   ########.fr       */
+/*   Updated: 2024/03/12 19:41:49 by mmaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ void	start_friendly_bullet(t_game *game)
 	bullet->posi = (t_vec3d){sprite->posi.x, sprite->posi.y, sprite->cur_z};
 	bullet->wall_hole = true;
 	bullet->hole = bullet_rest(game, bullet);
+	bullet->move_sense = game->template_bullet.move_sense;
+	bullet->attack_val = game->template_bullet.attack_val / 3;
 	game->live_bullets++;
 }
 
@@ -63,5 +65,6 @@ void	start_enemy_bullet(t_game *game, t_sprite *enemy)
 	bullet->posi = (t_vec3d){sprite->posi.x, sprite->posi.y, sprite->cur_z};
 	bullet->wall_hole = true;
 	bullet->hole = bullet_rest(game, bullet);
+	bullet->move_sense = game->template_bullet.move_sense / 3;
 	game->live_bullets++;
 }
