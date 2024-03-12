@@ -59,6 +59,7 @@ void	game_start_helper(t_game *game)
 	apply_all_settings(game);
 	start_clock(&game->clock);
 	update_clock(&game->clock);
+	rand_init();
 }
 
 int	game_start(t_game *game, char *game_config)

@@ -51,7 +51,7 @@ void	draw_interp(t_game *game, t_sprite *sprite, t_interp_cast *cast)
 	{
 		cast->tex_pix_x = (int)(cast->tex_exact_x);
 		if (cast->inverted)
-			cast->tex_pix_x = cast->tex->width - cast->tex_pix_x - 1;
+			cast->tex_pix_x = cast->tex->height - cast->tex_pix_x - 1;
 		cast->tex_exact_x += cast->tex_step_x;
 		cast->draw_st_y = (int)(cast->pix_exact_min_y);
 		cast->draw_end_y = (int)(cast->pix_exact_max_y);

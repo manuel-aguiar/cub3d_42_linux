@@ -222,14 +222,6 @@ typedef struct s_bullet_colli
 	t_vec2d		collision[2];
 }	t_bullet_colli;
 
-typedef struct s_rand_gen
-{
-	unsigned long int	seed;
-	int					multiplier;
-	int					increment;
-	t_clock				*clock;
-}	t_rand_gen;
-
 typedef struct s_hud_stats
 {
 	int		health_color;
@@ -279,7 +271,6 @@ typedef struct s_game
 	int			total_time_lost_str;
 	t_clock		clock;
 	t_hud_stats	stats;
-	t_rand_gen	rand;
 	int			blur_is_on;
 	int			exit_status;
 }	t_game;
@@ -375,8 +366,9 @@ int		game_load_textures(t_game *game);
 int		tex_get_pixel(t_win *win, t_mlx_img *tex, int index);
 
 //game_rand_gen.c
-float	rand_float(t_rand_gen *rand, float min, float max);
-int		rand_int(t_rand_gen *rand, int min, int max);
+float	rand_float(float min, float max);
+int		rand_int(int min, int max);
+void	rand_init(void);
 
 //bullet_start.c
 void	start_friendly_bullet(t_game *game);
