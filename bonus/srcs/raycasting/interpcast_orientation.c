@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   interpcast_orientation.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: mmaria-d <mmaria-d@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 13:13:43 by marvin            #+#    #+#             */
-/*   Updated: 2024/03/07 13:41:15 by codespace        ###   ########.fr       */
+/*   Updated: 2024/03/12 19:12:44 by mmaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static inline void	door_orientation(t_game *game, t_sprite *sprite, \
 	}
 }
 
-static inline void	bullet_orientation(t_game *game, t_sprite *sprite, \
+static inline void	bullet_orientation(t_sprite *sprite, \
 	t_interp_cast *cast)
 {
 	bool	ns;
@@ -45,7 +45,6 @@ static inline void	bullet_orientation(t_game *game, t_sprite *sprite, \
 	ns = (ft_fabs(cast->bullet->hole.y - (int)cast->bullet->hole.y) < 0.0001f);
 	if (ns)
 	{
-		cast->inverted = false;
 		cast->start.point = (t_vec2d){cast->bullet->hole.x - sprite->unit_size, \
 			cast->bullet->hole.y};
 		cast->end.point = (t_vec2d){cast->bullet->hole.x + sprite->unit_size, \
@@ -53,17 +52,10 @@ static inline void	bullet_orientation(t_game *game, t_sprite *sprite, \
 	}
 	else
 	{
-		cast->inverted = true;
 		cast->start.point = (t_vec2d){cast->bullet->hole.x, \
 			cast->bullet->hole.y - sprite->unit_size};
 		cast->end.point = (t_vec2d){cast->bullet->hole.x, cast->bullet->hole.y \
 			+ sprite->unit_size};
-	}
-	if ((ns && game->player.map_posi.y > cast->start.point.y) \
-	|| (!ns && game->player.map_posi.x > cast->start.point.x))
-	{
-		vec2d_swap(&cast->start.point, &cast->end.point);
-		cast->inverted = !cast->inverted;
 	}
 }
 
@@ -79,6 +71,6 @@ void	setup_orientation(t_game *game, t_sprite *sprite, t_interp_cast *cast)
 	{
 		cast->bullet = (t_bullet *)sprite->data;
 		cast->tex = &game->tex[WALL_BULLET_TEX];
-		bullet_orientation(game, sprite, cast);
+		bullet_orientation(sprite, cast);
 	}
 }
