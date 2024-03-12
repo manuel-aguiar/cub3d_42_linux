@@ -6,6 +6,10 @@ EA ./assets/xpm_west.xpm
 F 255,0,0
 C 0,255,255
 
+WE ./assets/xpm_east.xpm
+EA ./assets/xpm_west.xpm
+
+
 11111
 1 1N1
 11111
