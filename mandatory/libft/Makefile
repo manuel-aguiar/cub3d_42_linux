@@ -6,7 +6,7 @@
 #    By: mmaria-d <mmaria-d@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/11 14:41:01 by marvin            #+#    #+#              #
-#    Updated: 2024/03/11 23:30:05 by mmaria-d         ###   ########.fr        #
+#    Updated: 2024/03/12 09:32:37 by mmaria-d         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -214,12 +214,12 @@ OBJS 		:=		$(patsubst $(SRC_PATH)/%.c,$(OBJ_PATH)/%.o,$(SRCS))
 
 $(NAME):  message $(OBJS)
 	@echo Compiling Libft, wait a moment....
-	@$(LIB) $@ $(OBJS)
+	$(LIB) $@ $(OBJS)
 	@echo Libft is ready!!
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
 	@mkdir -p $(dir $@)
-	@$(COMP) $(FLAGS) -I$(INC_PATH) -c $< -o $@
+	$(COMP) $(FLAGS) -I$(INC_PATH) -c $< -o $@
 
 message:
 	@echo Creating object files for Libft...

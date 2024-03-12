@@ -7,7 +7,8 @@ COMP 		= 		cc -O3  #-g -fsanitize=address
 
 FLAGS 		= 		-Wall -Werror -Wextra
 ADD_LIB 	= 		-L./$(LIB_PATH) -lft
-MLX_LIB		=		-Lminilibx-linux -L/usr/lib -lmlx -lXext -lX11 -lm -lz
+ADD_MLX		=		-L./$(MLX_PATH) -lmlx -Lminilibx-linux
+X11_LIB		=		-L/usr/lib -lXext -lX11 -lm -lz
 RM 			=		rm
 MAKE		=		make
 
@@ -25,7 +26,7 @@ LIB_INC_P	=		incs
 
 ## SOURCE LIBRARIES
 LIBFT		=		libft.a
-
+MLX			=		mlx.a
 ## SOURCE FOLDERS
 
 DIR_GAME			=	game
@@ -211,13 +212,14 @@ SRCS 		:=		$(addprefix $(SRC_PATH)/, $(SRC_MAIN))											\
 OBJS 		:=		$(patsubst $(SRC_PATH)/%.c,$(OBJ_PATH)/%.o,$(SRCS))
 
 ALL_INCS	= 		-I$(INC_PATH) -I$(LIB_PATH)/$(LIB_INC_P) $(INC_MLX)
-LIBS		=		$(ADD_LIB) $(LIB_PATH)/$(LIBFT) $(MLX_LIB)
+LIBS		=		$(ADD_LIB) $(ADD_MLX) $(X11_LIB)
 
 all: $(NAME)
 
-$(NAME): $(LIBFT) $(OBJS)
+$(NAME): $(OBJS)
+	$(MAKE) -C $(LIB_PATH)
+	$(MAKE) -C $(MLX_PATH)
 	$(COMP) $(FLAGS) $(OBJS) $(ALL_INCS) $(LIBS) -o $@
-	@echo Program $(NAME) ready!!
 
 $(OBJ_PATH)/settings.o : $(SRC_PATH)/settings.c $(SRC_PATH)/game_settings.h
 	$(COMP) $(FLAGS) $(ALL_INCS) -c $< -o $@
@@ -234,13 +236,6 @@ $(OBJ_PATH)/settings_player.o : $(SRC_PATH)/settings_player.c $(SRC_PATH)/game_s
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c $(INCS)
 	mkdir -p $(dir $@)
 	$(COMP) $(FLAGS) $(ALL_INCS) -c $< -o $@
-
-$(LIBFT):
-	@$(MAKE) -C $(LIB_PATH)
-	@$(MAKE) -C $(MLX_PATH)
-
-$(MLX):
-	@$(MAKE) -C $(MLX_PATH)
 
 message:
 	@echo Building program....
@@ -261,6 +256,9 @@ fclean: clean
     fi
 	@if [ -n "$(wildcard  $(LIB_PATH)/$(LIBFT))" ]; then \
         $(RM) $(LIB_PATH)/$(LIBFT); \
+    fi
+	@if [ -n "$(wildcard  $(MLX_PATH)/$(MLX))" ]; then \
+        $(RM) $(MLX_PATH)/$(MLX); \
     fi
 	@echo Done!!
 
