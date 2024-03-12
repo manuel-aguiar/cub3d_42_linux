@@ -12,7 +12,7 @@ X_ENEMY ./assets/xpm_mario.xpm
 Y_ENEMY ./assets/xpm_mario.xpm
 Z_ENEMY ./assets/lost_soul.xpm
 MY_BULLET ./assets/xpm_flying_bullet.xpm
-EN_BULLET ./assets/xpm_flying_bullet.xpm
+EN_BULLET ./assets/xpm_enemy_bullet.xpm
 WALL_BULLET ./assets/bullethole.xpm
 GUN ./assets/xpm_gun.xpm
 DOOR ./assets/xpm_door.xpm
