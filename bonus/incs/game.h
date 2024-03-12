@@ -376,6 +376,4 @@ void	start_enemy_bullet(t_game *game, t_sprite *enemy);
 
 void	player_takes_damage(t_game *game, int damage);
 
-
-
 #endif

@@ -6,7 +6,7 @@
 /*   By: mmaria-d <mmaria-d@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 13:42:23 by codespace         #+#    #+#             */
-/*   Updated: 2024/03/12 19:01:59 by mmaria-d         ###   ########.fr       */
+/*   Updated: 2024/03/12 19:04:12 by mmaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	rand_init(void)
 {
-	time_t t;
+	time_t	t;
 
 	srand((unsigned) time(&t));
 }
@@ -25,9 +25,7 @@ float	rand_float(float min, float max)
 	float	res;
 
 	temp = (double)rand() / (double)RAND_MAX;
-
 	res = temp * (max - min) + min;
-	printf("res is %.3f %.3f\n", res, temp);
 	return (res);
 }
 
