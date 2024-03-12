@@ -55,7 +55,8 @@ int	get_map_dimensions(t_parsing *parsing)
 		node = node->next;
 	node = iterate_remove_empty(parsing, node);
 	if (node)
-		return (error_msg_int("cub3d: file must end on map\n", \
+		return (error_msg_int(\
+			"cub3d: unknown/doubled texture and/or map is not contiguous\n", \
 			STDERR_FILENO, 0));
 	parsing->map_height = parsing->list->len;
 	parsing->map_len = parsing->map_height * parsing->map_width;
