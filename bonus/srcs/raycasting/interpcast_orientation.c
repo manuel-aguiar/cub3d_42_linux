@@ -6,7 +6,7 @@
 /*   By: mmaria-d <mmaria-d@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 13:13:43 by marvin            #+#    #+#             */
-/*   Updated: 2024/03/12 19:12:44 by mmaria-d         ###   ########.fr       */
+/*   Updated: 2024/03/12 19:18:34 by mmaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ static inline void	bullet_orientation(t_sprite *sprite, \
 {
 	bool	ns;
 
+	cast->inverted = false;
 	ns = (ft_fabs(cast->bullet->hole.y - (int)cast->bullet->hole.y) < 0.0001f);
 	if (ns)
 	{
