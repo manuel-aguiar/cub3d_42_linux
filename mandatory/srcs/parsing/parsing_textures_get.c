@@ -62,8 +62,8 @@ int	separate_textures(t_parsing *parsing)
 		else
 		{
 			if (!extract_and_save(parsing))
-				return (error_msg_int("cub3d: bad/doubled input textures\n", \
-				2, 0));
+				return (error_msg_int(\
+				"cub3d: unknown/doubled input textures\n", 2, 0));
 			parsing->nbr_tex++;
 		}
 		vdmlist_del_head(parsing->list, free);
