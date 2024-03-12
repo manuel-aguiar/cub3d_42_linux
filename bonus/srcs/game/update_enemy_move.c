@@ -22,7 +22,6 @@ void	z_enemy_shoot(t_game *game, t_sprite *sprite, t_enemy *enemy)
 		start_enemy_bullet(game, sprite);
 		enemy->cur_shot_time = 0;
 		enemy->shot_this_time = rand_int(0, enemy->shot_max_time);
-		printf("enemy this shot %d\n", enemy->shot_this_time);
 	}
 }
 
