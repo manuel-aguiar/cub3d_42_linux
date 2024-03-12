@@ -14,6 +14,17 @@
 
 int	enemy_sees_player(t_game *game, t_sprite *sprite, t_vec2d dir);
 
+void	z_enemy_shoot(t_game *game, t_sprite *sprite, t_enemy *enemy)
+{
+	enemy->cur_shot_time += game->clock.elapsed;
+	if (enemy->cur_shot_time >= enemy->shot_this_time)
+	{
+		start_enemy_bullet(game, sprite);
+		enemy->cur_shot_time = 0;
+		enemy->shot_this_time = rand_int(0, enemy->shot_max_time);
+	}
+}
+
 void	enemy_movement(t_game *game, t_sprite *sprite, t_enemy *enemy)
 {
 	t_vec2d	dir;
@@ -30,7 +41,11 @@ void	enemy_movement(t_game *game, t_sprite *sprite, t_enemy *enemy)
 		dir = vec2d_multi(vec2d_multi(dir, enemy->move_sense \
 			* game->player.clock->elapsed), -1);
 		handle_collisions(game, &sprite->posi, dir, sprite->unit_size);
+		if (enemy->type == Z_ENEMY)
+			z_enemy_shoot(game, sprite, enemy);
 	}
+	else
+		enemy->cur_shot_time = 0;
 }
 
 void	player_takes_damage(t_game *game, int damage)

@@ -6,7 +6,7 @@
 /*   By: mmaria-d <mmaria-d@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 13:45:59 by mmaria-d          #+#    #+#             */
-/*   Updated: 2024/03/11 15:36:57 by mmaria-d         ###   ########.fr       */
+/*   Updated: 2024/03/12 20:05:57 by mmaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,7 @@ void	settings_template_z_enemy(t_enemy *enemy)
 	enemy->health = Z_ENEMY_HEALTH;
 	enemy->attack_time = Z_ENEMY_TIME_ATTACK;
 	enemy->attack_elapsed = 0;
+	enemy->shot_this_time = 0;
+	enemy->shot_max_time = Z_ENEMY_SHOT_MAX_TIME;
+	enemy->cur_shot_time = 0;
 }

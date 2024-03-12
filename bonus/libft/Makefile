@@ -6,14 +6,14 @@
 #    By: mmaria-d <mmaria-d@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/11 14:41:01 by marvin            #+#    #+#              #
-#    Updated: 2024/03/12 10:14:22 by mmaria-d         ###   ########.fr        #
+#    Updated: 2024/03/12 20:20:34 by mmaria-d         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 ## BUILD DETAILS
 
 NAME 			= 	libft.a
-COMP 			= 	cc -O3 #-g -fsanitize=address
+COMP 			= 	cc -O3 ##-g -fsanitize=address
 FLAGS 			= 	-Wall -Wextra -Werror
 LIB 			= 	ar rcs
 RM				=	rm

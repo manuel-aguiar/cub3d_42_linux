@@ -137,6 +137,9 @@ typedef struct s_enemy
 	int					health;
 	int					attack_time;
 	int					attack_elapsed;
+	int					cur_shot_time;
+	int					shot_this_time;
+	int					shot_max_time;
 }	t_enemy;
 
 typedef enum e_bullet_shooter

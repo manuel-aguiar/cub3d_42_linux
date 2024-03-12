@@ -156,6 +156,7 @@
 # define Z_ENEMY_ATTACK 30
 # define Z_ENEMY_HEALTH 50
 # define Z_ENEMY_TIME_ATTACK 1000
+# define Z_ENEMY_SHOT_MAX_TIME 2000
 
 # define DOOR_HGT 1.0f
 # define DOOR_WDT 0.3f
