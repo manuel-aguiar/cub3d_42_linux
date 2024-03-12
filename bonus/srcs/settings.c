@@ -99,9 +99,5 @@ void	apply_all_settings(t_game *game)
 	game->is_lost = false;
 	game->cur_time_lost_str = 0;
 	game->total_time_lost_str = GAME_LOST_TIME;
-	game->rand.seed = 0;
-	game->rand.clock = &game->clock;
-	game->rand.multiplier = 1103515245;
-	game->rand.increment = 12345;
 	game->exit_status = EXIT_SUCCESS;
 }

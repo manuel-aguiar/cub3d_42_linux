@@ -26,7 +26,7 @@ int	extract_x_enemy(t_game *game, t_map *map, int place, int map_index)
 	sprite->type = ENEMY;
 	sprite->posi.x = (float)map_col(map, map_index) + 0.5f;
 	sprite->posi.y = (float)map_row(map, map_index) + 0.5f;
-	data->elapsed = rand_int(&game->rand, 0, data->ms_to_swap);
+	data->elapsed = rand_int(0, data->ms_to_swap);
 	sprite->cur_z = data->base_z;
 	sprite->height = data->height;
 	sprite->width = data->width;
@@ -50,7 +50,7 @@ int	extract_y_enemy(t_game *game, t_map *map, int place, int map_index)
 	sprite->type = ENEMY;
 	sprite->posi.x = (float)map_col(map, map_index) + 0.5f;
 	sprite->posi.y = (float)map_row(map, map_index) + 0.5f;
-	data->elapsed = rand_int(&game->rand, 0, data->ms_to_swap);
+	data->elapsed = rand_int(0, data->ms_to_swap);
 	sprite->cur_z = data->base_z;
 	sprite->height = data->height;
 	sprite->width = data->width;
@@ -74,8 +74,8 @@ int	extract_z_enemy(t_game *game, t_map *map, int place, int map_index)
 	sprite->type = ENEMY;
 	sprite->posi.x = (float)map_col(map, map_index) + 0.5f;
 	sprite->posi.y = (float)map_row(map, map_index) + 0.5f;
-	data->elapsed = rand_int(&game->rand, 0, data->ms_to_swap);
-	sprite->cur_z = data->base_z;
+	data->elapsed = rand_int(0, data->ms_to_swap);
+	sprite->cur_z = rand_float(0.0f, 1.0f - data->height);
 	sprite->height = data->height;
 	sprite->width = data->width;
 	sprite->unit_size = data->unit_size;

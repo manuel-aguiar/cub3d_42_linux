@@ -174,7 +174,7 @@
 
 # define AMMO_HGT 0.3f
 # define AMMO_WDT 0.8f
-# define AMMO_Z 0.2f
+# define AMMO_Z 0.15f
 # define AMMO_UNIT 0.2f
 # define AMMO_Z_SENSE 0.005f
 # define AMMO_RESOURCE 20
