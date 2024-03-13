@@ -31,7 +31,6 @@ typedef struct s_win	t_win;
 typedef struct s_pixel	t_pixel;
 typedef struct s_mouse	t_mouse;
 
-// GLOBALS NEEDED BY GLFW
 struct s_mouse
 {
 	int	buttons;
@@ -40,8 +39,6 @@ struct s_mouse
 	int	prev_x;
 	int	prev_y;
 };
-
-// all keys a buttons are according to glfw, change to mlx
 
 enum e_keys_vals
 {
@@ -201,6 +198,7 @@ void	window_pause_manager(t_win *win, t_pause_state state, \
 
 void	xpm_to_window(t_win *win, t_xpm_to_win	*xpm);
 
+//linux_clock.c
 void	start_clock(t_clock *clock);
 void	update_clock(t_clock *clock);
 

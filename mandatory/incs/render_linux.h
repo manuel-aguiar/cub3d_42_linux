@@ -29,7 +29,6 @@ typedef struct s_win	t_win;
 typedef struct s_pixel	t_pixel;
 typedef struct s_mouse	t_mouse;
 
-// GLOBALS NEEDED BY GLFW
 struct s_mouse
 {
 	int	buttons;
@@ -38,8 +37,6 @@ struct s_mouse
 	int	prev_x;
 	int	prev_y;
 };
-
-// all keys a buttons are according to glfw, change to mlx
 
 enum e_keys_vals
 {
@@ -127,13 +124,12 @@ struct s_win
 int		win_init_window(t_win *win);
 int		free_window(t_win *win);
 
-//win_keys.c
+//key and mouse callbacks
 int		mouse_position(int x, int y, t_win *win);
 int		mouse_release(int button, int x, int y, t_win *win);
 int		mouse_press(int button, int x, int y, t_win *win);
 int		key_press(int keycode, t_win *win);
 int		key_release(int keycode, t_win *win);
-//win_render_loop.c
 
 //win_pixels.c
 void	linux_set_pixel(t_win *win, int x, int y, int color);
@@ -141,15 +137,6 @@ int		linux_get_pixel(t_win *win, int x, int y);
 int		avg_colour(int start, int end, int num, int den);
 void	swap_pixels(t_pixel *start, t_pixel *end);
 
-void	window_pause_manager(t_win *win, t_pause_state state, \
-		bool blur_on, void string(t_win *));
-
 void	xpm_to_window(t_win *win, t_xpm_to_win	*xpm);
-
-//linux_text_strings.c
-void	pause_text_string(t_win *win);
-void	you_lost_text_string(t_win *win);
-void	enemies_defeated_text_string(t_win *win);
-void	loading_text_string(t_win *win);
 
 #endif

@@ -74,6 +74,7 @@ typedef enum e_door_state
 	DOOR_CLOSED,
 }	t_door_state;
 
+//main door struct
 typedef struct s_door
 {
 	t_vec2d				base_position;
@@ -93,6 +94,7 @@ typedef struct s_door
 	float				dist_sense;
 }	t_door;
 
+//main ammokit struct
 typedef struct s_ammo
 {
 	int					ammopoints;
@@ -104,6 +106,7 @@ typedef struct s_ammo
 	float				float_radius;
 }	t_ammo;
 
+//main medikit structure
 typedef struct s_medi
 {
 	int					lifepoints;
@@ -122,6 +125,7 @@ typedef enum e_enemy_type
 	Z_ENEMY,
 }	t_enemy_type;
 
+//main enemy structure
 typedef struct s_enemy
 {
 	t_enemy_type		type;
@@ -148,6 +152,7 @@ typedef enum e_bullet_shooter
 	B_ENEMY,
 }	t_bullet_shooter;
 
+//main bullet structure
 typedef struct s_bullet
 {
 	t_bullet_shooter	shooter;
@@ -163,15 +168,7 @@ typedef struct s_bullet
 	bool				wall_hole;
 }	t_bullet;
 
-typedef struct s_exit
-{
-	float				base_z;
-	float				z_sense;
-	float				unit_size;
-	float				height;
-	float				width;
-}	t_exit;
-
+//main sprite structure
 typedef struct s_sprite
 {
 	t_sprite_type		type;

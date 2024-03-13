@@ -32,10 +32,13 @@ char	**ft_split_count_replenish(t_cchar *s, t_cchar *og, \
 //fpow_2.c
 float	fpow_2(float number);
 
+//ft_fabs.c
 float	ft_fabs(float number);
 
+//cubed_string_funcs.c
 int		char_in_charset(char c, char *charset);
 int		is_only_spaces(char *str);
+int		count_char(char *str, char c);
 
 //ft_ternary.c
 float	float_ternary(bool cond, float yes, float no);

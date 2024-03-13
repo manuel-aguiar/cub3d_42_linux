@@ -24,6 +24,7 @@
 # include "player.h"
 # include "generic_utils.h"
 
+//helper struct for collisions
 typedef struct s_move_colli
 {
 	t_map		*map;
@@ -40,6 +41,7 @@ typedef struct s_move_colli
 	float		overlap;
 }				t_move_colli;
 
+//helper struct to draw wall lines
 typedef struct t_wall_line
 {
 	int			line_start;
@@ -58,6 +60,7 @@ typedef struct t_wall_line
 	t_mlx_img	*tex;
 }	t_wall_line;
 
+//ray struct for raycasting
 typedef struct s_ray
 {
 	int			w;
@@ -78,6 +81,7 @@ typedef struct s_ray
 	float		wall_dist;
 }	t_ray;
 
+//struct to save horizontal DDA results
 typedef struct s_dda_hor
 {
 	int		min_y;
@@ -90,11 +94,13 @@ typedef struct s_dda_hor
 	int		reflect_den;
 }	t_dda_hor;
 
+//struct to save floor rendering results
 typedef struct s_dda_ver
 {
 	float	row_distance;
 }	t_dda_ver;
 
+//main game structure
 typedef struct s_game
 {
 	t_parsing	parsing;
@@ -125,8 +131,7 @@ int		game_render(t_game *game);
 void	game_actions(t_game *game);
 void	update_sprites(t_game *game);
 
-void	player_walk_height(t_player *player, t_game *game);
-
+//win_render_loop.c
 int		rendering_loop(t_game *game);
 
 //handle_collisions.c
