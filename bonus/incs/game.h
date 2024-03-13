@@ -355,7 +355,7 @@ void	update_bullet(t_game *game, t_sprite *sprite);
 void	update_enemy(t_game *game, t_sprite *sprite);
 void	enemy_movement(t_game *game, t_sprite *sprite, t_enemy *enemy);
 
-//update_door.c
+//sprites/extract
 void	update_door(t_game *game, t_sprite *sprite);
 int		extract_x_enemy(t_game *game, t_map *map, int place, int map_index);
 int		extract_y_enemy(t_game *game, t_map *map, int place, int map_index);
