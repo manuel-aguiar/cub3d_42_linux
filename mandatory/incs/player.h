@@ -94,14 +94,12 @@ typedef struct s_player
 	t_vec2d			(*move[16])(t_player *);
 }	t_player;
 
+//setup, render and rotation
 void	player_setup(t_player *player);
 void	render_player(t_win *win, t_player *player);
-
-void	player_change_aim(t_player *player);
-void	player_change_stance(t_player *player);
-void	player_jump_gravity(t_player *player);
 void	player_rotate(t_player *player);
 
+//movement function pointers
 t_vec2d	move_player_default(t_player *player);
 t_vec2d	move_player_back_left(t_player *player);
 t_vec2d	move_player_back_right(t_player *player);
@@ -111,12 +109,5 @@ t_vec2d	move_player_left(t_player *player);
 t_vec2d	move_player_right(t_player *player);
 t_vec2d	move_player_backward(t_player *player);
 t_vec2d	move_player_forward(t_player *player);
-
-void	manage_prone_height(t_player *player, int *keys, int *new_height_state);
-void	manage_crouch_height(t_player *player, int *keys, \
-		int *new_height_state);
-void	manage_normal_height(t_player *player, int *keys, \
-		int *new_height_state);
-void	manage_jump_height(t_player *player, int *keys, int *new_height_state);
 
 #endif

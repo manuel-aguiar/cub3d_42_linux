@@ -32,6 +32,7 @@ char	**ft_split_count_replenish(t_cchar *s, t_cchar *og, \
 //fpow_2.c
 float	fpow_2(float number);
 
+//ft_fabs.c
 float	ft_fabs(float number);
 
 //cubed_string_funcs.c
