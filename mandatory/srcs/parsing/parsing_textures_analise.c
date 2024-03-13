@@ -43,6 +43,7 @@ static int	extract_color(t_tex_data	*tex)
 	if (!split)
 		return (perror_msg_int("malloc", 0));
 	if (count != 3 \
+	|| count_char(tex->path, ',') != 2 \
 	|| !color_atoi(split[0], &r) \
 	|| !color_atoi(split[1], &g) \
 	|| !color_atoi(split[2], &b))
