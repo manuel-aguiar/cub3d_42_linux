@@ -26,8 +26,7 @@
 # include "generic_utils.h"
 # include "sprites.h"
 
-# define RAND_MAX_UINT64 0xFFFFFFFFUL
-
+//helper struct for bullet colllisions
 typedef struct s_move_colli
 {
 	t_map		*map;
@@ -93,6 +92,7 @@ typedef struct s_floor_line
 	float		shade_wgt;
 }	t_floor_line;
 
+//main raycasting struct
 typedef struct s_ray
 {
 	int			w;
@@ -233,6 +233,11 @@ typedef struct s_hud_stats
 	t_pixel	ammo_end;
 }	t_hud_stats;
 
+/*
+	main game structure
+	holds all components (player, compass, parsing, templates)
+	on the stack, as much as possible
+*/
 typedef struct s_game
 {
 	t_parsing	parsing;

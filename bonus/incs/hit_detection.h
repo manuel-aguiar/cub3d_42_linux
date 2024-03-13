@@ -20,6 +20,7 @@
 typedef struct s_hitnode	t_hitnode;
 typedef struct s_sprite		t_sprite;
 
+//hitnode and list, linked list for map collisions
 typedef struct s_hitnode
 {
 	t_sprite	*sprite;
@@ -34,6 +35,7 @@ typedef struct s_hitlist
 	size_t		len;
 }	t_hitlist;
 
+//liang barsky struct for collisions
 typedef struct s_lb_hit
 {
 	float		p1;

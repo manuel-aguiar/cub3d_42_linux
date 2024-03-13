@@ -49,6 +49,8 @@ enum e_height_state
 	HGT_STATES,
 };
 
+//main player struct that saves all settings and keeps track of
+//state of the camera perspective
 typedef struct s_player
 {
 	t_vec2d			map_posi;
@@ -135,6 +137,7 @@ void	player_change_stance(t_player *player);
 void	player_jump_gravity(t_player *player);
 void	player_rotate(t_player *player);
 
+//player movement funcs (used as function pointers)
 t_vec2d	move_player_default(t_player *player);
 t_vec2d	move_player_back_left(t_player *player);
 t_vec2d	move_player_back_right(t_player *player);
@@ -145,6 +148,7 @@ t_vec2d	move_player_right(t_player *player);
 t_vec2d	move_player_backward(t_player *player);
 t_vec2d	move_player_forward(t_player *player);
 
+//player heights funcs (used as function pointers)
 void	manage_prone_height(t_player *player, int *keys, int *new_height_state);
 void	manage_crouch_height(t_player *player, int *keys, \
 		int *new_height_state);

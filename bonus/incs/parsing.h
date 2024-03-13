@@ -23,8 +23,6 @@
 # include "pixel_point.h"
 # include "hit_detection.h"
 
-# define TOTAL_TEXTURES 6
-
 # define VALID_MAP_CHARS "01NSWEMAXYZD "
 # define VALID_DIR_CHARS "NSWE"
 # define SPRITE_CHARS "MAXYZD"
@@ -65,6 +63,8 @@
 
 typedef struct s_sprite	t_sprite;
 
+//enumerator for textures, NUM_TEX at the end
+//serves as a counter for total structs
 typedef enum e_textures
 {
 	NO_TEX,

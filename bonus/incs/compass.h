@@ -233,6 +233,7 @@ typedef struct s_comp_blur
 	int		img_y;
 }	t_comp_blur;
 
+//main compass structure
 struct s_compass
 {
 	t_pixel			centre;

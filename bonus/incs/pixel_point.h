@@ -43,20 +43,20 @@ typedef struct s_gamma_avg
 	t_uchar	b_final;
 }	t_gamma_avg;
 
+//extraccting and packing rgb channels
 int		rgb_r(int color);
 int		rgb_g(int color);
 int		rgb_b(int color);
 int		rgb_a(int color);
 int		rgba(int r, int g, int b, int a);
 int		argb(int color);
-
 int		pack_color_channels(int fst, int snd, int trd, int fth);
 
+//color averages for antialiasing
 int		gamma_average(int start, int end, float perc_start);
 int		avg_colour(int start, int end, int num, int den);
 
 //translate_rotate.c
-
 void	translate_point(t_pixel	*point, int dx, int dy);
 void	backward_rotate_point(t_pixel *point, \
 		t_pixel centre, float cos, float sin);

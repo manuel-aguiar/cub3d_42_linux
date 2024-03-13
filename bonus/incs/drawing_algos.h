@@ -19,6 +19,7 @@
 # include "vector.h"
 # include "pixel_point.h"
 
+//helper struct to use liang basky clipper
 typedef struct s_lbclip
 {
 	int		p1;
@@ -47,6 +48,7 @@ typedef struct s_lbclip
 	t_pixel	line[2];
 }	t_lbclip;
 
+//helper struct to xiaolinwu lines
 typedef struct s_xldata
 {
 	unsigned short	err_adj;
@@ -59,6 +61,7 @@ typedef struct s_xldata
 	int				colour;
 }	t_xldata;
 
+//helper struct to draw bersenham lines
 typedef struct s_bh_line
 {
 	int	x1;
@@ -73,6 +76,7 @@ typedef struct s_bh_line
 	int	err_2;
 }	t_bh_line;
 
+//helper struct to draw horizontal lines
 typedef struct s_hori_line
 {
 	int	min_x;
@@ -81,6 +85,7 @@ typedef struct s_hori_line
 	int	color;
 }	t_hori_line;
 
+//helper struct to draw vertical lines
 typedef struct s_verti_line
 {
 	int	min_y;

@@ -121,43 +121,44 @@
 //sprite settings
 # define GAME_FLOAT_SENSE 0.003f
 
+//X enemy default stats
 # define X_ENEMY_HGT 0.5f
 # define X_ENEMY_WDT 3.0f
 # define X_ENEMY_Z 0.0f
 # define X_ENEMY_UNIT 0.2f
 # define X_ENEMY_Z_SENSE 0.005f
 # define X_ENEMY_MOVE_SENSE 0.0015f
-//# define ENEMY_MOVE_SENSE 0.0f
 # define X_ENEMY_MS_SWAP 500
 # define X_ENEMY_ATTACK 20
 # define X_ENEMY_HEALTH 50
 # define X_ENEMY_TIME_ATTACK 1000
 
+// Y enemy default stats
 # define Y_ENEMY_HGT 0.7f
 # define Y_ENEMY_WDT 3.0f
 # define Y_ENEMY_Z 0.0f
 # define Y_ENEMY_UNIT 0.3f
 # define Y_ENEMY_Z_SENSE 0.003f
 # define Y_ENEMY_MOVE_SENSE 0.0010f
-//# define ENEMY_MOVE_SENSE 0.0f
 # define Y_ENEMY_MS_SWAP 500
 # define Y_ENEMY_ATTACK 30
 # define Y_ENEMY_HEALTH 70
 # define Y_ENEMY_TIME_ATTACK 1000
 
+// Z enemy default stats
 # define Z_ENEMY_HGT 0.5f
 # define Z_ENEMY_WDT 3.0f
 # define Z_ENEMY_Z 0.0f
 # define Z_ENEMY_UNIT 0.2f
 # define Z_ENEMY_Z_SENSE 0.005f
 # define Z_ENEMY_MOVE_SENSE 0.0015f
-//# define ENEMY_MOVE_SENSE 0.0f
 # define Z_ENEMY_MS_SWAP 500
 # define Z_ENEMY_ATTACK 30
 # define Z_ENEMY_HEALTH 50
 # define Z_ENEMY_TIME_ATTACK 1000
 # define Z_ENEMY_SHOT_MAX_TIME 2000
 
+// DOOR default stats
 # define DOOR_HGT 1.0f
 # define DOOR_WDT 0.3f
 # define DOOR_Z 0.0f
@@ -165,6 +166,7 @@
 # define DOOR_MOVE_SENSE 0.002f
 # define DOOR_DIST_SENSE 1.5f
 
+// MEDIKIT default stats
 # define MEDI_HGT 0.5f
 # define MEDI_WDT 0.5f
 # define MEDI_Z 0.2f
@@ -173,6 +175,7 @@
 # define MEDI_RESOURCE 20
 # define MEDI_FLOAT_RADIUS 0.1f
 
+// AMMO POUCH default stats
 # define AMMO_HGT 0.3f
 # define AMMO_WDT 0.8f
 # define AMMO_Z 0.15f
@@ -181,6 +184,7 @@
 # define AMMO_RESOURCE 20
 # define AMMO_FLOAT_RADIUS 0.1f
 
+// blur limits
 # define BLUR_KERNEL_MAX 31
 # define BLUR_KERNEL_SIZE 17
 # define BLUR_KERNEL_SIGMA 7
@@ -191,6 +195,7 @@
 
 # define MAX_BULLETS 100
 
+//bullet default stats
 # define BULLET_MOVE_SENSE 0.008f
 # define BULLET_HGT 0.1f
 # define BULLET_UNIT_SIZE 0.05f
