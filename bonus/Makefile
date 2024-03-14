@@ -165,7 +165,7 @@ SRC_RAYCASTING		=	vec2d_utils1.c					\
 						interpcast.c					\
 						interpcast_setup.c			\
 						interpcast_orientation.c			\
-						shader.c					\
+						add_shade.c					\
 						tex_get_pixel.c
 
 SRC_SPRITES			=	sprite_setup.c				\
