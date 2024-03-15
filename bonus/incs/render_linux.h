@@ -173,6 +173,7 @@ struct s_win
 	t_pause_blur	blur;
 	void			(*set_pixel)(t_win *win, int x, int y, int color);
 	int				(*get_pixel)(t_win *win, int x, int y);
+	void			(*string)(t_win *);
 };
 
 //win_init_window.c
@@ -194,7 +195,7 @@ int		avg_colour(int start, int end, int num, int den);
 void	swap_pixels(t_pixel *start, t_pixel *end);
 
 void	window_pause_manager(t_win *win, t_pause_state state, \
-		bool blur_on, void string(t_win *));
+		bool blur_on);
 
 void	xpm_to_window(t_win *win, t_xpm_to_win	*xpm);
 

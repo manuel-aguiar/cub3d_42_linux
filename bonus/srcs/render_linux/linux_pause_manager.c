@@ -32,13 +32,11 @@ void	mouse_hide_and_centre(t_win *win)
 	win->mouse.cur_y = win->height / 2;
 }
 
-int	window_pause_on(t_win *win, t_pause_blur *blur, bool blur_on, \
-					void string(t_win *))
+int	window_pause_on(t_win *win, t_pause_blur *blur, bool blur_on)
 {
 	if (blur->elapsed >= blur->pause_time)
 	{
 		blur->elapsed = blur->pause_time;
-		string(win);
 		return (0);
 	}
 	if (blur->elapsed <= 0)
@@ -54,12 +52,10 @@ int	window_pause_on(t_win *win, t_pause_blur *blur, bool blur_on, \
 	else
 		blur->elapsed = int_clamp(blur->elapsed \
 			+ window_update_clock(win), 0, blur->pause_time);
-	string(win);
 	return (1);
 }
 
-int	window_pause_off(t_win *win, t_pause_blur *blur, bool blur_on, \
-					void string(t_win *))
+int	window_pause_off(t_win *win, t_pause_blur *blur, bool blur_on)
 {
 	if (blur->elapsed <= 0)
 	{
@@ -79,18 +75,16 @@ int	window_pause_off(t_win *win, t_pause_blur *blur, bool blur_on, \
 			- window_update_clock(win), 0, blur->pause_time);
 	if (blur->elapsed == 0)
 		mouse_hide_and_centre(win);
-	string(win);
 	return (1);
 }
 
-void	window_pause_manager(t_win *win, t_pause_state state, bool blur_on, \
-							void string(t_win *))
+void	window_pause_manager(t_win *win, t_pause_state state, bool blur_on)
 {
 	t_pause_blur	*blur;
 
 	blur = &win->blur;
 	if (state == PAUSE_ON)
-		window_pause_on(win, blur, blur_on, string);
+		window_pause_on(win, blur, blur_on);
 	else if (state == PAUSE_OFF)
-		window_pause_off(win, blur, blur_on, string);
+		window_pause_off(win, blur, blur_on);
 }
