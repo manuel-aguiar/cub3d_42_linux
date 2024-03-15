@@ -31,10 +31,10 @@
 /* player settings */
 
 # define PLAY_UNIT_SIZE 0.2f
-# define PLAY_FORWARD_MOVE_SENSE 0.002f
+# define PLAY_FORWARD_MOVE_SENSE 0.003f
 # define PLAY_SIDE_MOVE_SENSE 0.002f
-# define PLAY_BACK_MOVE_SENSE 0.002f
-# define PLAY_SPRINT_MULTI 1.5f
+# define PLAY_BACK_MOVE_SENSE 0.0015f
+# define PLAY_SPRINT_MULTI 1.0f
 # define PLAY_BASE_PITCH 0
 
 //rotation an pitch sensibility, aiming multiplier
@@ -52,10 +52,10 @@
 
 //player velocity multipliers
 # define PLAY_NORMAL_MOVE_MULTI 1.0f
-# define PLAY_SPRINT_MOVE_MULTI 2.0f
-# define PLAY_AIM_MOVE_MULTI 0.5f
-# define PLAY_CROUCH_MOVE_MULTI 0.5f
-# define PLAY_PRONE_MOVE_MULTI 0.2f
+# define PLAY_SPRINT_MOVE_MULTI 1.0f
+# define PLAY_AIM_MOVE_MULTI 1.0f
+# define PLAY_CROUCH_MOVE_MULTI 1.0f
+# define PLAY_PRONE_MOVE_MULTI 1.0f
 # define PLAY_SPRINT_ROT_MULTI 0.7f
 
 # define PITCH_ANGLE_BASE 0
