@@ -144,6 +144,12 @@ $(NAME): $(OBJS)
 	$(MAKE) -C $(MLX_PATH)
 	$(COMP) $(FLAGS) $(OBJS) $(ALL_INCS) $(LIBS) -o $@
 
+$(OBJ_PATH)/settings.o : $(SRC_PATH)/settings.c $(SRC_PATH)/game_settings.h
+	$(COMP) $(FLAGS) $(ALL_INCS) -c $< -o $@
+
+$(OBJ_PATH)/settings_player.o : $(SRC_PATH)/settings_player.c $(SRC_PATH)/game_settings.h
+	$(COMP) $(FLAGS) $(ALL_INCS) -c $< -o $@
+
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
 	mkdir -p $(dir $@)
 	$(COMP) $(FLAGS) $(ALL_INCS) -c $< -o $@
