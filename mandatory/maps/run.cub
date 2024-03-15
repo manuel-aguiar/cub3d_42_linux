@@ -1,7 +1,7 @@
 NO ./assets/xpm_north.xpm
 SO ./assets/xpm_south.xpm
-WE ./assets/xpm_east.xpm
-EA ./assets/xpm_west.xpm
+WE ./assets/xpm_west.xpm
+EA ./assets/xpm_east.xpm
 
 F ./assets/xpm_margarida.xpm
 C ./assets/xpm_margarida.xpm
