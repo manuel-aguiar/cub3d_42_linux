@@ -43,6 +43,7 @@ The game works as a first-person shooter (some of the assets you see may look fa
 	X to crouch
 	Z to prone
 	Backspace to jump (or stand from crouch/prone position)
+ 	Left-Shift to run
 	Mouse movement to change the perspective
 	Left-Click to shoot
 	Right-Click to aim
