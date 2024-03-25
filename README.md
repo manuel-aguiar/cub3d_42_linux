@@ -15,8 +15,8 @@ So first off, make sure the Minilibx dependencies are in place by running:
 
 Now, we need a C compiler and the Make utility to build the project:
 
-sudo apt-get update
-sudo apt-get install build-essential
+	sudo apt-get update
+	sudo apt-get install build-essential
 
 Then, clone this repo:
 
