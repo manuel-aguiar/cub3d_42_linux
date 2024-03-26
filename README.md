@@ -9,16 +9,16 @@ First, this project will run best on a native Linux distribution (given WSL emul
 The following commands will work on Ubuntu :)
 The project uses a school library - Minilibx (https://github.com/42Paris/minilibx-linux) - which serves as an interface for utilizing the X Window System on Unix-like operating systems. It is essentially a window manager :D
 
-So first off, make sure the Minilibx dependencies are in place by running:
-
-	sudo apt-get update && sudo apt-get install xorg libxext-dev zlib1g-dev libbsd-dev
-
-Now, we need a C compiler and the Make utility to build the project:
+So first off, we need a C compiler and the Make utility to build the project:
 
 	sudo apt-get update
 	sudo apt-get install build-essential
 
-Then, clone this repo:
+Then we need to make sure the Minilibx dependencies are in place by running:
+
+	sudo apt-get update && sudo apt-get install xorg libxext-dev zlib1g-dev libbsd-dev
+
+Clone this repo:
 
 	git clone git@github.com:manuel-aguiar/cub3d_42_linux.git [name you want]
 
