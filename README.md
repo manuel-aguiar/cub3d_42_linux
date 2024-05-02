@@ -1,5 +1,9 @@
 # Cub3d (Linux version) - 42 School
 
+https://www.youtube.com/watch?v=36-pHFg4tl4
+
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/36-pHFg4tl4/0.jpg)](https://www.youtube.com/watch?v=36-pHFg4tl4)
+
 This is a 42 project whose objective is to create a first-person perspective game in the style of Wolfenstein3D.
 The main technique used to create the appearence of a 3D view is called raycasting (https://en.wikipedia.org/wiki/Ray_casting).
 
